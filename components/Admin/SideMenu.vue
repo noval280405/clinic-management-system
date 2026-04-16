@@ -27,7 +27,7 @@
         <v-list-item to="/admin/master/poli" title="Poli / Departemen" />
         <v-list-item to="/admin/master/obat" title="Obat" />
         <v-list-item to="/admin/master/supplier" title="Supplier" />
-        <v-list-item to="/admin/master/tindakan" title="Tindakan / Layanan" />
+        <v-list-item to="/admin/master/layanan" title="Tindakan / Layanan" />
         <v-list-item to="/admin/master/user" title="User Management" />
       </div>
     </v-list-group>
