@@ -25,30 +25,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
                     // console.log'15')
                     navigateTo(currentpath)
                 } else {
-                    navigateTo('/pilihan-user/')
+                    navigateTo('/')
                 }
-
-                user.getIdTokenResult().then(async (idTokenResult) => {
-                    const claim = idTokenResult.claims
-                    const datauser = await tarikdetaildatabase2("users", user.uid);
-                    const dataprivilege = await tarikdetaildatabase2(
-                        "custome_group_privilege",
-                        datauser!.id_custom_group_privilege
-                    );
-                    userstore.setUser(user)
-                    sessionStorage.setItem(
-                        "id_custom_group_privilege",
-                        datauser!.id_custom_group_privilege
-                    );
-                    sessionStorage.setItem(
-                        "privilege_group",
-                        dataprivilege!.privilege_group
-                    );
-                    // console.logclaim, 'claim')
-                    const role: string = claim['role'] as string
-                    userstore.setRole(_.upperCase(role))
-                    sessionStorage.setItem('role', _.upperCase(role))
-                })
 
             }
         })
@@ -58,7 +36,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
                 // console.log123)
                 userstore.setEmail(user.email)
                 userstore.setDisplayname(user.displayName)
-                navigateTo('/pilihan-user/')
+                navigateTo('/')
             }
         })
     }
