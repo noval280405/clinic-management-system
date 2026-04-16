@@ -2,6 +2,68 @@
   <ConfirmationDialog ref="confirmationDialog" />
 
   <v-dialog
+    v-model="data.dialoghapus"
+    :width="$vuetify.display.mdAndUp ? '30%' : '380'"
+  >
+    <v-card>
+      <v-card-title
+        style="background-color: #0d52af"
+        class="text-white font-weight-bold pa-5"
+      >
+        <span class="ml-5">HAPUS DATA DOKTER</span>
+      </v-card-title>
+
+      <v-card-text>
+        <v-alert
+          type="warning"
+          class="mb-4 text-body-2"
+          border="start"
+          variant="tonal"
+          density="comfortable"
+          text="Data akan dihapus secara permanen dan tidak dapat dipulihkan. Pastikan Anda yakin sebelum melanjutkan."
+        />
+
+        <p class="text-center">
+          Untuk melanjutkan proses penghapusan, silakan ketik ID Biaya berikut:
+          <br />
+          <span class="text-red"> "{{ data.id_dokter }}" </span>
+        </p>
+
+        <v-text-field
+          v-model="data.nama_id"
+          label="Konfirmasi ID Biaya"
+          :placeholder="data.id_dokter"
+          variant="outlined"
+          density="comfortable"
+          color="red-darken-2"
+          class="mt-5"
+          :rules="[
+            (v) => !!v || 'ID tidak boleh kosong',
+            (v) => v == data.id_dokter || 'ID tidak cocok',
+          ]"
+          clearable
+        />
+      </v-card-text>
+
+      <v-card-actions>
+        <v-spacer />
+        <v-btn color="red" variant="flat" @click="data.dialoghapus = false">
+          Batal
+        </v-btn>
+
+        <v-btn
+          :disabled="data.nama_id != data.id_dokter"
+          color="primary"
+          variant="flat"
+          @click="hapusdokter"
+        >
+          Hapus
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
+  <v-dialog
     v-model="data.dialogAdd"
     :width="$vuetify.display.mdAndUp ? '380px' : '90%'"
   >
@@ -15,21 +77,25 @@
       <v-card-text>
         <a-text-field
           label="Nama Dokter"
+          v-model="new_dokter.nama_dokter"
           placeholder="Nama Dokter"
           class="mb-3"
           :disabled="data.addedit == 'edit'"
         />
 
-         <a-text-field
+        <a-text-field
           label="No Dokter"
+          v-model="new_dokter.no_dokter"
           placeholder="No Dokter"
           class="mb-3"
           :disabled="data.addedit == 'edit'"
         />
 
-         <a-text-field
+        <a-select
           label="Spesialis Dokter"
+          v-model="new_dokter.spesialis_dokter"
           placeholder="Spesialis Dokter"
+          :items="['Jantung', 'Ginjal']"
           class="mb-3"
           :disabled="data.addedit == 'edit'"
         />
@@ -106,7 +172,7 @@
         </v-col>
 
         <v-col cols="12" sm="2" class="text-caption text-grey-darken-1">
-          Total: 0 Dokter
+          Total: {{ dokterstore.getDataDokter.length }} Dokter
         </v-col>
       </v-row>
     </v-card-title>
@@ -116,6 +182,7 @@
     <v-data-table
       :headers="data.headdokter"
       :search="data.search"
+      :items="dokterstore.getDataDokter"
       density="compact"
       :sort-by="[{ key: 'createdAt', order: 'desc' }]"
       :hover="true"
@@ -137,23 +204,24 @@
         >
           <v-avatar start color="blue-grey-darken-1" size="18">
             <span class="text-white" style="font-size: 8px">
-              {{ item.nama_dokter.substring(0, 1) }}
+              {{ (item.nama_dokter || "-").substring(0, 1).toUpperCase() }}
             </span>
           </v-avatar>
-          {{ item.nama_dokter.toUpperCase() }}
+
+          {{ (item.nama_dokter || "-").toUpperCase() }}
         </v-chip>
       </template>
 
-      <template v-slot:item.telepon_dokter="{ item }">
+      <template v-slot:item.no_dokter="{ item }">
         <v-chip
-          v-if="item.telepon_dokter"
+          v-if="item.no_dokter"
           size="x-small"
           variant="outlined"
           color="success"
           prepend-icon="mdi-phone"
           class="font-weight-medium"
         >
-          {{ item.telepon_dokter }}
+          {{ item.no_dokter }}
         </v-chip>
 
         <span v-else class="text-caption text-grey-lighten-1 font-italic">
@@ -168,7 +236,7 @@
             variant="tonal"
             color="info"
             class="rounded-lg mr-1"
-            @click="openDialogEdit()"
+            @click="openDialogEdit(item)"
           >
             <v-icon icon="mdi-pencil-outline" />
             <v-tooltip activator="parent" location="top">Edit</v-tooltip>
@@ -179,7 +247,7 @@
             variant="tonal"
             color="error"
             class="rounded-lg"
-            @click="hapusdokter(item.id!)"
+            @click="opendialoghapus(item.id!)"
           >
             <v-icon icon="mdi-trash-can-outline" />
             <v-tooltip activator="parent" location="top">Hapus</v-tooltip>
@@ -223,17 +291,15 @@
                 <span class="text-caption font-weight-medium">
                   <span class="text-grey">Menampilkan</span>
                   <strong class="text-primary ml-1">
-                    <!-- {{ (data.page - 1) * data.itemsPerPage + 1 }}-{{
+                    {{ (data.page - 1) * data.itemsPerPage + 1 }}-{{
                       Math.min(
                         data.page * data.itemsPerPage,
-                        // dokterStore.getDatadokter.length,
+                        dokterstore.getDataDokter.length,
                       )
-                    }} -->
+                    }}
                   </strong>
                   <span class="text-grey mx-1">/</span>
-                  <!-- <strong>{{
-                    dokterStore.getDatadokter.length
-                  }}</strong> -->
+                  <strong>{{ dokterstore.getDataDokter.length }}</strong>
                   <span class="text-grey mx-1">Data</span>
                 </span>
               </div>
@@ -293,13 +359,27 @@
 import _ from "lodash";
 import moment from "moment";
 import { reactive } from "vue";
+import type { dokterM } from "~/types/dokterModel";
 
 definePageMeta({
   layout: "admin",
 });
-
+const dokterstore = useDokterStores();
+const notificationStore = useNotificationStore();
+const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
+  null,
+);
 onMounted(async () => {
-  sessionStorage.removeItem("m_dokter_erp");
+  await dokterstore.tarikDataDokter();
+  sessionStorage.removeItem("m_dokter");
+});
+
+const new_dokter = ref<dokterM>({
+  nama_dokter: "",
+  no_dokter: "",
+  spesialis_dokter: "",
+  created_at: 0,
+  created_by: "",
 });
 
 const data = reactive({
@@ -309,7 +389,9 @@ const data = reactive({
   addedit: "",
   page: 1,
   itemsPerPage: 10,
-
+  id_dokter: "",
+  nama_id: "",
+  dialoghapus: false,
   headdokter: [
     {
       title: "No",
@@ -319,7 +401,7 @@ const data = reactive({
     },
     {
       title: "Nama Dokter",
-      value: "nama_Dokter",
+      value: "nama_dokter",
       sortable: true,
     },
     {
@@ -329,7 +411,7 @@ const data = reactive({
     },
     {
       title: "No Dokter",
-      value: "no_Dokter",
+      value: "no_dokter",
       sortable: true,
     },
     {
@@ -359,6 +441,13 @@ const bottomAddEdit = computed(() => {
 
 function openDialogAdd() {
   data.addedit = "add";
+    new_dokter.value = {
+    nama_dokter: "",
+    no_dokter: "",
+    spesialis_dokter: "",
+    created_at: 0,
+    created_by: "",
+  };
   data.dialogAdd = true;
 }
 
@@ -371,21 +460,48 @@ async function validate() {
 }
 
 async function saveedit() {
+  new_dokter.value.updated_at = moment().unix();
+  new_dokter.value.updated_by = useUserStore().getEmail;
+  await dokterstore.updateMasterDokter(new_dokter.value);
   data.dialogAdd = false;
   refreshData();
 }
 
-function openDialogEdit() {
+function openDialogEdit(item: dokterM) {
   data.addedit = "edit";
+  new_dokter.value = _.assign({}, item);
   data.dialogAdd = true;
 }
 
-function adddokter() {
+async function adddokter() {
+  new_dokter.value.created_at = moment().unix();
+  new_dokter.value.created_by = useUserStore().getEmail;
+  await dokterstore.addMasterDokter(new_dokter.value);
+  new_dokter.value = {
+    nama_dokter: "",
+    no_dokter: "",
+    spesialis_dokter: "",
+    created_at: 0,
+    created_by: "",
+  };
   data.dialogAdd = false;
   refreshData();
 }
 
-async function hapusdokter(id: string) {}
+function opendialoghapus(id_dokter: string) {
+  data.dialoghapus = true;
+  data.id_dokter = id_dokter;
+  data.nama_id = "";
+}
+
+function hapusdokter() {
+  if (data.id_dokter == data.nama_id) {
+    dokterstore.deleteMasterDokter(data.id_dokter);
+    data.dialoghapus = false;
+  } else {
+    notificationStore.showError("Gagal menghapus dokter");
+  }
+}
 
 async function refreshData() {
   useloadingStore().setLoading(true);
