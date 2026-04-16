@@ -1,128 +1,113 @@
 <template>
   <v-list class="sidebar-container pa-3 bg-transparent aresa-sidebar" nav>
+    <!-- DASHBOARD -->
     <v-list-item
       to="/admin/"
-      value="dashboard"
       class="nav-item mb-2"
-      prepend-icon="mdi-grid-large"
+      prepend-icon="mdi-view-dashboard-outline"
       title="Dashboard"
-      density="comfortable"
     />
 
-    <div class="nav-section-label">Master Records</div>
+    <!-- MASTER DATA -->
+    <div class="nav-section-label">Master</div>
 
     <v-list-group value="master" class="nav-group mb-1">
       <template #activator="{ props }">
         <v-list-item
           v-bind="props"
           class="nav-item"
-          prepend-icon="mdi-layers-outline"
-          title="Master Data"
+          prepend-icon="mdi-database-outline"
+          title="Master"
         />
       </template>
 
       <div class="nav-submenu">
-        <v-list-item to="/admin/master/users" title="User Management" />
-        <v-list-item to="/admin/master/perusahaan" title="Daftar Perusahaan" />
-        <v-list-item
-          to="/admin/master/perusahaan/cabang"
-          title="Kantor Cabang"
-        />
-        <v-list-item to="/admin/master/dokumen" title="Arsip Dokumen" />
-        <v-list-item to="/admin/master/kategori/objek" title="Kategori Objek" />
-        <v-list-item to="/admin/master/kategori/unmanage" title="Unmanaged" />
+        <v-list-item to="/admin/master/pasien" title="Pasien" />
+        <v-list-item to="/admin/master/dokter" title="Dokter" />
+        <v-list-item to="/admin/master/poli" title="Poli / Departemen" />
+        <v-list-item to="/admin/master/obat" title="Obat" />
+        <v-list-item to="/admin/master/supplier" title="Supplier" />
+        <v-list-item to="/admin/master/tindakan" title="Tindakan / Layanan" />
+        <v-list-item to="/admin/master/user" title="User Management" />
       </div>
     </v-list-group>
 
-    <div class="nav-section-label">Operasional Perizinan</div>
+    <!-- OPERASIONAL -->
+    <div class="nav-section-label">Operasional</div>
 
     <v-list-item
-      to="/admin/master/kategori/item"
-      title="Kategori Item"
-      prepend-icon="mdi-tag-multiple-outline"
+      to="/admin/pendaftaran"
       class="nav-item mb-1"
+      prepend-icon="mdi-account-plus-outline"
+      title="Pendaftaran / Antrian"
     />
 
-    <v-list-group value="penawaran" class="nav-group mb-1">
-      <template #activator="{ props }">
-        <v-list-item
-          v-bind="props"
-          class="nav-item"
-          prepend-icon="mdi-file-edit-outline"
-          title="Penawaran"
-        />
-      </template>
-
-      <div class="nav-submenu">
-        <v-list-item to="/admin/penawaran/" title="Penawaran">
-          <template #append>
-            <span class="status-badge orange">2</span>
-          </template>
-        </v-list-item>
-        <v-list-item to="/admin/penawaran/sent" title="Terkirim" />
-        <v-list-item to="/admin/penawaran/spk" title="SPK" />
-        <v-list-item to="/admin/penawaran/rejected" title="Dibatalkan" />
-      </div>
-    </v-list-group>
+    <v-list-item
+      to="/admin/rekam-medis"
+      class="nav-item mb-1"
+      prepend-icon="mdi-file-document-edit-outline"
+      title="Rekam Medis"
+    />
 
     <v-list-item
-      to="/admin/penawaran/proses"
+      to="/admin/resep"
       class="nav-item mb-1"
-      title="Dalam Proses"
-      prepend-icon="mdi-sync"
-    >
-      <template #append>
-        <span class="status-badge blue">0</span>
-      </template>
-    </v-list-item>
+      prepend-icon="mdi-pill"
+      title="Resep Obat"
+    />
+
+    <!-- KEUANGAN -->
+    <div class="nav-section-label">Keuangan</div>
 
     <v-list-item
-      to="/admin/penawaran/pemberkasan"
+      to="/admin/billing"
       class="nav-item mb-1"
-      title="Pemberkasan"
-      prepend-icon="mdi-folder-sync-outline"
-    >
-      <template #append>
-        <span class="status-badge gray">1</span>
-      </template>
-    </v-list-item>
+      prepend-icon="mdi-cash-multiple"
+      title="Billing / Transaksi"
+    />
 
-    <v-list-group value="invoice" class="nav-group mb-1">
-      <template #activator="{ props }">
-        <v-list-item
-          v-bind="props"
-          class="nav-item"
-          prepend-icon="mdi-receipt-text-outline"
-          title="Invoice"
-        />
-      </template>
+    <v-list-item
+      to="/admin/invoice"
+      class="nav-item mb-1"
+      prepend-icon="mdi-receipt-text-outline"
+      title="Invoice"
+    />
 
-      <div class="nav-submenu">
-        <v-list-item to="/admin/invoice/" title="Semua Invoice" />
-        <v-list-item to="/admin/invoice/disetujui" title="Disetujui" />
-        <v-list-item to="/admin/invoice/dikirim" title="Dikirim" />
-        <v-list-item to="/admin/invoice/diterima" title="Diterima" />
-        <v-list-item to="/admin/invoice/selesai" title="Selesai" />
-      </div>
-    </v-list-group>
+    <!-- LAPORAN -->
+    <div class="nav-section-label">Laporan</div>
 
-    <div class="nav-section-label">Web Content</div>
+    <v-list-item
+      to="/admin/laporan/harian"
+      class="nav-item mb-1"
+      prepend-icon="mdi-calendar-today"
+      title="Laporan Harian"
+    />
+
+    <v-list-item
+      to="/admin/laporan/bulanan"
+      class="nav-item mb-1"
+      prepend-icon="mdi-calendar-month"
+      title="Laporan Bulanan"
+    />
+
+    <!-- CONTENT (opsional kalau masih dipakai) -->
+    <div class="nav-section-label">Content</div>
+
     <v-list-item
       to="/admin/blog"
-      title="Berita & Blog"
-      prepend-icon="mdi-newspaper-variant-outline"
+      title="Blog"
+      prepend-icon="mdi-post-outline"
       class="nav-item mb-1"
     />
+
     <v-list-item
       to="/admin/projects"
-      title="Portfolio Project"
-      prepend-icon="mdi-briefcase-variant-outline"
+      title="Project"
+      prepend-icon="mdi-briefcase-outline"
       class="nav-item mb-1"
     />
   </v-list>
 </template>
-
-<script setup lang="ts"></script>
 
 <style scoped>
 .sidebar-container {
