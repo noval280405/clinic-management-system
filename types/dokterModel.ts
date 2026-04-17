@@ -3,6 +3,16 @@ export interface dokterM {
     nama_dokter: string,
     no_dokter: string,
     spesialis_dokter: string,
+    sip_number?: string,
+    no_hp?: string,
+    email?: string,
+    status: "aktif" | "nonaktif",
+    jadwal_praktik?: {
+        hari: string[],
+        jam_mulai: string,
+        jam_selesai: string
+    },
+    user_id?: string,
     created_at: number,
     created_by: string,
     updated_at?: number,
