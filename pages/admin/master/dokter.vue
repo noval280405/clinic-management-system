@@ -1,6 +1,5 @@
 <template>
   <ConfirmationDialog ref="confirmationDialog" />
-
   <v-dialog
     v-model="data.dialoghapus"
     :width="$vuetify.display.mdAndUp ? '30%' : '380'"
@@ -558,13 +557,18 @@ function openDialogEdit(item: dokterM) {
 }
 
 async function adddokter() {
-  parseHari();
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Tambah",
+    "Anda yakin ingin menambahkan data ini?",
+  );
 
+  if (!confirmed) {
+    return notificationStore.showError("tambah data dibatalkan");
+  }
+  parseHari();
   new_dokter.value.created_at = moment().unix();
   new_dokter.value.created_by = useUserStore().getEmail;
-
   await dokterstore.addMasterDokter(new_dokter.value);
-
   new_dokter.value = defaultDokter();
   data.dialogAdd = false;
   refreshData();
