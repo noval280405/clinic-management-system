@@ -102,10 +102,7 @@
             <a-select
               label="Jenis Kelamin"
               v-model="new_pasien.jenis_kelamin"
-              :items="[
-                { title: 'Laki-laki', value: 'L' },
-                { title: 'Perempuan', value: 'P' },
-              ]"
+              :items="['Laki-laki', 'Perempuan']"
             />
           </v-col>
 
@@ -450,9 +447,7 @@
                     }}
                   </strong>
                   <span class="text-grey mx-1">/</span>
-                  <strong>{{
-                    pasienStore.getDataPasien.length
-                  }}</strong>
+                  <strong>{{ pasienStore.getDataPasien.length }}</strong>
                   <span class="text-grey mx-1">Data</span>
                 </span>
               </div>
@@ -513,7 +508,7 @@ import _ from "lodash";
 import moment from "moment";
 import { reactive } from "vue";
 import { usePasienStores } from "~/stores/master/pasienStore";
-import type { pasienM } from "~/types/pasienModel";
+import type { pasienM } from "~/types/master/pasienModel";
 const pasienStore = usePasienStores();
 const notificationStore = useNotificationStore();
 const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
@@ -637,6 +632,8 @@ async function validate() {
 }
 
 async function saveedit() {
+  new_pasien.value.updated_at = moment().unix();
+  new_pasien.value.updated_by = useUserStore().getEmail;
   await pasienStore.updateMasterPasien(new_pasien.value);
   data.dialogAdd = false;
   refreshData();
@@ -657,6 +654,8 @@ async function addPasien() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
+  new_pasien.value.created_at = moment().unix();
+  new_pasien.value.created_by = useUserStore().getEmail;
   await pasienStore.addMasterPasien(new_pasien.value);
   data.dialogAdd = false;
   refreshData();

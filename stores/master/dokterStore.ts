@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import _ from "lodash";
-import type { dokterM } from "~/types/dokterModel";
+import type { dokterM } from "~/types/master/dokterModel";
 
 export const useDokterStores = defineStore("dokterStore", {
     state: () => {

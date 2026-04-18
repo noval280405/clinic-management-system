@@ -2,8 +2,70 @@
   <ConfirmationDialog ref="confirmationDialog" />
 
   <v-dialog
+    v-model="data.dialoghapus"
+    :width="$vuetify.display.mdAndUp ? '30%' : '380'"
+  >
+    <v-card>
+      <v-card-title
+        style="background-color: #0d52af"
+        class="text-white font-weight-bold pa-5"
+      >
+        <span class="ml-5">HAPUS DATA OBAT</span>
+      </v-card-title>
+
+      <v-card-text>
+        <v-alert
+          type="warning"
+          class="mb-4 text-body-2"
+          border="start"
+          variant="tonal"
+          density="comfortable"
+          text="Data akan dihapus secara permanen dan tidak dapat dipulihkan. Pastikan Anda yakin sebelum melanjutkan."
+        />
+
+        <p class="text-center">
+          Untuk melanjutkan proses penghapusan, silakan ketik ID Biaya berikut:
+          <br />
+          <span class="text-red"> "{{ data.id_obat }}" </span>
+        </p>
+
+        <v-text-field
+          v-model="data.nama_id"
+          label="Konfirmasi ID Biaya"
+          :placeholder="data.id_obat"
+          variant="outlined"
+          density="comfortable"
+          color="red-darken-2"
+          class="mt-5"
+          :rules="[
+            (v) => !!v || 'ID tidak boleh kosong',
+            (v) => v == data.id_obat || 'ID tidak cocok',
+          ]"
+          clearable
+        />
+      </v-card-text>
+
+      <v-card-actions>
+        <v-spacer />
+        <v-btn color="red" variant="flat" @click="data.dialoghapus = false">
+          Batal
+        </v-btn>
+
+        <v-btn
+          :disabled="data.nama_id != data.id_obat"
+          color="primary"
+          variant="flat"
+          @click="hapusOBAT"
+        >
+          Hapus
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
+  <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '380px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
   >
     <v-card class="rounded-lg">
       <v-card-title
@@ -13,26 +75,105 @@
       </v-card-title>
 
       <v-card-text>
-        <a-text-field
-          label="Nama Dokter"
-          placeholder="Nama Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
+        <!-- IDENTITAS OBAT -->
+        <div class="text-caption font-weight-bold mb-2">Informasi Obat</div>
 
-         <a-text-field
-          label="No Dokter"
-          placeholder="No Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
+        <v-row dense>
+          <v-col cols="6">
+            <a-text-field label="Kode Obat" v-model="new_obat.kode_obat" />
+          </v-col>
 
-         <a-text-field
-          label="Spesialis Dokter"
-          placeholder="Spesialis Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
+          <v-col cols="6">
+            <a-text-field label="Nama Obat" v-model="new_obat.nama_obat" />
+          </v-col>
+
+          <v-col cols="12">
+            <a-text-field
+              label="Kategori Obat"
+              v-model="new_obat.kategori_obat"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- DETAIL OBAT -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Detail Obat</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <v-select
+              label="Satuan"
+              v-model="new_obat.satuan"
+              :items="['tablet', 'kapsul', 'botol', 'tube', 'strip', 'ampul']"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <a-text-field label="Bentuk Obat" v-model="new_obat.bentuk_obat" />
+          </v-col>
+        </v-row>
+
+        <!-- STOK & HARGA -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Stok & Harga</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <a-text-field label="Stok" type="number" v-model="new_obat.stok" />
+          </v-col>
+
+          <v-col cols="6">
+            <a-text-field
+              label="Stok Minimum"
+              type="number"
+              v-model="new_obat.stok_minimum"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <a-text-field
+              label="Harga Beli"
+              type="number"
+              v-model="new_obat.harga_beli"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <a-text-field
+              label="Harga Jual"
+              type="number"
+              v-model="new_obat.harga_jual"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- EXP & STATUS -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Status Obat</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <v-text-field
+              label="Tanggal Kadaluarsa"
+              type="date"
+              v-model="new_obat.tanggal_kadaluarsa"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <v-select
+              label="Status"
+              v-model="new_obat.status"
+              :items="['aktif', 'nonaktif']"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- SUPPLIER -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Supplier</div>
+
+        <v-row dense>
+          <v-col cols="12">
+            <a-text-field label="Supplier" v-model="new_obat.supplier" />
+          </v-col>
+        </v-row>
       </v-card-text>
 
       <v-card-actions class="pa-3 bg-grey-lighten-4">
@@ -64,7 +205,7 @@
     <v-col cols="9">
       <v-breadcrumbs>
         <v-breadcrumbs-item>
-          <span class="font-weight-medium text-h5"> Master Dokter </span>
+          <span class="font-weight-medium text-h5"> Master obat </span>
         </v-breadcrumbs-item>
       </v-breadcrumbs>
     </v-col>
@@ -89,7 +230,7 @@
         class="text-capitalize px-3"
         prepend-icon="mdi-plus"
       >
-        Tambah Dokter
+        Tambah obat
       </v-btn>
     </v-col>
   </v-row>
@@ -106,7 +247,7 @@
         </v-col>
 
         <v-col cols="12" sm="2" class="text-caption text-grey-darken-1">
-          Total: 0 Dokter
+          Total: {{ obatStore.getDataObat.length }} obat
         </v-col>
       </v-row>
     </v-card-title>
@@ -114,53 +255,61 @@
     <v-divider />
 
     <v-data-table
-      :headers="data.headdokter"
+      :headers="data.headObat"
+      :items="obatStore.getDataObat"
       :search="data.search"
       density="compact"
-      :sort-by="[{ key: 'createdAt', order: 'desc' }]"
-      :hover="true"
       :items-per-page="data.itemsPerPage"
       v-model:page="data.page"
     >
+      <!-- NO -->
       <template v-slot:item.no="{ index }">
         <span class="text-caption font-weight-bold text-grey-darken-1">
           {{ (data.page - 1) * data.itemsPerPage + index + 1 }}
         </span>
       </template>
 
-      <template v-slot:item.nama_dokter="{ item }">
+      <!-- NAMA OBAT -->
+      <template v-slot:item.nama_obat="{ item }">
         <v-chip
           size="small"
-          variant="flat"
           color="blue-grey-lighten-5"
           class="text-blue-grey-darken-3 font-weight-bold border"
         >
-          <v-avatar start color="blue-grey-darken-1" size="18">
-            <span class="text-white" style="font-size: 8px">
-              {{ item.nama_dokter.substring(0, 1) }}
-            </span>
-          </v-avatar>
-          {{ item.nama_dokter.toUpperCase() }}
+          {{ item.nama_obat }}
         </v-chip>
       </template>
 
-      <template v-slot:item.telepon_dokter="{ item }">
+      <!-- STOK -->
+      <template v-slot:item.stok="{ item }">
         <v-chip
-          v-if="item.telepon_dokter"
+          :color="item.stok <= item.stok_minimum ? 'red' : 'green'"
           size="x-small"
-          variant="outlined"
-          color="success"
-          prepend-icon="mdi-phone"
-          class="font-weight-medium"
+          class="text-white"
         >
-          {{ item.telepon_dokter }}
+          {{ item.stok }}
         </v-chip>
+      </template>
 
-        <span v-else class="text-caption text-grey-lighten-1 font-italic">
-          Tidak ada data
+      <!-- HARGA -->
+      <template v-slot:item.harga_jual="{ item }">
+        <span class="font-weight-medium">
+          Rp {{ item.harga_jual.toLocaleString() }}
         </span>
       </template>
 
+      <!-- STATUS -->
+      <template v-slot:item.status="{ item }">
+        <v-chip
+          size="x-small"
+          :color="item.status === 'aktif' ? 'green' : 'grey'"
+          class="text-white"
+        >
+          {{ item.status }}
+        </v-chip>
+      </template>
+
+      <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
         <div class="d-flex justify-center">
           <v-btn
@@ -168,7 +317,7 @@
             variant="tonal"
             color="info"
             class="rounded-lg mr-1"
-            @click="openDialogEdit()"
+            @click="openDialogEdit(item)"
           >
             <v-icon icon="mdi-pencil-outline" />
             <v-tooltip activator="parent" location="top">Edit</v-tooltip>
@@ -179,7 +328,7 @@
             variant="tonal"
             color="error"
             class="rounded-lg"
-            @click="hapusdokter(item.id!)"
+            @click="opendialoghapus(item.id!)"
           >
             <v-icon icon="mdi-trash-can-outline" />
             <v-tooltip activator="parent" location="top">Hapus</v-tooltip>
@@ -187,102 +336,11 @@
         </div>
       </template>
 
+      <!-- NO DATA -->
       <template v-slot:no-data>
-        <div class="py-8 text-center text-grey-darken-1">
-          <v-icon
-            size="48"
-            color="grey-lighten-1"
-            class="mb-2"
-            icon="mdi-domain"
-          />
-
-          <div class="text-body-1">Tidak ada data dokter</div>
-        </div>
-      </template>
-
-      <template v-slot:bottom>
-        <v-divider />
-
-        <div class="bg-grey-lighten-5 px-4 py-2">
-          <v-row no-gutters align="center">
-            <v-col
-              cols="12"
-              md="8"
-              class="d-flex align-center flex-wrap"
-              style="gap: 8px"
-            >
-              <div
-                class="d-flex align-center bg-white border rounded-lg px-3 py-1 shadow-sm mr-2"
-              >
-                <v-icon
-                  size="16"
-                  color="primary"
-                  icon="mdi-database-outline"
-                  class="mr-2"
-                />
-                <span class="text-caption font-weight-medium">
-                  <span class="text-grey">Menampilkan</span>
-                  <strong class="text-primary ml-1">
-                    <!-- {{ (data.page - 1) * data.itemsPerPage + 1 }}-{{
-                      Math.min(
-                        data.page * data.itemsPerPage,
-                        // dokterStore.getDatadokter.length,
-                      )
-                    }} -->
-                  </strong>
-                  <span class="text-grey mx-1">/</span>
-                  <!-- <strong>{{
-                    dokterStore.getDatadokter.length
-                  }}</strong> -->
-                  <span class="text-grey mx-1">Data</span>
-                </span>
-              </div>
-            </v-col>
-
-            <v-col
-              cols="12"
-              md="4"
-              class="d-flex justify-md-end justify-center mt-2 mt-md-0"
-            >
-              <div
-                class="d-flex align-center bg-white border rounded-lg px-3 py-0"
-                style="min-width: 140px; height: 32px"
-              >
-                <v-icon
-                  size="14"
-                  color="grey"
-                  icon="mdi-layers-outline"
-                  class="mr-2"
-                />
-                <span
-                  class="text-caption text-grey-darken-1 mr-2"
-                  style="white-space: nowrap"
-                  >Tampilkan:</span
-                >
-
-                <v-select
-                  v-model="data.itemsPerPage"
-                  :items="[
-                    { title: '10', value: 10 },
-                    { title: '25', value: 25 },
-                    { title: '50', value: 50 },
-                    { title: 'Semua', value: -1 },
-                  ]"
-                  variant="plain"
-                  density="compact"
-                  hide-details
-                  class="mt-n2"
-                  @update:model-value="data.page = 1"
-                >
-                  <template v-slot:selection="{ item }">
-                    <span class="text-caption font-weight-black text-primary">{{
-                      item.title
-                    }}</span>
-                  </template>
-                </v-select>
-              </div>
-            </v-col>
-          </v-row>
+        <div class="text-center py-6 text-grey">
+          <v-icon icon="mdi-package-variant" size="40" />
+          <div>Data obat tidak ditemukan</div>
         </div>
       </template>
     </v-data-table>
@@ -293,59 +351,101 @@
 import _ from "lodash";
 import moment from "moment";
 import { reactive } from "vue";
+import { useobatStores } from "~/stores/master/obatStore";
+import type { obatM } from "~/types/master/obatModel";
+const obatStore = useobatStores();
+const notificationStore = useNotificationStore();
+const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
+  null,
+);
 
 definePageMeta({
   layout: "admin",
 });
 
 onMounted(async () => {
-  sessionStorage.removeItem("m_dokter_erp");
+  sessionStorage.removeItem("m_obat");
+  await obatStore.tarikDataObat();
 });
+
+const defaultobat = (): obatM => ({
+  kode_obat: "",
+  nama_obat: "",
+  kategori_obat: "",
+  satuan: "tablet",
+  stok: 0,
+  stok_minimum: 0,
+  harga_beli: 0,
+  harga_jual: 0,
+  status: "aktif",
+  created_at: 0,
+  created_by: "",
+});
+
+const new_obat = ref<obatM>(defaultobat());
 
 const data = reactive({
   search: "",
+  id_obat: "",
+  nama_id: "",
+  dialoghapus: false,
   dialogAdd: false,
   dialogEdit: false,
   addedit: "",
   page: 1,
   itemsPerPage: 10,
 
-  headdokter: [
+  headObat: [
     {
       title: "No",
-      align: "center" as const,
       value: "no",
-      width: "50px", // Tetapkan lebar kecil karena nomor pasti pendek
+      align: "center",
+      width: "50px",
     },
     {
-      title: "Nama Dokter",
-      value: "nama_Dokter",
+      title: "Kode Obat",
+      value: "kode_obat",
       sortable: true,
     },
     {
-      title: "Spesialis Dokter",
-      value: "spesialis_dokter",
+      title: "Nama Obat",
+      value: "nama_obat",
       sortable: true,
     },
     {
-      title: "No Dokter",
-      value: "no_Dokter",
+      title: "Kategori",
+      value: "kategori_obat",
+      sortable: true,
+    },
+    {
+      title: "Stok",
+      value: "stok",
+      sortable: true,
+    },
+    {
+      title: "Harga Jual",
+      value: "harga_jual",
+      sortable: true,
+    },
+    {
+      title: "Status",
+      value: "status",
       sortable: true,
     },
     {
       title: "Aksi",
-      align: "center" as const,
       value: "aksi",
-      width: "50px",
+      align: "center",
+      width: "90px",
     },
   ],
 });
 
 const titleaddedit = computed(() => {
   if (data.addedit == "add") {
-    return "TAMBAH DOKTER";
+    return "TAMBAH OBAT";
   } else {
-    return "EDIT DOKTER";
+    return "EDIT OBAT";
   }
 });
 
@@ -364,32 +464,60 @@ function openDialogAdd() {
 
 async function validate() {
   if (data.addedit == "add") {
-    adddokter();
+    addObat();
   } else {
     saveedit();
   }
 }
 
 async function saveedit() {
+  new_obat.value.updated_at = moment().unix();
+  new_obat.value.updated_by = useUserStore().getEmail;
+  await obatStore.updateMasterObat(new_obat.value);
   data.dialogAdd = false;
   refreshData();
 }
 
-function openDialogEdit() {
+function openDialogEdit(item: obatM) {
   data.addedit = "edit";
+  new_obat.value = _.assign({}, item);
   data.dialogAdd = true;
 }
 
-function adddokter() {
+async function addObat() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Tambah",
+    "Anda yakin ingin menambahkan data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("tambah data dibatalkan");
+  }
+  new_obat.value.created_at = moment().unix();
+  new_obat.value.created_by = useUserStore().getEmail;
+  await obatStore.addMasterObat(new_obat.value);
   data.dialogAdd = false;
   refreshData();
 }
 
-async function hapusdokter(id: string) {}
+function opendialoghapus(id_obat: string) {
+  data.dialoghapus = true;
+  data.id_obat = id_obat;
+  data.nama_id = "";
+}
+
+function hapusOBAT() {
+  if (data.id_obat == data.nama_id) {
+    obatStore.deleteMasterObat(data.id_obat);
+    data.dialoghapus = false;
+  } else {
+    notificationStore.showError("Gagal menghapus OBAT");
+  }
+}
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_dokter_erp");
+  sessionStorage.removeItem("m_obat_erp");
   useloadingStore().setLoading(false);
 }
 </script>

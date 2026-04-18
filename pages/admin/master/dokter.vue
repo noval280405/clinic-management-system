@@ -428,7 +428,7 @@
 import _ from "lodash";
 import moment from "moment";
 import { reactive } from "vue";
-import type { dokterM } from "~/types/dokterModel";
+import type { dokterM } from "~/types/master/dokterModel";
 
 definePageMeta({
   layout: "admin",
