@@ -75,6 +75,9 @@
       </v-card-title>
 
       <v-card-text>
+        <!-- BASIC -->
+        <div class="text-caption font-weight-bold mb-2">Informasi Utama</div>
+
         <a-text-field
           label="Nama Dokter"
           v-model="new_dokter.nama_dokter"
@@ -96,9 +99,76 @@
           v-model="new_dokter.spesialis_dokter"
           placeholder="Spesialis Dokter"
           :items="['Jantung', 'Ginjal']"
-          class="mb-3"
+          class="mb-4"
           :disabled="data.addedit == 'edit'"
         />
+
+        <!-- DETAIL -->
+        <div class="text-caption font-weight-bold mb-2 mt-2">
+          Informasi Tambahan
+        </div>
+
+        <a-text-field
+          label="Nomor SIP"
+          v-model="new_dokter.sip_number"
+          placeholder="Nomor SIP"
+          class="mb-3"
+        />
+
+        <a-text-field
+          label="No HP"
+          v-model="new_dokter.no_hp"
+          placeholder="Nomor HP"
+          class="mb-3"
+        />
+
+        <a-text-field
+          label="Email"
+          v-model="new_dokter.email"
+          placeholder="Email Dokter"
+          class="mb-4"
+        />
+
+        <v-select
+          label="Status Dokter"
+          v-model="new_dokter.status"
+          :items="['aktif', 'nonaktif']"
+          variant="outlined"
+          density="comfortable"
+          class="mb-4"
+        />
+
+        <!-- JADWAL -->
+        <div class="text-caption font-weight-bold mb-2">Jadwal Praktik</div>
+
+        <a-text-field
+          label="Hari Praktik"
+          v-model="hari_praktik_input"
+          placeholder="Contoh: Senin,Selasa,Rabu"
+          class="mb-3"
+        />
+
+        <v-row dense>
+          <v-col cols="6">
+            <v-text-field
+              label="Jam Mulai"
+              v-model="new_dokter.jadwal_praktik.jam_mulai"
+              type="time"
+              density="comfortable"
+              variant="outlined"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <v-text-field
+              label="Jam Selesai"
+              v-model="new_dokter.jadwal_praktik.jam_selesai"
+              type="time"
+              density="comfortable"
+              variant="outlined"
+            />
+          </v-col>
+        </v-row>
       </v-card-text>
 
       <v-card-actions class="pa-3 bg-grey-lighten-4">
@@ -373,14 +443,28 @@ onMounted(async () => {
   await dokterstore.tarikDataDokter();
   sessionStorage.removeItem("m_dokter");
 });
-
-const new_dokter = ref<dokterM>({
+const hari_praktik_input = ref("");
+const defaultDokter = (): dokterM => ({
   nama_dokter: "",
   no_dokter: "",
   spesialis_dokter: "",
+
+  sip_number: "",
+  no_hp: "",
+  email: "",
+
+  status: "aktif",
+
+  jadwal_praktik: {
+    hari: [],
+    jam_mulai: "",
+    jam_selesai: "",
+  },
+
   created_at: 0,
   created_by: "",
 });
+const new_dokter = ref<dokterM>(defaultDokter());
 
 const data = reactive({
   search: "",
@@ -441,13 +525,8 @@ const bottomAddEdit = computed(() => {
 
 function openDialogAdd() {
   data.addedit = "add";
-    new_dokter.value = {
-    nama_dokter: "",
-    no_dokter: "",
-    spesialis_dokter: "",
-    created_at: 0,
-    created_by: "",
-  };
+  new_dokter.value = defaultDokter();
+
   data.dialogAdd = true;
 }
 
@@ -460,9 +539,13 @@ async function validate() {
 }
 
 async function saveedit() {
+  parseHari();
+
   new_dokter.value.updated_at = moment().unix();
   new_dokter.value.updated_by = useUserStore().getEmail;
+
   await dokterstore.updateMasterDokter(new_dokter.value);
+
   data.dialogAdd = false;
   refreshData();
 }
@@ -470,20 +553,19 @@ async function saveedit() {
 function openDialogEdit(item: dokterM) {
   data.addedit = "edit";
   new_dokter.value = _.assign({}, item);
+  hari_praktik_input.value = item.jadwal_praktik?.hari?.join(",") || "";
   data.dialogAdd = true;
 }
 
 async function adddokter() {
+  parseHari();
+
   new_dokter.value.created_at = moment().unix();
   new_dokter.value.created_by = useUserStore().getEmail;
+
   await dokterstore.addMasterDokter(new_dokter.value);
-  new_dokter.value = {
-    nama_dokter: "",
-    no_dokter: "",
-    spesialis_dokter: "",
-    created_at: 0,
-    created_by: "",
-  };
+
+  new_dokter.value = defaultDokter();
   data.dialogAdd = false;
   refreshData();
 }
@@ -507,6 +589,13 @@ async function refreshData() {
   useloadingStore().setLoading(true);
   sessionStorage.removeItem("m_dokter_erp");
   useloadingStore().setLoading(false);
+}
+
+function parseHari() {
+  new_dokter.value.jadwal_praktik.hari = hari_praktik_input.value
+    .split(",")
+    .map((h) => h.trim())
+    .filter((h) => h);
 }
 </script>
 
