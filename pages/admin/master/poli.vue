@@ -1,9 +1,70 @@
 <template>
   <ConfirmationDialog ref="confirmationDialog" />
+  <v-dialog
+    v-model="data.dialoghapus"
+    :width="$vuetify.display.mdAndUp ? '30%' : '380'"
+  >
+    <v-card>
+      <v-card-title
+        style="background-color: #0d52af"
+        class="text-white font-weight-bold pa-5"
+      >
+        <span class="ml-5">HAPUS DATA Poli</span>
+      </v-card-title>
+
+      <v-card-text>
+        <v-alert
+          type="warning"
+          class="mb-4 text-body-2"
+          border="start"
+          variant="tonal"
+          density="comfortable"
+          text="Data akan dihapus secara permanen dan tidak dapat dipulihkan. Pastikan Anda yakin sebelum melanjutkan."
+        />
+
+        <p class="text-center">
+          Untuk melanjutkan proses penghapusan, silakan ketik ID Biaya berikut:
+          <br />
+          <span class="text-red"> "{{ data.id_Poli }}" </span>
+        </p>
+
+        <v-text-field
+          v-model="data.nama_id"
+          label="Konfirmasi ID Biaya"
+          :placeholder="data.id_Poli"
+          variant="outlined"
+          density="comfortable"
+          color="red-darken-2"
+          class="mt-5"
+          :rules="[
+            (v) => !!v || 'ID tidak boleh kosong',
+            (v) => v == data.id_Poli || 'ID tidak cocok',
+          ]"
+          clearable
+        />
+      </v-card-text>
+
+      <v-card-actions>
+        <v-spacer />
+        <v-btn color="red" variant="flat" @click="data.dialoghapus = false">
+          Batal
+        </v-btn>
+
+        <v-btn
+          :disabled="data.nama_id != data.id_Poli"
+          color="primary"
+          variant="flat"
+          @click="hapusPoli"
+        >
+          Hapus
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 
   <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '380px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '780px' : '90%'"
   >
     <v-card class="rounded-lg">
       <v-card-title
@@ -13,26 +74,94 @@
       </v-card-title>
 
       <v-card-text>
-        <a-text-field
-          label="Nama Dokter"
-          placeholder="Nama Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
+        <!-- IDENTITAS -->
+        <div class="text-caption font-weight-bold mb-2">Informasi Poli</div>
 
-         <a-text-field
-          label="No Dokter"
-          placeholder="No Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
+        <v-row dense>
+          <v-col cols="6">
+            <a-text-field label="Kode Poli" v-model="new_poli.kode_poli" />
+          </v-col>
 
-         <a-text-field
-          label="Spesialis Dokter"
-          placeholder="Spesialis Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
+          <v-col cols="6">
+            <a-text-field label="Nama Poli" v-model="new_poli.nama_poli" />
+          </v-col>
+
+          <v-col cols="6">
+            <v-select
+              label="Jenis Poli"
+              v-model="new_poli.jenis_poli"
+              :items="['umum', 'spesialis', 'gigi', 'anak', 'lainnya']"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <a-text-field
+              label="Lokasi"
+              v-model="new_poli.lokasi"
+              placeholder="Lantai / Ruangan"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- JAM OPERASIONAL -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">
+          Jam Operasional
+        </div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <v-text-field
+              label="Jam Buka"
+              type="time"
+              v-model="new_poli.jam_operasional.jam_buka"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <v-text-field
+              label="Jam Tutup"
+              type="time"
+              v-model="new_poli.jam_operasional.jam_tutup"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- ANTRIAN -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">
+          Pengaturan Antrian
+        </div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <a-text-field
+              label="Max Antrian / Hari"
+              type="number"
+              v-model="new_poli.max_antrian_per_hari"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- STATUS -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Status</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <v-select
+              label="Status"
+              v-model="new_poli.status"
+              :items="['aktif', 'nonaktif']"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- DESKRIPSI -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Deskripsi</div>
+
+        <v-row dense>
+          <v-col cols="12">
+            <a-text-field label="Deskripsi Poli" v-model="new_poli.deskripsi" />
+          </v-col>
+        </v-row>
       </v-card-text>
 
       <v-card-actions class="pa-3 bg-grey-lighten-4">
@@ -64,7 +193,7 @@
     <v-col cols="9">
       <v-breadcrumbs>
         <v-breadcrumbs-item>
-          <span class="font-weight-medium text-h5"> Master Dokter </span>
+          <span class="font-weight-medium text-h5"> Master Poli </span>
         </v-breadcrumbs-item>
       </v-breadcrumbs>
     </v-col>
@@ -89,7 +218,7 @@
         class="text-capitalize px-3"
         prepend-icon="mdi-plus"
       >
-        Tambah Dokter
+        Tambah Poli
       </v-btn>
     </v-col>
   </v-row>
@@ -106,7 +235,7 @@
         </v-col>
 
         <v-col cols="12" sm="2" class="text-caption text-grey-darken-1">
-          Total: 0 Dokter
+          Total: {{ Polistore.getDataPoli.length }} Poli
         </v-col>
       </v-row>
     </v-card-title>
@@ -114,175 +243,86 @@
     <v-divider />
 
     <v-data-table
-      :headers="data.headdokter"
+      :headers="data.headPoli"
+      :items="Polistore.getDataPoli"
       :search="data.search"
       density="compact"
-      :sort-by="[{ key: 'createdAt', order: 'desc' }]"
-      :hover="true"
       :items-per-page="data.itemsPerPage"
       v-model:page="data.page"
     >
+      <!-- NO -->
       <template v-slot:item.no="{ index }">
         <span class="text-caption font-weight-bold text-grey-darken-1">
           {{ (data.page - 1) * data.itemsPerPage + index + 1 }}
         </span>
       </template>
 
-      <template v-slot:item.nama_dokter="{ item }">
+      <!-- NAMA POLI -->
+      <template v-slot:item.nama_poli="{ item }">
         <v-chip
           size="small"
-          variant="flat"
           color="blue-grey-lighten-5"
-          class="text-blue-grey-darken-3 font-weight-bold border"
+          class="font-weight-bold border"
         >
-          <v-avatar start color="blue-grey-darken-1" size="18">
-            <span class="text-white" style="font-size: 8px">
-              {{ item.nama_dokter.substring(0, 1) }}
-            </span>
-          </v-avatar>
-          {{ item.nama_dokter.toUpperCase() }}
+          {{ item.nama_poli }}
         </v-chip>
       </template>
 
-      <template v-slot:item.telepon_dokter="{ item }">
-        <v-chip
-          v-if="item.telepon_dokter"
-          size="x-small"
-          variant="outlined"
-          color="success"
-          prepend-icon="mdi-phone"
-          class="font-weight-medium"
-        >
-          {{ item.telepon_dokter }}
+      <!-- JENIS -->
+      <template v-slot:item.jenis_poli="{ item }">
+        <v-chip size="x-small" color="indigo" class="text-white text-uppercase">
+          {{ item.jenis_poli }}
         </v-chip>
+      </template>
 
-        <span v-else class="text-caption text-grey-lighten-1 font-italic">
-          Tidak ada data
+      <!-- JAM OPERASIONAL -->
+      <template v-slot:item.jam_operasional="{ item }">
+        <span class="text-caption">
+          {{ item.jam_operasional?.jam_buka || "-" }} -
+          {{ item.jam_operasional?.jam_tutup || "-" }}
         </span>
       </template>
 
+      <!-- STATUS -->
+      <template v-slot:item.status="{ item }">
+        <v-chip
+          size="x-small"
+          :color="item.status === 'aktif' ? 'green' : 'grey'"
+          class="text-white"
+        >
+          {{ item.status }}
+        </v-chip>
+      </template>
+
+      <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
         <div class="d-flex justify-center">
           <v-btn
-            size="27"
-            variant="tonal"
+            size="25"
             color="info"
-            class="rounded-lg mr-1"
-            @click="openDialogEdit()"
+            variant="tonal"
+            class="mr-1"
+            @click="openDialogEdit(item)"
           >
-            <v-icon icon="mdi-pencil-outline" />
-            <v-tooltip activator="parent" location="top">Edit</v-tooltip>
+            <v-icon icon="mdi-pencil" />
           </v-btn>
 
           <v-btn
-            size="27"
-            variant="tonal"
+            size="25"
             color="error"
-            class="rounded-lg"
-            @click="hapusdokter(item.id!)"
+            variant="tonal"
+            @click="opendialoghapus(item.id!)"
           >
-            <v-icon icon="mdi-trash-can-outline" />
-            <v-tooltip activator="parent" location="top">Hapus</v-tooltip>
+            <v-icon icon="mdi-delete" />
           </v-btn>
         </div>
       </template>
 
+      <!-- NO DATA -->
       <template v-slot:no-data>
-        <div class="py-8 text-center text-grey-darken-1">
-          <v-icon
-            size="48"
-            color="grey-lighten-1"
-            class="mb-2"
-            icon="mdi-domain"
-          />
-
-          <div class="text-body-1">Tidak ada data dokter</div>
-        </div>
-      </template>
-
-      <template v-slot:bottom>
-        <v-divider />
-
-        <div class="bg-grey-lighten-5 px-4 py-2">
-          <v-row no-gutters align="center">
-            <v-col
-              cols="12"
-              md="8"
-              class="d-flex align-center flex-wrap"
-              style="gap: 8px"
-            >
-              <div
-                class="d-flex align-center bg-white border rounded-lg px-3 py-1 shadow-sm mr-2"
-              >
-                <v-icon
-                  size="16"
-                  color="primary"
-                  icon="mdi-database-outline"
-                  class="mr-2"
-                />
-                <span class="text-caption font-weight-medium">
-                  <span class="text-grey">Menampilkan</span>
-                  <strong class="text-primary ml-1">
-                    <!-- {{ (data.page - 1) * data.itemsPerPage + 1 }}-{{
-                      Math.min(
-                        data.page * data.itemsPerPage,
-                        // dokterStore.getDatadokter.length,
-                      )
-                    }} -->
-                  </strong>
-                  <span class="text-grey mx-1">/</span>
-                  <!-- <strong>{{
-                    dokterStore.getDatadokter.length
-                  }}</strong> -->
-                  <span class="text-grey mx-1">Data</span>
-                </span>
-              </div>
-            </v-col>
-
-            <v-col
-              cols="12"
-              md="4"
-              class="d-flex justify-md-end justify-center mt-2 mt-md-0"
-            >
-              <div
-                class="d-flex align-center bg-white border rounded-lg px-3 py-0"
-                style="min-width: 140px; height: 32px"
-              >
-                <v-icon
-                  size="14"
-                  color="grey"
-                  icon="mdi-layers-outline"
-                  class="mr-2"
-                />
-                <span
-                  class="text-caption text-grey-darken-1 mr-2"
-                  style="white-space: nowrap"
-                  >Tampilkan:</span
-                >
-
-                <v-select
-                  v-model="data.itemsPerPage"
-                  :items="[
-                    { title: '10', value: 10 },
-                    { title: '25', value: 25 },
-                    { title: '50', value: 50 },
-                    { title: 'Semua', value: -1 },
-                  ]"
-                  variant="plain"
-                  density="compact"
-                  hide-details
-                  class="mt-n2"
-                  @update:model-value="data.page = 1"
-                >
-                  <template v-slot:selection="{ item }">
-                    <span class="text-caption font-weight-black text-primary">{{
-                      item.title
-                    }}</span>
-                  </template>
-                </v-select>
-              </div>
-            </v-col>
-          </v-row>
+        <div class="text-center py-6 text-grey">
+          <v-icon icon="mdi-hospital-building" size="40" />
+          <div>Data poli tidak tersedia</div>
         </div>
       </template>
     </v-data-table>
@@ -293,14 +333,42 @@
 import _ from "lodash";
 import moment from "moment";
 import { reactive } from "vue";
+import { usePoliStores } from "~/stores/master/poliStore";
+import type { poliM } from "~/types/master/poliModel";
 
 definePageMeta({
   layout: "admin",
 });
-
+const Polistore = usePoliStores();
+const notificationStore = useNotificationStore();
+const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
+  null,
+);
 onMounted(async () => {
-  sessionStorage.removeItem("m_dokter_erp");
+  await Polistore.tarikDataPoli();
+  sessionStorage.removeItem("m_Poli");
 });
+const defaultPoli = (): poliM => ({
+  kode_poli: "",
+  nama_poli: "",
+  jenis_poli: "umum",
+  lokasi: "",
+  dokter_ids: [],
+  layanan_ids: [],
+  max_antrian_per_hari: 0,
+
+  // ⬇️ WAJIB ADA
+  jam_operasional: {
+    jam_buka: "",
+    jam_tutup: "",
+  },
+
+  status: "aktif",
+  deskripsi: "",
+  created_at: 0,
+  created_by: "",
+});
+const new_poli = ref<poliM>(defaultPoli());
 
 const data = reactive({
   search: "",
@@ -309,43 +377,59 @@ const data = reactive({
   addedit: "",
   page: 1,
   itemsPerPage: 10,
-
-  headdokter: [
+  id_Poli: "",
+  nama_id: "",
+  dialoghapus: false,
+  headPoli: [
     {
       title: "No",
-      align: "center" as const,
       value: "no",
-      width: "50px", // Tetapkan lebar kecil karena nomor pasti pendek
+      align: "center",
+      width: "50px",
     },
     {
-      title: "Nama Dokter",
-      value: "nama_Dokter",
+      title: "Kode Poli",
+      value: "kode_poli",
       sortable: true,
     },
     {
-      title: "Spesialis Dokter",
-      value: "spesialis_dokter",
+      title: "Nama Poli",
+      value: "nama_poli",
       sortable: true,
     },
     {
-      title: "No Dokter",
-      value: "no_Dokter",
+      title: "Jenis",
+      value: "jenis_poli",
+      sortable: true,
+    },
+    {
+      title: "Lokasi",
+      value: "lokasi",
+      sortable: true,
+    },
+    {
+      title: "Jam Operasional",
+      value: "jam_operasional",
+    },
+    {
+      title: "Status",
+      value: "status",
       sortable: true,
     },
     {
       title: "Aksi",
-      align: "center" as const,
       value: "aksi",
-      width: "50px",
+      align: "center",
+      width: "90px",
     },
   ],
 });
 
 const titleaddedit = computed(() => {
   if (data.addedit == "add") {
-    return "TAMBAH DOKTER";
+    return "TAMBAH POLI";
   } else {
-    return "EDIT DOKTER";
+    return "EDIT POLI";
   }
 });
 
@@ -359,37 +443,86 @@ const bottomAddEdit = computed(() => {
 
 function openDialogAdd() {
   data.addedit = "add";
+  new_poli.value = defaultPoli();
+
   data.dialogAdd = true;
 }
 
 async function validate() {
   if (data.addedit == "add") {
-    adddokter();
+    addPoli();
   } else {
     saveedit();
   }
 }
 
 async function saveedit() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Edit",
+    "Anda yakin ingin mengedit data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("edit data dibatalkan");
+  }
+  new_poli.value.updated_at = moment().unix();
+  new_poli.value.updated_by = useUserStore().getEmail;
+
+  await Polistore.updateMasterPoli(new_poli.value);
+
   data.dialogAdd = false;
   refreshData();
 }
 
-function openDialogEdit() {
+function openDialogEdit(item: poliM) {
   data.addedit = "edit";
+  new_poli.value = _.assign({}, item);
   data.dialogAdd = true;
 }
 
-function adddokter() {
+async function addPoli() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Tambah",
+    "Anda yakin ingin menambahkan data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("tambah data dibatalkan");
+  }
+  new_poli.value.created_at = moment().unix();
+  new_poli.value.created_by = useUserStore().getEmail;
+  await Polistore.addMasterPoli(new_poli.value);
+  new_poli.value = defaultPoli();
   data.dialogAdd = false;
   refreshData();
 }
 
-async function hapusdokter(id: string) {}
+function opendialoghapus(id_Poli: string) {
+  data.dialoghapus = true;
+  data.id_Poli = id_Poli;
+  data.nama_id = "";
+}
+
+async function hapusPoli() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Hapus",
+    "Anda yakin ingin menghapus data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("hapus data dibatalkan");
+  }
+  if (data.id_Poli == data.nama_id) {
+    Polistore.deleteMasterPoli(data.id_Poli);
+    data.dialoghapus = false;
+  } else {
+    notificationStore.showError("Gagal menghapus Poli");
+  }
+}
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_dokter_erp");
+  sessionStorage.removeItem("m_Poli_erp");
   useloadingStore().setLoading(false);
 }
 </script>
