@@ -63,13 +63,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // 1. Tambahkan ini (Jangan masukkan ke dalam 'public')
     // Nuxt akan otomatis memetakan NUXT_FIREBASE_SERVICE_ACCOUNT dari .env ke sini
-    cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN,
-    token_kv: process.env.NUXT_TOKEN_KV,
-    firebaseProjectId: process.env.FIREBASE_PROJECT_ID,
-    firebaseClientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    firebasePrivateKey: process.env.FIREBASE_PRIVATE_KEY,
+    firebaseProjectId: process.env.project_id,
+    firebaseClientEmail: process.env.client_email,
+    firebasePrivateKey: process.env.private_key,
     public: {
-      cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
       url: process.env.urlapi,
       apimaps: process.env.apimaps,
       anomid: process.env.anomid,
