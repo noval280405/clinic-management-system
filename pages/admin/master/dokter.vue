@@ -538,8 +538,15 @@ async function validate() {
 }
 
 async function saveedit() {
-  parseHari();
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Edit",
+    "Anda yakin ingin mengedit data ini?",
+  );
 
+  if (!confirmed) {
+    return notificationStore.showError("edit data dibatalkan");
+  }
+  parseHari();
   new_dokter.value.updated_at = moment().unix();
   new_dokter.value.updated_by = useUserStore().getEmail;
 
@@ -580,7 +587,15 @@ function opendialoghapus(id_dokter: string) {
   data.nama_id = "";
 }
 
-function hapusdokter() {
+async function hapusdokter() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Hapus",
+    "Anda yakin ingin menghapus data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("hapus data dibatalkan");
+  }
   if (data.id_dokter == data.nama_id) {
     dokterstore.deleteMasterDokter(data.id_dokter);
     data.dialoghapus = false;

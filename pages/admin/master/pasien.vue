@@ -10,7 +10,7 @@
         style="background-color: #0d52af"
         class="text-white font-weight-bold pa-5"
       >
-        <span class="ml-5">HAPUS DATA DOKTER</span>
+        <span class="ml-5">HAPUS DATA PASIEN</span>
       </v-card-title>
 
       <v-card-text>
@@ -55,7 +55,7 @@
           :disabled="data.nama_id != data.id_pasien"
           color="primary"
           variant="flat"
-          @click="hapusdokter"
+          @click="hapuspasien"
         >
           Hapus
         </v-btn>
@@ -632,6 +632,14 @@ async function validate() {
 }
 
 async function saveedit() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Edit",
+    "Anda yakin ingin mengedit data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("edit data dibatalkan");
+  }
   new_pasien.value.updated_at = moment().unix();
   new_pasien.value.updated_by = useUserStore().getEmail;
   await pasienStore.updateMasterPasien(new_pasien.value);
@@ -667,12 +675,20 @@ function opendialoghapus(id_pasien: string) {
   data.nama_id = "";
 }
 
-function hapusdokter() {
+async function hapuspasien() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Hapus",
+    "Anda yakin ingin menghapus data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("hapus data dibatalkan");
+  }
   if (data.id_pasien == data.nama_id) {
     pasienStore.deleteMasterPasien(data.id_pasien);
     data.dialoghapus = false;
   } else {
-    notificationStore.showError("Gagal menghapus dokter");
+    notificationStore.showError("Gagal menghapus pasien");
   }
 }
 

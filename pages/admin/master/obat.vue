@@ -471,6 +471,14 @@ async function validate() {
 }
 
 async function saveedit() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Edit",
+    "Anda yakin ingin mengedit data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("edit data dibatalkan");
+  }
   new_obat.value.updated_at = moment().unix();
   new_obat.value.updated_by = useUserStore().getEmail;
   await obatStore.updateMasterObat(new_obat.value);
@@ -506,7 +514,15 @@ function opendialoghapus(id_obat: string) {
   data.nama_id = "";
 }
 
-function hapusOBAT() {
+async function hapusOBAT() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Hapus",
+    "Anda yakin ingin menghapus data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("hapus data dibatalkan");
+  }
   if (data.id_obat == data.nama_id) {
     obatStore.deleteMasterObat(data.id_obat);
     data.dialoghapus = false;
