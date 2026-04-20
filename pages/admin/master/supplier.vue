@@ -28,7 +28,7 @@
           <span class="text-red"> "{{ data.id_Suplier }}" </span>
         </p>
 
-        <v-text-field
+        <a-text-field
           v-model="data.nama_id"
           label="Konfirmasi ID Biaya"
           :placeholder="data.id_Suplier"
@@ -140,7 +140,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-select
+            <a-select
               label="Status"
               v-model="new_Suplier.status"
               :items="['aktif', 'nonaktif']"

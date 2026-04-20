@@ -29,7 +29,7 @@
           <span class="text-red"> "{{ data.id_obat }}" </span>
         </p>
 
-        <v-text-field
+        <a-text-field
           v-model="data.nama_id"
           label="Konfirmasi ID Biaya"
           :placeholder="data.id_obat"
@@ -100,7 +100,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-select
+            <a-select
               label="Satuan"
               v-model="new_obat.satuan"
               :items="['tablet', 'kapsul', 'botol', 'tube', 'strip', 'ampul']"
@@ -150,7 +150,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Tanggal Kadaluarsa"
               type="date"
               v-model="new_obat.tanggal_kadaluarsa"
@@ -158,7 +158,7 @@
           </v-col>
 
           <v-col cols="6">
-            <v-select
+            <a-select
               label="Status"
               v-model="new_obat.status"
               :items="['aktif', 'nonaktif']"

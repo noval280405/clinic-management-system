@@ -29,7 +29,7 @@
           <span class="text-red"> "{{ data.id_pasien }}" </span>
         </p>
 
-        <v-text-field
+        <a-text-field
           v-model="data.nama_id"
           label="Konfirmasi ID Biaya"
           :placeholder="data.id_pasien"
@@ -107,7 +107,7 @@
           </v-col>
 
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Tanggal Lahir"
               v-model="new_pasien.tanggal_lahir"
               type="date"

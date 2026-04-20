@@ -28,7 +28,7 @@
           <span class="text-red"> "{{ data.id_dokter }}" </span>
         </p>
 
-        <v-text-field
+        <a-text-field
           v-model="data.nama_id"
           label="Konfirmasi ID Biaya"
           :placeholder="data.id_dokter"
@@ -128,7 +128,7 @@
           class="mb-4"
         />
 
-        <v-select
+        <a-select
           label="Status Dokter"
           v-model="new_dokter.status"
           :items="['aktif', 'nonaktif']"
@@ -149,7 +149,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Jam Mulai"
               v-model="new_dokter.jadwal_praktik.jam_mulai"
               type="time"
@@ -159,7 +159,7 @@
           </v-col>
 
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Jam Selesai"
               v-model="new_dokter.jadwal_praktik.jam_selesai"
               type="time"
@@ -395,7 +395,7 @@
                   >Tampilkan:</span
                 >
 
-                <v-select
+                <a-select
                   v-model="data.itemsPerPage"
                   :items="[
                     { title: '10', value: 10 },
@@ -414,7 +414,7 @@
                       item.title
                     }}</span>
                   </template>
-                </v-select>
+                </a-select>
               </div>
             </v-col>
           </v-row>

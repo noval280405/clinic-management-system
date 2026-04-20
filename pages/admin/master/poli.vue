@@ -28,7 +28,7 @@
           <span class="text-red"> "{{ data.id_Poli }}" </span>
         </p>
 
-        <v-text-field
+        <a-text-field
           v-model="data.nama_id"
           label="Konfirmasi ID Biaya"
           :placeholder="data.id_Poli"
@@ -87,7 +87,7 @@
           </v-col>
 
           <v-col cols="6">
-            <v-select
+            <a-select
               label="Jenis Poli"
               v-model="new_poli.jenis_poli"
               :items="['umum', 'spesialis', 'gigi', 'anak', 'lainnya']"
@@ -110,7 +110,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Jam Buka"
               type="time"
               v-model="new_poli.jam_operasional.jam_buka"
@@ -118,7 +118,7 @@
           </v-col>
 
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Jam Tutup"
               type="time"
               v-model="new_poli.jam_operasional.jam_tutup"
@@ -146,7 +146,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-select
+            <a-select
               label="Status"
               v-model="new_poli.status"
               :items="['aktif', 'nonaktif']"

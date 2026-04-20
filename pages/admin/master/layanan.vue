@@ -29,7 +29,7 @@
           <span class="text-red"> "{{ data.id_layanan }}" </span>
         </p>
 
-        <v-text-field
+        <a-text-field
           v-model="data.nama_id"
           label="Konfirmasi ID Biaya"
           :placeholder="data.id_layanan"
@@ -106,7 +106,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-select
+            <a-select
               label="Jenis"
               v-model="new_layanan.jenis_layanan"
               :items="['tindakan', 'konsultasi', 'lab', 'radiologi', 'lainnya']"
@@ -161,7 +161,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-select
+            <a-select
               label="Status"
               v-model="new_layanan.status"
               :items="['aktif', 'nonaktif']"
