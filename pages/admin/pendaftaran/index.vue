@@ -89,6 +89,17 @@
               clearable
             />
           </v-col>
+
+          <!-- INFO PASIEN AUTO -->
+          <v-col cols="12" v-if="selectedPasien">
+            <v-alert type="info" variant="tonal" density="compact">
+              <div class="text-caption">
+                {{ selectedPasien.nama_pasien }} •
+                {{ selectedPasien.jenis_kelamin }} •
+                {{ selectedPasien.no_hp || "-" }}
+              </div>
+            </v-alert>
+          </v-col>
         </v-row>
 
         <!-- POLI & DOKTER -->
@@ -103,6 +114,7 @@
               item-title="nama_poli"
               item-value="id"
               clearable
+              @update:modelValue="generateAntrian"
             />
           </v-col>
 
@@ -135,11 +147,37 @@
           <v-col cols="6">
             <a-date-picker
               label="Tanggal Kunjungan"
-              type="date"
-              :onUpdate:modelValue="
-                (n: string) => (new_pendaftaran.tanggal_kunjungan = n)
-              "
               v-model="new_pendaftaran.tanggal_kunjungan"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- ADMINISTRASI -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Administrasi</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <a-select
+              label="Jenis Pasien"
+              v-model="new_pendaftaran.jenis_pasien"
+              :items="['umum', 'bpjs', 'asuransi']"
+            />
+          </v-col>
+
+          <v-col cols="6" v-if="new_pendaftaran.jenis_pasien === 'bpjs'">
+            <a-text-field label="No BPJS" v-model="new_pendaftaran.no_bpjs" />
+          </v-col>
+        </v-row>
+
+        <!-- KELUHAN -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Keluhan Awal</div>
+
+        <v-row dense>
+          <v-col cols="12">
+            <a-text-field
+              label="Keluhan Pasien"
+              v-model="new_pendaftaran.keluhan"
+              placeholder="Contoh: Demam, batuk, dll"
             />
           </v-col>
         </v-row>
@@ -356,14 +394,14 @@ const defaultPendaftaran = (): pendaftaranM => ({
   id_pasien: "",
   id_dokter: "",
   id_poli: "",
+  nama_pasien: "",
+  nama_dokter: "",
+  nama_poli: "",
   nomor_antrian: 0,
   tanggal_kunjungan: "",
   status: "menunggu",
   created_at: 0,
   created_by: "",
-  nama_pasien: "",
-  nama_poli: "",
-  nama_dokter: "",
 });
 
 const new_pendaftaran = ref<pendaftaranM>(defaultPendaftaran());
@@ -443,6 +481,7 @@ watch(
     const b = _.find(datapoli, (o: any) => o.id == idpoli);
     if (!_.isUndefined(b)) {
       new_pendaftaran.value.nama_poli = b!.nama_poli;
+      await dokterStore.tarikDataDokterByPoli(b.id!);
     }
   },
 );
@@ -457,6 +496,26 @@ watch(
     }
   },
 );
+
+const selectedPasien = computed(() =>
+  pasienStore.getDataPasien.find(
+    (p) => p.id === new_pendaftaran.value.id_pasien,
+  ),
+);
+
+const filteredDokter = computed(() => {
+  return dokterStore.getDataDokter.filter(
+    (d) => d.id === new_pendaftaran.value.id_poli,
+  );
+});
+
+function generateAntrian() {
+  const dataHariIni = pendaftaranStore.getDataPendaftaran.filter(
+    (item) => item.id_poli === new_pendaftaran.value.id_poli,
+  );
+
+  new_pendaftaran.value.nomor_antrian = dataHariIni.length + 1;
+}
 
 const titleaddedit = computed(() => {
   if (data.addedit == "add") {

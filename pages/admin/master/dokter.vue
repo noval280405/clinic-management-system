@@ -94,12 +94,12 @@
         />
 
         <a-select
-          label="Spesialis Dokter"
-          v-model="new_dokter.spesialis_dokter"
-          placeholder="Spesialis Dokter"
-          :items="['Jantung', 'Ginjal']"
+          label="Poli / Spesialis"
+          v-model="new_dokter.id_poli"
+          :items="poliStore.getDataPoli"
+          item-title="nama_poli"
+          item-value="id"
           class="mb-4"
-          :disabled="data.addedit == 'edit'"
         />
 
         <!-- DETAIL -->
@@ -433,6 +433,7 @@ import type { dokterM } from "~/types/master/dokterModel";
 definePageMeta({
   layout: "admin",
 });
+const poliStore = usePoliStores();
 const dokterstore = useDokterStores();
 const notificationStore = useNotificationStore();
 const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
@@ -489,7 +490,7 @@ const data = reactive({
     },
     {
       title: "Spesialis Dokter",
-      value: "spesialis_dokter",
+      value: "nama_poli",
       sortable: true,
     },
     {
@@ -505,6 +506,16 @@ const data = reactive({
     },
   ],
 });
+
+watch(
+  () => new_dokter.value.id_poli,
+  (id) => {
+    const poli = poliStore.getDataPoli.find((p) => p.id === id);
+    if (poli) {
+      new_dokter.value.nama_poli = poli.nama_poli;
+    }
+  },
+);
 
 const titleaddedit = computed(() => {
   if (data.addedit == "add") {
@@ -522,7 +533,9 @@ const bottomAddEdit = computed(() => {
   }
 });
 
-function openDialogAdd() {
+async function openDialogAdd() {
+  await poliStore.tarikDataPoli();
+
   data.addedit = "add";
   new_dokter.value = defaultDokter();
 
@@ -556,7 +569,8 @@ async function saveedit() {
   refreshData();
 }
 
-function openDialogEdit(item: dokterM) {
+async function openDialogEdit(item: dokterM) {
+  await poliStore.tarikDataPoli();
   data.addedit = "edit";
   new_dokter.value = _.assign({}, item);
   hari_praktik_input.value = item.jadwal_praktik?.hari?.join(",") || "";

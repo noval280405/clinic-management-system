@@ -19,7 +19,7 @@ export const useDokterStores = defineStore("dokterStore", {
         async addMasterDokter(lempardokter: dokterM) {
             const notificationStore = useNotificationStore();
             const id = makeSlug(
-                `${lempardokter.nama_dokter}-${lempardokter.spesialis_dokter}`
+                `${lempardokter.nama_dokter}-${lempardokter.nama_poli}`
             );
             try {
                 useloadingStore().setLoading(true)
@@ -37,7 +37,7 @@ export const useDokterStores = defineStore("dokterStore", {
         },
         async updateMasterDokter(lempardokter: dokterM) {
             const notificationStore = useNotificationStore();
-    
+
             try {
                 useloadingStore().setLoading(true)
                 await updatedatabase("m_dokter", lempardokter.id!, lempardokter)
@@ -71,6 +71,13 @@ export const useDokterStores = defineStore("dokterStore", {
         async tarikDataDokter() {
             const datatarik = await queryambilid("m_dokter")
             this.dataDokter = datatarik as unknown as dokterM[]
+        },
+
+        async tarikDataDokterByPoli(id_poli: string) {
+            const datatarik = await queryDokterByPoli(id_poli)
+            this.dataDokter = datatarik as unknown as dokterM[]
         }
+
+
     }
 })
