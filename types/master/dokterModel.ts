@@ -6,7 +6,7 @@ export interface dokterM {
     sip_number?: string,
     no_hp?: string,
     email?: string,
-    status: "aktif" | "nonaktif",
+    status: string,
     jadwal_praktik?: {
         hari: string[],
         jam_mulai: string,
