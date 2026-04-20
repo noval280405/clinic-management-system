@@ -353,8 +353,8 @@ const defaultPoli = (): poliM => ({
   nama_poli: "",
   jenis_poli: "umum",
   lokasi: "",
-  dokter_ids: [],
-  layanan_ids: [],
+  id_dokter: [],
+  layanan_id: [],
   max_antrian_per_hari: 0,
 
   // ⬇️ WAJIB ADA

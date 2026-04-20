@@ -8,8 +8,8 @@ export interface poliM {
     // LOKASI
     lokasi?: string; // contoh: lantai 1, ruang 101
     // RELASI
-    dokter_ids?: string[]; // relasi ke dokter
-    layanan_ids?: string[]; // layanan yang tersedia di poli ini
+    id_dokter?: string[]; // relasi ke dokter
+    layanan_id?: string[]; // layanan yang tersedia di poli ini
     // ANTRIAN
     max_antrian_per_hari?: number;
     // JAM OPERASIONAL
