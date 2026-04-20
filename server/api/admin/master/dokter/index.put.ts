@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event);
 
     const repo = new FirestoreRepository();
-    await repo.updateDatabaseRepository("m_jabatan", body.id, body);
+    await repo.updateDatabaseRepository("m_dokter", body.id, body);
 
     return { ok: true };
 

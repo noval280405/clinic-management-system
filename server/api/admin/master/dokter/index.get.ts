@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const { FirestoreRepository } = await import("~/server/repositories/firestore.repository");
     const repo = new FirestoreRepository();
 
-    const data = await repo.getDatabaseRepository("m_jabatan");
+    const data = await repo.getDatabaseRepository("m_dokter");
 
     return { ok: true, data };
   } catch (error: any) {

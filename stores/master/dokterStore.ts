@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import _ from "lodash";
 import type { dokterM } from "~/types/master/dokterModel";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const useDokterStores = defineStore("dokterStore", {
     state: () => {
@@ -16,61 +17,114 @@ export const useDokterStores = defineStore("dokterStore", {
     },
 
     actions: {
-        async addMasterDokter(lempardokter: dokterM) {
-            const notificationStore = useNotificationStore();
-            const id = makeSlug(
-                `${lempardokter.nama_dokter}-${lempardokter.spesialis_dokter}`
-            );
+        async addMasterDokter(data: dokterM) {
+            const notif = useNotificationStore();
+
             try {
-                useloadingStore().setLoading(true)
-                await setdatabase("m_dokter", id, lempardokter)
-                this.tarikDataDokter()
-                notificationStore.showSuccess("Dokter berhasil di tambahkan");
+                useloadingStore().setLoading(true);
+
+                const token = await getAuth().currentUser?.getIdToken();
+
+                await $fetch("/api/admin/master/dokter", {
+                    method: "POST",
+                    body: data,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                await this.tarikDataDokter();
+                notif.showSuccess("Dokter berhasil ditambahkan");
+
             } catch (error: any) {
-                console.error(error);
-                notificationStore.showError(
-                    error.message || "Gagal menambahkan dokter"
-                );
+                notif.showError(error.message);
             } finally {
-                useloadingStore().setLoading(false)
+                useloadingStore().setLoading(false);
             }
         },
-        async updateMasterDokter(lempardokter: dokterM) {
-            const notificationStore = useNotificationStore();
-    
+        async updateMasterDokter(data: dokterM) {
+            const notif = useNotificationStore();
+
             try {
-                useloadingStore().setLoading(true)
-                await updatedatabase("m_dokter", lempardokter.id!, lempardokter)
-                this.tarikDataDokter()
-                notificationStore.showSuccess("Dokter berhasil di edit");
+                useloadingStore().setLoading(true);
+
+                const token = await getAuth().currentUser?.getIdToken();
+
+                await $fetch("/api/admin/master/dokter", {
+                    method: "PUT",
+                    body: data,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                await this.tarikDataDokter();
+                notif.showSuccess("Dokter berhasil di edit");
+
             } catch (error: any) {
-                console.error(error);
-                notificationStore.showError(
-                    error.message || "Gagal update dokter"
-                );
+                notif.showError(error.message);
             } finally {
-                useloadingStore().setLoading(false)
+                useloadingStore().setLoading(false);
             }
         },
         async deleteMasterDokter(id: string) {
-            const notificationStore = useNotificationStore();
+            const notif = useNotificationStore();
+
             try {
-                useloadingStore().setLoading(true)
-                await hapusdatabase("m_dokter", id)
-                this.tarikDataDokter()
-                notificationStore.showSuccess("Dokter berhasil di hapus");
+                useloadingStore().setLoading(true);
+
+                const token = await getAuth().currentUser?.getIdToken();
+
+                await $fetch("/api/admin/master/dokter", {
+                    method: "DELETE",
+                    body: { id },
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                await this.tarikDataDokter();
+                notif.showSuccess("Dokter berhasil dihapus");
+
             } catch (error: any) {
-                console.error(error);
-                notificationStore.showError(
-                    error.message || "Gagal menghapus dokter"
-                );
+                notif.showError(error.message);
             } finally {
-                useloadingStore().setLoading(false)
+                useloadingStore().setLoading(false);
             }
         },
         async tarikDataDokter() {
-            const datatarik = await queryambilid("m_dokter")
-            this.dataDokter = datatarik as unknown as dokterM[]
+            const auth = getAuth();
+
+            return new Promise((resolve, reject) => {
+                onAuthStateChanged(auth, async (user) => {
+                    if (!user) {
+                        console.error("User belum login");
+                        return reject("User belum login");
+                    }
+
+                    try {
+                        const token = await user.getIdToken();
+
+                        const response = await $fetch<{ ok: boolean; data: dokterM[] }>(
+                            "/api/admin/master/dokter",
+                            {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                },
+                            }
+                        );
+
+                        if (response.ok) {
+                            this.dataDokter = response.data;
+                        }
+
+                        resolve(true);
+                    } catch (error) {
+                        console.error(error);
+                        reject(error);
+                    }
+                });
+            });
         }
     }
 })

@@ -4,50 +4,55 @@ import { FirestoreRepository } from "~/server/repositories/firestore.repository"
 
 export default defineEventHandler(async (event) => {
   try {
-    // 🔐 Ambil Authorization Header
     const authHeader = getHeader(event, "authorization");
 
-    if (!authHeader) {
+    if (!authHeader?.startsWith("Bearer ")) {
       throw createError({
         statusCode: 401,
-        statusMessage: "No token",
+        statusMessage: "Invalid token",
       });
     }
 
     const token = authHeader.split(" ")[1];
-
-    // 🔥 Verify Token Firebase
-    const admin = getAdminApp();
-    const decoded = await admin.auth().verifyIdToken(token);
-
-    console.log("USER LOGIN:", decoded.uid);
-
-    // 📦 Ambil body dari frontend
-    const body = await readBody(event);
-
-    if (!body || !body.nama_dokter) {
+    if (!token) {
       throw createError({
-        statusCode: 400,
-        statusMessage: "ID wajib diisi",
+        statusCode: 401,
+        statusMessage: "Token missing",
       });
     }
 
-    // 🗄️ Simpan ke Firestore
+    const admin = getAdminApp();
+    const decoded = await admin.auth().verifyIdToken(token);
+
+    const body = await readBody(event);
+
+    if (!body?.nama_dokter) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: "Nama dokter wajib diisi",
+      });
+    }
+
     const repo = new FirestoreRepository();
+
+    const id =
+      body.id ||
+      body.nama_dokter.toLowerCase().replace(/\s+/g, "-");
 
     await repo.setDatabaseRepository(
       "m_dokter",
       {
         ...body,
+        createdAt: Date.now(),
+        createdBy: decoded.uid,
       },
-      body.nama_dokter // pakai custom ID dari frontend
+      id
     );
 
-    // ✅ Response sukses
     return {
       ok: true,
       message: "Dokter berhasil ditambahkan",
-      id: body.nama_dokter,
+      id,
     };
 
   } catch (error: any) {
@@ -55,7 +60,7 @@ export default defineEventHandler(async (event) => {
 
     throw createError({
       statusCode: error.statusCode || 500,
-      statusMessage: error.message || "Internal Server Error",
+      statusMessage: error.statusMessage || error.message,
     });
   }
 });
