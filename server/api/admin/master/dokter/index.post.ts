@@ -25,32 +25,33 @@ export default defineEventHandler(async (event) => {
     // 📦 Ambil body dari frontend
     const body = await readBody(event);
 
-    if (!body) {
+    if (!body || !body.nama_dokter) {
       throw createError({
         statusCode: 400,
-        statusMessage: "Body tidak boleh kosong",
+        statusMessage: "ID wajib diisi",
       });
     }
 
-    // 🗄️ Simpan ke Firestore (AUTO ID)
+    // 🗄️ Simpan ke Firestore
     const repo = new FirestoreRepository();
 
-    const id = await repo.createDatabaseRepository(
-      "m_jabatan",
+    await repo.setDatabaseRepository(
+      "m_dokter",
       {
         ...body,
-      }
+      },
+      body.nama_dokter // pakai custom ID dari frontend
     );
 
     // ✅ Response sukses
     return {
       ok: true,
-      message: "Pemasok berhasil ditambahkan",
-      id, // ✅ pakai ID dari firestore
+      message: "Dokter berhasil ditambahkan",
+      id: body.nama_dokter,
     };
 
   } catch (error: any) {
-    console.error("POST PEMASOK ERROR:", error);
+    console.error("POST Dokter ERROR:", error);
 
     throw createError({
       statusCode: error.statusCode || 500,
