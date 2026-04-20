@@ -448,9 +448,9 @@ const data = reactive({
 
 const titleaddedit = computed(() => {
   if (data.addedit == "add") {
-    return "TAMBAH layanan";
+    return "TAMBAH LAYANAN";
   } else {
-    return "EDIT layanan";
+    return "EDIT LAYANAN";
   }
 });
 

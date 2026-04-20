@@ -19,7 +19,7 @@ export const usePoliStores = defineStore("PoliStore", {
         async addMasterPoli(lemparPoli: poliM) {
             const notificationStore = useNotificationStore();
             const id = makeSlug(
-                `${lemparPoli.nama_poli}`
+                `${lemparPoli.nama_poli}-${lemparPoli.kode_poli}`
             );
             try {
                 useloadingStore().setLoading(true)
@@ -70,7 +70,7 @@ export const usePoliStores = defineStore("PoliStore", {
                 useloadingStore().setLoading(false)
             }
         },
-        
+
         async tarikDataPoli() {
             const datatarik = await queryambilid("m_poli")
             this.dataPoli = datatarik as unknown as poliM[]
