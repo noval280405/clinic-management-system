@@ -5,13 +5,17 @@ import type { pendaftaranM } from "~/types/pendaftaranModel";
 export const usePendaftaranStores = defineStore("PendaftaranStore", {
     state: () => {
         return {
-            dataPendaftaran: [] as pendaftaranM[]
+            dataPendaftaran: [] as pendaftaranM[],
+            detailPendaftaran: {} as pendaftaranM
         }
     },
 
     getters: {
         getDataPendaftaran(state) {
             return state.dataPendaftaran
+        },
+        getDetailPendaftaran(state) {
+            return state.detailPendaftaran
         }
     },
 
@@ -19,7 +23,7 @@ export const usePendaftaranStores = defineStore("PendaftaranStore", {
         async addPendaftaran(lemparPendaftaran: pendaftaranM) {
             const notificationStore = useNotificationStore();
             const id = makeSlug(
-                `${lemparPendaftaran.nama_pasien}-${lemparPendaftaran.nomor_antrian}-${lemparPendaftaran.tanggal_kunjungan}`
+                `${lemparPendaftaran.nama_pasien}-${lemparPendaftaran.no_antrian}-${lemparPendaftaran.tanggal_kunjungan}`
             );
             try {
                 useloadingStore().setLoading(true)
@@ -37,7 +41,7 @@ export const usePendaftaranStores = defineStore("PendaftaranStore", {
         },
         async updatePendaftaran(lemparPendaftaran: pendaftaranM) {
             const notificationStore = useNotificationStore();
-    
+
             try {
                 useloadingStore().setLoading(true)
                 await updatedatabase("pendaftaran", lemparPendaftaran.id!, lemparPendaftaran)
@@ -71,6 +75,11 @@ export const usePendaftaranStores = defineStore("PendaftaranStore", {
         async tarikDataPendaftaran() {
             const datatarik = await queryambilid("pendaftaran")
             this.dataPendaftaran = datatarik as unknown as pendaftaranM[]
+        },
+
+        async tarikdetailPendaftaran(id: string) {
+            const datatarik = await tarikdetaildatabase("pendaftaran", id)
+            this.detailPendaftaran = datatarik as unknown as pendaftaranM
         }
     }
 })

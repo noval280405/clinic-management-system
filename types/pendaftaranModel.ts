@@ -15,7 +15,7 @@ export interface pendaftaranM {
   nama_poli: string;
 
   // ANTRIAN
-  nomor_antrian: number;
+  no_antrian?: number;
   tanggal_kunjungan: string;
 
   // STATUS

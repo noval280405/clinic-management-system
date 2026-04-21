@@ -43,7 +43,7 @@
     />
 
     <v-list-item
-      to="/admin/rekam-medis"
+      to="/admin/pemeriksaan"
       class="nav-item mb-1"
       prepend-icon="mdi-file-document-edit-outline"
       title="Rekam Medis"

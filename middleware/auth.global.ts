@@ -1,43 +1,39 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { defineNuxtRouteMiddleware, navigateTo } from '#app'
 import { useUserStore } from '~/stores/userStore'
-import _ from "lodash";
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
+export default defineNuxtRouteMiddleware((to, from) => {
     const auth = getAuth()
-    // console.log'middleaware')
     const userstore = useUserStore()
-    // console.log'9 middleware')
-    // console.logto.fullPath)
-    if (to.fullPath === from.fullPath) { // refresh doang
-        onAuthStateChanged(auth, async (user) => {
-            userstore.setUser(user)
-            if (user != null) {
-                // console.log12)
 
+    return new Promise((resolve) => {
+        onAuthStateChanged(auth, (user) => {
+            userstore.setUser(user)
+
+            if (user) {
                 userstore.setEmail(user.email)
+                userstore.setDisplayname(user.displayName)
+
                 localStorage.setItem('uid', user.uid)
                 sessionStorage.setItem('email', user.email!)
                 sessionStorage.setItem('displayName', user.displayName!)
-                userstore.setDisplayname(user.displayName)
-                const currentpath = sessionStorage.getItem('currentPath')
-                if (currentpath && to.fullPath != '/login') {
-                    // console.log'15')
-                    navigateTo(currentpath)
-                } else {
-                    navigateTo('/')
+
+                // ✅ kalau sudah login dan buka login page → redirect ke home
+                if (to.path === '/login') {
+                    return resolve(navigateTo('/'))
                 }
 
+                // ✅ selain itu BIARKAN di halaman sekarang (tidak redirect)
+                return resolve()
+            } else {
+                // ❌ kalau belum login dan bukan di login → paksa ke login
+                if (to.path !== '/login') {
+                    sessionStorage.setItem('currentPath', to.fullPath)
+                    return resolve(navigateTo('/login'))
+                }
+
+                return resolve()
             }
         })
-    } else if (to.fullPath == '/login') {
-        onAuthStateChanged(auth, (user) => {
-            if (user != null) {
-                // console.log123)
-                userstore.setEmail(user.email)
-                userstore.setDisplayname(user.displayName)
-                navigateTo('/')
-            }
-        })
-    }
+    })
 })

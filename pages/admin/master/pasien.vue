@@ -79,13 +79,13 @@
         <div class="text-caption font-weight-bold mb-2">Identitas Pasien</div>
 
         <v-row dense>
-          <v-col cols="12" md="6">
+          <!-- <v-col cols="12" md="6">
             <a-text-field
               label="No RM"
               v-model="new_pasien.no_rm"
               placeholder="RM-2026-0001"
             />
-          </v-col>
+          </v-col> -->
 
           <v-col cols="12" md="6">
             <a-text-field label="NIK" v-model="new_pasien.nik" />
@@ -525,7 +525,6 @@ onMounted(async () => {
 });
 
 const defaultPasien = (): pasienM => ({
-  no_rm: "",
   nik: "",
   nama_pasien: "",
   jenis_kelamin: "L",
@@ -664,7 +663,14 @@ async function addPasien() {
   }
   new_pasien.value.created_at = moment().unix();
   new_pasien.value.created_by = useUserStore().getEmail;
-  await pasienStore.addMasterPasien(new_pasien.value);
+  console.log("DATA PASIEN BARU", new_pasien.value);
+  const c = await setPasien(new_pasien.value);
+  if (c == "ok") {
+    notificationStore.showSuccess("Data pasien berhasil ditambahkan");
+  } else {
+    notificationStore.showError("Gagal menambahkan data pasien");
+  }
+  await pasienStore.tarikDataPasien();
   data.dialogAdd = false;
   refreshData();
 }
@@ -694,7 +700,7 @@ async function hapuspasien() {
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_Pasien_erp");
+  sessionStorage.removeItem("m_pasien");
   useloadingStore().setLoading(false);
 }
 </script>

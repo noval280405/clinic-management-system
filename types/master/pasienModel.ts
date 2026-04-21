@@ -2,7 +2,8 @@ export interface pasienM {
   id?: string;
 
   // IDENTITAS UTAMA
-  no_rm: string; // nomor rekam medis
+  id_pasien?: string; // ID unik untuk pasien, bisa berupa UUID atau format lain
+  no_rm?: string; // nomor rekam medis
   nik?: string;
   nama_pasien: string;
   jenis_kelamin: "L" | "P";

@@ -114,7 +114,6 @@
               item-title="nama_poli"
               item-value="id"
               clearable
-              @update:modelValue="generateAntrian"
             />
           </v-col>
 
@@ -136,13 +135,13 @@
         </div>
 
         <v-row dense>
-          <v-col cols="6">
+          <!-- <v-col cols="6">
             <a-text-field
               label="Nomor Antrian"
               v-model="new_pendaftaran.nomor_antrian"
               readonly
             />
-          </v-col>
+          </v-col> -->
 
           <v-col cols="6">
             <a-date-picker
@@ -183,9 +182,9 @@
         </v-row>
 
         <!-- STATUS -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Status</div>
+        <!-- <div class="text-caption font-weight-bold mb-2 mt-4">Status</div> -->
 
-        <v-row dense>
+        <!-- <v-row dense>
           <v-col cols="6">
             <a-select
               label="Status"
@@ -193,7 +192,7 @@
               :items="['menunggu', 'diproses', 'selesai', 'batal']"
             />
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-card-text>
 
       <v-card-actions class="pa-3 bg-grey-lighten-4">
@@ -339,7 +338,13 @@
       <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
         <div class="d-flex justify-center">
-          <v-btn size="25" color="info" variant="tonal" class="mr-1">
+          <v-btn
+            size="25"
+            color="info"
+            variant="tonal"
+            class="mr-1"
+            :to="'/admin/pendaftaran/' + item.id"
+          >
             <v-icon icon="mdi-eye" />
           </v-btn>
 
@@ -397,7 +402,6 @@ const defaultPendaftaran = (): pendaftaranM => ({
   nama_pasien: "",
   nama_dokter: "",
   nama_poli: "",
-  nomor_antrian: 0,
   tanggal_kunjungan: "",
   status: "menunggu",
   created_at: 0,
@@ -426,7 +430,7 @@ const data = reactive({
     },
     {
       title: "Antrian",
-      value: "nomor_antrian",
+      value: "no_antrian",
       sortable: true,
     },
     {
@@ -503,20 +507,6 @@ const selectedPasien = computed(() =>
   ),
 );
 
-const filteredDokter = computed(() => {
-  return dokterStore.getDataDokter.filter(
-    (d) => d.id === new_pendaftaran.value.id_poli,
-  );
-});
-
-function generateAntrian() {
-  const dataHariIni = pendaftaranStore.getDataPendaftaran.filter(
-    (item) => item.id_poli === new_pendaftaran.value.id_poli,
-  );
-
-  new_pendaftaran.value.nomor_antrian = dataHariIni.length + 1;
-}
-
 const titleaddedit = computed(() => {
   if (data.addedit == "add") {
     return "TAMBAH PENDAFTARAN";
@@ -583,7 +573,14 @@ async function addPendaftaran() {
   }
   new_pendaftaran.value.created_at = moment().unix();
   new_pendaftaran.value.created_by = useUserStore().getEmail;
-  await pendaftaranStore.addPendaftaran(new_pendaftaran.value);
+  console.log("DATA PENDAFTARAN BARU", new_pendaftaran.value);
+  const c = await setPendaftaran(new_pendaftaran.value);
+  if (c == "ok") {
+    notificationStore.showSuccess("Data pendaftaran berhasil ditambahkan");
+  } else {
+    notificationStore.showError("Gagal menambahkan data pendaftaran");
+  }
+  await pendaftaranStore.tarikDataPendaftaran();
   data.dialogAdd = false;
   refreshData();
 }
