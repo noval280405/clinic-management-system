@@ -468,10 +468,17 @@ async function addSuplier() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
-  
+
   new_Suplier.value.created_at = moment().unix();
   new_Suplier.value.created_by = useUserStore().getEmail;
-  await setSupplier(new_Suplier.value);
+  const c = await setSupplier(new_Suplier.value);
+  if (c) {
+    notificationStore.showSuccess("Berhasil menambahkan supplier");
+  } else {
+    notificationStore.showError("Gagal menambahkan supplier");
+    return;
+  }
+  await Suplierstore.tarikDataSuplier();
   new_Suplier.value = defaultSuplier();
   data.dialogAdd = false;
   refreshData();

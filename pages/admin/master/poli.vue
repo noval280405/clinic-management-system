@@ -487,7 +487,14 @@ async function addPoli() {
   }
   new_poli.value.created_at = moment().unix();
   new_poli.value.created_by = useUserStore().getEmail;
-  await setPoli(new_poli.value);
+  const c = await setPoli(new_poli.value);
+  if (c) {
+    notificationStore.showSuccess("Berhasil menambahkan poli");
+  } else {
+    notificationStore.showError("Gagal menambahkan poli");
+    return;
+  }
+  await Polistore.tarikDataPoli();
   new_poli.value = defaultPoli();
   data.dialogAdd = false;
   refreshData();

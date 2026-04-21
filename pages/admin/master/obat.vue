@@ -519,7 +519,14 @@ async function addObat() {
   }
   new_obat.value.created_at = moment().unix();
   new_obat.value.created_by = useUserStore().getEmail;
-  await setObat(new_obat.value);
+  const c = await setObat(new_obat.value);
+  if (c) {
+    notificationStore.showSuccess("Berhasil menambahkan obat");
+  } else {
+    notificationStore.showError("Gagal menambahkan obat");
+    return;
+  }
+  await obatStore.tarikDataObat();
   data.dialogAdd = false;
   refreshData();
 }
