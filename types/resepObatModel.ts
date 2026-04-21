@@ -11,6 +11,7 @@ export interface resepObatM {
     nama_pasien: string;
     items_obat: ResepObatItemM[];
     diagnosa: string;
+    status: string;
     total_harga?: number;
     created_at?: number;
     created_by?: string;

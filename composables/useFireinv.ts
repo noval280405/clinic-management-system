@@ -482,6 +482,7 @@ export const saveResepObat = async (data: resepObatM) => {
                 diagnosa: data.diagnosa,
                 items_obat: itemsFinal as ResepObatItemM[],
                 total_harga,
+                status: "draft",
                 created_at: moment().unix(),
                 created_by: auth.currentUser?.email!,
             };
