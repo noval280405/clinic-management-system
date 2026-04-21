@@ -1,6 +1,5 @@
 export interface layananM {
     id?: string;
-    kode_layanan: string;
     nama_layanan: string;
     kategori_layanan: string;
     jenis_layanan: string;

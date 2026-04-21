@@ -84,7 +84,8 @@
           </v-col>
 
           <v-col cols="12">
-            <a-text-field
+            <a-select
+              :items="kategoriObatList"
               label="Kategori Obat"
               v-model="new_obat.kategori_obat"
             />
@@ -385,6 +386,19 @@ const defaultobat = (): obatM => ({
   created_at: 0,
   created_by: "",
 });
+
+const kategoriObatList = [
+  "Antibiotik",
+  "Analgesik (Pereda Nyeri)",
+  "Antipiretik (Penurun Demam)",
+  "Antihistamin",
+  "Vitamin & Suplemen",
+  "Obat Batuk",
+  "Obat Pencernaan",
+  "Obat Kulit (Salep/Topikal)",
+  "Obat Mata",
+  "Obat Jantung",
+];
 
 const new_obat = ref<obatM>(defaultobat());
 

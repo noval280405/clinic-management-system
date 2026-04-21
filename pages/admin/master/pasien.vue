@@ -107,10 +107,9 @@
           </v-col>
 
           <v-col cols="6">
-            <a-text-field
+            <a-date-picker
               label="Tanggal Lahir"
               v-model="new_pasien.tanggal_lahir"
-              type="date"
             />
           </v-col>
         </v-row>

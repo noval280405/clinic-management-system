@@ -81,13 +81,6 @@
         <v-row dense>
           <v-col cols="6">
             <a-text-field
-              label="Kode Layanan"
-              v-model="new_layanan.kode_layanan"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
               label="Nama Layanan"
               v-model="new_layanan.nama_layanan"
             />
@@ -372,7 +365,6 @@ onMounted(async () => {
 });
 
 const defaultLayanan = (): layananM => ({
-  kode_layanan: "",
   nama_layanan: "",
   kategori_layanan: "",
   jenis_layanan: "tindakan",
@@ -401,11 +393,6 @@ const data = reactive({
       value: "no",
       align: "center",
       width: "50px",
-    },
-    {
-      title: "Kode",
-      value: "kode_layanan",
-      sortable: true,
     },
     {
       title: "Nama Layanan",

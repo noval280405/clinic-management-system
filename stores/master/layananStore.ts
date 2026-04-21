@@ -19,7 +19,7 @@ export const useLayananStores = defineStore("LayananStore", {
         async addMasterLayanan(lemparLayanan: layananM) {
             const notificationStore = useNotificationStore();
             const id = makeSlug(
-                `${lemparLayanan.kode_layanan}`
+                `${lemparLayanan.kategori_layanan}`
             );
             try {
                 useloadingStore().setLoading(true)
