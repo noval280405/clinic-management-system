@@ -526,6 +526,7 @@ async function addObat() {
     notificationStore.showError("Gagal menambahkan obat");
     return;
   }
+  new_obat.value = defaultobat();
   await obatStore.tarikDataObat();
   data.dialogAdd = false;
   refreshData();

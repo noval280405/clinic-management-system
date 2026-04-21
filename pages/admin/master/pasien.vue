@@ -671,6 +671,7 @@ async function addPasien() {
     notificationStore.showError("Gagal menambahkan data pasien");
   }
   await pasienStore.tarikDataPasien();
+  new_pasien.value = defaultPasien();
   data.dialogAdd = false;
   refreshData();
 }

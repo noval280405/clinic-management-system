@@ -509,6 +509,7 @@ async function addLayanan() {
   new_layanan.value.created_at = moment().unix();
   new_layanan.value.created_by = useUserStore().getEmail;
   await layananStore.addMasterLayanan(new_layanan.value);
+  new_layanan.value = defaultLayanan();
   data.dialogAdd = false;
   refreshData();
 }
