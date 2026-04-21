@@ -120,9 +120,13 @@ export const setObat = async (data: obatM) => {
             "Antihistamin": "HIS",
             "Vitamin & Suplemen": "VIT",
         };
-        const prefix = kategoriMap[data.kategori_obat] || "OBT";
+        const prefix = kategoriMap[data.kategori_obat] || "OBT";  
+        const stringnewnumber = _.toString(newnumber).padStart(5, "0");
+        const padnumber = stringnewnumber.padStart(4, "0"); // 03
         const year = moment().format("YYYY");
-        const kode_obat = `${prefix}-${year}-${String(newnumber).padStart(4, "0")}`;
+        const bulan = moment().format("MM");
+        const getromawi = await romawian(_.toNumber(bulan));
+        const kode_obat = `${prefix}-${year}-${padnumber}}`;
         const payload: obatM = {
             ...data,
             kode_obat,
@@ -161,8 +165,12 @@ export const setPoli = async (data: poliM) => {
         }
         const datanomor = getnomor.data();
         const newnumber = (datanomor.no_poli || 0) + 1;
+        const stringnewnumber = _.toString(newnumber).padStart(5, "0");
+        const padnumber = stringnewnumber.padStart(5, "0"); // 03
         const year = moment().format("YYYY");
-        const kode_poli = `POL-${year}-${String(newnumber).padStart(4, "0")}`;
+        const bulan = moment().format("MM");
+        const getromawi = await romawian(_.toNumber(bulan));
+        const kode_poli = `POL-${year}-${padnumber}`;
         const payload: poliM = {
             ...data,
             kode_poli,

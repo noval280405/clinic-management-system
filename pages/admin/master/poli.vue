@@ -106,7 +106,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <a-text-field
+            <v-text-field
               label="Jam Buka"
               type="time"
               v-model="new_poli.jam_operasional.jam_buka"
@@ -114,7 +114,7 @@
           </v-col>
 
           <v-col cols="6">
-            <a-text-field
+            <v-text-field
               label="Jam Tutup"
               type="time"
               v-model="new_poli.jam_operasional.jam_tutup"
