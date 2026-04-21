@@ -620,7 +620,7 @@ async function hapusdokter() {
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_dokter_erp");
+  sessionStorage.removeItem("m_dokter");
   useloadingStore().setLoading(false);
 }
 

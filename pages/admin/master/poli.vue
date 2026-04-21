@@ -522,7 +522,7 @@ async function hapusPoli() {
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_Poli_erp");
+  sessionStorage.removeItem("m_poli");
   useloadingStore().setLoading(false);
 }
 </script>

@@ -509,7 +509,7 @@ async function hapusSuplier() {
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_Suplier_erp");
+  sessionStorage.removeItem("m_suplier");
   useloadingStore().setLoading(false);
 }
 </script>

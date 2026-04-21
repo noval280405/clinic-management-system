@@ -533,7 +533,7 @@ async function hapusOBAT() {
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_obat_erp");
+  sessionStorage.removeItem("m_obat");
   useloadingStore().setLoading(false);
 }
 </script>

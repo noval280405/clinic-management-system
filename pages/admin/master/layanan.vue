@@ -538,7 +538,7 @@ async function hapusLayanan() {
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_layanan_erp");
+  sessionStorage.removeItem("m_layanan");
   useloadingStore().setLoading(false);
 }
 </script>

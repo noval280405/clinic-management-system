@@ -168,43 +168,59 @@ export const setPendaftaran = async (data: any) => {
 };
 
 export const setPemeriksaan = async (data: pemeriksaanM) => {
-    console.log("DATAUPDATE", data);
     const db = useFirestore();
     const auth = getAuth();
-    const now = moment().unix();
     const email = auth.currentUser?.email;
 
-    return await runTransaction(db, async (transaction) => {
-        const nomorInvRef = doc(db, "penomoran", "nomor");
-        const getnomor = await transaction.get(nomorInvRef);
+    try {
+        await runTransaction(db, async (transaction) => {
+            if (!data.id_pendaftaran) {
+                throw new Error("ID Pendaftaran tidak ditemukan");
+            }
+            const nomorRef = doc(db, "penomoran", "nomor");
+            const nomorSnap = await transaction.get(nomorRef);
+            if (!nomorSnap.exists()) {
+                throw new Error("Dokumen penomoran tidak ditemukan");
+            }
+            const nomorData = nomorSnap.data();
+            const newNumber = (nomorData.no_pemeriksaan || 0) + 1;
+            const padnumber = _.toString(newNumber).padStart(5, "0");
+            const year = moment().format("YYYY");
+            const bulan = moment().format("MM");
+            const id_pemeriksaan = `RM-${year}${bulan}-${padnumber}`;
 
-        if (!getnomor.exists()) {
-            throw new Error("Dokumen penomoran/nomor tidak ditemukan");
-        }
-        const datanomor = getnomor.data();
-        const newnumber = datanomor!.no_pemeriksaan + 1;
-        const stringnewnumber = _.toString(newnumber).padStart(5, "0");
-        const padnumber = stringnewnumber.padStart(5, "0"); // 03
-        const year = moment().format("YYYY");
-        const bulan = moment().format("MM");
-        const getromawi = await romawian(_.toNumber(bulan));
-        const id_pemeriksaan = `RM/${data.nama_pasien}/${data.nama_poli}/${year}${bulan}/${padnumber}`;
+            const payload = {
+                ...data,
+                id_pemeriksaan,
+                no_pemeriksaan: padnumber,
+                tanggal_pemeriksaan: moment().format("YYYY-MM-DD"),
+                created_at: moment().unix(),
+                created_by: email,
+            };
 
-        const pendaftaranRef = doc(db, "pendaftaran", data.id_pendaftaran);
-        const pemeriksaanRef = doc(db, "pemeriksaan", id_pemeriksaan);
-        const pendaftaranPemeriksaanRef = doc(db, "pendaftaran", data.id_pendaftaran, "pemeriksaan", id_pemeriksaan);
-        transaction.set(pemeriksaanRef, { ...data, id_pemeriksaan: id_pemeriksaan });
-        transaction.set(pendaftaranPemeriksaanRef, { ...data, id_pemeriksaan: id_pemeriksaan });
-        transaction.update(pendaftaranRef, { ...data });
-        transaction.update(nomorInvRef, { no_pemeriksaan: newnumber });
-        return;
-    })
-        .then(() => {
-            return "ok";
-        })
-        .catch((error) => {
-            return error.message;
+            const pemeriksaanRef = doc(db, "pemeriksaan", id_pemeriksaan);
+            const subRef = doc(db, "pendaftaran", data.id_pendaftaran, "pemeriksaan", id_pemeriksaan);
+            const pendaftaranRef = doc(db, "pendaftaran", data.id_pendaftaran);
+
+            transaction.set(pemeriksaanRef, payload);
+            transaction.set(subRef, payload);
+
+            transaction.update(pendaftaranRef, {
+                status: "diperiksa",
+                updated_at: moment().unix(),
+                updated_by: email,
+            });
+
+            transaction.update(nomorRef, {
+                no_pemeriksaan: newNumber,
+            });
         });
+
+        return "ok";
+    } catch (error: any) {
+        console.error(error);
+        return error.message;
+    }
 };
 
 
