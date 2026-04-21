@@ -17,6 +17,7 @@ import { getAuth } from "firebase/auth";
 import type { pemeriksaanM } from "~/types/pemeriksaanModel";
 import type { pendaftaranM } from "~/types/pendaftaranModel";
 import type { pasienM } from "~/types/master/pasienModel";
+import type { ResepObatItemM, resepObatM } from "~/types/resepObatModel";
 
 
 export const setPasien = async (data: pasienM) => {
@@ -222,5 +223,327 @@ export const setPemeriksaan = async (data: pemeriksaanM) => {
         return error.message;
     }
 };
+
+
+export const saveResepObat = async (data: resepObatM) => {
+    const db = useFirestore();
+    const auth = getAuth();
+
+    try {
+        const result = await runTransaction(db, async (transaction) => {
+            if (!data.id_pemeriksaan) {
+                throw new Error("ID Pemeriksaan kosong");
+            }
+            if (!data.items_obat || data.items_obat.length === 0) {
+                throw new Error("Obat belum diinput");
+            }
+
+            // =============================
+            // COUNTER RESEP
+            // =============================
+            const nomorRef = doc(db, "penomoran", "nomor");
+            const nomorSnap = await transaction.get(nomorRef);
+
+            if (!nomorSnap.exists()) {
+                throw new Error("Counter tidak ditemukan");
+            }
+
+            const nomorData = nomorSnap.data();
+            const newNumber = (nomorData.no_resep || 0) + 1;
+
+            const no_resep = _.toString(newNumber).padStart(5, "0");
+            const year = moment().format("YYYY");
+            const bulan = moment().format("MM");
+
+            const id_resep = `RSP-${year}${bulan}-${no_resep}`;
+
+
+
+            // =============================
+            // HITUNG TOTAL
+            // =============================
+            let total_harga = 0;
+
+            const itemsFinal = data.items_obat.map((item) => {
+                const harga = item.harga || 0;
+                const jumlah = item.jumlah || 0;
+
+                const subtotal = harga * jumlah;
+                total_harga += subtotal;
+
+                return {
+                    ...item,
+                    subtotal,
+                };
+            });
+
+
+            // 5. KURANGI STOK OBAT
+            const obatSnapshots: any[] = [];
+
+            for (const item of itemsFinal) {
+                const obatRef = doc(db, "m_obat", item.id_obat!);
+                const snap = await transaction.get(obatRef);
+
+                if (snap.exists()) {
+                    obatSnapshots.push({
+                        ref: obatRef,
+                        stok: snap.data().stok || 0,
+                        item,
+                    });
+                }
+            }
+
+            for (const o of obatSnapshots) {
+                transaction.update(o.ref, {
+                    stok: o.stok - o.item.jumlah,
+                    updated_at: moment().unix(),
+                    updated_by: auth.currentUser?.email,
+                });
+            }
+            // =============================
+            // REFS EXISTING (JANGAN DIUBAH)
+            // =============================
+            const resepRef = doc(db, "resep_obat", id_resep);
+            const pemeriksaanRef = doc(db, "pemeriksaan", data.id_pemeriksaan);
+            const pemeriksaanResepRef = doc(
+                db,
+                "pemeriksaan",
+                data.id_pemeriksaan,
+                "resep_obat",
+                id_resep
+            );
+
+            const pendaftaranRef = doc(db, "pendaftaran", data.id_pendaftaran);
+            const penndaftaranPemeriksaanRef = doc(
+                db,
+                "pendaftaran",
+                data.id_pendaftaran,
+                "pemeriksaan",
+                data.id_pemeriksaan
+            );
+
+            const pendaftaranPemeriksaanResepRef = doc(
+                db,
+                "pendaftaran",
+                data.id_pendaftaran,
+                "pemeriksaan",
+                data.id_pemeriksaan,
+                "resep_obat",
+                id_resep
+            );
+
+            const payload: resepObatM = {
+                id_resep,
+                id_pendaftaran: data.id_pendaftaran,
+                id_pemeriksaan: data.id_pemeriksaan,
+                id_pasien: data.id_pasien,
+                id_dokter: data.id_dokter,
+                id_poli: data.id_poli,
+                nama_dokter: data.nama_dokter,
+                nama_poli: data.nama_poli,
+                nama_pasien: data.nama_pasien,
+                diagnosa: data.diagnosa,
+                items_obat: itemsFinal as ResepObatItemM[],
+                total_harga,
+                created_at: moment().unix(),
+                created_by: auth.currentUser?.email!,
+            };
+
+            transaction.set(resepRef, payload);
+            transaction.set(pemeriksaanResepRef, payload);
+            transaction.update(pemeriksaanRef, {
+                obat: itemsFinal,
+                total_obat: total_harga,
+                status: "resep",
+                updated_at: moment().unix(),
+                updated_by: auth.currentUser?.email,
+            });
+
+            transaction.update(pendaftaranRef, {
+                status: "resep",
+                updated_at: moment().unix(),
+                updated_by: auth.currentUser?.email,
+            });
+
+            transaction.update(penndaftaranPemeriksaanRef, {
+                obat: itemsFinal,
+                total_obat: total_harga,
+                status: "resep",
+                updated_at: moment().unix(),
+                updated_by: auth.currentUser?.email,
+            });
+            transaction.set(pendaftaranPemeriksaanResepRef, payload);
+
+            // 4. BILLING OTOMATIS
+            const billingRef = doc(db, "billing", id_resep);
+
+            transaction.set(billingRef, {
+                id_billing: id_resep,
+                id_resep,
+                id_pasien: data.id_pasien,
+                nama_pasien: data.nama_pasien,
+                total: total_harga,
+                status: "Belum Bayar",
+                created_at: moment().unix(),
+            });
+
+
+
+            // 6. HISTORY PASIEN
+            const historyRef = doc(
+                db,
+                "history_pasien",
+                `${data.id_pasien}_${id_resep}`
+            );
+
+            transaction.set(historyRef, {
+                id_pasien: data.id_pasien,
+                id_resep,
+                tipe: "Resep Obat",
+                deskripsi: `Resep obat oleh dr. ${data.nama_dokter}`,
+                items: itemsFinal,
+                created_at: moment().unix(),
+            });
+
+            // 7. AUDIT LOG
+            const logRef = doc(db, "audit_log", id_resep);
+
+            transaction.set(logRef, {
+                user: auth.currentUser?.email,
+                aksi: "CREATE_RESEP",
+                module: "RESEP_OBAT",
+                id_resep,
+                id_pasien: data.id_pasien,
+                created_at: moment().unix(),
+            });
+
+            // 8. UPDATE COUNTER
+            transaction.update(nomorRef, {
+                no_resep: newNumber,
+            });
+
+            return {
+                id_resep,
+                total_harga,
+            };
+        });
+
+        console.log("SUKSES RESEP:", result);
+        return "ok";
+
+    } catch (error: any) {
+        console.error("ERROR RESEP:", error);
+        return error.message;
+    }
+};
+
+
+// export const saveResepObat = async (data: resepObatM) => {
+//     const db = useFirestore();
+//     const auth = getAuth();
+
+//     try {
+//         const result = await runTransaction(db, async (transaction) => {
+//             if (!data.id_pemeriksaan) {
+//                 throw new Error("ID Pemeriksaan kosong");
+//             }
+//             if (!data.items_obat || data.items_obat.length === 0) {
+//                 throw new Error("Obat belum diinput");
+//             }
+//             const nomorRef = doc(db, "penomoran", "nomor");
+//             const nomorSnap = await transaction.get(nomorRef);
+//             if (!nomorSnap.exists()) {
+//                 throw new Error("Counter tidak ditemukan");
+//             }
+
+//             const nomorData = nomorSnap.data();
+//             const newNumber = (nomorData.no_resep || 0) + 1;
+//             const no_resep = _.toString(newNumber).padStart(5, "0");
+//             const year = moment().format("YYYY");
+//             const bulan = moment().format("MM");
+//             const id_resep = `RSP-${year}${bulan}-${no_resep}`;
+
+//             // =============================
+//             // 3. HITUNG TOTAL
+//             // =============================
+//             let total_harga = 0;
+
+//             const itemsFinal = data.items_obat.map((item) => {
+//                 const harga = item.harga || 0;
+//                 const jumlah = item.jumlah || 0;
+
+//                 const subtotal = harga * jumlah;
+//                 total_harga += subtotal;
+
+//                 return {
+//                     ...item,
+//                     subtotal,
+//                 };
+//             });
+
+//             const resepRef = doc(db, "resep_obat", id_resep);
+//             const pemeriksaanRef = doc(db, "pemeriksaan", data.id_pemeriksaan);
+//             const pemeriksaanResepRef = doc(db, "pemeriksaan", data.id_pemeriksaan, "resep_obat", id_resep);
+//             const pendaftaranRef = doc(db, "pendaftaran", data.id_pendaftaran);
+//             const penndaftaranPemeriksaanRef = doc(db, "pendaftaran", data.id_pendaftaran, "pemeriksaan", data.id_pemeriksaan);
+//             const pendaftaranPemeriksaanResepRef = doc(db, "pendaftaran", data.id_pendaftaran, "pemeriksaan", data.id_pemeriksaan, "resep_obat", id_resep);
+
+//             const payload: resepObatM = {
+//                 id_resep,
+//                 id_pendaftaran: data.id_pendaftaran, // 🔥 WAJIB (ini sebelumnya hilang)
+//                 id_pemeriksaan: data.id_pemeriksaan,
+//                 id_pasien: data.id_pasien,
+//                 id_dokter: data.id_dokter,
+//                 id_poli: data.id_poli,
+//                 nama_dokter: data.nama_dokter,
+//                 nama_poli: data.nama_poli,
+//                 nama_pasien: data.nama_pasien,
+//                 diagnosa: data.diagnosa,
+//                 items_obat: itemsFinal as ResepObatItemM[],
+//                 total_harga,
+//                 created_at: moment().unix(),
+//                 created_by: auth.currentUser?.email!,
+//             };
+
+//             transaction.set(resepRef, payload);
+//             transaction.set(pemeriksaanResepRef, payload);
+//             transaction.update(pemeriksaanRef, {
+//                 obat: itemsFinal,
+//                 total_obat: total_harga,
+//                 status: "resep",
+//                 updated_at: moment().unix(),
+//                 updated_by: auth.currentUser?.email,
+//             });
+//             transaction.update(nomorRef, {
+//                 no_resep: newNumber,
+//             });
+//             transaction.update(pendaftaranRef, {
+//                 status: "resep",
+//                 updated_at: moment().unix(),
+//                 updated_by: auth.currentUser?.email,
+//             });
+//             transaction.update(penndaftaranPemeriksaanRef, {
+//                 obat: itemsFinal,
+//                 total_obat: total_harga,
+//                 status: "resep",
+//                 updated_at: moment().unix(),
+//                 updated_by: auth.currentUser?.email,
+//             });
+//             transaction.set(pendaftaranPemeriksaanResepRef, payload);
+//             return {
+//                 id_resep,
+//                 total_harga,
+//             };
+//         });
+
+//         console.log("SUKSES RESEP:", result);
+//         return "ok";
+
+//     } catch (error: any) {
+//         console.error("ERROR RESEP:", error);
+//         return error.message;
+//     }
+// };
 
 

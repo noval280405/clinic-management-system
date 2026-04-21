@@ -3,7 +3,8 @@ import type { obatM } from "./master/obatModel";
 
 export interface pemeriksaanM {
     id?: string;
-
+    no_pemeriksaan?: string; // bisa dibuat dari id atau nomor antrian, yang penting unik dan mudah diingat
+    id_pemeriksaan?: string; // relasi ke pendaftaran
     // RELASI
     id_pendaftaran: string;
     id_pasien: string;

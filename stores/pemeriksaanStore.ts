@@ -6,13 +6,17 @@ import moment from "moment";
 export const usePemeriksaanStores = defineStore("PemeriksaanStore", {
     state: () => {
         return {
-            dataPemeriksaan: [] as pemeriksaanM[]
+            dataPemeriksaan: [] as pemeriksaanM[],
+            detailPemeriksaan: {} as pemeriksaanM
         }
     },
 
     getters: {
         getDataPemeriksaan(state) {
             return state.dataPemeriksaan
+        },
+        getDetailPemeriksaan(state) {
+            return state.detailPemeriksaan
         }
     },
 
@@ -74,6 +78,10 @@ export const usePemeriksaanStores = defineStore("PemeriksaanStore", {
         async tarikDataPemeriksaan() {
             const datatarik = await queryambilid("pemeriksaan")
             this.dataPemeriksaan = datatarik as unknown as pemeriksaanM[]
-        }
+        },
+        async tarikDetailPemeriksaan(id: string) {
+            const datatarik = await tarikdetaildatabase("pemeriksaan", id)
+            this.detailPemeriksaan = datatarik as unknown as pemeriksaanM
+        },
     }
 })

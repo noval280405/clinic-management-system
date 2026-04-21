@@ -316,7 +316,7 @@
       <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
         <div class="d-flex justify-center">
-          <v-btn size="25" color="info" variant="tonal" class="mr-1">
+          <v-btn size="25" color="info" variant="tonal" class="mr-1" :to="`/admin/pemeriksaan/${item.id}`">
             <v-icon icon="mdi-eye" />
           </v-btn>
 
@@ -401,7 +401,7 @@ const data = reactive({
 
   headPemeriksaan: [
     { title: "No", value: "no", align: "center", width: "50px" },
-    { title: "Kode RM", value: "kode_rm" },
+    { title: "Kode RM", value: "id_pemeriksaan" },
     { title: "Pasien", value: "nama_pasien", sortable: true },
     { title: "Poli", value: "nama_poli" },
     { title: "Dokter", value: "nama_dokter" },
