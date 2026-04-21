@@ -79,10 +79,6 @@
 
         <v-row dense>
           <v-col cols="6">
-            <a-text-field label="Kode Poli" v-model="new_poli.kode_poli" />
-          </v-col>
-
-          <v-col cols="6">
             <a-text-field label="Nama Poli" v-model="new_poli.nama_poli" />
           </v-col>
 
@@ -491,7 +487,7 @@ async function addPoli() {
   }
   new_poli.value.created_at = moment().unix();
   new_poli.value.created_by = useUserStore().getEmail;
-  await Polistore.addMasterPoli(new_poli.value);
+  await setPoli(new_poli.value);
   new_poli.value = defaultPoli();
   data.dialogAdd = false;
   refreshData();

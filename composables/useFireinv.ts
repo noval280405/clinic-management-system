@@ -20,6 +20,7 @@ import type { pasienM } from "~/types/master/pasienModel";
 import type { ResepObatItemM, resepObatM } from "~/types/resepObatModel";
 import type { supplierM } from "~/types/master/suplierModel";
 import type { obatM } from "~/types/master/obatModel";
+import type { poliM } from "~/types/master/poliModel";
 
 
 export const setPasien = async (data: pasienM) => {
@@ -141,6 +142,46 @@ export const setObat = async (data: obatM) => {
         .then((res) => res)
         .catch((error) => {
             console.error("ERROR OBAT:", error);
+            return error.message;
+        });
+};
+
+export const setPoli = async (data: poliM) => {
+    console.log("DATAUPDATE", data);
+    const db = useFirestore();
+    const auth = getAuth();
+    const now = moment().unix();
+    const email = auth.currentUser?.email;
+
+    return await runTransaction(db, async (transaction) => {
+        const nomorRef = doc(db, "penomoran", "nomor");
+        const getnomor = await transaction.get(nomorRef);
+        if (!getnomor.exists()) {
+            throw new Error("Dokumen penomoran/nomor tidak ditemukan");
+        }
+        const datanomor = getnomor.data();
+        const newnumber = (datanomor.no_poli || 0) + 1;
+        const year = moment().format("YYYY");
+        const kode_poli = `POL-${year}-${String(newnumber).padStart(4, "0")}`;
+        const payload: poliM = {
+            ...data,
+            kode_poli,
+            created_at: now,
+            created_by: email || "system",
+        };
+        const poliRef = doc(db, "m_poli", kode_poli);
+        transaction.set(poliRef, payload);
+        transaction.update(nomorRef, {
+            no_poli: newnumber,
+        });
+        return {
+            kode_poli,
+            status: "ok",
+        };
+    })
+        .then((res) => res)
+        .catch((error) => {
+            console.error("ERROR POLI:", error);
             return error.message;
         });
 };
