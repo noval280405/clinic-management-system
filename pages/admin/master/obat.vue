@@ -80,10 +80,6 @@
 
         <v-row dense>
           <v-col cols="6">
-            <a-text-field label="Kode Obat" v-model="new_obat.kode_obat" />
-          </v-col>
-
-          <v-col cols="6">
             <a-text-field label="Nama Obat" v-model="new_obat.nama_obat" />
           </v-col>
 
@@ -150,10 +146,10 @@
 
         <v-row dense>
           <v-col cols="6">
-            <a-text-field
+            <a-date-picker
+              v-model="new_obat.tanggal_kadaluarsa"
               label="Tanggal Kadaluarsa"
               type="date"
-              v-model="new_obat.tanggal_kadaluarsa"
             />
           </v-col>
 
@@ -171,7 +167,13 @@
 
         <v-row dense>
           <v-col cols="12">
-            <a-text-field label="Supplier" v-model="new_obat.supplier" />
+            <a-select
+              label="Supplier"
+              v-model="new_obat.id_supplier"
+              :items="supplierStore.getDataSuplier"
+              item-title="nama_supplier"
+              item-value="id"
+            />
           </v-col>
         </v-row>
       </v-card-text>
@@ -354,6 +356,7 @@ import { reactive } from "vue";
 import { useobatStores } from "~/stores/master/obatStore";
 import type { obatM } from "~/types/master/obatModel";
 const obatStore = useobatStores();
+const supplierStore = useSuplierStores();
 const notificationStore = useNotificationStore();
 const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
   null,
@@ -369,7 +372,8 @@ onMounted(async () => {
 });
 
 const defaultobat = (): obatM => ({
-  kode_obat: "",
+  id_supplier: "",
+  nama_supplier: "",
   nama_obat: "",
   kategori_obat: "",
   satuan: "tablet",
@@ -457,7 +461,8 @@ const bottomAddEdit = computed(() => {
   }
 });
 
-function openDialogAdd() {
+async function openDialogAdd() {
+  await supplierStore.tarikDataSuplier();
   data.addedit = "add";
   data.dialogAdd = true;
 }
@@ -470,12 +475,22 @@ async function validate() {
   }
 }
 
+watch(
+  () => new_obat.value.id_supplier,
+  async (idsupplier) => {
+    const datasupplier = supplierStore.getDataSuplier;
+    const b = _.find(datasupplier, (o: any) => o.id == idsupplier);
+    if (!_.isUndefined(b)) {
+      new_obat.value.nama_supplier = b!.nama_supplier;
+    }
+  },
+);
+
 async function saveedit() {
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Edit",
     "Anda yakin ingin mengedit data ini?",
   );
-
   if (!confirmed) {
     return notificationStore.showError("edit data dibatalkan");
   }
@@ -486,7 +501,8 @@ async function saveedit() {
   refreshData();
 }
 
-function openDialogEdit(item: obatM) {
+async function openDialogEdit(item: obatM) {
+  await supplierStore.tarikDataSuplier();
   data.addedit = "edit";
   new_obat.value = _.assign({}, item);
   data.dialogAdd = true;
@@ -503,7 +519,7 @@ async function addObat() {
   }
   new_obat.value.created_at = moment().unix();
   new_obat.value.created_by = useUserStore().getEmail;
-  await obatStore.addMasterObat(new_obat.value);
+  await setObat(new_obat.value);
   data.dialogAdd = false;
   refreshData();
 }

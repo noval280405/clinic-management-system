@@ -80,13 +80,6 @@
         <v-row dense>
           <v-col cols="6">
             <a-text-field
-              label="Kode Supplier"
-              v-model="new_Suplier.kode_supplier"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
               label="Nama Supplier"
               v-model="new_Suplier.nama_supplier"
             />
@@ -345,10 +338,9 @@ const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
 );
 onMounted(async () => {
   await Suplierstore.tarikDataSuplier();
-  sessionStorage.removeItem("m_Suplier");
+  sessionStorage.removeItem("m_supplier");
 });
 const defaultSuplier = (): supplierM => ({
-  kode_supplier: "",
   nama_supplier: "",
   status: "aktif",
   created_at: 0,
@@ -476,9 +468,10 @@ async function addSuplier() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
+  
   new_Suplier.value.created_at = moment().unix();
   new_Suplier.value.created_by = useUserStore().getEmail;
-  await Suplierstore.addMasterSuplier(new_Suplier.value);
+  await setSupplier(new_Suplier.value);
   new_Suplier.value = defaultSuplier();
   data.dialogAdd = false;
   refreshData();
@@ -509,7 +502,7 @@ async function hapusSuplier() {
 
 async function refreshData() {
   useloadingStore().setLoading(true);
-  sessionStorage.removeItem("m_suplier");
+  sessionStorage.removeItem("m_supplier");
   useloadingStore().setLoading(false);
 }
 </script>

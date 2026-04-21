@@ -149,7 +149,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <a-text-field
+            <v-text-field
               label="Jam Mulai"
               v-model="new_dokter.jadwal_praktik.jam_mulai"
               type="time"
@@ -159,7 +159,7 @@
           </v-col>
 
           <v-col cols="6">
-            <a-text-field
+            <v-text-field
               label="Jam Selesai"
               v-model="new_dokter.jadwal_praktik.jam_selesai"
               type="time"
@@ -447,20 +447,15 @@ const hari_praktik_input = ref("");
 const defaultDokter = (): dokterM => ({
   nama_dokter: "",
   no_dokter: "",
-  spesialis_dokter: "",
-
   sip_number: "",
   no_hp: "",
   email: "",
-
   status: "aktif",
-
   jadwal_praktik: {
     hari: [],
     jam_mulai: "",
     jam_selesai: "",
   },
-
   created_at: 0,
   created_by: "",
 });
@@ -535,10 +530,8 @@ const bottomAddEdit = computed(() => {
 
 async function openDialogAdd() {
   await poliStore.tarikDataPoli();
-
   data.addedit = "add";
   new_dokter.value = defaultDokter();
-
   data.dialogAdd = true;
 }
 

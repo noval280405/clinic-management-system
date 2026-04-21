@@ -19,11 +19,11 @@ export const useSuplierStores = defineStore("SuplierStore", {
         async addMasterSuplier(lemparSuplier: supplierM) {
             const notificationStore = useNotificationStore();
             const id = makeSlug(
-                    `${lemparSuplier.nama_supplier}`
-                );
+                `${lemparSuplier.nama_supplier}`
+            );
             try {
                 useloadingStore().setLoading(true)
-                await setdatabase("m_suplier", id, lemparSuplier)
+                await setdatabase("m_supplier", id, lemparSuplier)
                 this.tarikDataSuplier()
                 notificationStore.showSuccess("Suplier berhasil di tambahkan");
             } catch (error: any) {
@@ -37,10 +37,9 @@ export const useSuplierStores = defineStore("SuplierStore", {
         },
         async updateMasterSuplier(lemparSuplier: supplierM) {
             const notificationStore = useNotificationStore();
-    
             try {
                 useloadingStore().setLoading(true)
-                await updatedatabase("m_suplier", lemparSuplier.id!, lemparSuplier)
+                await updatedatabase("m_supplier", lemparSuplier.id!, lemparSuplier)
                 this.tarikDataSuplier()
                 notificationStore.showSuccess("Suplier berhasil di edit");
             } catch (error: any) {
@@ -56,7 +55,7 @@ export const useSuplierStores = defineStore("SuplierStore", {
             const notificationStore = useNotificationStore();
             try {
                 useloadingStore().setLoading(true)
-                await hapusdatabase("m_suplier", id)
+                await hapusdatabase("m_supplier", id)
                 this.tarikDataSuplier()
                 notificationStore.showSuccess("Suplier berhasil di hapus");
             } catch (error: any) {
@@ -69,7 +68,7 @@ export const useSuplierStores = defineStore("SuplierStore", {
             }
         },
         async tarikDataSuplier() {
-            const datatarik = await queryambilid("m_suplier")
+            const datatarik = await queryambilid("m_supplier")
             this.dataSuplier = datatarik as unknown as supplierM[]
         }
     }

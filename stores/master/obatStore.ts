@@ -19,7 +19,7 @@ export const useobatStores = defineStore("obatStore", {
         async addMasterObat(lemparobat: obatM) {
             const notificationStore = useNotificationStore();
             const id = makeSlug(
-                `${lemparobat.nama_obat}`
+                `${lemparobat.kode_obat}-${lemparobat.nama_obat}`
             );
             try {
                 useloadingStore().setLoading(true)

@@ -18,6 +18,8 @@ import type { pemeriksaanM } from "~/types/pemeriksaanModel";
 import type { pendaftaranM } from "~/types/pendaftaranModel";
 import type { pasienM } from "~/types/master/pasienModel";
 import type { ResepObatItemM, resepObatM } from "~/types/resepObatModel";
+import type { supplierM } from "~/types/master/suplierModel";
+import type { obatM } from "~/types/master/obatModel";
 
 
 export const setPasien = async (data: pasienM) => {
@@ -54,6 +56,91 @@ export const setPasien = async (data: pasienM) => {
             return "ok";
         })
         .catch((error) => {
+            return error.message;
+        });
+};
+
+export const setSupplier = async (data: supplierM) => {
+    console.log("DATAUPDATE", data);
+    const db = useFirestore();
+    const auth = getAuth();
+    const now = moment().unix();
+    const email = auth.currentUser?.email;
+
+    return await runTransaction(db, async (transaction) => {
+        const nomorInvRef = doc(db, "penomoran", "nomor");
+        const getnomor = await transaction.get(nomorInvRef);
+        if (!getnomor.exists()) {
+            throw new Error("Dokumen penomoran/nomor tidak ditemukan");
+        }
+        const datanomor = getnomor.data();
+        const newnumber = datanomor!.no_supplier + 1;
+        const stringnewnumber = _.toString(newnumber).padStart(5, "0");
+        const padnumber = stringnewnumber.padStart(5, "0"); // 03
+        const year = moment().format("YYYY");
+        const bulan = moment().format("MM");
+        const getromawi = await romawian(_.toNumber(bulan));
+        const id_supplier = `SUP-${padnumber}`;
+
+        const rmRef = doc(db, "m_supplier", id_supplier);
+        transaction.set(rmRef, { ...data, kode_supplier: id_supplier });
+        transaction.update(nomorInvRef, { no_supplier: newnumber });
+
+        return;
+    })
+        .then(() => {
+            return "ok";
+        })
+        .catch((error) => {
+            return error.message;
+        });
+};
+
+export const setObat = async (data: obatM) => {
+    console.log("DATAUPDATE", data);
+
+    const db = useFirestore();
+    const auth = getAuth();
+    const now = moment().unix();
+    const email = auth.currentUser?.email;
+
+    return await runTransaction(db, async (transaction) => {
+        const nomorRef = doc(db, "penomoran", "nomor");
+        const getnomor = await transaction.get(nomorRef);
+        if (!getnomor.exists()) {
+            throw new Error("Dokumen penomoran/nomor tidak ditemukan");
+        }
+        const datanomor = getnomor.data();
+        const newnumber = (datanomor.no_obat || 0) + 1;
+        const kategoriMap: Record<string, string> = {
+            "Antibiotik": "ANT",
+            "Analgesik / Antipiretik": "ANA",
+            "Antasida / Pencernaan": "GAS",
+            "Antihistamin": "HIS",
+            "Vitamin & Suplemen": "VIT",
+        };
+        const prefix = kategoriMap[data.kategori_obat] || "OBT";
+        const year = moment().format("YYYY");
+        const kode_obat = `${prefix}-${year}-${String(newnumber).padStart(4, "0")}`;
+        const payload: obatM = {
+            ...data,
+            kode_obat,
+            created_at: now,
+            created_by: email || "system",
+        };
+        const obatRef = doc(db, "m_obat", kode_obat);
+        transaction.set(obatRef, payload);
+        transaction.update(nomorRef, {
+            no_obat: newnumber,
+        });
+        return {
+            kode_obat,
+            status: "ok",
+        };
+    })
+        .then((res) => res)
+        .catch((error) => {
+            console.error("ERROR OBAT:", error);
             return error.message;
         });
 };
