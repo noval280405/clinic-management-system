@@ -50,7 +50,7 @@
     />
 
     <v-list-item
-      to="/admin/resep"
+      to="/admin/resep-obat"
       class="nav-item mb-1"
       prepend-icon="mdi-pill"
       title="Resep Obat"

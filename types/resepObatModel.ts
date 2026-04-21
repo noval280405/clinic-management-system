@@ -1,4 +1,5 @@
 export interface resepObatM {
+    id?: string;
     id_resep?: string;
     id_pendaftaran: string;
     id_pemeriksaan: string;
