@@ -1,19 +1,17 @@
 <template>
   <v-container fluid class="pa-2" v-if="detailResepObat">
-
     <!-- HEADER -->
     <v-card class="rounded-2xl elevation-3 mb-2 header-gradient">
-      <v-card-text class="d-flex justify-space-between align-center pa-4 flex-wrap ga-2">
-
+      <v-card-text
+        class="d-flex justify-space-between align-center pa-4 flex-wrap ga-2"
+      >
         <div class="d-flex align-center ga-3">
           <div class="icon-wrap">
             <v-icon color="white">mdi-pill</v-icon>
           </div>
 
           <div>
-            <div class="text-h6 font-weight-bold">
-              Detail Resep Obat
-            </div>
+            <div class="text-h6 font-weight-bold">Detail Resep Obat</div>
             <div class="text-caption text-white-opacity">
               {{ rubahtanggalunix(detailResepObat.created_at) }}
             </div>
@@ -23,20 +21,16 @@
         <v-chip class="chip-glow font-weight-bold" size="small">
           {{ detailResepObat.id_resep }}
         </v-chip>
-
       </v-card-text>
     </v-card>
 
     <v-row dense>
-
       <!-- LEFT -->
       <v-col cols="12" md="8">
-
         <!-- PATIENT INFO -->
         <v-card class="rounded-2xl elevation-1 mb-2 card-glass">
           <v-card-text class="py-4">
             <v-row dense>
-
               <v-col cols="12" sm="4">
                 <div class="label">Pasien</div>
                 <div class="value">{{ detailResepObat.nama_pasien }}</div>
@@ -60,7 +54,6 @@
                   {{ detailResepObat.diagnosa }}
                 </div>
               </v-col>
-
             </v-row>
           </v-card-text>
         </v-card>
@@ -74,7 +67,6 @@
           <v-divider />
 
           <v-card-text class="pa-2">
-
             <v-row dense>
               <v-col
                 v-for="(item, i) in detailResepObat.items_obat"
@@ -83,7 +75,6 @@
                 sm="6"
               >
                 <v-card class="drug-card rounded-xl pa-3" variant="flat">
-
                   <!-- HEADER -->
                   <div class="d-flex justify-space-between align-start">
                     <div>
@@ -106,7 +97,7 @@
                   <div class="drug-grid">
                     <div>
                       <span>Dosis</span>
-                      <b>{{ item.dosis || '-' }}</b>
+                      <b>{{ item.dosis || "-" }}</b>
                     </div>
 
                     <div>
@@ -121,7 +112,6 @@
                       </b>
                     </div>
                   </div>
-
                 </v-card>
               </v-col>
             </v-row>
@@ -133,19 +123,19 @@
               <v-icon size="40">mdi-pill-off</v-icon>
               <div>Belum ada obat</div>
             </div>
-
           </v-card-text>
-        </v-card>
 
+            <v-card-actions>
+            <v-btn color="blue" variant="flat">Buat Resep</v-btn>
+          </v-card-actions>
+        </v-card>
       </v-col>
 
       <!-- RIGHT -->
       <v-col cols="12" md="4">
-
         <!-- TOTAL -->
         <v-card class="rounded-2xl elevation-3 total-card mb-2">
           <v-card-text class="text-center pa-5">
-
             <div class="text-caption text-grey">TOTAL BIAYA</div>
 
             <div class="total-price">
@@ -155,7 +145,6 @@
             <v-chip class="mt-2 chip-success" size="small">
               READY TO PRINT
             </v-chip>
-
           </v-card-text>
         </v-card>
 
@@ -168,7 +157,6 @@
           <v-divider />
 
           <v-card-text class="text-caption pa-3">
-
             <div class="meta-item">
               <span>ID Pasien</span>
               <b>{{ detailResepObat.id_pasien }}</b>
@@ -188,14 +176,10 @@
               <span>Created By</span>
               <b>{{ detailResepObat.created_by }}</b>
             </div>
-
           </v-card-text>
         </v-card>
-
       </v-col>
-
     </v-row>
-
   </v-container>
 </template>
 
@@ -226,18 +210,18 @@ function rupiah(val: number) {
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .text-white-opacity {
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .chip-glow {
-  background: rgba(255,255,255,0.2) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
   color: white !important;
 }
 
@@ -261,7 +245,7 @@ function rupiah(val: number) {
 
 .drug-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .drug-title {

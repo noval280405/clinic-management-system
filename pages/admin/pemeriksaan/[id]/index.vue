@@ -315,28 +315,39 @@ async function savePemeriksaan() {
   if (!confirmed) {
     return notificationStore.showError("simpan data dibatalkan");
   }
-  const payload: resepObatM = {
-    id_pendaftaran: detailPemeriksaan.value.id_pendaftaran,
-    id_pemeriksaan: detailPemeriksaan.value.id_pemeriksaan!,
-    id_pasien: detailPemeriksaan.value.id_pasien,
-    id_dokter: detailPemeriksaan.value.id_dokter,
-    id_poli: detailPemeriksaan.value.id_poli,
-    nama_pasien: detailPemeriksaan.value.nama_pasien,
-    nama_dokter: detailPemeriksaan.value.nama_dokter,
-    nama_poli: detailPemeriksaan.value.nama_poli,
-    diagnosa: detailPemeriksaan.value.diagnosa,
-    items_obat: form.obat,
-  };
 
-  console.log("Payload yang akan disimpan:", payload); // Debug: cek payload sebelum simpan
-  const c = await saveResepObat(payload);
+  useloadingStore().setLoading(true);
 
-  if (c === "ok") {
-    await obatStore.tarikDataObat();
-    await pemeriksaanStore.tarikDetailPemeriksaan(route.params.id as string);
-    notificationStore.showSuccess("Resep berhasil disimpan");
-  } else {
-    notificationStore.showError(c);
+  try {
+    const payload: resepObatM = {
+      id_pendaftaran: detailPemeriksaan.value.id_pendaftaran,
+      id_pemeriksaan: detailPemeriksaan.value.id_pemeriksaan!,
+      id_pasien: detailPemeriksaan.value.id_pasien,
+      id_dokter: detailPemeriksaan.value.id_dokter,
+      id_poli: detailPemeriksaan.value.id_poli,
+      nama_pasien: detailPemeriksaan.value.nama_pasien,
+      nama_dokter: detailPemeriksaan.value.nama_dokter,
+      nama_poli: detailPemeriksaan.value.nama_poli,
+      diagnosa: detailPemeriksaan.value.diagnosa,
+      items_obat: form.obat,
+    };
+
+    console.log("Payload yang akan disimpan:", payload);
+
+    const c = await saveResepObat(payload);
+
+    if (c === "ok") {
+      await obatStore.tarikDataObat();
+      await pemeriksaanStore.tarikDetailPemeriksaan(route.params.id as string);
+      notificationStore.showSuccess("Resep berhasil disimpan");
+    } else {
+      notificationStore.showError(c);
+    }
+  } catch (err: any) {
+    console.error(err);
+    notificationStore.showError("Terjadi kesalahan saat menyimpan");
+  } finally {
+    useloadingStore().setLoading(false);
   }
 }
 </script>

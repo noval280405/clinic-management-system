@@ -1,6 +1,7 @@
 <template>
   <v-layout>
     <AdminHeader />
+     <LoadingApp />
     <v-main>
       <v-container fluid>
         <slot />
