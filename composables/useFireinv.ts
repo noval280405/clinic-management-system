@@ -126,7 +126,7 @@ export const setObat = async (data: obatM) => {
         const year = moment().format("YYYY");
         const bulan = moment().format("MM");
         const getromawi = await romawian(_.toNumber(bulan));
-        const kode_obat = `${prefix}-${year}-${padnumber}}`;
+        const kode_obat = `${prefix}-${year}-${padnumber}`;
         const payload: obatM = {
             ...data,
             kode_obat,
