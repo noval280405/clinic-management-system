@@ -1,5 +1,6 @@
 <template>
   <v-list class="sidebar-container pa-3 bg-transparent aresa-sidebar" nav>
+
     <!-- DASHBOARD -->
     <v-list-item
       to="/admin/"
@@ -9,7 +10,7 @@
     />
 
     <!-- MASTER DATA -->
-    <div class="nav-section-label">Master</div>
+    <div class="nav-section-label">Master Data</div>
 
     <v-list-group value="master" class="nav-group mb-1">
       <template #activator="{ props }">
@@ -24,11 +25,11 @@
       <div class="nav-submenu">
         <v-list-item to="/admin/master/pasien" title="Pasien" />
         <v-list-item to="/admin/master/dokter" title="Dokter" />
-        <v-list-item to="/admin/master/poli" title="Poli / Departemen" />
+        <v-list-item to="/admin/master/poli" title="Poli" />
         <v-list-item to="/admin/master/obat" title="Obat" />
         <v-list-item to="/admin/master/supplier" title="Supplier" />
-        <v-list-item to="/admin/master/layanan" title="Tindakan / Layanan" />
-        <v-list-item to="/admin/master/user" title="User Management" />
+        <v-list-item to="/admin/master/layanan" title="Layanan" />
+        <v-list-item to="/admin/master/user" title="User" />
       </div>
     </v-list-group>
 
@@ -39,14 +40,14 @@
       to="/admin/pendaftaran"
       class="nav-item mb-1"
       prepend-icon="mdi-account-plus-outline"
-      title="Pendaftaran / Antrian"
+      title="Pendaftaran"
     />
 
     <v-list-item
       to="/admin/pemeriksaan"
       class="nav-item mb-1"
       prepend-icon="mdi-file-document-edit-outline"
-      title="Rekam Medis"
+      title="Pemeriksaan"
     />
 
     <v-list-item
@@ -56,6 +57,37 @@
       title="Resep Obat"
     />
 
+    <!-- FARMASI -->
+    <div class="nav-section-label">Farmasi</div>
+
+    <v-list-item
+      to="/admin/farmasi/antrian-resep"
+      class="nav-item mb-1"
+      prepend-icon="mdi-clipboard-text-clock-outline"
+      title="Antrian Resep"
+    />
+
+    <v-list-item
+      to="/admin/farmasi/penyerahan-obat"
+      class="nav-item mb-1"
+      prepend-icon="mdi-hospital-box"
+      title="Penyerahan Obat"
+    />
+
+    <v-list-item
+      to="/admin/farmasi/stok-obat"
+      class="nav-item mb-1"
+      prepend-icon="mdi-warehouse"
+      title="Stok Obat"
+    />
+
+    <v-list-item
+      to="/admin/farmasi/mutasi-stok"
+      class="nav-item mb-1"
+      prepend-icon="mdi-swap-horizontal"
+      title="Mutasi Stok"
+    />
+
     <!-- KEUANGAN -->
     <div class="nav-section-label">Keuangan</div>
 
@@ -63,7 +95,7 @@
       to="/admin/billing"
       class="nav-item mb-1"
       prepend-icon="mdi-cash-multiple"
-      title="Billing / Transaksi"
+      title="Billing"
     />
 
     <v-list-item
@@ -73,6 +105,13 @@
       title="Invoice"
     />
 
+    <v-list-item
+      to="/admin/pembayaran"
+      class="nav-item mb-1"
+      prepend-icon="mdi-credit-card-outline"
+      title="Pembayaran"
+    />
+
     <!-- LAPORAN -->
     <div class="nav-section-label">Laporan</div>
 
@@ -80,142 +119,105 @@
       to="/admin/laporan/harian"
       class="nav-item mb-1"
       prepend-icon="mdi-calendar-today"
-      title="Laporan Harian"
+      title="Harian"
     />
 
     <v-list-item
       to="/admin/laporan/bulanan"
       class="nav-item mb-1"
       prepend-icon="mdi-calendar-month"
-      title="Laporan Bulanan"
-    />
-
-    <!-- CONTENT (opsional kalau masih dipakai) -->
-    <div class="nav-section-label">Content</div>
-
-    <v-list-item
-      to="/admin/blog"
-      title="Blog"
-      prepend-icon="mdi-post-outline"
-      class="nav-item mb-1"
+      title="Bulanan"
     />
 
     <v-list-item
-      to="/admin/projects"
-      title="Project"
-      prepend-icon="mdi-briefcase-outline"
+      to="/admin/laporan/farmasi"
       class="nav-item mb-1"
+      prepend-icon="mdi-pill-multiple"
+      title="Laporan Farmasi"
     />
+
+    <v-list-item
+      to="/admin/laporan/keuangan"
+      class="nav-item mb-1"
+      prepend-icon="mdi-finance"
+      title="Laporan Keuangan"
+    />
+
+    <!-- SYSTEM -->
+    <div class="nav-section-label">System</div>
+
+    <v-list-item
+      to="/admin/audit-log"
+      class="nav-item mb-1"
+      prepend-icon="mdi-history"
+      title="Audit Log"
+    />
+
+    <v-list-item
+      to="/admin/activity-log"
+      class="nav-item mb-1"
+      prepend-icon="mdi-clipboard-text-clock"
+      title="Activity Log"
+    />
+
+    <v-list-item
+      to="/admin/error-log"
+      class="nav-item mb-1"
+      prepend-icon="mdi-alert-circle-outline"
+      title="Error Log"
+    />
+
   </v-list>
 </template>
 
 <style scoped>
 .sidebar-container {
-  --nav-text: rgba(255, 255, 255, 0.6);
+  --nav-text: rgba(255, 255, 255, 0.65);
   --nav-active-bg: rgba(255, 255, 255, 0.08);
   --nav-hover-bg: rgba(255, 255, 255, 0.05);
-  --primary-accent: #195de6;
+  --primary-accent: #5c6bc0;
 }
 
 .nav-section-label {
-  padding: 20px 12px 6px;
+  padding: 18px 10px 6px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .nav-item {
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   color: var(--nav-text) !important;
-  transition: all 0.2s ease;
-  min-height: 40px !important;
-}
-
-.nav-item :deep(.v-list-item__prepend .v-icon) {
-  opacity: 0.5;
-  font-size: 19px;
-  color: #ffffff !important;
-  transition: opacity 0.2s ease;
+  transition: 0.2s;
+  min-height: 42px !important;
 }
 
 .nav-item:hover {
-  background-color: var(--nav-hover-bg) !important;
-  color: #ffffff !important;
-}
-.nav-item:hover :deep(.v-list-item__prepend .v-icon) {
-  opacity: 1;
+  background: var(--nav-hover-bg) !important;
+  color: #fff !important;
 }
 
 .v-list-item--active.nav-item {
-  background-color: var(--nav-active-bg) !important;
-  color: #ffffff !important;
+  background: var(--nav-active-bg) !important;
+  color: #fff !important;
   font-weight: 600;
-}
-.v-list-item--active.nav-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  bottom: 8px;
-  width: 3px;
-  background-color: var(--primary-accent);
-  border-radius: 0 4px 4px 0;
-}
-.v-list-item--active.nav-item :deep(.v-list-item__prepend .v-icon) {
-  opacity: 1;
 }
 
 .nav-submenu {
   margin-left: 12px;
-  border-left: 1px solid rgba(255, 255, 255, 0.06);
-  padding-left: 8px;
-  margin-top: 2px;
-  margin-bottom: 8px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .nav-submenu :deep(.v-list-item) {
-  min-height: 34px !important;
-  font-size: 12.5px !important;
-  color: rgba(255, 255, 255, 0.45) !important;
-  border-radius: 6px !important;
-  padding-inline: 12px !important;
-}
-
-.nav-submenu :deep(.v-list-item:hover) {
-  background-color: rgba(255, 255, 255, 0.03) !important;
-  color: #ffffff !important;
+  font-size: 12.5px;
+  min-height: 34px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-submenu :deep(.v-list-item--active) {
-  color: #ffffff !important;
-  background: transparent !important;
-  font-weight: 600;
-}
-
-.status-badge {
-  padding: 1px 6px;
-  font-size: 9px;
-  font-weight: 800;
-  border-radius: 4px;
-  line-height: 1.2;
-}
-.status-badge.orange {
-  background: #ff7e00;
   color: #fff;
-}
-.status-badge.blue {
-  background: var(--primary-accent);
-  color: #fff;
-}
-.status-badge.gray {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-}
-
-.aresa-sidebar :deep(.v-list-group__indicator) {
-  font-size: 14px;
-  opacity: 0.3;
 }
 </style>
