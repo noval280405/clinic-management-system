@@ -124,9 +124,39 @@
               <div>Belum ada obat</div>
             </div>
           </v-card-text>
+          <v-card-actions class="d-flex flex-wrap gap-2 pa-3">
+            <v-btn
+              color="orange"
+              :disabled="detailResepObat.status !== 'Draft'"
+              variant="flat"
+              size="small"
+              prepend-icon="mdi-clock-outline"
+              @click="masukkeantrian()"
+            >
+              Masuk Antrian
+            </v-btn>
 
-            <v-card-actions>
-            <v-btn color="blue" variant="flat">Buat Resep</v-btn>
+            <v-btn
+              color="blue"
+              :disabled="detailResepObat.status !== 'Antrian'"
+              variant="flat"
+              size="small"
+              prepend-icon="mdi-progress-check"
+              @click="prosesobat()"
+            >
+              Proses Obat
+            </v-btn>
+
+            <v-btn
+              color="green"
+              :disabled="detailResepObat.status !== 'Diproses'"
+              variant="flat"
+              size="small"
+              prepend-icon="mdi-check-circle"
+              @click="selesai()"
+            >
+              Selesai
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -197,6 +227,18 @@ const detailResepObat = computed(() => resepStore.getDetailResepObat);
 
 function rupiah(val: number) {
   return new Intl.NumberFormat("id-ID").format(val || 0);
+}
+
+function masukkeantrian() {
+  console.log("masuk ke antrian");
+}
+
+function prosesobat() {
+  console.log("proses obat");
+}
+
+function selesai() {
+  console.log("selesai");
 }
 </script>
 
