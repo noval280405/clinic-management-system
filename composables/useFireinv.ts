@@ -120,7 +120,7 @@ export const setObat = async (data: obatM) => {
             "Antihistamin": "HIS",
             "Vitamin & Suplemen": "VIT",
         };
-        const prefix = kategoriMap[data.kategori_obat] || "OBT";  
+        const prefix = kategoriMap[data.kategori_obat] || "OBT";
         const stringnewnumber = _.toString(newnumber).padStart(5, "0");
         const padnumber = stringnewnumber.padStart(4, "0"); // 03
         const year = moment().format("YYYY");
@@ -386,12 +386,15 @@ export const saveResepObat = async (data: resepObatM) => {
 
             const nomorData = nomorSnap.data();
             const newNumber = (nomorData.no_resep || 0) + 1;
+            const newNumberResep = (nomorData.no_billing || 0) + 1;
 
             const no_resep = _.toString(newNumber).padStart(5, "0");
             const year = moment().format("YYYY");
             const bulan = moment().format("MM");
-
+            const stringnewnumber = _.toString(newNumberResep).padStart(5, "0");
+            const padnumberResep = stringnewnumber.padStart(4, "0"); // 03
             const id_resep = `RSP-${year}${bulan}-${no_resep}`;
+            const id_billing = `BLG-${year}${bulan}-${padnumberResep}`;
 
 
 
@@ -513,16 +516,23 @@ export const saveResepObat = async (data: resepObatM) => {
             transaction.set(pendaftaranPemeriksaanResepRef, payload);
 
             // 4. BILLING OTOMATIS
-            const billingRef = doc(db, "billing", id_resep);
+            const billingRef = doc(db, "billing", id_billing);
 
             transaction.set(billingRef, {
-                id_billing: id_resep,
+                id_billing: id_billing,
                 id_resep,
                 id_pasien: data.id_pasien,
                 nama_pasien: data.nama_pasien,
+                id_dokter: data.id_dokter,
+                nama_dokter: data.nama_dokter,
                 total: total_harga,
                 status: "Belum Bayar",
+                id_pendaftaran: data.id_pendaftaran,
+                id_pemeriksaan: data.id_pemeriksaan,
+                total_obat: total_harga,
+                total_layanan: 0,
                 created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
             });
 
 
@@ -536,11 +546,18 @@ export const saveResepObat = async (data: resepObatM) => {
 
             transaction.set(historyRef, {
                 id_pasien: data.id_pasien,
+                nama_pasien: data.nama_pasien,
+                items_obat: itemsFinal,
                 id_resep,
-                tipe: "Resep Obat",
-                deskripsi: `Resep obat oleh dr. ${data.nama_dokter}`,
+                tipe: "resep", // 🔥 lebih clean (jangan panjang)
+                kategori: "farmasi", // 🔥 grouping (opsional tapi bagus)
+                title: "Resep Obat",
+                deskripsi: `Resep oleh dr. ${data.nama_dokter}`,
                 items: itemsFinal,
+                total_harga: total_harga,
                 created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+                nama_dokter: data.nama_dokter,
             });
 
             // 7. AUDIT LOG
@@ -548,16 +565,23 @@ export const saveResepObat = async (data: resepObatM) => {
 
             transaction.set(logRef, {
                 user: auth.currentUser?.email,
+                role: "Admin", // ini bisa dinamis sesuai role user
                 aksi: "CREATE_RESEP",
                 module: "RESEP_OBAT",
                 id_resep,
                 id_pasien: data.id_pasien,
+                nama_pasien: data.nama_pasien,
+                deskripsi: `Membuat resep obat untuk pasien ${data.nama_pasien}`,
+                status: "draft",
                 created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+                device: "web",
             });
 
             // 8. UPDATE COUNTER
             transaction.update(nomorRef, {
                 no_resep: newNumber,
+                no_billing: newNumberResep,
             });
 
             return {
