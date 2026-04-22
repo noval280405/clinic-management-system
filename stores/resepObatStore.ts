@@ -59,6 +59,12 @@ export const useresepObatStores = defineStore("resepObatStore", {
             const datatarik = await queryambilid("resep_obat")
             this.dataresepObat = datatarik as unknown as resepObatM[]
         },
+
+        async tarikDataResepObatByStatus(status: string) {
+            const datatarik = await queryResepObatnBystatus(status)
+            this.dataresepObat = datatarik as unknown as resepObatM[]
+        },
+
         async tarikDetailResepObat(id: string) {
             const datatarik = await tarikdetaildatabase("resep_obat", id)
             this.detailresepObat = datatarik as unknown as resepObatM
