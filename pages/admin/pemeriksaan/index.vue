@@ -324,8 +324,8 @@
             <v-icon icon="mdi-pencil" />
           </v-btn>
 
-          <v-btn size="25" color="error" variant="tonal">
-            <v-icon icon="mdi-delete" />
+          <v-btn size="25" color="error" variant="tonal" @click="opendialoghapus(item.id)">
+             <v-icon icon="mdi-delete" />
           </v-btn>
         </div>
       </template>

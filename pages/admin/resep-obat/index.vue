@@ -189,8 +189,8 @@
           <v-btn size="25" color="warning" variant="tonal" class="mr-1">
             <v-icon size="16">mdi-pencil</v-icon>
           </v-btn>
-          <v-btn size="25" color="error" variant="tonal">
-            <v-icon size="16">mdi-delete</v-icon>
+          <v-btn size="25" color="error" variant="tonal" @click="opendialoghapus(item.id)">
+             <v-icon size="16">mdi-delete</v-icon>
           </v-btn>
         </div>
       </template>
@@ -240,6 +240,7 @@ const defaultresep = (): resepObatM => ({
   nama_pasien: "",
   items_obat: [],
   diagnosa: "",
+  status: ""
 });
 
 const new_resep = ref<resepObatM>(defaultresep());
