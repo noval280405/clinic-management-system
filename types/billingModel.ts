@@ -18,7 +18,7 @@ export interface billingM {
 
   total: number;
 
-  status: "draft" | "belum_bayar" | "lunas" | "dibatalkan";
+  status: string;
 
   metode_pembayaran?: "cash" | "debit" | "bpjs";
   dibayar?: number;

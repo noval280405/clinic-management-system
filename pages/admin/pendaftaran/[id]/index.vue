@@ -208,7 +208,7 @@ const defaultPemeriksaan = (): pemeriksaanM => ({
   total_layanan: 0,
   total_obat: 0,
   grand_total: 0,
-  status: "draft",
+  status: "Draft",
   created_at: 0,
   created_by: "",
   tanggal_pemeriksaan: "",

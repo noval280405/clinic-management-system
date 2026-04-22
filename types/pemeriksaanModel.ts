@@ -26,7 +26,7 @@ export interface pemeriksaanM {
     total_layanan: number;
     total_obat: number;
     grand_total: number;
-    status: "draft" | "selesai";
+    status: string;
     tanggal_pemeriksaan: string;
     created_at: number;
     created_by: string;
