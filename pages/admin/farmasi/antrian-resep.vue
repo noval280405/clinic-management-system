@@ -143,7 +143,7 @@ definePageMeta({
 
 onMounted(async () => {
   sessionStorage.removeItem("resep_obat");
-  await resepStore.tarikDataResepObatByStatus("draft");
+  await resepStore.tarikDataResepObatByStatus("antrian");
 });
 
 const data = reactive({
