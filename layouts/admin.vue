@@ -1,7 +1,8 @@
 <template>
   <v-layout>
+    <AppNotification />
     <AdminHeader />
-     <LoadingApp />
+    <LoadingApp />
     <v-main>
       <v-container fluid>
         <slot />

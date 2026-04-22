@@ -1,5 +1,6 @@
 <template>
   <v-container fluid class="pa-2" v-if="detailResepObat">
+    <ConfirmationDialog ref="confirmationDialog" />
     <!-- HEADER -->
     <v-card class="rounded-2xl elevation-3 mb-2 header-gradient">
       <v-card-text
@@ -216,6 +217,11 @@
 <script setup lang="ts">
 definePageMeta({ layout: "admin" });
 
+const notificationStore = useNotificationStore();
+const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
+  null,
+);
+
 const resepStore = useresepObatStores();
 const route = useRoute();
 
@@ -229,16 +235,82 @@ function rupiah(val: number) {
   return new Intl.NumberFormat("id-ID").format(val || 0);
 }
 
-function masukkeantrian() {
-  console.log("masuk ke antrian");
+async function masukkeantrian() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Masuk Antrian",
+    "Anda yakin ingin memasukkan resep ini ke antrian?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("masuk antrian dibatalkan");
+  }
+  useloadingStore().setLoading(true);
+
+  const res = await updateStatusResep({
+    ...detailResepObat.value,
+    status: "Antrian",
+  });
+
+  if (res === "ok") {
+    notificationStore.showSuccess("Resep masuk antrian apotek");
+    await resepStore.tarikDetailResepObat(route.params.id as string);
+  } else {
+    notificationStore.showError(res);
+  }
+
+  useloadingStore().setLoading(false);
 }
 
-function prosesobat() {
-  console.log("proses obat");
+async function prosesobat() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Proses Obat",
+    "Anda yakin ingin memproses obat untuk resep ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("proses obat dibatalkan");
+  }
+  useloadingStore().setLoading(true);
+
+  const res = await updateStatusResep({
+    ...detailResepObat.value,
+    status: "Diproses",
+  });
+
+  if (res === "ok") {
+    notificationStore.showSuccess("Obat sedang diproses");
+    await resepStore.tarikDetailResepObat(route.params.id as string);
+  } else {
+    notificationStore.showError(res);
+  }
+
+  useloadingStore().setLoading(false);
 }
 
-function selesai() {
-  console.log("selesai");
+async function selesai() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Selesai",
+    "Anda yakin ingin menandai resep ini sebagai selesai?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("selesai dibatalkan");
+  }
+  useloadingStore().setLoading(true);
+
+  const res = await updateStatusResep({
+    ...detailResepObat.value,
+    status: "Selesai",
+  });
+
+  if (res === "ok") {
+    notificationStore.showSuccess("Obat sudah diberikan ke pasien");
+    await resepStore.tarikDetailResepObat(route.params.id as string);
+  } else {
+    notificationStore.showError(res);
+  }
+
+  useloadingStore().setLoading(false);
 }
 </script>
 

@@ -600,6 +600,111 @@ export const saveResepObat = async (data: resepObatM) => {
 };
 
 
+export const updateStatusResep = async (data: resepObatM) => {
+    const db = useFirestore();
+    const auth = getAuth();
+
+    try {
+        await runTransaction(db, async (transaction) => {
+            const resepRef = doc(db, "resep_obat", data.id_resep!);
+            const resepSnap = await transaction.get(resepRef);
+
+            if (!resepSnap.exists()) {
+                throw new Error("Resep tidak ditemukan");
+            }
+
+            const resepData = resepSnap.data();
+
+            // =============================
+            // 🔥 GET SEMUA DATA DULU (WAJIB)
+            // =============================
+            let obatSnapshots: any[] = [];
+
+            if (data.status === "Selesai") {
+                const items = resepData.items_obat || [];
+
+                for (const item of items) {
+                    const obatRef = doc(db, "m_obat", item.id_obat);
+                    const snap = await transaction.get(obatRef);
+
+                    if (snap.exists()) {
+                        obatSnapshots.push({
+                            ref: obatRef,
+                            stok: snap.data().stok || 0,
+                            item,
+                        });
+                    }
+                }
+            }
+
+            // =============================
+            // 🔥 BARU WRITE DI SINI
+            // =============================
+
+            // UPDATE RESEP
+            transaction.update(resepRef, {
+                status: data.status,
+                updated_at: moment().unix(),
+                updated_by: auth.currentUser?.email,
+            });
+
+            // HISTORY
+            const historyRef = doc(collection(db, "history_pasien"));
+            transaction.set(historyRef, {
+                id_pasien: resepData.id_pasien,
+                id_resep: data.id_resep,
+                tipe: "resep",
+                title: "Update Status Resep",
+                deskripsi: `Status resep diubah menjadi ${data.status}`,
+                status: data.status,
+                items_obat: resepData.items_obat,
+                total_harga: resepData.total_harga,
+                nama_dokter: resepData.nama_dokter,
+                nama_pasien: resepData.nama_pasien,
+                created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+            });
+
+            // AUDIT
+            const logRef = doc(collection(db, "audit_log"));
+            transaction.set(logRef, {
+                user: auth.currentUser?.email,
+                aksi: "UPDATE_STATUS_RESEP",
+                module: "RESEP_OBAT",
+                id_resep: data.id_resep,
+                id_pasien: resepData.id_pasien,
+                status: data.status,
+                role: "Admin",
+                nama_pasien: resepData.nama_pasien,
+                deskripsi: `Update status resep menjadi ${data.status}`,
+                device: "web",
+                created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+            });
+
+            // =============================
+            // 🔥 UPDATE STOK (SETELAH GET)
+            // =============================
+            if (data.status === "Selesai") {
+                for (const o of obatSnapshots) {
+                    transaction.update(o.ref, {
+                        stok: o.stok - o.item.jumlah,
+                        updated_at: moment().unix(),
+                        updated_by: auth.currentUser?.email,
+                    });
+                }
+            }
+        });
+
+        return "ok";
+    } catch (error: any) {
+        console.error("ERROR UPDATE STATUS:", error);
+        return error.message;
+    }
+};
+
+
+
 // export const saveResepObat = async (data: resepObatM) => {
 //     const db = useFirestore();
 //     const auth = getAuth();

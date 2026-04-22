@@ -143,7 +143,7 @@ definePageMeta({
 
 onMounted(async () => {
   sessionStorage.removeItem("resep_obat");
-  await resepStore.tarikDataResepObatByStatus("Draft");
+  await resepStore.tarikDataResepObatByStatus("Diproses");
 });
 
 const data = reactive({
