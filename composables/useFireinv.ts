@@ -417,29 +417,29 @@ export const saveResepObat = async (data: resepObatM) => {
             });
 
 
-            // 5. KURANGI STOK OBAT
-            const obatSnapshots: any[] = [];
+            // // 5. KURANGI STOK OBAT
+            // const obatSnapshots: any[] = [];
 
-            for (const item of itemsFinal) {
-                const obatRef = doc(db, "m_obat", item.id_obat!);
-                const snap = await transaction.get(obatRef);
+            // for (const item of itemsFinal) {
+            //     const obatRef = doc(db, "m_obat", item.id_obat!);
+            //     const snap = await transaction.get(obatRef);
 
-                if (snap.exists()) {
-                    obatSnapshots.push({
-                        ref: obatRef,
-                        stok: snap.data().stok || 0,
-                        item,
-                    });
-                }
-            }
+            //     if (snap.exists()) {
+            //         obatSnapshots.push({
+            //             ref: obatRef,
+            //             stok: snap.data().stok || 0,
+            //             item,
+            //         });
+            //     }
+            // }
 
-            for (const o of obatSnapshots) {
-                transaction.update(o.ref, {
-                    stok: o.stok - o.item.jumlah,
-                    updated_at: moment().unix(),
-                    updated_by: auth.currentUser?.email,
-                });
-            }
+            // for (const o of obatSnapshots) {
+            //     transaction.update(o.ref, {
+            //         stok: o.stok - o.item.jumlah,
+            //         updated_at: moment().unix(),
+            //         updated_by: auth.currentUser?.email,
+            //     });
+            // }
             // =============================
             // REFS EXISTING (JANGAN DIUBAH)
             // =============================
@@ -617,7 +617,7 @@ export const updateStatusResep = async (data: resepObatM) => {
             const resepData = resepSnap.data();
 
             // =============================
-            // 🔥 GET SEMUA DATA DULU (WAJIB)
+            // 🔥 GET DATA DULU
             // =============================
             let obatSnapshots: any[] = [];
 
@@ -628,27 +628,35 @@ export const updateStatusResep = async (data: resepObatM) => {
                     const obatRef = doc(db, "m_obat", item.id_obat);
                     const snap = await transaction.get(obatRef);
 
-                    if (snap.exists()) {
-                        obatSnapshots.push({
-                            ref: obatRef,
-                            stok: snap.data().stok || 0,
-                            item,
-                        });
+                    if (!snap.exists()) {
+                        throw new Error(`Obat ${item.nama_obat} tidak ditemukan`);
                     }
+
+                    const stok = snap.data().stok || 0;
+
+                    // VALIDASI STOK
+                    if (stok < item.jumlah) {
+                        throw new Error(
+                            `Stok ${item.nama_obat} tidak cukup (stok: ${stok})`
+                        );
+                    }
+
+                    obatSnapshots.push({
+                        ref: obatRef,
+                        stok,
+                        item,
+                    });
                 }
             }
 
             // =============================
-            // 🔥 BARU WRITE DI SINI
+            // 🔥 UPDATE RESEP
             // =============================
-
-            // UPDATE RESEP
             transaction.update(resepRef, {
                 status: data.status,
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
             });
-
 
             // =============================
             // 🔥 UPDATE BILLING
@@ -657,13 +665,64 @@ export const updateStatusResep = async (data: resepObatM) => {
 
             if (data.status === "Selesai") {
                 transaction.update(billingRef, {
-                    status: "Belum Bayar", // atau "Siap Bayar"
+                    status: "Belum Bayar",
                     updated_at: moment().unix(),
                     updated_by: auth.currentUser?.email,
                 });
             }
 
-            // HISTORY
+            // =============================
+            // 🔥 MUTASI + STOK
+            // =============================
+            if (data.status === "Selesai") {
+                for (const o of obatSnapshots) {
+                    const item = o.item;
+
+                    // 🔥 ID MUTASI (SAMA UNTUK 2 TEMPAT)
+                    const mutasiId = doc(collection(db, "mutasi_obat")).id;
+
+                    const mutasiData = {
+                        id_mutasi: mutasiId,
+                        id_obat: item.id_obat,
+                        nama_obat: item.nama_obat,
+                        tipe: "keluar",
+                        jumlah: item.jumlah,
+                        stok_sebelum: o.stok,
+                        stok_sesudah: o.stok - item.jumlah,
+                        referensi: data.id_resep,
+                        keterangan: "Pengeluaran obat dari resep",
+                        created_at: moment().unix(),
+                        created_by: auth.currentUser?.email,
+                    };
+
+                    // 🔥 GLOBAL MUTASI
+                    const mutasiRef = doc(db, "mutasi_obat", mutasiId);
+
+                    // 🔥 SUB COLLECTION PER OBAT
+                    const subRef = doc(
+                        db,
+                        "m_obat",
+                        item.id_obat,
+                        "transaksi_stok",
+                        mutasiId
+                    );
+
+                    // 🔥 UPDATE STOK
+                    transaction.update(o.ref, {
+                        stok: o.stok - item.jumlah,
+                        updated_at: moment().unix(),
+                        updated_by: auth.currentUser?.email,
+                    });
+
+                    // 🔥 SIMPAN MUTASI
+                    transaction.set(mutasiRef, mutasiData);
+                    transaction.set(subRef, mutasiData);
+                }
+            }
+
+            // =============================
+            // 🔥 HISTORY
+            // =============================
             const historyRef = doc(collection(db, "history_pasien"));
             transaction.set(historyRef, {
                 id_pasien: resepData.id_pasien,
@@ -680,7 +739,9 @@ export const updateStatusResep = async (data: resepObatM) => {
                 created_by: auth.currentUser?.email,
             });
 
-            // AUDIT
+            // =============================
+            // 🔥 AUDIT LOG
+            // =============================
             const logRef = doc(collection(db, "audit_log"));
             transaction.set(logRef, {
                 user: auth.currentUser?.email,
@@ -696,19 +757,6 @@ export const updateStatusResep = async (data: resepObatM) => {
                 created_at: moment().unix(),
                 created_by: auth.currentUser?.email,
             });
-
-            // =============================
-            // 🔥 UPDATE STOK (SETELAH GET)
-            // =============================
-            if (data.status === "Selesai") {
-                for (const o of obatSnapshots) {
-                    transaction.update(o.ref, {
-                        stok: o.stok - o.item.jumlah,
-                        updated_at: moment().unix(),
-                        updated_by: auth.currentUser?.email,
-                    });
-                }
-            }
         });
 
         return "ok";
