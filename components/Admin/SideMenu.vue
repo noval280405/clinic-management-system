@@ -75,13 +75,6 @@
     />
 
     <v-list-item
-      to="/admin/farmasi/stok-obat"
-      class="nav-item mb-1"
-      prepend-icon="mdi-warehouse"
-      title="Stok Obat"
-    />
-
-    <v-list-item
       to="/admin/farmasi/mutasi-stok"
       class="nav-item mb-1"
       prepend-icon="mdi-swap-horizontal"
