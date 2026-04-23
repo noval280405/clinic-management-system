@@ -165,6 +165,7 @@ const data = reactive({
     { title: "Poli", value: "nama_poli" },
     { title: "Diagnosa", value: "diagnosa" },
     { title: "Total", value: "total_harga", align: "end" },
+    { title: "Status", value: "status" },
     { title: "Aksi", value: "aksi", align: "center", width: "120px" },
   ],
 });
