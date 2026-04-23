@@ -224,7 +224,7 @@
     <v-col cols="9">
       <v-breadcrumbs>
         <v-breadcrumbs-item>
-          <span class="font-weight-medium text-h5"> Master Pendaftaran </span>
+          <span class="font-weight-medium text-h5">Pendaftaran </span>
         </v-breadcrumbs-item>
       </v-breadcrumbs>
     </v-col>

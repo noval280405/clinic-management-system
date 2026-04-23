@@ -65,35 +65,25 @@
 
   <!-- Main Content -->
   <v-row align="center">
-    <v-col cols="9">
+    <v-col cols="11">
       <v-breadcrumbs>
         <v-breadcrumbs-item>
-          <span class="font-weight-medium text-h5"> Master Resep </span>
+          <span class="font-weight-medium text-h5"> Resep Obat</span>
         </v-breadcrumbs-item>
       </v-breadcrumbs>
     </v-col>
 
-    <v-col cols="3">
+    <v-col cols="1">
       <v-btn
-        size="28"
+        size="small"
         variant="outlined"
         color="grey-darken-1"
         class="border mr-3"
         @click="refreshData"
       >
         <v-icon size="18" icon="mdi-refresh" />
+        refresh
         <v-tooltip activator="parent" location="top"> Refresh Data </v-tooltip>
-      </v-btn>
-
-      <v-btn
-        color="primary"
-        @click="openDialogAdd"
-        variant="flat"
-        size="small"
-        class="text-capitalize px-3"
-        prepend-icon="mdi-plus"
-      >
-        Tambah resep
       </v-btn>
     </v-col>
   </v-row>
@@ -213,12 +203,8 @@
 
 <script setup lang="ts">
 import _ from "lodash";
-import moment from "moment";
 import { reactive } from "vue";
-import type { resepObatM } from "~/types/resepObatModel";
-const pasienStore = usePasienStores();
-const poliStore = usePoliStores();
-const dokterStore = useDokterStores();
+
 const resepStore = useresepObatStores();
 const notificationStore = useNotificationStore();
 const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
@@ -233,22 +219,6 @@ onMounted(async () => {
   sessionStorage.removeItem("resep_obat");
   await resepStore.tarikDataResepObat();
 });
-
-const defaultresep = (): resepObatM => ({
-  id_pendaftaran: "",
-  id_pemeriksaan: "",
-  id_pasien: "",
-  id_dokter: "",
-  id_poli: "",
-  nama_dokter: "",
-  nama_poli: "",
-  nama_pasien: "",
-  items_obat: [],
-  diagnosa: "",
-  status: "",
-});
-
-const new_resep = ref<resepObatM>(defaultresep());
 
 const data = reactive({
   search: "",
@@ -272,34 +242,6 @@ const data = reactive({
     { title: "Aksi", value: "aksi", align: "center", width: "120px" },
   ],
 });
-
-async function openDialogAdd() {
-  new_resep.value = defaultresep();
-  data.addedit = "add";
-  data.dialogAdd = true;
-}
-
-async function saveedit() {
-  const confirmed = await confirmationDialog.value?.show(
-    "Konfirmasi Edit",
-    "Anda yakin ingin mengedit data ini?",
-  );
-
-  if (!confirmed) {
-    return notificationStore.showError("edit data dibatalkan");
-  }
-  new_resep.value.updated_at = moment().unix();
-  new_resep.value.updated_by = useUserStore().getEmail;
-  await resepStore.updateResepObat(new_resep.value);
-  data.dialogAdd = false;
-  refreshData();
-}
-
-function openDialogEdit(item: resepObatM) {
-  data.addedit = "edit";
-  new_resep.value = _.assign({}, item);
-  data.dialogAdd = true;
-}
 
 function opendialoghapus(id_resep: string) {
   data.dialoghapus = true;

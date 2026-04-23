@@ -63,158 +63,27 @@
     </v-card>
   </v-dialog>
 
-  <v-dialog
-    v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
-  >
-    <v-card class="rounded-lg">
-      <v-card-title
-        class="px-4 text-subtitle-1 font-weight-bold bg-primary pa-3"
-      >
-        {{ titleaddedit }}
-      </v-card-title>
-
-      <v-card-text>
-        <!-- INFO PASIEN -->
-        <div class="text-caption font-weight-bold mb-2">Informasi Pasien</div>
-
-        <v-alert type="info" variant="tonal" density="compact" class="mb-3">
-          <div class="text-caption">
-            {{ new_pemeriksaan.nama_pasien }} • Antrian:
-            {{ new_pemeriksaan.nomor_antrian }} •
-            {{ new_pemeriksaan.nama_poli }}
-          </div>
-        </v-alert>
-
-        <!-- KELUHAN -->
-        <div class="text-caption font-weight-bold mb-2">Keluhan</div>
-
-        <a-textarea
-          v-model="new_pemeriksaan.anamnesa"
-          label="Keluhan Pasien"
-          placeholder="Keluhan utama pasien"
-          rows="2"
-          class="mb-3"
-        />
-
-        <!-- PEMERIKSAAN -->
-        <div class="text-caption font-weight-bold mb-2">Pemeriksaan</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-text-field
-              label="Tekanan Darah"
-              v-model="new_pemeriksaan.tekanan_darah"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
-              label="Suhu Tubuh (°C)"
-              v-model="new_pemeriksaan.suhu_tubuh"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
-              label="Berat Badan (kg)"
-              v-model="new_pemeriksaan.berat_badan"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
-              label="Tinggi Badan (cm)"
-              v-model="new_pemeriksaan.tinggi_badan"
-            />
-          </v-col>
-        </v-row>
-
-        <!-- DIAGNOSA -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Diagnosa</div>
-
-        <a-textarea
-          v-model="new_pemeriksaan.diagnosa"
-          label="Diagnosa Dokter"
-          rows="2"
-          class="mb-3"
-        />
-
-        <!-- TINDAKAN -->
-        <div class="text-caption font-weight-bold mb-2">Tindakan</div>
-
-        <a-textarea
-          v-model="new_pemeriksaan.tindakan"
-          label="Tindakan Medis"
-          rows="2"
-          class="mb-3"
-        />
-
-        <!-- CATATAN -->
-        <div class="text-caption font-weight-bold mb-2">Catatan</div>
-
-        <a-textarea
-          v-model="new_pemeriksaan.catatan"
-          label="Catatan Tambahan"
-          rows="2"
-        />
-      </v-card-text>
-
-      <v-card-actions class="pa-3 bg-grey-lighten-4">
-        <v-btn
-          variant="flat"
-          color="grey-darken-2"
-          @click="data.dialogAdd = false"
-          class="text-capitalize px-3"
-          size="small"
-        >
-          Batal
-        </v-btn>
-
-        <v-btn
-          color="primary"
-          @click="validate"
-          variant="flat"
-          class="text-capitalize px-3"
-          size="small"
-        >
-          {{ bottomAddEdit }}
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
-
   <!-- Main Content -->
   <v-row align="center">
-    <v-col cols="9">
+    <v-col cols="11">
       <v-breadcrumbs>
         <v-breadcrumbs-item>
-          <span class="font-weight-medium text-h5"> Master Pemeriksaan </span>
+          <span class="font-weight-medium text-h5"> Pemeriksaan </span>
         </v-breadcrumbs-item>
       </v-breadcrumbs>
     </v-col>
 
-    <v-col cols="3">
+    <v-col cols="1">
       <v-btn
-        size="28"
+        size="small"
         variant="outlined"
         color="grey-darken-1"
         class="border mr-3"
         @click="refreshData"
       >
         <v-icon size="18" icon="mdi-refresh" />
+        refresh
         <v-tooltip activator="parent" location="top"> Refresh Data </v-tooltip>
-      </v-btn>
-
-      <v-btn
-        color="primary"
-        @click="openDialogAdd"
-        variant="flat"
-        size="small"
-        class="text-capitalize px-3"
-        prepend-icon="mdi-plus"
-      >
-        Tambah Pemeriksaan
       </v-btn>
     </v-col>
   </v-row>
@@ -316,7 +185,13 @@
       <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
         <div class="d-flex justify-center">
-          <v-btn size="25" color="info" variant="tonal" class="mr-1" :to="`/admin/pemeriksaan/${item.id}`">
+          <v-btn
+            size="25"
+            color="info"
+            variant="tonal"
+            class="mr-1"
+            :to="`/admin/pemeriksaan/${item.id}`"
+          >
             <v-icon icon="mdi-eye" />
           </v-btn>
 
@@ -324,8 +199,13 @@
             <v-icon icon="mdi-pencil" />
           </v-btn>
 
-          <v-btn size="25" color="error" variant="tonal" @click="opendialoghapus(item.id)">
-             <v-icon icon="mdi-delete" />
+          <v-btn
+            size="25"
+            color="error"
+            variant="tonal"
+            @click="opendialoghapus(item.id)"
+          >
+            <v-icon icon="mdi-delete" />
           </v-btn>
         </div>
       </template>
@@ -347,9 +227,6 @@ import moment from "moment";
 import { reactive } from "vue";
 import { usePemeriksaanStores } from "~/stores/pemeriksaanStore";
 import type { pemeriksaanM } from "~/types/pemeriksaanModel";
-const pasienStore = usePasienStores();
-const poliStore = usePoliStores();
-const dokterStore = useDokterStores();
 const pemeriksaanStore = usePemeriksaanStores();
 const notificationStore = useNotificationStore();
 const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
@@ -364,29 +241,6 @@ onMounted(async () => {
   sessionStorage.removeItem("m_pemeriksaan");
   await pemeriksaanStore.tarikDataPemeriksaan();
 });
-
-const defaultPemeriksaan = (): pemeriksaanM => ({
-  id_pendaftaran: "",
-  id_pasien: "",
-  id_dokter: "",
-  id_poli: "",
-  nama_pasien: "",
-  nama_dokter: "",
-  nama_poli: "",
-  anamnesa: "",
-  diagnosa: "",
-  layanan: [],
-  obat: [],
-  total_layanan: 0,
-  total_obat: 0,
-  grand_total: 0,
-  status: "Draft",
-  created_at: 0,
-  created_by: "",
-  tanggal_pemeriksaan: "",
-});
-
-const new_pemeriksaan = ref<pemeriksaanM>(defaultPemeriksaan());
 
 const data = reactive({
   search: "",
@@ -412,73 +266,6 @@ const data = reactive({
   ],
 });
 
-const titleaddedit = computed(() => {
-  if (data.addedit == "add") {
-    return "TAMBAH Pemeriksaan";
-  } else {
-    return "EDIT Pemeriksaan";
-  }
-});
-
-const bottomAddEdit = computed(() => {
-  if (data.addedit == "add") {
-    return "Simpan";
-  } else {
-    return "Edit";
-  }
-});
-
-async function openDialogAdd() {
-  new_pemeriksaan.value = defaultPemeriksaan();
-  data.addedit = "add";
-  data.dialogAdd = true;
-}
-
-async function validate() {
-  if (data.addedit == "add") {
-    addPemeriksaan();
-  } else {
-    saveedit();
-  }
-}
-
-async function saveedit() {
-  const confirmed = await confirmationDialog.value?.show(
-    "Konfirmasi Edit",
-    "Anda yakin ingin mengedit data ini?",
-  );
-
-  if (!confirmed) {
-    return notificationStore.showError("edit data dibatalkan");
-  }
-  new_pemeriksaan.value.updated_at = moment().unix();
-  new_pemeriksaan.value.updated_by = useUserStore().getEmail;
-  await pemeriksaanStore.updatePemeriksaan(new_pemeriksaan.value);
-  data.dialogAdd = false;
-  refreshData();
-}
-
-function openDialogEdit(item: pemeriksaanM) {
-  data.addedit = "edit";
-  new_pemeriksaan.value = _.assign({}, item);
-  data.dialogAdd = true;
-}
-
-async function addPemeriksaan() {
-  const confirmed = await confirmationDialog.value?.show(
-    "Konfirmasi Tambah",
-    "Anda yakin ingin menambahkan data ini?",
-  );
-
-  if (!confirmed) {
-    return notificationStore.showError("tambah data dibatalkan");
-  }
-  new_pemeriksaan.value.created_at = moment().unix();
-  new_pemeriksaan.value.created_by = useUserStore().getEmail;
-  await pemeriksaanStore.addPemeriksaan(new_pemeriksaan.value);
-  data.dialogAdd = false;
-  refreshData();
-}
 
 function opendialoghapus(id_pemeriksaan: string) {
   data.dialoghapus = true;

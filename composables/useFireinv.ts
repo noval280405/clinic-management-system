@@ -474,6 +474,7 @@ export const saveResepObat = async (data: resepObatM) => {
 
             const payload: resepObatM = {
                 id_resep,
+                id_billing,
                 id_pendaftaran: data.id_pendaftaran,
                 id_pemeriksaan: data.id_pemeriksaan,
                 id_pasien: data.id_pasien,
@@ -647,6 +648,20 @@ export const updateStatusResep = async (data: resepObatM) => {
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
             });
+
+
+            // =============================
+            // 🔥 UPDATE BILLING
+            // =============================
+            const billingRef = doc(db, "billing", data.id_billing!);
+
+            if (data.status === "Selesai") {
+                transaction.update(billingRef, {
+                    status: "Belum Bayar", // atau "Siap Bayar"
+                    updated_at: moment().unix(),
+                    updated_by: auth.currentUser?.email,
+                });
+            }
 
             // HISTORY
             const historyRef = doc(collection(db, "history_pasien"));
