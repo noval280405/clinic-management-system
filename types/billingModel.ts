@@ -1,9 +1,10 @@
 export interface billingM {
-  id_billing: string;
-  id_resep: string;
-  id_pasien: string;
-  id_dokter: string;
-  id_poli: string;
+  id?: string;
+  id_billing?: string;
+  id_resep?: string;
+  id_pasien?: string;
+  id_dokter?: string;
+  id_poli?: string;
 
   nama_pasien: string;
   nama_dokter: string;
@@ -24,8 +25,8 @@ export interface billingM {
   dibayar?: number;
   kembalian?: number;
 
-  created_at: number;
-  created_by: string;
+  created_at?: number;
+  created_by?: string;
 
   updated_at?: number;
   updated_by?: string;
