@@ -14,14 +14,24 @@
         :items="invoiceList"
         density="comfortable"
       >
-        <template #item.created_at="{ item }">
-          {{ formatDate(item.created_at!) }}
+        <!-- TANGGAL -->
+        <template #item.tanggal_bayar="{ item }">
+          {{ formatDate(item.tanggal_bayar) }}
         </template>
 
-        <template #item.total="{ item }">
-          Rp {{ rupiah(item.total) }}
+        <!-- TOTAL -->
+        <template #item.jumlah_bayar="{ item }">
+          Rp {{ rupiah(item.jumlah_bayar) }}
         </template>
 
+        <!-- METODE -->
+        <template #item.metode="{ item }">
+          <v-chip size="small" color="primary" variant="flat">
+            {{ item.metode?.toUpperCase() }}
+          </v-chip>
+        </template>
+
+        <!-- AKSI -->
         <template #item.aksi="{ item }">
           <v-btn size="small" color="primary" @click="openInvoice(item)">
             Lihat
@@ -35,6 +45,7 @@
       <v-card>
         <v-card-text>
           <div ref="printArea" class="invoice-paper">
+            
             <!-- HEADER -->
             <div class="invoice-header">
               <div>
@@ -43,7 +54,9 @@
               </div>
               <div class="text-right">
                 <div class="text-h6 font-weight-bold">INVOICE</div>
-                <div class="text-caption">{{ selected.id_billing }}</div>
+                <div class="text-caption">
+                  {{ selected.id_pembayaran }}
+                </div>
               </div>
             </div>
 
@@ -52,8 +65,8 @@
             <!-- INFO -->
             <div class="invoice-info">
               <div><b>Pasien:</b> {{ selected.nama_pasien }}</div>
-              <div><b>Dokter:</b> {{ selected.nama_dokter }}</div>
-              <div><b>Tanggal:</b> {{ formatDate(selected.created_at) }}</div>
+              <div><b>Metode:</b> {{ selected.metode }}</div>
+              <div><b>Tanggal:</b> {{ formatDate(selected.tanggal_bayar) }}</div>
             </div>
 
             <v-divider class="my-2" />
@@ -68,12 +81,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Layanan</td>
-                  <td>Rp {{ rupiah(selected.total_layanan) }}</td>
+                  <td>Total Tagihan</td>
+                  <td>Rp {{ rupiah(selected.total_tagihan) }}</td>
                 </tr>
                 <tr>
-                  <td>Obat</td>
-                  <td>Rp {{ rupiah(selected.total_obat) }}</td>
+                  <td>Jumlah Bayar</td>
+                  <td>Rp {{ rupiah(selected.jumlah_bayar) }}</td>
+                </tr>
+                <tr>
+                  <td>Kembalian</td>
+                  <td>Rp {{ rupiah(selected.kembalian) }}</td>
                 </tr>
               </tbody>
             </table>
@@ -82,7 +99,7 @@
 
             <!-- TOTAL -->
             <div class="text-right font-weight-bold text-h6">
-              Total: Rp {{ rupiah(selected.total) }}
+              Dibayar: Rp {{ rupiah(selected.jumlah_bayar) }}
             </div>
 
             <!-- FOOTER -->
@@ -103,17 +120,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { useBillingStore } from "~/stores/billingStore";
+import { ref, computed, onMounted } from "vue";
+import { usePembayaranStore } from "~/stores/pembayaranStore";
 
 definePageMeta({
   layout: "admin",
 });
 
-const billingStore = useBillingStore();
+const pembayaranStore = usePembayaranStore();
 
 onMounted(async () => {
-  await billingStore.tarikDataBilling();
+  await pembayaranStore.tarikDataPembayaran();
 });
 
 const dialog = ref(false);
@@ -121,16 +138,17 @@ const selected = ref<any>({});
 const printArea = ref();
 
 const headers = [
-  { title: "ID Billing", key: "id_billing" },
+  { title: "ID Pembayaran", key: "id_pembayaran" },
   { title: "Pasien", key: "nama_pasien" },
-  { title: "Tanggal", key: "created_at" },
-  { title: "Total", key: "total" },
+  { title: "Tanggal", key: "tanggal_bayar" },
+  { title: "Metode", key: "metode" },
+  { title: "Total", key: "jumlah_bayar" },
   { title: "Aksi", key: "aksi", sortable: false },
 ];
 
-// 🔥 hanya ambil yang lunas
+// 🔥 ambil dari pembayaran (SUDAH FINAL)
 const invoiceList = computed(() =>
-  billingStore.getDataBilling.filter((item: any) => item.status === "Lunas"),
+  pembayaranStore.getDataPembayaran
 );
 
 function openInvoice(item: any) {
@@ -143,12 +161,14 @@ function rupiah(val: number) {
 }
 
 function formatDate(val: number) {
+  if (!val) return "-";
   return new Date(val * 1000).toLocaleString("id-ID");
 }
 
 function printInvoice() {
   const printContents = printArea.value.innerHTML;
   const win = window.open("", "", "width=900,height=700");
+
   win.document.write(`
     <html>
       <head>
@@ -163,6 +183,7 @@ function printInvoice() {
       <body>${printContents}</body>
     </html>
   `);
+
   win.document.close();
   win.print();
 }

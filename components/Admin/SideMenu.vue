@@ -1,6 +1,5 @@
 <template>
   <v-list class="sidebar-container pa-3 bg-transparent aresa-sidebar" nav>
-
     <!-- DASHBOARD -->
     <v-list-item
       to="/admin/"
@@ -92,17 +91,17 @@
     />
 
     <v-list-item
-      to="/admin/invoice"
-      class="nav-item mb-1"
-      prepend-icon="mdi-receipt-text-outline"
-      title="Invoice"
-    />
-
-    <v-list-item
       to="/admin/pembayaran"
       class="nav-item mb-1"
       prepend-icon="mdi-credit-card-outline"
       title="Pembayaran"
+    />
+
+    <v-list-item
+      to="/admin/invoice"
+      class="nav-item mb-1"
+      prepend-icon="mdi-receipt-text-outline"
+      title="Invoice"
     />
 
     <!-- LAPORAN -->
@@ -159,7 +158,6 @@
       prepend-icon="mdi-alert-circle-outline"
       title="Error Log"
     />
-
   </v-list>
 </template>
 

@@ -550,8 +550,8 @@ export const saveResepObat = async (data: resepObatM) => {
                 nama_pasien: data.nama_pasien,
                 items_obat: itemsFinal,
                 id_resep,
-                tipe: "resep", // 🔥 lebih clean (jangan panjang)
-                kategori: "farmasi", // 🔥 grouping (opsional tapi bagus)
+                tipe: "resep", //lebih clean (jangan panjang)
+                kategori: "farmasi", //grouping (opsional tapi bagus)
                 title: "Resep Obat",
                 deskripsi: `Resep oleh dr. ${data.nama_dokter}`,
                 items: itemsFinal,
@@ -617,7 +617,7 @@ export const updateStatusResep = async (data: resepObatM) => {
             const resepData = resepSnap.data();
 
             // =============================
-            // 🔥 GET DATA DULU
+            //GET DATA DULU
             // =============================
             let obatSnapshots: any[] = [];
 
@@ -650,7 +650,7 @@ export const updateStatusResep = async (data: resepObatM) => {
             }
 
             // =============================
-            // 🔥 UPDATE RESEP
+            //UPDATE RESEP
             // =============================
             transaction.update(resepRef, {
                 status: data.status,
@@ -659,7 +659,7 @@ export const updateStatusResep = async (data: resepObatM) => {
             });
 
             // =============================
-            // 🔥 UPDATE BILLING
+            //UPDATE BILLING
             // =============================
             const billingRef = doc(db, "billing", data.id_billing!);
 
@@ -672,13 +672,13 @@ export const updateStatusResep = async (data: resepObatM) => {
             }
 
             // =============================
-            // 🔥 MUTASI + STOK
+            //MUTASI + STOK
             // =============================
             if (data.status === "Selesai") {
                 for (const o of obatSnapshots) {
                     const item = o.item;
 
-                    // 🔥 ID MUTASI (SAMA UNTUK 2 TEMPAT)
+                    //ID MUTASI (SAMA UNTUK 2 TEMPAT)
                     const mutasiId = doc(collection(db, "mutasi_obat")).id;
 
                     const mutasiData = {
@@ -695,10 +695,10 @@ export const updateStatusResep = async (data: resepObatM) => {
                         created_by: auth.currentUser?.email,
                     };
 
-                    // 🔥 GLOBAL MUTASI
+                    //GLOBAL MUTASI
                     const mutasiRef = doc(db, "mutasi_obat", mutasiId);
 
-                    // 🔥 SUB COLLECTION PER OBAT
+                    //SUB COLLECTION PER OBAT
                     const subRef = doc(
                         db,
                         "m_obat",
@@ -707,21 +707,21 @@ export const updateStatusResep = async (data: resepObatM) => {
                         mutasiId
                     );
 
-                    // 🔥 UPDATE STOK
+                    //UPDATE STOK
                     transaction.update(o.ref, {
                         stok: o.stok - item.jumlah,
                         updated_at: moment().unix(),
                         updated_by: auth.currentUser?.email,
                     });
 
-                    // 🔥 SIMPAN MUTASI
+                    //SIMPAN MUTASI
                     transaction.set(mutasiRef, mutasiData);
                     transaction.set(subRef, mutasiData);
                 }
             }
 
             // =============================
-            // 🔥 HISTORY
+            //HISTORY
             // =============================
             const historyRef = doc(collection(db, "history_pasien"));
             transaction.set(historyRef, {
@@ -740,7 +740,7 @@ export const updateStatusResep = async (data: resepObatM) => {
             });
 
             // =============================
-            // 🔥 AUDIT LOG
+            //AUDIT LOG
             // =============================
             const logRef = doc(collection(db, "audit_log"));
             transaction.set(logRef, {
@@ -762,6 +762,157 @@ export const updateStatusResep = async (data: resepObatM) => {
         return "ok";
     } catch (error: any) {
         console.error("ERROR UPDATE STATUS:", error);
+        return error.message;
+    }
+};
+
+export const addPembayaran = async (data: any) => {
+    const db = useFirestore();
+    const auth = getAuth();
+
+    try {
+        await runTransaction(db, async (transaction) => {
+            // =============================
+            // COUNTER PEMBAYARAN
+            // =============================
+            const nomorRef = doc(db, "penomoran", "nomor");
+            const nomorSnap = await transaction.get(nomorRef);
+
+            if (!nomorSnap.exists()) {
+                throw new Error("Counter tidak ditemukan");
+            }
+
+            const nomorData = nomorSnap.data();
+            const newNumber = (nomorData.no_pembayaran || 0) + 1;
+
+            const no = _.toString(newNumber).padStart(5, "0");
+            const year = moment().format("YYYY");
+            const bulan = moment().format("MM");
+
+            const id_pembayaran = `PAY-${year}${bulan}-${no}`;
+
+            // =============================
+            //REF
+            // =============================
+            const pembayaranRef = doc(db, "pembayaran", id_pembayaran);
+
+            // =============================
+            //PAYLOAD
+            // =============================
+            const payload = {
+                id_pembayaran,
+                id_billing: data.id_billing,
+                id_pasien: data.id_pasien,
+                id_dokter: data.id_dokter,
+                nama_dokter: data.nama_dokter,
+                nama_pasien: data.nama_pasien,
+                total_tagihan: data.total_tagihan,
+                jumlah_bayar: data.jumlah_bayar,
+                kembalian: data.kembalian,
+                metode: data.metode, // cash / transfer / qris
+                status: "Lunas",
+                tanggal_bayar: moment().unix(),
+                created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+            };
+
+            transaction.set(pembayaranRef, payload);
+
+            // =============================
+            // UPDATE COUNTER
+            // =============================
+            transaction.update(nomorRef, {
+                no_pembayaran: newNumber,
+            });
+
+            return payload;
+        });
+
+        return "ok";
+    } catch (error: any) {
+        console.error("ERROR PEMBAYARAN:", error);
+        return error.message;
+    }
+};
+
+export const updateBilling = async (
+    id_billing: string,
+    data: any
+) => {
+    const db = useFirestore();
+    const auth = getAuth();
+
+    try {
+        await runTransaction(db, async (transaction) => {
+            const billingRef = doc(db, "billing", id_billing);
+
+            // =============================
+            //WAJIB: GET DULU
+            // =============================
+            const billingSnap = await transaction.get(billingRef);
+
+            if (!billingSnap.exists()) {
+                throw new Error("Billing tidak ditemukan");
+            }
+
+            const billingData = billingSnap.data();
+
+            // =============================
+            //VALIDASI (optional tapi bagus)
+            // =============================
+            if (billingData.status === "Lunas") {
+                throw new Error("Billing sudah lunas");
+            }
+
+            // =============================
+            //UPDATE BILLING
+            // =============================
+            transaction.update(billingRef, {
+                status: data.status || "Lunas",
+                tanggal_bayar: data.tanggal_bayar || moment().unix(),
+                metode: data.metode || null,
+                updated_at: moment().unix(),
+                updated_by: auth.currentUser?.email,
+            });
+
+            // =============================
+            //AUDIT LOG (biar enterprise)
+            // =============================
+            const logRef = doc(collection(db, "audit_log"));
+
+            transaction.set(logRef, {
+                user: auth.currentUser?.email,
+                aksi: "UPDATE_BILLING",
+                module: "BILLING",
+                id_billing,
+                id_pasien: billingData.id_pasien,
+                status: "Lunas",
+                deskripsi: `Billing ${id_billing} dibayar`,
+                created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+            });
+
+            // =============================
+            //HISTORY PASIEN (optional tapi bagus)
+            // =============================
+            const historyRef = doc(collection(db, "history_pasien"));
+
+            transaction.set(historyRef, {
+                id_pasien: billingData.id_pasien,
+                id_billing,
+                tipe: "pembayaran",
+                title: "Pembayaran",
+                deskripsi: `Pembayaran billing ${id_billing}`,
+                total: billingData.total,
+                status: "Lunas",
+                created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+            });
+        });
+
+        return "ok";
+    } catch (error: any) {
+        console.error("ERROR UPDATE BILLING:", error);
         return error.message;
     }
 };
@@ -820,7 +971,7 @@ export const updateStatusResep = async (data: resepObatM) => {
 
 //             const payload: resepObatM = {
 //                 id_resep,
-//                 id_pendaftaran: data.id_pendaftaran, // 🔥 WAJIB (ini sebelumnya hilang)
+//                 id_pendaftaran: data.id_pendaftaran, //WAJIB (ini sebelumnya hilang)
 //                 id_pemeriksaan: data.id_pemeriksaan,
 //                 id_pasien: data.id_pasien,
 //                 id_dokter: data.id_dokter,
