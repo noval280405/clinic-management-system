@@ -1,18 +1,29 @@
 import { defineStore } from "pinia";
 import _ from "lodash";
 import type { obatM } from "~/types/master/obatModel";
+import type { mutasiStokObatM } from "~/types/mutasiStokObatModel";
 
 export const useobatStores = defineStore("obatStore", {
     state: () => {
         return {
-            dataObat: [] as obatM[]
+            dataObat: [] as obatM[],
+            detailObat: {} as obatM,
+
+            dataTransaksiStokObat: [] as mutasiStokObatM[],
         }
     },
 
     getters: {
         getDataObat(state) {
             return state.dataObat
-        }
+        },
+        getDetailObat(state) {
+            return state.detailObat
+        },
+
+        getDataTransaksiStokObat(state) {
+            return state.dataTransaksiStokObat;
+        },
     },
 
     actions: {
@@ -71,6 +82,14 @@ export const useobatStores = defineStore("obatStore", {
         async tarikDataObat() {
             const datatarik = await queryambilid("m_obat")
             this.dataObat = datatarik as unknown as obatM[]
+        },
+        async tarikDetailObat(id: string) {
+            const datatarik = await tarikdetaildatabase("m_obat", id)
+            this.detailObat = datatarik as unknown as obatM
+        },
+        async tarikdatatransaksistok(id: string) {
+            const datatarik = await queryambilid("m_obat/" + id + "/transaksi_stok")
+            this.dataTransaksiStokObat = datatarik as unknown as mutasiStokObatM[]
         }
     }
 })

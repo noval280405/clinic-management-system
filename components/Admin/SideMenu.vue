@@ -62,7 +62,7 @@
     <v-list-item
       to="/admin/farmasi/antrian-resep"
       class="nav-item mb-1"
-      prepend-icon="mdi-clipboard-text-clock-outline"
+      prepend-icon="mdi-clipboard-text-clock"
       title="Antrian Resep"
     />
 
@@ -104,7 +104,7 @@
       title="Invoice"
     />
 
-    <!-- LAPORAN -->
+    <!-- LAPORAN
     <div class="nav-section-label">Laporan</div>
 
     <v-list-item
@@ -135,7 +135,7 @@
       title="Laporan Keuangan"
     />
 
-    <!-- SYSTEM -->
+    SYSTEM
     <div class="nav-section-label">System</div>
 
     <v-list-item
@@ -157,7 +157,7 @@
       class="nav-item mb-1"
       prepend-icon="mdi-alert-circle-outline"
       title="Error Log"
-    />
+    /> -->
   </v-list>
 </template>
 

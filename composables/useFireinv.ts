@@ -600,6 +600,125 @@ export const saveResepObat = async (data: resepObatM) => {
     }
 };
 
+export const setStokObat = async (payload: {
+    id_obat: string;
+    jumlah: number;
+    metode: string;
+    keterangan?: string;
+    referensi?: string;
+}) => {
+    const db = useFirestore();
+    const userStore = useUserStore();
+
+    try {
+        await runTransaction(db, async (transaction) => {
+            const { id_obat, jumlah, metode, keterangan, referensi } = payload;
+            if (!jumlah || jumlah <= 0) {
+                throw new Error("Jumlah harus lebih dari 0");
+            }
+
+            if (metode === "Adjustment" && !keterangan) {
+                throw new Error("Adjustment wajib keterangan");
+            }
+
+            const obatRef = doc(db, "m_obat", id_obat);
+            const snap = await transaction.get(obatRef);
+
+            if (!snap.exists()) throw new Error("Obat tidak ditemukan");
+
+            const obatData = snap.data();
+            const stokLama = obatData?.stok || 0;
+
+            let stokBaru = stokLama;
+            let tipe: "masuk" | "adjustment" = "masuk";
+
+
+            if (metode === "Pembelian" || metode === "Return") {
+                stokBaru = stokLama + jumlah;
+                tipe = "masuk";
+            }
+
+            if (metode === "Adjustment") {
+                stokBaru = jumlah;
+                tipe = "adjustment";
+            }
+
+            if (stokBaru < 0) {
+                throw new Error("Stok tidak boleh minus");
+            }
+
+
+            const delta =
+                tipe === "adjustment"
+                    ? stokBaru - stokLama
+                    : jumlah;
+
+            const mutasiId = doc(collection(db, "mutasi_obat")).id;
+
+
+            const mutasiData = {
+                id_mutasi: mutasiId,
+                id_obat,
+                nama_obat: obatData?.nama_obat,
+                tipe,
+                jenis: metode,
+                jumlah: Math.abs(delta),
+                stok_sebelum: stokLama,
+                stok_sesudah: stokBaru,
+                referensi: referensi || null,
+                keterangan: keterangan || null,
+                created_at: moment().unix(),
+                created_by: userStore.getEmail,
+            };
+
+
+            transaction.update(obatRef, {
+                stok: stokBaru,
+                updated_at: moment().unix(),
+                updated_by: userStore.getEmail,
+            });
+
+
+            const mutasiRef = doc(db, "mutasi_obat", mutasiId);
+            const subRef = doc(db, "m_obat", id_obat, "transaksi_stok", mutasiId);
+
+            transaction.set(mutasiRef, mutasiData);
+            transaction.set(subRef, mutasiData);
+
+
+            const auditRef = doc(collection(db, "audit_log"));
+
+            transaction.set(auditRef, {
+                user: userStore.getEmail,
+                role: "admin",
+                aksi: "UPDATE_STOK_OBAT",
+                module: "FARMASI",
+                id_obat,
+                nama_obat: obatData?.nama_obat,
+                tipe,
+                jenis: metode,
+                jumlah,
+                stok_sebelum: stokLama,
+                stok_sesudah: stokBaru,
+                referensi: referensi || null,
+                keterangan: keterangan || null,
+                created_at: moment().unix(),
+                created_by: userStore.getEmail,
+            });
+        });
+
+        return "ok";
+    } catch (error: any) {
+        console.error("ERROR STOK:", error);
+        return error.message;
+    }
+};
+
+
+
+
+
+
 
 export const updateStatusResep = async (data: resepObatM) => {
     const db = useFirestore();
@@ -625,7 +744,7 @@ export const updateStatusResep = async (data: resepObatM) => {
                 const items = resepData.items_obat || [];
 
                 for (const item of items) {
-                    const obatRef = doc(db, "m_obat", item.id_obat);
+                    const obatRef = doc(db, "m_obat", item.data.id_obat);
                     const snap = await transaction.get(obatRef);
 
                     if (!snap.exists()) {
@@ -916,6 +1035,8 @@ export const updateBilling = async (
         return error.message;
     }
 };
+
+
 
 
 

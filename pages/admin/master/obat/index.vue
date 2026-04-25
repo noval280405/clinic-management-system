@@ -336,6 +336,16 @@
             <v-icon icon="mdi-trash-can-outline" />
             <v-tooltip activator="parent" location="top">Hapus</v-tooltip>
           </v-btn>
+
+          <v-btn
+            size="25"
+            color="info"
+            variant="tonal"
+            class="mr-1"
+            :to="`/admin/master/obat/${item.id}`"
+          >
+            <v-icon icon="mdi-eye" />
+          </v-btn>
         </div>
       </template>
 
