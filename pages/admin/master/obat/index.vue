@@ -532,6 +532,73 @@ async function openDialogEdit(item: obatM) {
 }
 
 async function addObat() {
+  if (!new_obat.value.nama_obat?.trim()) {
+    return notificationStore.showError("Nama obat wajib diisi");
+  }
+
+  if (!new_obat.value.kategori_obat) {
+    return notificationStore.showError("Kategori obat wajib dipilih");
+  }
+
+  if (!new_obat.value.satuan) {
+    return notificationStore.showError("Satuan obat wajib dipilih");
+  }
+
+  if (!new_obat.value.bentuk_obat) {
+    return notificationStore.showError("Bentuk obat wajib diisi");
+  }
+
+  if (new_obat.value.stok === null || new_obat.value.stok === undefined) {
+    return notificationStore.showError("Stok wajib diisi");
+  }
+
+  if (Number(new_obat.value.stok) < 0) {
+    return notificationStore.showError("Stok tidak boleh minus");
+  }
+
+  if (
+    new_obat.value.stok_minimum === null ||
+    new_obat.value.stok_minimum === undefined
+  ) {
+    return notificationStore.showError("Stok minimum wajib diisi");
+  }
+
+  if (Number(new_obat.value.stok_minimum) < 0) {
+    return notificationStore.showError("Stok minimum tidak boleh minus");
+  }
+
+  if (
+    new_obat.value.harga_beli === null ||
+    new_obat.value.harga_beli === undefined
+  ) {
+    return notificationStore.showError("Harga beli wajib diisi");
+  }
+
+  if (
+    new_obat.value.harga_jual === null ||
+    new_obat.value.harga_jual === undefined
+  ) {
+    return notificationStore.showError("Harga jual wajib diisi");
+  }
+
+  if (Number(new_obat.value.harga_jual) < Number(new_obat.value.harga_beli)) {
+    return notificationStore.showError(
+      "Harga jual tidak boleh lebih kecil dari harga beli",
+    );
+  }
+
+  if (!new_obat.value.tanggal_kadaluarsa) {
+    return notificationStore.showError("Tanggal kadaluarsa wajib diisi");
+  }
+
+  if (!new_obat.value.status) {
+    return notificationStore.showError("Status obat wajib dipilih");
+  }
+
+  if (!new_obat.value.id_supplier) {
+    return notificationStore.showError("Supplier wajib dipilih");
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
@@ -540,19 +607,28 @@ async function addObat() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
-  new_obat.value.created_at = moment().unix();
-  new_obat.value.created_by = useUserStore().getEmail;
-  const c = await setObat(new_obat.value);
-  if (c) {
+
+  try {
+    new_obat.value.nama_obat = new_obat.value.nama_obat.trim();
+    new_obat.value.created_at = moment().unix();
+    new_obat.value.created_by = useUserStore().getEmail;
+
+    const result = await setObat(new_obat.value);
+
+    if (!result) {
+      return notificationStore.showError("Gagal menambahkan obat");
+    }
+
     notificationStore.showSuccess("Berhasil menambahkan obat");
-  } else {
-    notificationStore.showError("Gagal menambahkan obat");
-    return;
+
+    new_obat.value = defaultobat();
+    await obatStore.tarikDataObat();
+    data.dialogAdd = false;
+    refreshData();
+  } catch (error) {
+    console.error(error);
+    notificationStore.showError("Terjadi kesalahan saat menyimpan");
   }
-  new_obat.value = defaultobat();
-  await obatStore.tarikDataObat();
-  data.dialogAdd = false;
-  refreshData();
 }
 
 function opendialoghapus(id_obat: string) {
