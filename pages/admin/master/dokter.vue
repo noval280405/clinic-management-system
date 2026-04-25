@@ -571,6 +571,62 @@ async function openDialogEdit(item: dokterM) {
 }
 
 async function adddokter() {
+  if (!new_dokter.value.nama_dokter?.trim()) {
+    return notificationStore.showError("Nama dokter wajib diisi");
+  }
+
+  if (!new_dokter.value.no_dokter?.trim()) {
+    return notificationStore.showError("No dokter wajib diisi");
+  }
+
+  if (!new_dokter.value.id_poli) {
+    return notificationStore.showError("Poli / spesialis wajib dipilih");
+  }
+
+  if (!new_dokter.value.sip_number?.trim()) {
+    return notificationStore.showError("Nomor SIP wajib diisi");
+  }
+
+  if (!new_dokter.value.no_hp?.trim()) {
+    return notificationStore.showError("Nomor HP wajib diisi");
+  }
+
+  if (!new_dokter.value.email?.trim()) {
+    return notificationStore.showError("Email wajib diisi");
+  }
+
+  // VALIDASI EMAIL SIMPLE
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(new_dokter.value.email)) {
+    return notificationStore.showError("Format email tidak valid");
+  }
+
+  if (!new_dokter.value.status) {
+    return notificationStore.showError("Status dokter wajib dipilih");
+  }
+
+  if (!hari_praktik_input.value?.trim()) {
+    return notificationStore.showError("Hari praktik wajib diisi");
+  }
+
+  if (!new_dokter.value.jadwal_praktik?.jam_mulai) {
+    return notificationStore.showError("Jam mulai wajib diisi");
+  }
+
+  if (!new_dokter.value.jadwal_praktik?.jam_selesai) {
+    return notificationStore.showError("Jam selesai wajib diisi");
+  }
+
+  // VALIDASI JAM
+  if (
+    new_dokter.value.jadwal_praktik.jam_selesai <=
+    new_dokter.value.jadwal_praktik.jam_mulai
+  ) {
+    return notificationStore.showError(
+      "Jam selesai harus lebih dari jam mulai",
+    );
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
@@ -579,13 +635,22 @@ async function adddokter() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
-  parseHari();
-  new_dokter.value.created_at = moment().unix();
-  new_dokter.value.created_by = useUserStore().getEmail;
-  await dokterstore.addMasterDokter(new_dokter.value);
-  new_dokter.value = defaultDokter();
-  data.dialogAdd = false;
-  refreshData();
+
+  try {
+    parseHari();
+    new_dokter.value.nama_dokter = new_dokter.value.nama_dokter.trim();
+    new_dokter.value.created_at = moment().unix();
+    new_dokter.value.created_by = useUserStore().getEmail;
+    await dokterstore.addMasterDokter(new_dokter.value);
+    notificationStore.showSuccess("Berhasil menambahkan dokter");
+
+    new_dokter.value = defaultDokter();
+    data.dialogAdd = false;
+    refreshData();
+  } catch (error) {
+    console.error(error);
+    notificationStore.showError("Gagal menambahkan dokter");
+  }
 }
 
 function opendialoghapus(id_dokter: string) {
