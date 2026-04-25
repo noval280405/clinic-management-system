@@ -653,7 +653,7 @@ export const setStokObat = async (payload: {
                     ? stokBaru - stokLama
                     : jumlah;
 
-            const mutasiId = doc(collection(db, "mutasi_obat")).id;
+            const mutasiId = makerandom();
 
 
             const mutasiData = {
@@ -798,7 +798,7 @@ export const updateStatusResep = async (data: resepObatM) => {
                     const item = o.item;
 
                     //ID MUTASI (SAMA UNTUK 2 TEMPAT)
-                    const mutasiId = doc(collection(db, "mutasi_obat")).id;
+                    const mutasiId = makerandom();
 
                     const mutasiData = {
                         id_mutasi: mutasiId,
