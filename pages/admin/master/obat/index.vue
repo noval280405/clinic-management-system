@@ -208,7 +208,7 @@
     <v-col cols="9">
       <v-breadcrumbs>
         <v-breadcrumbs-item>
-          <span class="font-weight-medium text-h5"> Master obat </span>
+          <span class="font-weight-medium text-h5"> Master Obat </span>
         </v-breadcrumbs-item>
       </v-breadcrumbs>
     </v-col>
@@ -330,7 +330,7 @@
             size="27"
             variant="tonal"
             color="error"
-            class="rounded-lg"
+            class="rounded-lg mr-1"
             @click="opendialoghapus(item.id!)"
           >
             <v-icon icon="mdi-trash-can-outline" />
@@ -339,9 +339,8 @@
 
           <v-btn
             size="25"
-            color="info"
+            color="green"
             variant="tonal"
-            class="mr-1"
             :to="`/admin/master/obat/${item.id}`"
           >
             <v-icon icon="mdi-eye" />
