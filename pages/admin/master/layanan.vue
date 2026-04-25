@@ -485,6 +485,54 @@ function openDialogEdit(item: layananM) {
 }
 
 async function addLayanan() {
+  if (!new_layanan.value.nama_layanan?.trim()) {
+    return notificationStore.showError("Nama layanan wajib diisi");
+  }
+
+  if (!new_layanan.value.kategori_layanan?.trim()) {
+    return notificationStore.showError("Kategori layanan wajib diisi");
+  }
+
+  if (!new_layanan.value.jenis_layanan) {
+    return notificationStore.showError("Jenis layanan wajib dipilih");
+  }
+
+  if (
+    new_layanan.value.durasi_menit === null ||
+    new_layanan.value.durasi_menit === undefined
+  ) {
+    return notificationStore.showError("Durasi wajib diisi");
+  }
+
+  if (Number(new_layanan.value.durasi_menit) <= 0) {
+    return notificationStore.showError("Durasi harus lebih dari 0 menit");
+  }
+
+  if (
+    new_layanan.value.harga === null ||
+    new_layanan.value.harga === undefined
+  ) {
+    return notificationStore.showError("Harga wajib diisi");
+  }
+
+  if (Number(new_layanan.value.harga) < 0) {
+    return notificationStore.showError("Harga tidak boleh minus");
+  }
+
+  if (!new_layanan.value.status) {
+    return notificationStore.showError("Status layanan wajib dipilih");
+  }
+
+  // LOGIC KLINIK (penting banget)
+  if (
+    new_layanan.value.jenis_layanan === "konsultasi" &&
+    !new_layanan.value.perlu_dokter
+  ) {
+    return notificationStore.showError(
+      "Layanan konsultasi wajib membutuhkan dokter",
+    );
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
@@ -493,12 +541,27 @@ async function addLayanan() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
-  new_layanan.value.created_at = moment().unix();
-  new_layanan.value.created_by = useUserStore().getEmail;
-  await layananStore.addMasterLayanan(new_layanan.value);
-  new_layanan.value = defaultLayanan();
-  data.dialogAdd = false;
-  refreshData();
+
+  try {
+    new_layanan.value.nama_layanan = new_layanan.value.nama_layanan.trim();
+
+    new_layanan.value.kategori_layanan =
+      new_layanan.value.kategori_layanan.trim();
+
+    new_layanan.value.created_at = moment().unix();
+    new_layanan.value.created_by = useUserStore().getEmail;
+
+    await layananStore.addMasterLayanan(new_layanan.value);
+
+    notificationStore.showSuccess("Berhasil menambahkan layanan");
+
+    new_layanan.value = defaultLayanan();
+    data.dialogAdd = false;
+    refreshData();
+  } catch (error) {
+    console.error(error);
+    notificationStore.showError("Gagal menambahkan layanan");
+  }
 }
 
 function opendialoghapus(id_layanan: string) {
