@@ -8,8 +8,9 @@ export default defineNuxtConfig({
   nitro: {
     // keduanya bekerja di Cloud Run; pilih salah satu:
     // preset: 'gcp',
-    preset: 'node-server',
-    serveStatic: true,            // pastikan /_nuxt/* diserve sebagai static
+    preset: "static",
+    serveStatic: true,
+    // pastikan /_nuxt/* diserve sebagai static
     // optional: kurangi kejutan waktu build
     prerender: { crawlLinks: false },
 
