@@ -477,6 +477,51 @@ function openDialogEdit(item: poliM) {
 }
 
 async function addPoli() {
+  if (!new_poli.value.nama_poli?.trim()) {
+    return notificationStore.showError("Nama poli wajib diisi");
+  }
+
+  if (!new_poli.value.jenis_poli) {
+    return notificationStore.showError("Jenis poli wajib dipilih");
+  }
+
+  if (!new_poli.value.lokasi?.trim()) {
+    return notificationStore.showError("Lokasi poli wajib diisi");
+  }
+
+  if (!new_poli.value.jam_operasional?.jam_buka) {
+    return notificationStore.showError("Jam buka wajib diisi");
+  }
+
+  if (!new_poli.value.jam_operasional?.jam_tutup) {
+    return notificationStore.showError("Jam tutup wajib diisi");
+  }
+
+  // 🔥 VALIDASI JAM (PENTING BANGET)
+  const jamBuka = new_poli.value.jam_operasional.jam_buka;
+  const jamTutup = new_poli.value.jam_operasional.jam_tutup;
+
+  if (jamBuka >= jamTutup) {
+    return notificationStore.showError(
+      "Jam tutup harus lebih besar dari jam buka",
+    );
+  }
+
+  if (
+    new_poli.value.max_antrian_per_hari === null ||
+    new_poli.value.max_antrian_per_hari === undefined
+  ) {
+    return notificationStore.showError("Max antrian wajib diisi");
+  }
+
+  if (Number(new_poli.value.max_antrian_per_hari) <= 0) {
+    return notificationStore.showError("Max antrian harus lebih dari 0");
+  }
+
+  if (!new_poli.value.status) {
+    return notificationStore.showError("Status poli wajib dipilih");
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
@@ -485,19 +530,31 @@ async function addPoli() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
-  new_poli.value.created_at = moment().unix();
-  new_poli.value.created_by = useUserStore().getEmail;
-  const c = await setPoli(new_poli.value);
-  if (c) {
-    notificationStore.showSuccess("Berhasil menambahkan poli");
-  } else {
-    notificationStore.showError("Gagal menambahkan poli");
-    return;
+
+  try {
+    new_poli.value.nama_poli = new_poli.value.nama_poli.trim();
+    new_poli.value.lokasi = new_poli.value.lokasi.trim();
+
+    new_poli.value.created_at = moment().unix();
+    new_poli.value.created_by = useUserStore().getEmail;
+
+    const c = await setPoli(new_poli.value);
+
+    if (c) {
+      notificationStore.showSuccess("Berhasil menambahkan poli");
+    } else {
+      return notificationStore.showError("Gagal menambahkan poli");
+    }
+
+    await Polistore.tarikDataPoli();
+
+    new_poli.value = defaultPoli();
+    data.dialogAdd = false;
+    refreshData();
+  } catch (error) {
+    console.error(error);
+    notificationStore.showError("Terjadi kesalahan saat menyimpan data");
   }
-  await Polistore.tarikDataPoli();
-  new_poli.value = defaultPoli();
-  data.dialogAdd = false;
-  refreshData();
 }
 
 function opendialoghapus(id_Poli: string) {

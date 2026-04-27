@@ -460,6 +460,50 @@ function openDialogEdit(item: supplierM) {
 }
 
 async function addSuplier() {
+  if (!new_Suplier.value.nama_supplier?.trim()) {
+    return notificationStore.showError("Nama supplier wajib diisi");
+  }
+
+  if (!new_Suplier.value.nama_kontak?.trim()) {
+    return notificationStore.showError("Nama kontak wajib diisi");
+  }
+
+  if (!new_Suplier.value.no_hp?.trim()) {
+    return notificationStore.showError("Nomor HP wajib diisi");
+  }
+
+  if (!/^08\d{8,12}$/.test(new_Suplier.value.no_hp)) {
+    return notificationStore.showError("Format nomor HP tidak valid");
+  }
+
+  if (new_Suplier.value.email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(new_Suplier.value.email)) {
+      return notificationStore.showError("Format email tidak valid");
+    }
+  }
+
+  if (!new_Suplier.value.alamat?.trim()) {
+    return notificationStore.showError("Alamat wajib diisi");
+  }
+
+  if (!new_Suplier.value.kota?.trim()) {
+    return notificationStore.showError("Kota wajib diisi");
+  }
+
+  // 🔥 NPWP opsional tapi kalau diisi harus valid
+  if (new_Suplier.value.npwp) {
+    const npwpClean = new_Suplier.value.npwp.replace(/[^0-9]/g, "");
+
+    if (npwpClean.length !== 15) {
+      return notificationStore.showError("NPWP harus 15 digit angka");
+    }
+  }
+
+  if (!new_Suplier.value.status) {
+    return notificationStore.showError("Status supplier wajib dipilih");
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
@@ -469,19 +513,36 @@ async function addSuplier() {
     return notificationStore.showError("tambah data dibatalkan");
   }
 
-  new_Suplier.value.created_at = moment().unix();
-  new_Suplier.value.created_by = useUserStore().getEmail;
-  const c = await setSupplier(new_Suplier.value);
-  if (c) {
-    notificationStore.showSuccess("Berhasil menambahkan supplier");
-  } else {
-    notificationStore.showError("Gagal menambahkan supplier");
-    return;
+  try {
+    // 🔥 bersihin data
+    new_Suplier.value.nama_supplier = new_Suplier.value.nama_supplier.trim();
+
+    new_Suplier.value.nama_kontak = new_Suplier.value.nama_kontak.trim();
+
+    new_Suplier.value.alamat = new_Suplier.value.alamat.trim();
+
+    new_Suplier.value.kota = new_Suplier.value.kota.trim();
+
+    new_Suplier.value.created_at = moment().unix();
+    new_Suplier.value.created_by = useUserStore().getEmail;
+
+    const c = await setSupplier(new_Suplier.value);
+
+    if (c) {
+      notificationStore.showSuccess("Berhasil menambahkan supplier");
+    } else {
+      return notificationStore.showError("Gagal menambahkan supplier");
+    }
+
+    await Suplierstore.tarikDataSuplier();
+
+    new_Suplier.value = defaultSuplier();
+    data.dialogAdd = false;
+    refreshData();
+  } catch (error) {
+    console.error(error);
+    notificationStore.showError("Terjadi kesalahan saat menyimpan data");
   }
-  await Suplierstore.tarikDataSuplier();
-  new_Suplier.value = defaultSuplier();
-  data.dialogAdd = false;
-  refreshData();
 }
 
 function opendialoghapus(id_Suplier: string) {

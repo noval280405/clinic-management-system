@@ -652,6 +652,84 @@ function openDialogEdit(item: pasienM) {
 }
 
 async function addPasien() {
+  if (!new_pasien.value.nik?.trim()) {
+    return notificationStore.showError("NIK wajib diisi");
+  }
+
+  if (!/^\d{16}$/.test(new_pasien.value.nik)) {
+    return notificationStore.showError("NIK harus 16 digit angka");
+  }
+
+  if (!new_pasien.value.nama_pasien?.trim()) {
+    return notificationStore.showError("Nama pasien wajib diisi");
+  }
+
+  if (!new_pasien.value.jenis_kelamin) {
+    return notificationStore.showError("Jenis kelamin wajib dipilih");
+  }
+
+  if (!new_pasien.value.tanggal_lahir) {
+    return notificationStore.showError("Tanggal lahir wajib diisi");
+  }
+
+  const today = new Date();
+  const tglLahir = new Date(new_pasien.value.tanggal_lahir);
+
+  if (tglLahir > today) {
+    return notificationStore.showError("Tanggal lahir tidak valid");
+  }
+
+  if (!new_pasien.value.no_hp?.trim()) {
+    return notificationStore.showError("Nomor HP wajib diisi");
+  }
+
+  if (!/^08\d{8,12}$/.test(new_pasien.value.no_hp)) {
+    return notificationStore.showError("Format nomor HP tidak valid");
+  }
+
+  if (new_pasien.value.email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(new_pasien.value.email)) {
+      return notificationStore.showError("Format email tidak valid");
+    }
+  }
+
+  if (!new_pasien.value.alamat?.trim()) {
+    return notificationStore.showError("Alamat wajib diisi");
+  }
+
+  if (!new_pasien.value.jenis_pasien) {
+    return notificationStore.showError("Jenis pasien wajib dipilih");
+  }
+
+  if (new_pasien.value.jenis_pasien === "bpjs") {
+    if (!new_pasien.value.no_bpjs?.trim()) {
+      return notificationStore.showError("Nomor BPJS wajib diisi");
+    }
+
+    if (!/^\d{13}$/.test(new_pasien.value.no_bpjs)) {
+      return notificationStore.showError("Nomor BPJS harus 13 digit");
+    }
+  }
+
+  if (new_pasien.value.jenis_pasien === "asuransi") {
+    if (!new_pasien.value.no_asuransi?.trim()) {
+      return notificationStore.showError("Nomor asuransi wajib diisi");
+    }
+  }
+
+  if (new_pasien.value.no_hp_penanggung) {
+    if (!/^08\d{8,12}$/.test(new_pasien.value.no_hp_penanggung)) {
+      return notificationStore.showError(
+        "Format nomor HP penanggung tidak valid",
+      );
+    }
+  }
+
+  if (!new_pasien.value.status) {
+    return notificationStore.showError("Status pasien wajib dipilih");
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
@@ -660,19 +738,34 @@ async function addPasien() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
-  new_pasien.value.created_at = moment().unix();
-  new_pasien.value.created_by = useUserStore().getEmail;
-  console.log("DATA PASIEN BARU", new_pasien.value);
-  const c = await setPasien(new_pasien.value);
-  if (c == "ok") {
-    notificationStore.showSuccess("Data pasien berhasil ditambahkan");
-  } else {
-    notificationStore.showError("Gagal menambahkan data pasien");
+
+  try {
+    new_pasien.value.nama_pasien = new_pasien.value.nama_pasien.trim();
+
+    new_pasien.value.alamat = new_pasien.value.alamat.trim();
+
+    new_pasien.value.created_at = moment().unix();
+    new_pasien.value.created_by = useUserStore().getEmail;
+
+    console.log("DATA PASIEN BARU", new_pasien.value);
+
+    const c = await setPasien(new_pasien.value);
+
+    if (c == "ok") {
+      notificationStore.showSuccess("Data pasien berhasil ditambahkan");
+    } else {
+      return notificationStore.showError("Gagal menambahkan data pasien");
+    }
+
+    await pasienStore.tarikDataPasien();
+
+    new_pasien.value = defaultPasien();
+    data.dialogAdd = false;
+    refreshData();
+  } catch (error) {
+    console.error(error);
+    notificationStore.showError("Terjadi kesalahan saat menyimpan data");
   }
-  await pasienStore.tarikDataPasien();
-  new_pasien.value = defaultPasien();
-  data.dialogAdd = false;
-  refreshData();
 }
 
 function opendialoghapus(id_pasien: string) {
