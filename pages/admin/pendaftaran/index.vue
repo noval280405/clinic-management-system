@@ -563,6 +563,37 @@ function openDialogEdit(item: pendaftaranM) {
 }
 
 async function addPendaftaran() {
+  if (!new_pendaftaran.value.id_pasien) {
+    return notificationStore.showError("Pasien wajib dipilih");
+  }
+
+  if (!new_pendaftaran.value.id_poli) {
+    return notificationStore.showError("Poli wajib dipilih");
+  }
+
+  if (!new_pendaftaran.value.id_dokter) {
+    return notificationStore.showError("Dokter wajib dipilih");
+  }
+
+  if (!new_pendaftaran.value.tanggal_kunjungan) {
+    return notificationStore.showError("Tanggal kunjungan wajib diisi");
+  }
+
+  if (!new_pendaftaran.value.jenis_pasien) {
+    return notificationStore.showError("Jenis pasien wajib dipilih");
+  }
+
+  if (
+    new_pendaftaran.value.jenis_pasien === "bpjs" &&
+    !new_pendaftaran.value.no_bpjs
+  ) {
+    return notificationStore.showError("No BPJS wajib diisi");
+  }
+
+  if (!new_pendaftaran.value.keluhan) {
+    return notificationStore.showError("Keluhan pasien wajib diisi");
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
@@ -571,20 +602,23 @@ async function addPendaftaran() {
   if (!confirmed) {
     return notificationStore.showError("tambah data dibatalkan");
   }
+
   new_pendaftaran.value.created_at = moment().unix();
   new_pendaftaran.value.created_by = useUserStore().getEmail;
-  console.log("DATA PENDAFTARAN BARU", new_pendaftaran.value);
+
   const c = await setPendaftaran(new_pendaftaran.value);
+
   if (c == "ok") {
     notificationStore.showSuccess("Data pendaftaran berhasil ditambahkan");
   } else {
     notificationStore.showError("Gagal menambahkan data pendaftaran");
+    return;
   }
+
   await pendaftaranStore.tarikDataPendaftaran();
   data.dialogAdd = false;
   refreshData();
 }
-
 function opendialoghapus(id_pendaftaran: string) {
   data.dialoghapus = true;
   data.id_pendaftaran = id_pendaftaran;
