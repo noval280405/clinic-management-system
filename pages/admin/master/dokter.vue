@@ -64,7 +64,7 @@
 
   <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '380px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '780px' : '90%'"
   >
     <v-card class="rounded-lg">
       <v-card-title
@@ -171,7 +171,7 @@
       </v-card-text>
 
       <v-card-actions class="pa-3 bg-grey-lighten-4">
-        <v-btn
+        <v-btnq
           variant="flat"
           color="grey-darken-2"
           @click="data.dialogAdd = false"
@@ -179,7 +179,7 @@
           size="small"
         >
           Batal
-        </v-btn>
+        </v-btnq>
 
         <v-btn
           color="primary"
@@ -316,7 +316,7 @@
             variant="tonal"
             color="error"
             class="rounded-lg"
-            @click="opendialoghapus(item.id!)"
+            @click="opendialoghapus(item)"
           >
             <v-icon icon="mdi-trash-can-outline" />
             <v-tooltip activator="parent" location="top">Hapus</v-tooltip>
@@ -471,6 +471,7 @@ const data = reactive({
   id_dokter: "",
   nama_id: "",
   dialoghapus: false,
+  detaildokter: {} as dokterM,
   headdokter: [
     {
       title: "No",
@@ -556,7 +557,7 @@ async function saveedit() {
   new_dokter.value.updated_at = moment().unix();
   new_dokter.value.updated_by = useUserStore().getEmail;
 
-  await dokterstore.updateMasterDokter(new_dokter.value);
+  await dokterstore.updateMasterDokter(new_dokter.value, data.detaildokter);
 
   data.dialogAdd = false;
   refreshData();
@@ -566,10 +567,10 @@ async function openDialogEdit(item: dokterM) {
   await poliStore.tarikDataPoli();
   data.addedit = "edit";
   new_dokter.value = _.assign({}, item);
+  data.detaildokter = _.assign({}, item);
   hari_praktik_input.value = item.jadwal_praktik?.hari?.join(",") || "";
   data.dialogAdd = true;
 }
-
 async function adddokter() {
   if (!new_dokter.value.nama_dokter?.trim()) {
     return notificationStore.showError("Nama dokter wajib diisi");
@@ -653,9 +654,10 @@ async function adddokter() {
   }
 }
 
-function opendialoghapus(id_dokter: string) {
+function opendialoghapus(item: dokterM) {
   data.dialoghapus = true;
-  data.id_dokter = id_dokter;
+  data.detaildokter = item;
+  data.id_dokter = item.id!;
   data.nama_id = "";
 }
 
@@ -669,7 +671,7 @@ async function hapusdokter() {
     return notificationStore.showError("hapus data dibatalkan");
   }
   if (data.id_dokter == data.nama_id) {
-    dokterstore.deleteMasterDokter(data.id_dokter);
+    dokterstore.deleteMasterDokter(data.detaildokter);
     data.dialoghapus = false;
   } else {
     notificationStore.showError("Gagal menghapus dokter");

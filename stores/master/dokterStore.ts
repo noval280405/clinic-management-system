@@ -23,7 +23,22 @@ export const useDokterStores = defineStore("dokterStore", {
             );
             try {
                 useloadingStore().setLoading(true)
-                await setdatabase("m_dokter", id, lempardokter)
+                const databatch = [
+                    {
+                        collection: "m_dokter",
+                        id: id,
+                        type: "set",
+                        data: lempardokter
+                    },
+                    {
+                        collection: "m_poli/" + lempardokter.id_poli + "/m_dokter",
+                        id: id,
+                        type: "set",
+                        data: lempardokter
+                    }
+                ]
+                await batching(databatch)
+                // await setdatabase("m_dokter", id, lempardokter)
                 this.tarikDataDokter()
                 notificationStore.showSuccess("Dokter berhasil di tambahkan");
             } catch (error: any) {
@@ -35,28 +50,107 @@ export const useDokterStores = defineStore("dokterStore", {
                 useloadingStore().setLoading(false)
             }
         },
-        async updateMasterDokter(lempardokter: dokterM) {
+        async updateMasterDokter(lempardokter: dokterM, oldData: dokterM) {
             const notificationStore = useNotificationStore();
 
+            const oldId = makeSlug(
+                `${oldData.nama_dokter}-${oldData.nama_poli}`
+            );
+
+            const newId = makeSlug(
+                `${lempardokter.nama_dokter}-${lempardokter.nama_poli}`
+            );
+
             try {
-                useloadingStore().setLoading(true)
-                await updatedatabase("m_dokter", lempardokter.id!, lempardokter)
-                this.tarikDataDokter()
-                notificationStore.showSuccess("Dokter berhasil di edit");
+                useloadingStore().setLoading(true);
+
+                const databatch: any[] = [];
+
+                const pindahPoli = oldData.id_poli !== lempardokter.id_poli;
+
+                const idBerubah = oldId !== newId;
+
+
+                if (pindahPoli || idBerubah) {
+                    // hapus dari poli lama
+                    databatch.push({
+                        collection: `m_poli/${oldData.id_poli}/m_dokter`,
+                        id: oldId,
+                        type: "delete"
+                    });
+                }
+
+                if (idBerubah) {
+                    // hapus dari master
+                    databatch.push({
+                        collection: "m_dokter",
+                        id: oldId,
+                        type: "delete"
+                    });
+                }
+
+
+                if (idBerubah) {
+                    // buat baru di master
+                    databatch.push({
+                        collection: "m_dokter",
+                        id: newId,
+                        type: "set",
+                        data: lempardokter
+                    });
+                } else {
+                    // update master
+                    databatch.push({
+                        collection: "m_dokter",
+                        id: newId,
+                        type: "update",
+                        data: lempardokter
+                    });
+                }
+
+                databatch.push({
+                    collection: `m_poli/${lempardokter.id_poli}/m_dokter`,
+                    id: newId,
+                    type: idBerubah ? "set" : "update",
+                    data: lempardokter
+                });
+
+                await batching(databatch);
+
+                this.tarikDataDokter();
+                notificationStore.showSuccess("Dokter berhasil di update");
+
             } catch (error: any) {
                 console.error(error);
                 notificationStore.showError(
                     error.message || "Gagal update dokter"
                 );
             } finally {
-                useloadingStore().setLoading(false)
+                useloadingStore().setLoading(false);
             }
         },
-        async deleteMasterDokter(id: string) {
+        async deleteMasterDokter(lempardokter: dokterM) {
             const notificationStore = useNotificationStore();
+            const id = makeSlug(
+                `${lempardokter.nama_dokter}-${lempardokter.nama_poli}`
+            );
             try {
                 useloadingStore().setLoading(true)
-                await hapusdatabase("m_dokter", id)
+                const databatch = [
+                    {
+                        collection: "m_dokter",
+                        id: id,
+                        type: "delete",
+                        data: lempardokter
+                    },
+                    {
+                        collection: "m_poli/" + lempardokter.id_poli + "/m_dokter",
+                        id: id,
+                        type: "delete",
+                        data: lempardokter
+                    }
+                ]
+                await batching(databatch)
                 this.tarikDataDokter()
                 notificationStore.showSuccess("Dokter berhasil di hapus");
             } catch (error: any) {
