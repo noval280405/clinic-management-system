@@ -331,7 +331,7 @@
             variant="tonal"
             color="error"
             class="rounded-lg mr-1"
-            @click="opendialoghapus(item.id!)"
+            @click="opendialoghapus(item)"
           >
             <v-icon icon="mdi-trash-can-outline" />
             <v-tooltip activator="parent" location="top">Hapus</v-tooltip>
@@ -421,6 +421,7 @@ const data = reactive({
   addedit: "",
   page: 1,
   itemsPerPage: 10,
+  detailobat: {} as obatM,
 
   headObat: [
     {
@@ -631,9 +632,10 @@ async function addObat() {
   }
 }
 
-function opendialoghapus(id_obat: string) {
+function opendialoghapus(item: obatM) {
   data.dialoghapus = true;
-  data.id_obat = id_obat;
+  data.detailobat = item;
+  data.id_obat = item.id!;
   data.nama_id = "";
 }
 
@@ -647,7 +649,7 @@ async function hapusOBAT() {
     return notificationStore.showError("hapus data dibatalkan");
   }
   if (data.id_obat == data.nama_id) {
-    obatStore.deleteMasterObat(data.id_obat);
+    obatStore.deleteMasterObat(data.detailobat);
     data.dialoghapus = false;
   } else {
     notificationStore.showError("Gagal menghapus OBAT");

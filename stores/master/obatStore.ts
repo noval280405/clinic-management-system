@@ -34,7 +34,23 @@ export const useobatStores = defineStore("obatStore", {
             );
             try {
                 useloadingStore().setLoading(true)
-                await setdatabase("m_obat", id, lemparobat)
+                // await setdatabase("m_obat", id, lemparobat)
+
+                const databatch = [
+                    {
+                        collection: "m_obat",
+                        id: id,
+                        type: "set",
+                        data: lemparobat
+                    },
+                    {
+                        collection: "m_supplier/" + lemparobat.id_supplier + "/m_obat",
+                        id: id,
+                        type: "set",
+                        data: lemparobat
+                    }
+                ]
+                await batching(databatch)
                 this.tarikDataObat()
                 notificationStore.showSuccess("obat berhasil di tambahkan");
             } catch (error: any) {
@@ -46,28 +62,91 @@ export const useobatStores = defineStore("obatStore", {
                 useloadingStore().setLoading(false)
             }
         },
-        async updateMasterObat(lemparobat: obatM) {
+        async updateMasterObat(lemparobat: obatM, dataobatlama: obatM) {
             const notificationStore = useNotificationStore();
 
             try {
-                useloadingStore().setLoading(true)
-                await updatedatabase("m_obat", lemparobat.id!, lemparobat)
-                this.tarikDataObat()
-                notificationStore.showSuccess("obat berhasil di edit");
+                useloadingStore().setLoading(true);
+
+                const databatch: any[] = [];
+
+                const pindahSupplier =
+                    dataobatlama.id_supplier !== lemparobat.id_supplier;
+
+                const idBerubah =
+                    dataobatlama.id !== lemparobat.id;
+
+                const oldId = dataobatlama.id!;
+                const newId = lemparobat.id!;
+
+                // HAPUS DARI SUPPLIER LAMA
+                if (pindahSupplier || idBerubah) {
+                    databatch.push({
+                        collection: `m_supplier/${dataobatlama.id_supplier}/m_obat`,
+                        id: oldId,
+                        type: "delete"
+                    });
+                }
+
+                // HAPUS MASTER LAMA (jika id berubah)
+                if (idBerubah) {
+                    databatch.push({
+                        collection: "m_obat",
+                        id: oldId,
+                        type: "delete"
+                    });
+                }
+
+                // MASTER BARU / UPDATE
+                databatch.push({
+                    collection: "m_obat",
+                    id: newId,
+                    type: idBerubah ? "set" : "update",
+                    data: lemparobat
+                });
+
+                // MASUK KE SUPPLIER BARU
+                databatch.push({
+                    collection: `m_supplier/${lemparobat.id_supplier}/m_obat`,
+                    id: newId,
+                    type: "set", // selalu set biar aman
+                    data: lemparobat
+                });
+
+                await batching(databatch);
+
+                this.tarikDataObat();
+                notificationStore.showSuccess("Obat berhasil di update");
+
             } catch (error: any) {
                 console.error(error);
                 notificationStore.showError(
                     error.message || "Gagal update obat"
                 );
             } finally {
-                useloadingStore().setLoading(false)
+                useloadingStore().setLoading(false);
             }
         },
-        async deleteMasterObat(id: string) {
+        async deleteMasterObat(lemparobat: obatM) {
             const notificationStore = useNotificationStore();
             try {
                 useloadingStore().setLoading(true)
-                await hapusdatabase("m_obat", id)
+                const databatch = [
+                    {
+                        collection: "m_obat",
+                        id: lemparobat.id!,
+                        type: "delete",
+                        data: lemparobat
+                    },
+                    {
+                        collection: "m_supplier/" + lemparobat.id_supplier + "/m_obat",
+                        id: lemparobat.id!,
+                        type: "delete",
+                        data: lemparobat
+                    }
+                ]
+                await batching(databatch)
+                // await hapusdatabase("m_obat", id)
                 this.tarikDataObat()
                 notificationStore.showSuccess("obat berhasil di hapus");
             } catch (error: any) {

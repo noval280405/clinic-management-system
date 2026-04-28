@@ -52,39 +52,24 @@ export const useDokterStores = defineStore("dokterStore", {
         },
         async updateMasterDokter(lempardokter: dokterM, oldData: dokterM) {
             const notificationStore = useNotificationStore();
-
-            const oldId = makeSlug(
-                `${oldData.nama_dokter}-${oldData.nama_poli}`
-            );
-
-            const newId = makeSlug(
-                `${lempardokter.nama_dokter}-${lempardokter.nama_poli}`
-            );
-
             try {
                 useloadingStore().setLoading(true);
-
                 const databatch: any[] = [];
-
                 const pindahPoli = oldData.id_poli !== lempardokter.id_poli;
-
-                const idBerubah = oldId !== newId;
-
-
+                const idBerubah = oldData.id !== lempardokter.id;
                 if (pindahPoli || idBerubah) {
                     // hapus dari poli lama
                     databatch.push({
                         collection: `m_poli/${oldData.id_poli}/m_dokter`,
-                        id: oldId,
+                        id: oldData.id!,
                         type: "delete"
                     });
                 }
-
                 if (idBerubah) {
                     // hapus dari master
                     databatch.push({
                         collection: "m_dokter",
-                        id: oldId,
+                        id: oldData.id!,
                         type: "delete"
                     });
                 }
@@ -94,7 +79,7 @@ export const useDokterStores = defineStore("dokterStore", {
                     // buat baru di master
                     databatch.push({
                         collection: "m_dokter",
-                        id: newId,
+                        id: lempardokter.id!,
                         type: "set",
                         data: lempardokter
                     });
@@ -102,21 +87,18 @@ export const useDokterStores = defineStore("dokterStore", {
                     // update master
                     databatch.push({
                         collection: "m_dokter",
-                        id: newId,
+                        id: lempardokter.id!,
                         type: "update",
                         data: lempardokter
                     });
                 }
-
                 databatch.push({
                     collection: `m_poli/${lempardokter.id_poli}/m_dokter`,
-                    id: newId,
+                    id: lempardokter.id!,
                     type: idBerubah ? "set" : "update",
                     data: lempardokter
                 });
-
                 await batching(databatch);
-
                 this.tarikDataDokter();
                 notificationStore.showSuccess("Dokter berhasil di update");
 
