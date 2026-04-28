@@ -520,7 +520,7 @@ async function saveedit() {
   }
   new_obat.value.updated_at = moment().unix();
   new_obat.value.updated_by = useUserStore().getEmail;
-  await obatStore.updateMasterObat(new_obat.value);
+  await obatStore.updateMasterObat(new_obat.value, data.detailobat);
   data.dialogAdd = false;
   refreshData();
 }
@@ -529,6 +529,7 @@ async function openDialogEdit(item: obatM) {
   await supplierStore.tarikDataSuplier();
   data.addedit = "edit";
   new_obat.value = _.assign({}, item);
+  data.detailobat = _.assign({}, item);
   data.dialogAdd = true;
 }
 

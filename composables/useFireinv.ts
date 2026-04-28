@@ -133,8 +133,11 @@ export const setObat = async (data: obatM) => {
             created_at: now,
             created_by: email || "system",
         };
+
+        const supplierobatRef = doc(db, "m_supplier", data.id_supplier!, "m_obat", kode_obat);
         const obatRef = doc(db, "m_obat", kode_obat);
         transaction.set(obatRef, payload);
+        transaction.set(supplierobatRef, payload);
         transaction.update(nomorRef, {
             no_obat: newnumber,
         });
