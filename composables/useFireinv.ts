@@ -13,6 +13,7 @@ import type { ResepObatItemM, resepObatM } from "~/types/resepObatModel";
 import type { supplierM } from "~/types/master/suplierModel";
 import type { obatM } from "~/types/master/obatModel";
 import type { poliM } from "~/types/master/poliModel";
+import _ from "lodash";
 
 
 export const setPasien = async (data: pasienM) => {

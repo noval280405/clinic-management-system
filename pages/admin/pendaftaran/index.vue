@@ -324,6 +324,7 @@
             {
               menunggu: 'orange',
               disetujui: 'indigo',
+              diperiksa: 'teal',
               diproses: 'blue',
               selesai: 'green',
               batal: 'red',
@@ -337,6 +338,7 @@
               {
                 menunggu: "mdi-clock-outline",
                 disetujui: "mdi-check-decagram",
+                diperiksa: "mdi-stethoscope",
                 diproses: "mdi-progress-clock",
                 selesai: "mdi-check-circle",
                 batal: "mdi-close-circle",
@@ -348,6 +350,7 @@
             {
               menunggu: "Menunggu",
               disetujui: "Disetujui",
+              diperiksa: "Diperiksa",
               diproses: "Diproses",
               selesai: "Selesai",
               batal: "Batal",
