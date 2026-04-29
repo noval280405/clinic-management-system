@@ -296,7 +296,7 @@ function addObat() {
     jumlah: Number(obat.jumlah), // 🔥 penting
     harga: obat.harga_obat, // sementara default
   });
-
+  obat.id_obat = "";
   obat.nama_obat = "";
   obat.dosis = "";
   obat.jumlah = "";
