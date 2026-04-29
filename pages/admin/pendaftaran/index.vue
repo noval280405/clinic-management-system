@@ -319,19 +319,40 @@
       <!-- STATUS -->
       <template v-slot:item.status="{ item }">
         <v-chip
-          size="x-small"
+          size="small"
           :color="
-            item.status === 'menunggu'
-              ? 'orange'
-              : item.status === 'diproses'
-                ? 'blue'
-                : item.status === 'selesai'
-                  ? 'green'
-                  : 'grey'
+            {
+              menunggu: 'orange',
+              disetujui: 'indigo',
+              diproses: 'blue',
+              selesai: 'green',
+              batal: 'red',
+            }[item.status] || 'grey'
           "
-          class="text-white"
+          class="text-white font-weight-medium"
+          label
         >
-          {{ item.status }}
+          <v-icon start size="14">
+            {{
+              {
+                menunggu: "mdi-clock-outline",
+                disetujui: "mdi-check-decagram",
+                diproses: "mdi-progress-clock",
+                selesai: "mdi-check-circle",
+                batal: "mdi-close-circle",
+              }[item.status]
+            }}
+          </v-icon>
+
+          {{
+            {
+              menunggu: "Menunggu",
+              disetujui: "Disetujui",
+              diproses: "Diproses",
+              selesai: "Selesai",
+              batal: "Batal",
+            }[item.status] || item.status
+          }}
         </v-chip>
       </template>
 

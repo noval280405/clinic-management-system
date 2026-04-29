@@ -2,16 +2,8 @@ import { useFirestore } from "vuefire";
 import {
     collection,
     doc,
-    getDocs,
-    query,
     runTransaction,
-    where,
-    writeBatch,
-    getFirestore,
-    onSnapshot,
-    getDoc,
 } from "firebase/firestore";
-import _, { update } from "lodash";
 import moment from "moment";
 import { getAuth } from "firebase/auth";
 import type { pemeriksaanM } from "~/types/pemeriksaanModel";
@@ -399,6 +391,8 @@ export const updatePendaftaran = async (
                 id_pendaftaran: newData.id_pendaftaran!,
                 user: auth.currentUser?.email,
                 created_at: moment().unix(),
+                id_pasien: newData.id_pasien,
+                nama_pasien: newData.nama_pasien,
             });
         });
         return "ok";
@@ -1197,10 +1191,6 @@ export const updateBilling = async (
         return error.message;
     }
 };
-
-
-
-
 
 // export const saveResepObat = async (data: resepObatM) => {
 //     const db = useFirestore();
