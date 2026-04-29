@@ -69,8 +69,8 @@
     <v-row>
       <v-col>
         <v-btn
-          :disabled="detailPendaftaran.status !== 'menunggu'"
-          v-if="detailPendaftaran.status === 'menunggu'"
+          :disabled="detailPendaftaran.status !== 'Menunggu'"
+          v-if="detailPendaftaran.status === 'Menunggu'"
           block
           size="large"
           @click="cancelPendaftaran"
@@ -83,8 +83,8 @@
 
       <v-col>
         <v-btn
-          :disabled="detailPendaftaran.status !== 'menunggu'"
-          v-if="detailPendaftaran.status === 'menunggu'"
+          :disabled="detailPendaftaran.status !== 'Menunggu'"
+          v-if="detailPendaftaran.status === 'Menunggu'"
           block
           size="large"
           @click="approvePendaftaran"
@@ -96,7 +96,7 @@
       </v-col>
     </v-row>
     <v-btn
-      v-if="detailPendaftaran.status == 'disetujui'"
+      v-if="detailPendaftaran.status == 'Disetujui'"
       block
       size="large"
       class="rounded-xl action-btn"
@@ -337,7 +337,7 @@ async function approvePendaftaran() {
   if (!confirmed) {
     return notificationStore.showError("penyetujuan pendaftaran dibatalkan");
   }
-  detailPendaftaran.value.status = "disetujui";
+  detailPendaftaran.value.status = "Disetujui";
   detailPendaftaran.value.disetujui_at = moment().unix();
   detailPendaftaran.value.disetujui_by = useUserStore().getEmail;
   detailPendaftaran.value.updated_at = moment().unix();

@@ -189,7 +189,7 @@
             <a-select
               label="Status"
               v-model="new_pendaftaran.status"
-              :items="['menunggu', 'diproses', 'selesai', 'batal']"
+              :items="['Menunggu', 'diproses', 'selesai', 'batal']"
             />
           </v-col>
         </v-row> -->
@@ -322,12 +322,12 @@
           size="small"
           :color="
             {
-              menunggu: 'orange',
-              disetujui: 'indigo',
-              diperiksa: 'teal',
-              diproses: 'blue',
-              selesai: 'green',
-              batal: 'red',
+              Menunggu: 'orange',
+              Disetujui: 'indigo',
+              Diperiksa: 'teal',
+              Diproses: 'blue',
+              Selesai: 'green',
+              Batal: 'red',
             }[item.status] || 'grey'
           "
           class="text-white font-weight-medium"
@@ -336,17 +336,18 @@
           <v-icon start size="14">
             {{
               {
-                menunggu: "mdi-clock-outline",
-                disetujui: "mdi-check-decagram",
-                diperiksa: "mdi-stethoscope",
-                diproses: "mdi-progress-clock",
-                selesai: "mdi-check-circle",
-                batal: "mdi-close-circle",
+                Menunggu: "mdi-clock-outline",
+                Disetujui: "mdi-check-decagram",
+                Diperiksa: "mdi-stethoscope",
+                Diproses: "mdi-progress-clock",
+                Selesai: "mdi-check-circle",
+                Batal: "mdi-close-circle",
               }[item.status]
             }}
           </v-icon>
+          {{ item.status }}
 
-          {{
+          <!-- {{
             {
               menunggu: "Menunggu",
               disetujui: "Disetujui",
@@ -355,7 +356,7 @@
               selesai: "Selesai",
               batal: "Batal",
             }[item.status] || item.status
-          }}
+          }} -->
         </v-chip>
       </template>
 
@@ -427,7 +428,7 @@ const defaultPendaftaran = (): pendaftaranM => ({
   nama_dokter: "",
   nama_poli: "",
   tanggal_kunjungan: "",
-  status: "menunggu",
+  status: "Menunggu",
   created_at: 0,
   created_by: "",
 });

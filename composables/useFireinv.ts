@@ -264,7 +264,7 @@ export const setPendaftaran = async (data: any) => {
                 nama_poli: data.nama_poli,
                 tanggal_kunjungan: tanggalAntrian,
                 no_antrian,
-                status: "menunggu",
+                status: 'Menunggu',
                 created_at: moment().unix(),
                 created_by: auth.currentUser?.email,
             }
@@ -279,7 +279,7 @@ export const setPendaftaran = async (data: any) => {
                 id_pendaftaran,
                 no_pendaftaran: padPendaftaran,
                 no_antrian,
-                status: "menunggu",
+                status: 'Menunggu',
                 created_at: moment().unix(),
                 created_by: auth.currentUser?.email || "system",
             });
@@ -342,7 +342,7 @@ export const updatePendaftaran = async (
             const oldData = snap.data();
 
             // LOCK DATA
-            if (oldData.status !== "menunggu") {
+            if (oldData.status !== 'Menunggu') {
                 throw new Error("Pendaftaran sudah diproses, tidak bisa diubah");
             }
 
@@ -419,12 +419,12 @@ export const deletePendaftaran = async (id_pendaftaran: string) => {
             const data = snap.data();
 
             // LOCK
-            if (data.status !== "menunggu") {
+            if (data.status !== 'Menunggu') {
                 throw new Error("Tidak bisa dihapus, sudah diproses");
             }
 
             const payload = {
-                status: "batal",
+                status: "Dibatalkan",
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
                 dibatalkan_at: moment().unix(),
@@ -456,7 +456,7 @@ export const deletePendaftaran = async (id_pendaftaran: string) => {
                 id_pasien: data.id_pasien,
                 nama_pasien: data.nama_pasien,
                 status_sebelumnya: data.status,
-                status_baru: "batal",
+                status_baru: "Dibatalkan",
                 user: auth.currentUser?.email,
                 created_at: moment().unix(),
             });
@@ -507,7 +507,7 @@ export const setPemeriksaan = async (data: pemeriksaanM) => {
             transaction.set(subRef, payload);
 
             transaction.update(pendaftaranRef, {
-                status: "diperiksa",
+                status: "Diperiksa",
                 updated_at: moment().unix(),
                 updated_by: email,
             });
