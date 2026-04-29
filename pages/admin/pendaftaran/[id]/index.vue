@@ -66,7 +66,37 @@
     </v-card>
 
     <!-- ACTION -->
+    <v-row>
+      <v-col>
+        <v-btn
+          :disabled="detailPendaftaran.status !== 'menunggu'"
+          v-if="detailPendaftaran.status === 'menunggu'"
+          block
+          size="large"
+          @click="cancelPendaftaran"
+          class="rounded-xl action-btn-cancel"
+          prepend-icon="mdi-close-circle"
+        >
+          Cancel
+        </v-btn>
+      </v-col>
+
+      <v-col>
+        <v-btn
+          :disabled="detailPendaftaran.status !== 'menunggu'"
+          v-if="detailPendaftaran.status === 'menunggu'"
+          block
+          size="large"
+          @click="approvePendaftaran"
+          class="rounded-xl action-btn-approve"
+          prepend-icon="mdi-check-circle"
+        >
+          Approve
+        </v-btn>
+      </v-col>
+    </v-row>
     <v-btn
+      v-if="detailPendaftaran.status == 'disetujui'"
       block
       size="large"
       class="rounded-xl action-btn"
@@ -278,6 +308,49 @@ async function refreshData() {
   sessionStorage.removeItem("pemeriksaan");
   useloadingStore().setLoading(false);
 }
+
+async function cancelPendaftaran() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Batal",
+    "Anda yakin ingin membatalkan pendaftaran ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("pembatalan pendaftaran dibatalkan");
+  }
+  const c = await deletePendaftaran(detailPendaftaran.value.id!);
+  if (c == "ok") {
+    notificationStore.showSuccess("Pendaftaran berhasil dibatalkan");
+    // navigateTo("/admin/pendaftaran");
+  } else {
+    notificationStore.showError("Gagal membatalkan pendaftaran");
+    return;
+  }
+}
+
+async function approvePendaftaran() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Setujui",
+    "Anda yakin ingin menyetujui pendaftaran ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("penyetujuan pendaftaran dibatalkan");
+  }
+  detailPendaftaran.value.status = "disetujui";
+  detailPendaftaran.value.disetujui_at = moment().unix();
+  detailPendaftaran.value.disetujui_by = useUserStore().getEmail;
+  detailPendaftaran.value.updated_at = moment().unix();
+  detailPendaftaran.value.updated_by = useUserStore().getEmail;
+  const c = await updatePendaftaran(detailPendaftaran.value);
+  if (c == "ok") {
+    notificationStore.showSuccess("Pendaftaran berhasil disetujui");
+    // navigateTo("/admin/pendaftaran");
+  } else {
+    notificationStore.showError("Gagal menyetujui pendaftaran");
+    return;
+  }
+}
 </script>
 
 <style scoped>
@@ -301,6 +374,18 @@ async function refreshData() {
 
 .action-btn {
   background: linear-gradient(135deg, #0d52af, #1976d2);
+  color: white;
+  font-weight: bold;
+}
+
+.action-btn-cancel {
+  background: linear-gradient(135deg, #890a0a, #ff0000);
+  color: white;
+  font-weight: bold;
+}
+
+.action-btn-approve {
+  background: linear-gradient(135deg, #0f7614, #23f565);
   color: white;
   font-weight: bold;
 }

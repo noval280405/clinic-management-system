@@ -348,7 +348,7 @@
             <v-icon icon="mdi-eye" />
           </v-btn>
 
-          <v-btn
+          <!-- <v-btn
             size="25"
             color="error"
             variant="tonal"
@@ -356,7 +356,7 @@
             class="mr-1"
           >
             <v-icon icon="mdi-delete" />
-          </v-btn>
+          </v-btn> -->
         </div>
       </template>
 
@@ -551,7 +551,13 @@ async function saveedit() {
   }
   new_pendaftaran.value.updated_at = moment().unix();
   new_pendaftaran.value.updated_by = useUserStore().getEmail;
-  await pendaftaranStore.updatePendaftaran(new_pendaftaran.value);
+  const c = await updatePendaftaran(new_pendaftaran.value);
+  if (c == "ok") {
+    notificationStore.showSuccess("Data pendaftaran berhasil diedit");
+  } else {
+    notificationStore.showError("Gagal mengedit data pendaftaran");
+    return;
+  }
   data.dialogAdd = false;
   refreshData();
 }
@@ -635,7 +641,7 @@ async function hapuspendaftaran() {
     return notificationStore.showError("hapus data dibatalkan");
   }
   if (data.id_pendaftaran == data.nama_id) {
-    pendaftaranStore.deletePendaftaran(data.id_pendaftaran);
+    await deletePendaftaran(data.id_pendaftaran);
     data.dialoghapus = false;
   } else {
     notificationStore.showError("Gagal menghapus pendaftaran");
