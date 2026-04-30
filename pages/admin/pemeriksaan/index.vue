@@ -166,22 +166,33 @@
       </template>
 
       <!-- STATUS -->
-      <template v-slot:item.status="{ item }">
-        <v-chip
-          size="x-small"
-          :color="
-            item.status === 'Draft'
-              ? 'grey'
-              : item.status === 'selesai'
-                ? 'green'
-                : 'blue'
-          "
-          class="text-white"
-        >
-          {{ item.status }}
-        </v-chip>
-      </template>
+  <template v-slot:item.status="{ item }">
+  <v-chip
+    size="small"
+    variant="flat"
+    :color="
+      {
+        Draft: 'grey',
+        Diperiksa: 'blue',
+        Resep: 'green',
+      }[item.status] || 'default'
+    "
+    class="text-white font-weight-medium"
+    label
+  >
+    <v-icon start size="14">
+      {{
+        {
+          Draft: "mdi-file-document-outline",
+          Diperiksa: "mdi-stethoscope",
+          Resep: "mdi-pill",
+        }[item.status] || "mdi-help-circle"
+      }}
+    </v-icon>
 
+    {{ item.status || '-' }}
+  </v-chip>
+</template>
       <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
         <div class="d-flex justify-center">
@@ -265,7 +276,6 @@ const data = reactive({
     { title: "Aksi", value: "aksi", align: "center", width: "100px" },
   ],
 });
-
 
 function opendialoghapus(id_pemeriksaan: string) {
   data.dialoghapus = true;

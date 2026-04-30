@@ -163,6 +163,34 @@
         </span>
       </template>
 
+      <template v-slot:item.status="{ item }">
+        <v-chip
+          size="small"
+          variant="flat"
+          :color="
+            {
+              Antrian: 'grey',
+              Diproses: 'orange',
+              Selesai: 'green',
+            }[item.status] || 'default'
+          "
+          class="text-white font-weight-medium"
+          label
+        >
+          <v-icon start size="14">
+            {{
+              {
+                Antrian: "mdi-account-clock",
+                Diproses: "mdi-progress-clock",
+                Selesai: "mdi-check-circle",
+              }[item.status] || "mdi-help-circle"
+            }}
+          </v-icon>
+
+          {{ item.status || "-" }}
+        </v-chip>
+      </template>
+
       <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
         <div class="d-flex justify-center">
