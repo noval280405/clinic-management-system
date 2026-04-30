@@ -655,13 +655,13 @@ export const saveResepObat = async (data: resepObatM) => {
             transaction.update(pemeriksaanRef, {
                 obat: itemsFinal,
                 total_obat: total_harga,
-                status: "resep",
+                status: "Resep",
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
             });
 
             transaction.update(pendaftaranRef, {
-                status: "resep",
+                status: "Resep",
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
             });
@@ -669,7 +669,7 @@ export const saveResepObat = async (data: resepObatM) => {
             transaction.update(penndaftaranPemeriksaanRef, {
                 obat: itemsFinal,
                 total_obat: total_harga,
-                status: "resep",
+                status: "Resep",
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
             });
@@ -709,7 +709,7 @@ export const saveResepObat = async (data: resepObatM) => {
                 nama_pasien: data.nama_pasien,
                 items_obat: itemsFinal,
                 id_resep,
-                tipe: "resep", //lebih clean (jangan panjang)
+                tipe: "Resep", //lebih clean (jangan panjang)
                 kategori: "farmasi", //grouping (opsional tapi bagus)
                 title: "Resep Obat",
                 deskripsi: `Resep oleh dr. ${data.nama_dokter}`,
@@ -999,7 +999,7 @@ export const updateStatusResep = async (data: resepObatM) => {
             transaction.set(historyRef, {
                 id_pasien: resepData.id_pasien,
                 id_resep: data.id_resep,
-                tipe: "resep",
+                tipe: "Resep",
                 title: "Update Status Resep",
                 deskripsi: `Status resep diubah menjadi ${data.status}`,
                 status: data.status,
@@ -1261,7 +1261,7 @@ export const updateBilling = async (
 //             transaction.update(pemeriksaanRef, {
 //                 obat: itemsFinal,
 //                 total_obat: total_harga,
-//                 status: "resep",
+//                 status: "Resep",
 //                 updated_at: moment().unix(),
 //                 updated_by: auth.currentUser?.email,
 //             });
@@ -1269,14 +1269,14 @@ export const updateBilling = async (
 //                 no_resep: newNumber,
 //             });
 //             transaction.update(pendaftaranRef, {
-//                 status: "resep",
+//                 status: "Resep",
 //                 updated_at: moment().unix(),
 //                 updated_by: auth.currentUser?.email,
 //             });
 //             transaction.update(penndaftaranPemeriksaanRef, {
 //                 obat: itemsFinal,
 //                 total_obat: total_harga,
-//                 status: "resep",
+//                 status: "Resep",
 //                 updated_at: moment().unix(),
 //                 updated_by: auth.currentUser?.email,
 //             });
