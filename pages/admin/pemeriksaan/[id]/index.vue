@@ -333,7 +333,7 @@ async function savePemeriksaan() {
     };
 
     console.log("Payload yang akan disimpan:", payload);
-
+    
     const c = await saveResepObat(payload);
 
     if (c === "ok") {

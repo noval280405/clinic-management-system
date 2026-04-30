@@ -254,6 +254,7 @@ async function masukkeantrian() {
   if (res === "ok") {
     notificationStore.showSuccess("Resep masuk antrian apotek");
     await resepStore.tarikDetailResepObat(route.params.id as string);
+    navigateTo("/admin/farmasi/antrian-resep");
   } else {
     notificationStore.showError(res);
   }
@@ -280,6 +281,7 @@ async function prosesobat() {
   if (res === "ok") {
     notificationStore.showSuccess("Obat sedang diproses");
     await resepStore.tarikDetailResepObat(route.params.id as string);
+    navigateTo("/admin/farmasi/penyerahan-obat");
   } else {
     notificationStore.showError(res);
   }
@@ -298,6 +300,7 @@ async function selesai() {
   }
   useloadingStore().setLoading(true);
 
+  console.log(detailResepObat.value, "cek data");
   const res = await updateStatusResep({
     ...detailResepObat.value,
     status: "Selesai",

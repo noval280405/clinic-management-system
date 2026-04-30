@@ -559,9 +559,6 @@ export const saveResepObat = async (data: resepObatM) => {
             const id_resep = `RSP-${year}${bulan}-${no_resep}`;
             const id_billing = `BLG-${year}${bulan}-${padnumberResep}`;
 
-
-
-
             // HITUNG TOTAL
 
             let total_harga = 0;
@@ -569,7 +566,6 @@ export const saveResepObat = async (data: resepObatM) => {
             const itemsFinal = data.items_obat.map((item) => {
                 const harga = item.harga || 0;
                 const jumlah = item.jumlah || 0;
-
                 const subtotal = harga * jumlah;
                 total_harga += subtotal;
 
@@ -901,7 +897,7 @@ export const updateStatusResep = async (data: resepObatM) => {
                 const items = resepData.items_obat || [];
 
                 for (const item of items) {
-                    const obatRef = doc(db, "m_obat", item.data.id_obat);
+                    const obatRef = doc(db, "m_obat", item.id_obat);
                     const snap = await transaction.get(obatRef);
 
                     if (!snap.exists()) {
