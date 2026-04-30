@@ -94,7 +94,7 @@
         </template>
 
         <template #item.aksi="{ item }">
-          <v-btn size="small" color="success" @click="openBayar(item)">
+          <v-btn size="small" color="success" @click="openBayar(item)" :disabled="item.status == 'Lunas'">
             Bayar
           </v-btn>
         </template>
