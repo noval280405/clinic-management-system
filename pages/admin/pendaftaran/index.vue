@@ -318,47 +318,39 @@
 
       <!-- STATUS -->
       <template v-slot:item.status="{ item }">
-        <v-chip
-          size="small"
-          :color="
-            {
-              Menunggu: 'orange',
-              Disetujui: 'indigo',
-              Diperiksa: 'teal',
-              Diproses: 'blue',
-              Selesai: 'green',
-              Batal: 'red',
-            }[item.status] || 'grey'
-          "
-          class="text-white font-weight-medium"
-          label
-        >
-          <v-icon start size="14">
-            {{
-              {
-                Menunggu: "mdi-clock-outline",
-                Disetujui: "mdi-check-decagram",
-                Diperiksa: "mdi-stethoscope",
-                Diproses: "mdi-progress-clock",
-                Selesai: "mdi-check-circle",
-                Batal: "mdi-close-circle",
-              }[item.status]
-            }}
-          </v-icon>
-          {{ item.status }}
+  <v-chip
+    size="small"
+    :color="
+      {
+        Menunggu: 'orange',
+        Disetujui: 'indigo',
+        Diperiksa: 'teal',
+        Diproses: 'blue',
+        Selesai: 'green',
+        Batal: 'red',
+        Resep: 'purple',
+      }[item.status] || 'grey'
+    "
+    class="text-white font-weight-medium"
+    label
+  >
+    <v-icon start size="14">
+      {{
+        {
+          Menunggu: "mdi-clock-outline",
+          Disetujui: "mdi-check-decagram",
+          Diperiksa: "mdi-stethoscope",
+          Diproses: "mdi-progress-clock",
+          Selesai: "mdi-check-circle",
+          Batal: "mdi-close-circle",
+          Resep: "mdi-pill",
+        }[item.status] || "mdi-help-circle"
+      }}
+    </v-icon>
 
-          <!-- {{
-            {
-              menunggu: "Menunggu",
-              disetujui: "Disetujui",
-              diperiksa: "Diperiksa",
-              diproses: "Diproses",
-              selesai: "Selesai",
-              batal: "Batal",
-            }[item.status] || item.status
-          }} -->
-        </v-chip>
-      </template>
+    {{ item.status || '-' }}
+  </v-chip>
+</template>
 
       <!-- AKSI -->
       <template v-slot:item.aksi="{ item }">
