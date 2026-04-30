@@ -62,7 +62,7 @@
     <v-list-item
       to="/admin/farmasi/antrian-resep"
       class="nav-item mb-1"
-      prepend-icon="mdi-clipboard-text-clock"
+      prepend-icon="mdi-clipboard-clock"
       title="Antrian Resep"
     />
 
@@ -100,7 +100,7 @@
     <v-list-item
       to="/admin/invoice"
       class="nav-item mb-1"
-      prepend-icon="mdi-receipt-text-outline"
+      prepend-icon="mdi-file"
       title="Invoice"
     />
 
