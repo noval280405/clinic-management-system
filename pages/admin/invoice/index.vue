@@ -421,7 +421,6 @@ td {
   color: #777;
 }
 
-
 :deep() thead th {
   font-weight: bold !important;
   border: 1px solid #cbcbcb !important;
