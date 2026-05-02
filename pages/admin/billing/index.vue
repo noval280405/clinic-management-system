@@ -2,10 +2,97 @@
   <v-container fluid class="pa-3">
     <!-- HEADER -->
     <v-row align="center">
-      <v-col cols="9">
+      <v-col cols="6">
         <div class="text-h5 font-weight-bold">Pembayaran</div>
       </v-col>
     </v-row>
+
+    <!-- FILTER -->
+
+    <v-card>
+      <v-card-text>
+        <!-- Header -->
+        <v-row align="center" justify="space-between" class="mb-2">
+          <v-col cols="auto">
+            <h3 class="text-body-1 font-weight-medium text-grey-darken-1">
+              Filter Pencarian
+            </h3>
+          </v-col>
+
+          <v-col cols="auto">
+            <v-tooltip location="top">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  size="small"
+                  color="primary"
+                  variant="flat"
+                  rounded="xl"
+                  class="d-flex align-center"
+                  @click="showFilter = !showFilter"
+                >
+                  <v-icon size="x-large">
+                    {{ showFilter ? "mdi-chevron-up" : "mdi-chevron-down" }}
+                  </v-icon>
+                </v-btn>
+              </template>
+              <span>Tampilkan / Sembunyikan Filter</span>
+            </v-tooltip>
+          </v-col>
+        </v-row>
+
+        <v-divider />
+
+        <!-- Filter -->
+        <v-expand-transition>
+          <div v-show="showFilter">
+            <v-row class="mt-3" align="end">
+              <v-col cols="12" sm="3">
+                <v-text-field
+                  v-model="filter.start"
+                  type="date"
+                  label="Tanggal Awal"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </v-col>
+
+              <v-col cols="12" sm="3">
+                <v-text-field
+                  v-model="filter.end"
+                  type="date"
+                  label="Tanggal Akhir"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </v-col>
+
+              <v-col cols="12" sm="3">
+                <v-select
+                  v-model="filter.status"
+                  :items="['Semua', 'Belum Bayar', 'Terbayar']"
+                  label="Status"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </v-col>
+
+              <v-col cols="12" sm="3" class="d-flex justify-end">
+                <v-btn
+                  color="grey"
+                  class="mb-7"
+                  variant="tonal"
+                  block
+                  @click="resetFilter"
+                >
+                  Reset Filter
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
+        </v-expand-transition>
+      </v-card-text>
+    </v-card>
 
     <!-- DIALOG PEMBAYARAN -->
     <v-dialog v-model="dialogBayar" max-width="500">
@@ -32,16 +119,18 @@
           </div>
 
           <!-- METODE -->
-          <a-select
+          <v-select
             v-model="form.metode"
-            :items="['Cash', 'Transfer', 'QRIS']"
+            :items="metodeList"
+            item-title="title"
+            item-value="value"
             label="Metode Pembayaran"
             variant="outlined"
             density="comfortable"
           />
 
-          <!-- JUMLAH BAYAR -->
-          <a-text-field
+          <!-- BAYAR -->
+          <v-text-field
             v-model.number="form.bayar"
             type="number"
             label="Jumlah Bayar"
@@ -79,38 +168,114 @@
     </v-dialog>
 
     <!-- TABLE -->
-    <v-card class="mt-3">
+    <v-card class="border rounded-lg mt-5" flat>
+      <v-card-title class="pa-3">
+        <v-row align="center">
+          <v-col cols="12" sm="10">
+            <a-text-field
+              v-model="search"
+              placeholder="Search"
+              style="max-width: 280px"
+            />
+          </v-col>
+
+          <v-col cols="12" sm="2" class="text-caption text-grey-darken-1">
+            Total: {{ billingStore.getDataBilling.length }} mutasi stok
+          </v-col>
+        </v-row>
+      </v-card-title>
       <v-data-table
+        density="comfortable"
+        class="modern-table mt-5"
         :headers="headers"
-        :items="invoiceList"
+        :items="filteredData"
+        :search="search"
+      >
+        <!-- TANGGAL -->
+        <template #item.created_at="{ item }">
+          <div class="text-caption">
+            {{ rubahtanggalunix(item.created_at) }}
+          </div>
+        </template>
+
+        <!-- OBAT -->
+
+        <template #item.total="{ item }">
+          Rp {{ rupiah(item.total) }}
+        </template>
+
+        <template #item.status="{ item }">
+          <v-chip
+            size="small"
+            :color="item.status === 'Terbayar' ? 'green' : 'orange'"
+            variant="flat"
+          >
+            {{ item.status }}
+          </v-chip>
+        </template>
+
+        <template #item.aksi="{ item }">
+          <v-btn
+            size="small"
+            color="success"
+            @click="openBayar(item)"
+            :disabled="item.status === 'Terbayar'"
+          >
+            Bayar
+          </v-btn>
+        </template>
+
+        <!-- EMPTY -->
+        <template #no-data>
+          <div class="text-center py-6 text-grey">
+            <v-icon size="40">mdi-database-off-outline</v-icon>
+            <div>Tidak ada data mutasi</div>
+          </div>
+        </template>
+      </v-data-table>
+    </v-card>
+    <!-- <v-data-table
+        :headers="headers"
+        :items="filteredData"
+        :search="search"
         density="comfortable"
       >
         <template #item.created_at="{ item }">
-          {{ formatDate(item.created_at!) }}
+          {{ formatDate(item.created_at) }}
         </template>
 
         <template #item.total="{ item }">
           Rp {{ rupiah(item.total) }}
         </template>
 
+        <template #item.status="{ item }">
+          <v-chip
+            size="small"
+            :color="item.status === 'Terbayar' ? 'green' : 'orange'"
+            variant="flat"
+          >
+            {{ item.status }}
+          </v-chip>
+        </template>
+
         <template #item.aksi="{ item }">
-          <v-btn size="small" color="success" @click="openBayar(item)" :disabled="item.status == 'Invoice'">
+          <v-btn
+            size="small"
+            color="success"
+            @click="openBayar(item)"
+            :disabled="item.status === 'Terbayar'"
+          >
             Bayar
           </v-btn>
         </template>
-      </v-data-table>
-    </v-card>
+      </v-data-table> -->
   </v-container>
 </template>
 
 <script setup lang="ts">
 import moment from "moment";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useBillingStore } from "~/stores/billingStore";
-const notificationStore = useNotificationStore();
-const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
-  null,
-);
 
 definePageMeta({
   layout: "admin",
@@ -118,15 +283,20 @@ definePageMeta({
 
 const billingStore = useBillingStore();
 
-onMounted(async () => {
-  await billingStore.tarikDataBilling();
-});
-
-const dialog = ref(false);
-const selected = ref<any>({});
-const printArea = ref();
-
+/* =========================
+   STATE
+========================= */
 const dialogBayar = ref(false);
+const selected = ref<any>({});
+
+const search = ref("");
+const showFilter = ref(false);
+
+const filter = ref({
+  start: "",
+  end: "",
+  status: "Semua",
+});
 
 const form = ref({
   metode: "cash",
@@ -139,28 +309,79 @@ const metodeList = [
   { title: "QRIS", value: "qris" },
 ];
 
+/* =========================
+   FETCH DATA
+========================= */
+onMounted(async () => {
+  await billingStore.tarikDataBilling();
+});
+
+/* =========================
+   COMPUTED
+========================= */
 const kembalian = computed(() => {
   return (form.value.bayar || 0) - (selected.value.total || 0);
 });
 
+/* 🔥 FILTER UTAMA */
+const filteredData = computed(() => {
+  return billingStore.getDataBilling.filter((item: any) => {
+    const itemDate = new Date(item.created_at * 1000);
+
+    // START DATE
+    const start = filter.value.start ? new Date(filter.value.start) : null;
+
+    // END DATE (FIX BUG penting)
+    const end = filter.value.end
+      ? new Date(filter.value.end + "T23:59:59")
+      : null;
+
+    // FILTER TANGGAL
+    const matchDate =
+      (!start || itemDate >= start) && (!end || itemDate <= end);
+
+    // FILTER STATUS
+    const matchStatus =
+      filter.value.status === "Semua" || item.status === filter.value.status;
+
+    return matchDate && matchStatus;
+  });
+});
+
+/* =========================
+   TABLE
+========================= */
 const headers = [
   { title: "ID Billing", key: "id_billing" },
   { title: "Pasien", key: "nama_pasien" },
   { title: "Tanggal", key: "created_at" },
   { title: "Total", key: "total" },
+  { title: "Status", key: "status" },
   { title: "Aksi", key: "aksi", sortable: false },
 ];
 
-// 🔥 hanya ambil yang lunas
-const invoiceList = computed(() =>
-  billingStore.getDataBilling.filter((item: any) => item.status === "Lunas"),
-);
-
-function openInvoice(item: any) {
+/* =========================
+   ACTION
+========================= */
+function openBayar(item: any) {
   selected.value = item;
-  dialog.value = true;
+  form.value.bayar = item.total;
+  form.value.metode = "cash";
+  dialogBayar.value = true;
 }
 
+function resetFilter() {
+  filter.value = {
+    start: "",
+    end: "",
+    status: "Semua",
+  };
+  search.value = "";
+}
+
+/* =========================
+   FORMAT
+========================= */
 function rupiah(val: number) {
   return new Intl.NumberFormat("id-ID").format(val || 0);
 }
@@ -169,18 +390,13 @@ function formatDate(val: number) {
   return new Date(val * 1000).toLocaleString("id-ID");
 }
 
-function openBayar(item: any) {
-  selected.value = item;
-  form.value.bayar = item.total;
-  form.value.metode = "cash";
-  dialogBayar.value = true;
-}
-
+/* =========================
+   PROSES BAYAR
+========================= */
 async function prosesBayar() {
   try {
     useloadingStore().setLoading(true);
 
-    // 1. simpan pembayaran
     await addPembayaran({
       id_billing: selected.value.id_billing,
       id_pasien: selected.value.id_pasien,
@@ -192,10 +408,9 @@ async function prosesBayar() {
       kembalian: kembalian.value,
       metode: form.value.metode,
       tanggal_bayar: moment().unix(),
-      status: "Terbayar"
+      status: "Terbayar",
     });
 
-    // 2. update billing
     await updateBilling(selected.value.id_billing, {
       status: "Terbayar",
       tanggal_bayar: moment().unix(),
@@ -205,12 +420,24 @@ async function prosesBayar() {
 
     await billingStore.tarikDataBilling();
 
-    notificationStore.showSuccess("Pembayaran berhasil");
+    useNotificationStore().showSuccess("Pembayaran berhasil");
   } catch (error: any) {
     console.error(error);
-    notificationStore.showError(error.message);
+    useNotificationStore().showError(error.message);
   } finally {
     useloadingStore().setLoading(false);
   }
 }
 </script>
+
+<style scoped>
+:deep() thead th {
+  font-weight: bold !important;
+  border: 1px solid #cbcbcb !important;
+  background-color: #dddddd !important;
+}
+
+:deep() tbody td {
+  border-right: 1px solid #e0e0e0 !important;
+}
+</style>
