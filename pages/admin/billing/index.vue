@@ -7,8 +7,6 @@
       </v-col>
     </v-row>
 
-    <!-- FILTER -->
-
     <v-card>
       <v-card-text>
         <!-- Header -->
@@ -95,31 +93,35 @@
     </v-card>
 
     <!-- DIALOG PEMBAYARAN -->
-    <v-dialog v-model="dialogBayar" max-width="500">
-      <v-card class="rounded-xl">
-        <v-card-title class="text-h6 font-weight-bold">
-          Pembayaran
+    <v-dialog v-model="dialogBayar" max-width="480">
+      <v-card class="rounded-xl elevation-3">
+        <!-- HEADER -->
+        <v-card-title class="d-flex justify-space-between align-center">
+          <span class="text-h6 font-weight-bold">Pembayaran</span>
+          <v-btn icon="mdi-close" variant="text" @click="dialogBayar = false" />
         </v-card-title>
 
         <v-divider />
 
-        <v-card-text>
-          <div class="mb-3">
+        <v-card-text class="pa-4">
+          <!-- PASIEN -->
+          <div class="mb-4">
             <div class="text-caption text-grey">Pasien</div>
-            <div class="font-weight-bold">
+            <div class="font-weight-bold text-body-1">
               {{ selected.nama_pasien }}
             </div>
           </div>
 
-          <div class="mb-3">
+          <!-- TOTAL -->
+          <div class="mb-4 pa-3 rounded-lg bg-grey-lighten-4">
             <div class="text-caption text-grey">Total Tagihan</div>
-            <div class="text-h6 font-weight-bold text-primary">
+            <div class="text-h5 font-weight-bold text-primary">
               Rp {{ rupiah(selected.total) }}
             </div>
           </div>
 
           <!-- METODE -->
-          <v-select
+          <a-select
             v-model="form.metode"
             :items="metodeList"
             item-title="title"
@@ -127,37 +129,56 @@
             label="Metode Pembayaran"
             variant="outlined"
             density="comfortable"
+            prepend-inner-icon="mdi-credit-card-outline"
+            class="mb-3"
           />
 
-          <!-- BAYAR -->
-          <v-text-field
+          <!-- INPUT BAYAR -->
+          <a-text-field
             v-model.number="form.bayar"
             type="number"
             label="Jumlah Bayar"
             variant="outlined"
             density="comfortable"
+            prefix="Rp"
+            class="mb-2"
           />
 
+          <!-- STATUS -->
+          <v-alert
+            v-if="form.bayar && form.bayar < selected.total"
+            type="error"
+            variant="tonal"
+            density="compact"
+            class="mt-2"
+          >
+            Uang kurang
+          </v-alert>
+
           <!-- KEMBALIAN -->
-          <div v-if="form.bayar >= selected.total" class="mt-2">
+          <div
+            v-if="form.bayar >= selected.total"
+            class="mt-3 pa-3 rounded-lg bg-green-lighten-5"
+          >
             <div class="text-caption text-grey">Kembalian</div>
-            <div class="text-green-darken-2 font-weight-bold">
+            <div class="text-h6 font-weight-bold text-green-darken-2">
               Rp {{ rupiah(kembalian) }}
             </div>
           </div>
-
-          <div v-else class="mt-2 text-red text-caption">Uang kurang</div>
         </v-card-text>
 
         <v-divider />
 
-        <v-card-actions>
-          <v-spacer />
-
+        <!-- ACTION -->
+        <v-card-actions class="pa-3">
           <v-btn variant="text" @click="dialogBayar = false"> Batal </v-btn>
+
+          <v-spacer />
 
           <v-btn
             color="primary"
+            size="large"
+            class="px-6"
             :disabled="form.bayar < selected.total"
             @click="prosesBayar"
           >
