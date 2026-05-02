@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import _ from "lodash";
 import type { dokterM } from "~/types/master/dokterModel";
+import moment from "moment";
 
 export const useDokterStores = defineStore("dokterStore", {
     state: () => {
@@ -52,56 +53,64 @@ export const useDokterStores = defineStore("dokterStore", {
         },
         async updateMasterDokter(lempardokter: dokterM, oldData: dokterM) {
             const notificationStore = useNotificationStore();
+
             try {
                 useloadingStore().setLoading(true);
+
                 const databatch: any[] = [];
                 const pindahPoli = oldData.id_poli !== lempardokter.id_poli;
                 const idBerubah = oldData.id !== lempardokter.id;
+
+                // =========================
+                // HANDLE POLI LAMA
+                // =========================
                 if (pindahPoli || idBerubah) {
-                    // hapus dari poli lama
                     databatch.push({
                         collection: `m_poli/${oldData.id_poli}/m_dokter`,
                         id: oldData.id!,
-                        type: "delete"
-                    });
-                }
-                if (idBerubah) {
-                    // hapus dari master
-                    databatch.push({
-                        collection: "m_dokter",
-                        id: oldData.id!,
-                        type: "delete"
-                    });
-                }
-
-
-                if (idBerubah) {
-                    // buat baru di master
-                    databatch.push({
-                        collection: "m_dokter",
-                        id: lempardokter.id!,
                         type: "set",
-                        data: lempardokter
-                    });
-                } else {
-                    // update master
-                    databatch.push({
-                        collection: "m_dokter",
-                        id: lempardokter.id!,
-                        type: "update",
-                        data: lempardokter
+                        data: {
+                            ...oldData,
+                            is_deleted: true,
+                            deleted_at: moment().unix(),
+                        },
+                        merge: true,
                     });
                 }
+
+                // =========================
+                // HANDLE MASTER
+                // =========================
+                databatch.push({
+                    collection: "m_dokter",
+                    id: lempardokter.id!,
+                    type: "set",
+                    data: {
+                        ...lempardokter,
+                        updated_at: moment().unix(),
+                    },
+                    merge: true,
+                });
+
+                // =========================
+                // HANDLE POLI BARU
+                // =========================
                 databatch.push({
                     collection: `m_poli/${lempardokter.id_poli}/m_dokter`,
                     id: lempardokter.id!,
-                    type: idBerubah ? "set" : "update",
-                    data: lempardokter
+                    type: "set",
+                    data: {
+                        ...lempardokter,
+                        updated_at: moment().unix(),
+                    },
+                    merge: true,
                 });
-                await batching(databatch);
-                this.tarikDataDokter();
-                notificationStore.showSuccess("Dokter berhasil di update");
 
+                await batching(databatch);
+
+                this.tarikDataDokter();
+
+                notificationStore.showSuccess("Dokter berhasil di update");
             } catch (error: any) {
                 console.error(error);
                 notificationStore.showError(

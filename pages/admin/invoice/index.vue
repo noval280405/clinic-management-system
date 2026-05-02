@@ -45,7 +45,6 @@
       <v-card>
         <v-card-text>
           <div ref="printArea" class="invoice-paper">
-            
             <!-- HEADER -->
             <div class="invoice-header">
               <div>
@@ -66,7 +65,9 @@
             <div class="invoice-info">
               <div><b>Pasien:</b> {{ selected.nama_pasien }}</div>
               <div><b>Metode:</b> {{ selected.metode }}</div>
-              <div><b>Tanggal:</b> {{ formatDate(selected.tanggal_bayar) }}</div>
+              <div>
+                <b>Tanggal:</b> {{ formatDate(selected.tanggal_bayar) }}
+              </div>
             </div>
 
             <v-divider class="my-2" />
@@ -133,6 +134,12 @@ onMounted(async () => {
   await pembayaranStore.tarikDataPembayaran();
 });
 
+const invoiceList = computed(() =>
+  pembayaranStore.getDataPembayaran.filter(
+    (item: any) => item.status === "Lunas",
+  ),
+);
+
 const dialog = ref(false);
 const selected = ref<any>({});
 const printArea = ref();
@@ -147,9 +154,6 @@ const headers = [
 ];
 
 // 🔥 ambil dari pembayaran (SUDAH FINAL)
-const invoiceList = computed(() =>
-  pembayaranStore.getDataPembayaran
-);
 
 function openInvoice(item: any) {
   selected.value = item;

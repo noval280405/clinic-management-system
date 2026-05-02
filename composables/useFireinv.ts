@@ -14,6 +14,7 @@ import type { supplierM } from "~/types/master/suplierModel";
 import type { obatM } from "~/types/master/obatModel";
 import type { poliM } from "~/types/master/poliModel";
 import _ from "lodash";
+import type { pembayaranM } from "~/types/pembayaranModel";
 
 
 export const setPasien = async (data: pasienM) => {
@@ -1038,14 +1039,12 @@ export const updateStatusResep = async (data: resepObatM) => {
     }
 };
 
-export const addPembayaran = async (data: any) => {
+export const addPembayaran = async (data: pembayaranM) => {
     const db = useFirestore();
     const auth = getAuth();
 
     try {
         await runTransaction(db, async (transaction) => {
-
-            // COUNTER PEMBAYARAN
 
             const nomorRef = doc(db, "penomoran", "nomor");
             const nomorSnap = await transaction.get(nomorRef);
@@ -1062,15 +1061,52 @@ export const addPembayaran = async (data: any) => {
             const bulan = moment().format("MM");
 
             const id_pembayaran = `PAY-${year}${bulan}-${no}`;
-
-
-            //REF
-
             const pembayaranRef = doc(db, "pembayaran", id_pembayaran);
 
+            const payload = {
+                id_pembayaran,
+                id_billing: data.id_billing,
+                id_pasien: data.id_pasien,
+                id_dokter: data.id_dokter,
+                nama_dokter: data.nama_dokter,
+                nama_pasien: data.nama_pasien,
+                total_tagihan: data.total_tagihan,
+                jumlah_bayar: data.jumlah_bayar,
+                kembalian: data.kembalian,
+                metode: data.metode, // cash / transfer / qris
+                status: "Terbayar",
+                tanggal_bayar: moment().unix(),
+                created_at: moment().unix(),
+                created_by: auth.currentUser?.email,
+            };
 
-            //PAYLOAD
+            transaction.set(pembayaranRef, payload);
 
+
+            // UPDATE COUNTER
+
+            transaction.update(nomorRef, {
+                no_pembayaran: newNumber,
+            });
+
+            return payload;
+        });
+
+        return "ok";
+    } catch (error: any) {
+        console.error("ERROR PEMBAYARAN:", error);
+        return error.message;
+    }
+};
+
+export const updatePembayaran = async (data: pembayaranM) => {
+    const db = useFirestore();
+    const auth = getAuth();
+
+    try {
+        await runTransaction(db, async (transaction) => {
+            const id_pembayaran = data.id!;
+            const pembayaranRef = doc(db, "pembayaran", id_pembayaran);
             const payload = {
                 id_pembayaran,
                 id_billing: data.id_billing,
@@ -1086,17 +1122,11 @@ export const addPembayaran = async (data: any) => {
                 tanggal_bayar: moment().unix(),
                 created_at: moment().unix(),
                 created_by: auth.currentUser?.email,
+                invoice_at: moment().unix(),
+                invoice_by: auth.currentUser?.email,
             };
 
-            transaction.set(pembayaranRef, payload);
-
-
-            // UPDATE COUNTER
-
-            transaction.update(nomorRef, {
-                no_pembayaran: newNumber,
-            });
-
+            transaction.update(pembayaranRef, payload);
             return payload;
         });
 
