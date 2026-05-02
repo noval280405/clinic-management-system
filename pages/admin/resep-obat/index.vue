@@ -88,6 +88,84 @@
     </v-col>
   </v-row>
 
+  <v-card class="mb-3">
+    <v-card-text>
+      <!-- HEADER -->
+      <v-row align="center" justify="space-between" class="mb-2">
+        <v-col cols="auto">
+          <div class="text-body-1 font-weight-medium text-grey-darken-1">
+            Filter Pencarian
+          </div>
+        </v-col>
+
+        <v-col cols="auto">
+          <v-btn
+            size="small"
+            color="primary"
+            variant="flat"
+            rounded="xl"
+            @click="showFilter = !showFilter"
+          >
+            <v-icon>
+              {{ showFilter ? "mdi-chevron-up" : "mdi-chevron-down" }}
+            </v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+
+      <v-divider />
+
+      <!-- CONTENT -->
+      <v-expand-transition>
+        <div v-show="showFilter">
+          <v-row class="mt-3" align="end">
+            <!-- STATUS -->
+            <v-col cols="12" sm="3">
+              <v-select
+                v-model="filter.status"
+                :items="['Semua', 'Antrian', 'Diproses', 'Selesai']"
+                label="Status"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-col>
+
+            <!-- POLI -->
+            <v-col cols="12" sm="3">
+              <v-select
+                v-model="filter.poli"
+                :items="listPoli"
+                label="Poli"
+                variant="outlined"
+                density="comfortable"
+                clearable
+              />
+            </v-col>
+
+            <!-- DOKTER -->
+            <v-col cols="12" sm="3">
+              <v-select
+                v-model="filter.dokter"
+                :items="listDokter"
+                label="Dokter"
+                variant="outlined"
+                density="comfortable"
+                clearable
+              />
+            </v-col>
+
+            <!-- RESET -->
+            <v-col cols="12" sm="3">
+              <v-btn color="grey" variant="tonal" block @click="resetFilter">
+                Reset Filter
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
+      </v-expand-transition>
+    </v-card-text>
+  </v-card>
+
   <v-card class="border rounded-lg" flat>
     <v-card-title class="pa-3">
       <v-row align="center">
@@ -109,7 +187,7 @@
 
     <v-data-table
       :headers="data.headresep"
-      :items="resepStore.getDataResepObat"
+      :items="filteredData"
       :search="data.search"
       density="compact"
       class="text-caption"
@@ -271,6 +349,53 @@ const data = reactive({
     { title: "Aksi", value: "aksi", align: "center", width: "120px" },
   ],
 });
+
+const showFilter = ref(false);
+
+const filter = reactive({
+  status: "Semua",
+  poli: "",
+  dokter: "",
+});
+
+/* AUTO LIST */
+const listPoli = computed(() => {
+  const set = new Set(resepStore.getDataResepObat.map((i: any) => i.nama_poli));
+  return ["Semua", ...Array.from(set)];
+});
+
+const listDokter = computed(() => {
+  const set = new Set(
+    resepStore.getDataResepObat.map((i: any) => i.nama_dokter),
+  );
+  return ["Semua", ...Array.from(set)];
+});
+
+/* FILTER */
+const filteredData = computed(() => {
+  return resepStore.getDataResepObat.filter((item: any) => {
+    const matchStatus =
+      filter.status === "Semua" || item.status === filter.status;
+
+    const matchPoli =
+      !filter.poli || filter.poli === "Semua" || item.nama_poli === filter.poli;
+
+    const matchDokter =
+      !filter.dokter ||
+      filter.dokter === "Semua" ||
+      item.nama_dokter === filter.dokter;
+
+    return matchStatus && matchPoli && matchDokter;
+  });
+});
+
+/* RESET */
+function resetFilter() {
+  filter.status = "Semua";
+  filter.poli = "";
+  filter.dokter = "";
+  data.search = "";
+}
 
 function opendialoghapus(id_resep: string) {
   data.dialoghapus = true;
