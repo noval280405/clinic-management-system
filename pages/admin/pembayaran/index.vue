@@ -1,11 +1,94 @@
 <template>
-  <v-container fluid class="pa-3">
+  <v-container fluid class="pa-4">
     <!-- HEADER -->
-    <v-row align="center">
-      <v-col cols="9">
+    <v-row align="center" class="mb-2">
+      <v-col cols="12" md="6">
         <div class="text-h5 font-weight-bold">Pembayaran</div>
+        <div class="text-caption text-grey">
+          Kelola dan proses pembayaran pasien
+        </div>
+      </v-col>
+
+      <!-- SEARCH -->
+      <v-col cols="12" md="6">
+        <a-text-field
+          v-model="search"
+          placeholder="Cari pasien / ID billing..."
+          prepend-inner-icon="mdi-magnify"
+          variant="outlined"
+          density="comfortable"
+          hide-details
+          clearable
+        />
       </v-col>
     </v-row>
+
+    <!-- FILTER -->
+    <v-row class="mb-2">
+      <v-col cols="12" md="3">
+        <v-select
+          v-model="filterStatus"
+          :items="['Semua', 'Belum Bayar', 'Lunas']"
+          label="Filter Status"
+          variant="outlined"
+          density="comfortable"
+        />
+      </v-col>
+
+      <v-col cols="12" md="3">
+        <v-select
+          v-model="filterMetode"
+          :items="['Semua', 'Cash', 'Transfer', 'QRIS']"
+          label="Filter Metode"
+          variant="outlined"
+          density="comfortable"
+        />
+      </v-col>
+    </v-row>
+
+    <!-- TABLE -->
+    <v-card>
+      <v-data-table
+        :headers="headers"
+        :items="filteredData"
+        :search="search"
+        class="rounded-xl"
+      >
+        <!-- TANGGAL -->
+        <template #item.created_at="{ item }">
+          {{ formatDate(item.created_at) }}
+        </template>
+
+        <!-- TOTAL -->
+        <template #item.total_tagihan="{ item }">
+          Rp {{ rupiah(item.total_tagihan) }}
+        </template>
+
+        <!-- STATUS -->
+        <template #item.status="{ item }">
+          <v-chip
+            size="small"
+            :color="item.status === 'Lunas' ? 'green' : 'orange'"
+            variant="flat"
+          >
+            {{ item.status }}
+          </v-chip>
+        </template>
+
+        <!-- AKSI -->
+        <template #item.aksi="{ item }">
+          <v-btn
+            size="small"
+            color="success"
+            variant="flat"
+            @click="openBayar(item)"
+            :disabled="item.status === 'Lunas'"
+          >
+            Bayar
+          </v-btn>
+        </template>
+      </v-data-table>
+    </v-card>
 
     <!-- DIALOG PEMBAYARAN -->
     <v-dialog v-model="dialogBayar" max-width="500">
@@ -34,16 +117,15 @@
           </div>
 
           <!-- METODE -->
-          <a-text-field
+          <v-text-field
             v-model="selected.metode"
-            :items="['Cash', 'Transfer', 'QRIS']"
-            label="Metode Pembayaran"
+            label="Metode"
             variant="outlined"
             disabled
           />
 
           <!-- BAYAR -->
-          <a-text-field
+          <v-text-field
             v-model.number="selected.jumlah_bayar"
             type="number"
             label="Jumlah Bayar"
@@ -69,7 +151,7 @@
 
         <v-card-actions>
           <v-spacer />
-          <v-btn variant="text" @click="dialogBayar = false">Batal</v-btn>
+          <v-btn variant="text" @click="dialogBayar = false"> Batal </v-btn>
 
           <v-btn color="primary" :disabled="!isValidBayar" @click="prosesBayar">
             Bayar
@@ -77,46 +159,14 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <!-- TABLE -->
-    <v-card class="mt-3">
-      <v-data-table
-        :headers="headers"
-        :items="pembayaranStore.getDataPembayaran"
-      >
-        <template #item.created_at="{ item }">
-          {{ formatDate(item.created_at!) }}
-        </template>
-
-        <template #item.total_tagihan="{ item }">
-          Rp {{ rupiah(item.total_tagihan) }}
-        </template>
-
-        <template #item.aksi="{ item }">
-          <v-btn
-            size="small"
-            color="success"
-            @click="openBayar(item)"
-            :disabled="item.status === 'Lunas'"
-          >
-            Bayar
-          </v-btn>
-        </template>
-      </v-data-table>
-    </v-card>
   </v-container>
 </template>
 
 <script setup lang="ts">
 import _ from "lodash";
 import moment from "moment";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { usePembayaranStore } from "~/stores/pembayaranStore";
-import type { pembayaranM } from "~/types/pembayaranModel";
-const notificationStore = useNotificationStore();
-const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
-  null,
-);
 
 definePageMeta({
   layout: "admin",
@@ -124,44 +174,57 @@ definePageMeta({
 
 const pembayaranStore = usePembayaranStore();
 
+/* =========================
+   STATE
+========================= */
+const search = ref("");
+const filterStatus = ref("Semua");
+const filterMetode = ref("Semua");
+
+const dialogBayar = ref(false);
+const selected = ref<any>({});
+
+/* =========================
+   LOAD DATA
+========================= */
 onMounted(async () => {
   await pembayaranStore.tarikDataPembayaran();
 });
 
-const dialog = ref(false);
-const selected = ref<pembayaranM>({
-  id_billing: "",
-  id_pasien: "",
-  id_dokter: "",
-  total_tagihan: 0,
-  jumlah_bayar: 0,
-  kembalian: 0,
-  metode: "",
-  status: "",
+/* =========================
+   FILTER LOGIC
+========================= */
+const filteredData = computed(() => {
+  return pembayaranStore.getDataPembayaran.filter((item: any) => {
+    const matchStatus =
+      filterStatus.value === "Semua" || item.status === filterStatus.value;
+
+    const matchMetode =
+      filterMetode.value === "Semua" || item.metode === filterMetode.value;
+
+    const matchSearch =
+      item.nama_pasien?.toLowerCase().includes(search.value.toLowerCase()) ||
+      item.id_billing?.toLowerCase().includes(search.value.toLowerCase());
+
+    return matchStatus && matchMetode && matchSearch;
+  });
 });
 
-const dialogBayar = ref(false);
-// VALIDASI
-const isValidBayar = computed(() => {
-  return (
-    selected.value.metode &&
-    selected.value.jumlah_bayar >= selected.value.total_tagihan
-  );
-});
-
-const form = ref({
-  metode: "cash",
-  bayar: 0,
-});
-
+/* =========================
+   TABLE
+========================= */
 const headers = [
   { title: "ID Billing", key: "id_billing" },
   { title: "Pasien", key: "nama_pasien" },
   { title: "Tanggal", key: "created_at" },
   { title: "Total", key: "total_tagihan" },
+  { title: "Status", key: "status" },
   { title: "Aksi", key: "aksi", sortable: false },
 ];
 
+/* =========================
+   FORMAT
+========================= */
 function rupiah(val: number) {
   return new Intl.NumberFormat("id-ID").format(val || 0);
 }
@@ -170,42 +233,33 @@ function formatDate(val: number) {
   return new Date(val * 1000).toLocaleString("id-ID");
 }
 
-function openBayar(item: pembayaranM) {
-  selected.value.kembalian = item.kembalian || 0;
-  selected.value = _.assign({}, item);
+/* =========================
+   ACTION
+========================= */
+function openBayar(item: any) {
+  selected.value = _.cloneDeep(item);
   dialogBayar.value = true;
 }
 
+/* =========================
+   VALIDASI
+========================= */
+const isValidBayar = computed(() => {
+  return (
+    selected.value.metode &&
+    selected.value.jumlah_bayar >= selected.value.total_tagihan
+  );
+});
+
+/* =========================
+   PROSES BAYAR
+========================= */
 async function prosesBayar() {
-  try {
-    useloadingStore().setLoading(true);
+  selected.value.status = "Lunas";
+  selected.value.tanggal_bayar = moment().unix();
 
-    // 1. simpan pembayaran
-    await updatePembayaran({
-      id: selected.value.id!,
-      id_billing: selected.value.id_billing,
-      id_pasien: selected.value.id_pasien,
-      id_dokter: selected.value.id_dokter,
-      nama_dokter: selected.value.nama_dokter,
-      nama_pasien: selected.value.nama_pasien,
-      total_tagihan: selected.value.total_tagihan,
-      jumlah_bayar: selected.value.jumlah_bayar,
-      kembalian: selected.value.kembalian,
-      metode: selected.value.metode,
-      status: "Lunas",
-      tanggal_bayar: moment().unix(),
-    });
+  dialogBayar.value = false;
 
-    dialogBayar.value = false;
-
-    await pembayaranStore.tarikDataPembayaran();
-
-    notificationStore.showSuccess("Pembayaran berhasil");
-  } catch (error: any) {
-    console.error(error);
-    notificationStore.showError(error.message);
-  } finally {
-    useloadingStore().setLoading(false);
-  }
+  await pembayaranStore.tarikDataPembayaran();
 }
 </script>
