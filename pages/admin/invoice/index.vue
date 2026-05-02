@@ -420,4 +420,15 @@ td {
   font-size: 12px;
   color: #777;
 }
+
+
+:deep() thead th {
+  font-weight: bold !important;
+  border: 1px solid #cbcbcb !important;
+  background-color: #dddddd !important;
+}
+
+:deep() tbody td {
+  border-right: 1px solid #e0e0e0 !important;
+}
 </style>
