@@ -134,7 +134,7 @@
 
     <v-data-table
       :headers="data.headresep"
-      :items="resepStore.getDataResepObat"
+      :items="filteredData"
       :search="data.search"
       density="compact"
       class="text-caption"

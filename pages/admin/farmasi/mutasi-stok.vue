@@ -25,6 +25,94 @@
     </v-col>
   </v-row>
 
+  <v-card class="mb-3">
+    <v-card-text>
+      <!-- HEADER -->
+      <v-row align="center" justify="space-between" class="mb-2">
+        <v-col cols="auto">
+          <div class="text-body-1 font-weight-medium text-grey-darken-1">
+            Filter Pencarian
+          </div>
+        </v-col>
+
+        <v-col cols="auto">
+          <v-btn
+            size="small"
+            color="primary"
+            variant="flat"
+            rounded="xl"
+            @click="showFilter = !showFilter"
+          >
+            <v-icon>
+              {{ showFilter ? "mdi-chevron-up" : "mdi-chevron-down" }}
+            </v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+
+      <v-divider />
+
+      <!-- CONTENT -->
+      <v-expand-transition>
+        <div v-show="showFilter">
+          <v-row class="mt-3" align="end">
+            <!-- TIPE -->
+            <v-col cols="12" sm="3">
+              <v-select
+                v-model="filter.tipe"
+                :items="['Semua', 'masuk', 'keluar']"
+                label="Tipe Mutasi"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-col>
+
+            <!-- OBAT -->
+            <v-col cols="12" sm="3">
+              <v-select
+                v-model="filter.obat"
+                :items="listObat"
+                label="Obat"
+                variant="outlined"
+                density="comfortable"
+                clearable
+              />
+            </v-col>
+
+            <!-- TGL AWAL -->
+            <v-col cols="12" sm="3">
+              <v-text-field
+                v-model="filter.start"
+                type="date"
+                label="Tanggal Awal"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-col>
+
+            <!-- TGL AKHIR -->
+            <v-col cols="12" sm="3">
+              <v-text-field
+                v-model="filter.end"
+                type="date"
+                label="Tanggal Akhir"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-col>
+
+            <!-- RESET -->
+            <v-col cols="12" sm="3">
+              <v-btn color="grey" variant="tonal" block @click="resetFilter">
+                Reset Filter
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
+      </v-expand-transition>
+    </v-card-text>
+  </v-card>
+
   <v-card class="border rounded-lg" flat>
     <v-card-title class="pa-3">
       <v-row align="center">
@@ -48,7 +136,7 @@
     <!-- TABLE -->
     <v-data-table
       :headers="data.headresep"
-      :items="mutasstokobatStore.getDataMutasiStokObat"
+      :items="filteredData"
       :search="data.search"
       density="comfortable"
       class="modern-table"
@@ -170,6 +258,65 @@ const data = reactive({
     // { title: "Aksi", key: "aksi", sortable: false },
   ],
 });
+
+const showFilter = ref(false);
+
+const filter = reactive({
+  tipe: "Semua",
+  obat: "",
+  start: "",
+  end: "",
+});
+
+/* LIST OBAT AUTO */
+const listObat = computed(() => {
+  const set = new Set(
+    mutasstokobatStore.getDataMutasiStokObat.map((i: any) => i.nama_obat),
+  );
+  return ["Semua", ...Array.from(set)];
+});
+
+/* FILTER DATA */
+const filteredData = computed(() => {
+  return mutasstokobatStore.getDataMutasiStokObat.filter((item: any) => {
+    // TIPE
+    const matchTipe = filter.tipe === "Semua" || item.tipe === filter.tipe;
+
+    // OBAT
+    const matchObat =
+      !filter.obat || filter.obat === "Semua" || item.nama_obat === filter.obat;
+
+    // TANGGAL
+    let matchTanggal = true;
+
+    if (filter.start || filter.end) {
+      const tgl = new Date(item.created_at * 1000);
+
+      if (filter.start) {
+        const start = new Date(filter.start);
+        start.setHours(0, 0, 0, 0);
+        if (tgl < start) matchTanggal = false;
+      }
+
+      if (filter.end) {
+        const end = new Date(filter.end);
+        end.setHours(23, 59, 59, 999);
+        if (tgl > end) matchTanggal = false;
+      }
+    }
+
+    return matchTipe && matchObat && matchTanggal;
+  });
+});
+
+/* RESET */
+function resetFilter() {
+  filter.tipe = "Semua";
+  filter.obat = "";
+  filter.start = "";
+  filter.end = "";
+  data.search = "";
+}
 
 async function refreshData() {
   useloadingStore().setLoading(true);

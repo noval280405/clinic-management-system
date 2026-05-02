@@ -25,6 +25,103 @@
     </v-col>
   </v-row>
 
+  <v-card class="mb-3">
+  <v-card-text>
+
+    <!-- HEADER FILTER -->
+    <v-row align="center" justify="space-between" class="mb-2">
+      <v-col cols="auto">
+        <div class="text-body-1 font-weight-medium text-grey-darken-1">
+          Filter Pencarian
+        </div>
+      </v-col>
+
+      <v-col cols="auto">
+        <v-btn
+          size="small"
+          color="primary"
+          variant="flat"
+          rounded="xl"
+          @click="showFilter = !showFilter"
+        >
+          <v-icon>
+            {{ showFilter ? "mdi-chevron-up" : "mdi-chevron-down" }}
+          </v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-divider />
+
+    <!-- CONTENT FILTER -->
+    <v-expand-transition>
+      <div v-show="showFilter">
+        <v-row class="mt-3" align="end">
+
+          <!-- STATUS -->
+          <v-col cols="12" sm="3">
+            <v-select
+              v-model="filter.status"
+              :items="['Semua', 'Diproses', 'Selesai']"
+              label="Status"
+              variant="outlined"
+              density="comfortable"
+            />
+          </v-col>
+
+          <!-- POLI -->
+          <v-col cols="12" sm="3">
+            <v-select
+              v-model="filter.poli"
+              :items="listPoli"
+              label="Poli"
+              variant="outlined"
+              density="comfortable"
+              clearable
+            />
+          </v-col>
+
+          <!-- TANGGAL AWAL -->
+          <v-col cols="12" sm="3">
+            <v-text-field
+              v-model="filter.start"
+              type="date"
+              label="Tanggal Awal"
+              variant="outlined"
+              density="comfortable"
+            />
+          </v-col>
+
+          <!-- TANGGAL AKHIR -->
+          <v-col cols="12" sm="3">
+            <v-text-field
+              v-model="filter.end"
+              type="date"
+              label="Tanggal Akhir"
+              variant="outlined"
+              density="comfortable"
+            />
+          </v-col>
+
+          <!-- RESET -->
+          <v-col cols="12" sm="3">
+            <v-btn
+              color="grey"
+              variant="tonal"
+              block
+              @click="resetFilter"
+            >
+              Reset Filter
+            </v-btn>
+          </v-col>
+
+        </v-row>
+      </div>
+    </v-expand-transition>
+
+  </v-card-text>
+</v-card>
+
   <v-card class="border rounded-lg" flat>
     <v-card-title class="pa-3">
       <v-row align="center">
@@ -46,7 +143,7 @@
 
     <v-data-table
       :headers="data.headresep"
-      :items="resepStore.getDataResepObat"
+      :items="filteredData"
       :search="data.search"
       density="compact"
       class="text-caption"
@@ -169,6 +266,68 @@ const data = reactive({
     { title: "Aksi", value: "aksi", align: "center", width: "120px" },
   ],
 });
+
+const showFilter = ref(false);
+
+const filter = reactive({
+  status: "Semua",
+  poli: "",
+  start: "",
+  end: "",
+});
+
+/* LIST POLI AUTO */
+const listPoli = computed(() => {
+  const poliSet = new Set(
+    resepStore.getDataResepObat.map((i: any) => i.nama_poli)
+  );
+  return ["Semua", ...Array.from(poliSet)];
+});
+
+/* FILTER DATA */
+const filteredData = computed(() => {
+  return resepStore.getDataResepObat.filter((item: any) => {
+    // STATUS
+    const matchStatus =
+      filter.status === "Semua" || item.status === filter.status;
+
+    // POLI
+    const matchPoli =
+      !filter.poli ||
+      filter.poli === "Semua" ||
+      item.nama_poli === filter.poli;
+
+    // TANGGAL
+    let matchTanggal = true;
+
+    if (filter.start || filter.end) {
+      const tgl = new Date(item.created_at * 1000);
+
+      if (filter.start) {
+        const start = new Date(filter.start);
+        start.setHours(0, 0, 0, 0);
+        if (tgl < start) matchTanggal = false;
+      }
+
+      if (filter.end) {
+        const end = new Date(filter.end);
+        end.setHours(23, 59, 59, 999);
+        if (tgl > end) matchTanggal = false;
+      }
+    }
+
+    return matchStatus && matchPoli && matchTanggal;
+  });
+});
+
+/* RESET */
+function resetFilter() {
+  filter.status = "Semua";
+  filter.poli = "";
+  filter.start = "";
+  filter.end = "";
+  data.search = "";
+}
 
 async function refreshData() {
   useloadingStore().setLoading(true);
