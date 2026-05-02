@@ -2,79 +2,167 @@
   <v-container fluid class="pa-3">
     <!-- HEADER -->
     <v-row align="center">
-      <v-col cols="12" md="6">
+      <v-col cols="6">
         <div class="text-h5 font-weight-bold">Invoice</div>
       </v-col>
     </v-row>
 
     <!-- FILTER -->
-    <v-card class="mt-3 pa-3 rounded-xl">
-      <v-row dense>
-        <!-- SEARCH -->
-        <v-col cols="12" md="3">
-          <a-text-field
-            v-model="search"
-            label="Cari ID / Pasien"
-            prepend-inner-icon="mdi-magnify"
-            clearable
-          />
-        </v-col>
+    <v-card>
+      <v-card-text>
+        <!-- HEADER FILTER -->
+        <v-row align="center" justify="space-between" class="mb-2">
+          <v-col cols="auto">
+            <h3 class="text-body-1 font-weight-medium text-grey-darken-1">
+              Filter Pencarian
+            </h3>
+          </v-col>
 
-        <!-- METODE -->
-        <v-col cols="12" md="3">
-          <a-select
-            v-model="filterMetode"
-            :items="['Cash', 'Transfer', 'QRIS']"
-            label="Filter Metode"
-            clearable
-          />
-        </v-col>
+          <v-col cols="auto">
+            <v-btn
+              size="small"
+              color="primary"
+              variant="flat"
+              rounded="xl"
+              @click="showFilter = !showFilter"
+            >
+              <v-icon>
+                {{ showFilter ? "mdi-chevron-up" : "mdi-chevron-down" }}
+              </v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
 
-        <!-- TGL AWAL -->
-        <v-col cols="12" md="2">
-          <a-date-picker v-model="dateStart" label="Tanggal Awal" type="date" />
-        </v-col>
+        <v-divider />
 
-        <!-- TGL AKHIR -->
-        <v-col cols="12" md="2">
-          <a-date-picker v-model="dateEnd" label="Tanggal Akhir" type="date" />
-        </v-col>
+        <!-- CONTENT FILTER -->
+        <v-expand-transition>
+          <div v-show="showFilter">
+            <v-row class="mt-3" align="end">
+              <v-col cols="12" sm="3">
+                <v-select
+                  v-model="filterMetode"
+                  :items="['Cash', 'Transfer', 'QRIS']"
+                  label="Metode"
+                  variant="outlined"
+                  density="comfortable"
+                  clearable
+                />
+              </v-col>
 
-        <!-- RESET -->
-        <v-col cols="12" md="2">
-          <v-btn block color="grey" @click="resetFilter"> Reset </v-btn>
-        </v-col>
-      </v-row>
+              <v-col cols="12" sm="3">
+                <v-text-field
+                  v-model="dateStart"
+                  type="date"
+                  label="Tanggal Awal"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </v-col>
+
+              <v-col cols="12" sm="3">
+                <v-text-field
+                  v-model="dateEnd"
+                  type="date"
+                  label="Tanggal Akhir"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </v-col>
+
+              <v-col cols="12" sm="3" class="d-flex justify-end">
+                <v-btn color="grey" variant="tonal" block @click="resetFilter">
+                  Reset Filter
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
+        </v-expand-transition>
+      </v-card-text>
     </v-card>
 
     <!-- TABLE -->
-    <v-card class="mt-3">
-      <v-data-table :headers="headers" :items="filteredInvoice">
+    <v-card class="border rounded-lg mt-5" flat>
+      <!-- SEARCH -->
+      <v-card-title class="pa-3">
+        <v-row align="center">
+          <v-col cols="12" sm="10">
+            <v-text-field
+              v-model="search"
+              placeholder="Cari pasien / invoice..."
+              prepend-inner-icon="mdi-magnify"
+              variant="outlined"
+              density="comfortable"
+              hide-details
+              style="max-width: 300px"
+            />
+          </v-col>
+
+          <v-col cols="12" sm="2" class="text-caption text-grey-darken-1">
+            Total: {{ filteredInvoice.length }} data
+          </v-col>
+        </v-row>
+      </v-card-title>
+
+      <v-data-table
+        density="comfortable"
+        class="modern-table mt-2"
+        :headers="headers"
+        :items="filteredInvoice"
+        :search="search"
+      >
+        <!-- TANGGAL -->
         <template #item.tanggal_bayar="{ item }">
-          {{ formatDate(item.tanggal_bayar) }}
+          <div class="text-caption">
+            {{ formatDate(item.tanggal_bayar) }}
+          </div>
         </template>
 
+        <!-- TOTAL -->
         <template #item.jumlah_bayar="{ item }">
           Rp {{ rupiah(item.jumlah_bayar) }}
         </template>
 
+        <!-- METODE -->
         <template #item.metode="{ item }">
-          <v-chip size="small" color="primary">
+          <v-chip size="small" color="primary" variant="tonal">
             {{ item.metode }}
           </v-chip>
         </template>
 
+        <!-- AKSI -->
         <template #item.aksi="{ item }">
-          <v-btn size="small" color="primary" @click="openInvoice(item)">
+          <v-btn
+            size="small"
+            color="primary"
+            variant="flat"
+            rounded="lg"
+            @click="openInvoice(item)"
+          >
             Lihat
           </v-btn>
+        </template>
+
+        <!-- EMPTY -->
+        <template #no-data>
+          <div class="text-center py-6 text-grey">
+            <v-icon size="40">mdi-database-off-outline</v-icon>
+            <div>Tidak ada data invoice</div>
+          </div>
         </template>
       </v-data-table>
     </v-card>
 
     <!-- DIALOG -->
     <v-dialog v-model="dialog" max-width="700">
-      <v-card>
+      <v-card class="rounded-xl elevation-3">
+        <v-card-title class="d-flex justify-space-between align-center">
+          <span class="text-h6 font-weight-bold">Invoice</span>
+          <v-btn icon="mdi-close" variant="text" @click="dialog = false" />
+        </v-card-title>
+
+        <v-divider />
+
         <v-card-text>
           <div ref="printArea" class="invoice">
             <div class="row mb-16">
@@ -91,19 +179,10 @@
             </div>
 
             <div class="row mb-16">
+              <div><b>Pasien</b><br />{{ selected.nama_pasien }}</div>
+              <div><b>Dokter</b><br />{{ selected.nama_dokter }}</div>
               <div>
-                <b>Pasien</b><br />
-                {{ selected.nama_pasien }}
-              </div>
-
-              <div>
-                <b>Dokter</b><br />
-                {{ selected.nama_dokter }}
-              </div>
-
-              <div>
-                <b>Tanggal</b><br />
-                {{ formatDate(selected.tanggal_bayar) }}
+                <b>Tanggal</b><br />{{ formatDate(selected.tanggal_bayar) }}
               </div>
             </div>
 
@@ -147,6 +226,8 @@
           </div>
         </v-card-text>
 
+        <v-divider />
+
         <v-card-actions>
           <v-spacer />
           <v-btn @click="dialog = false">Tutup</v-btn>
@@ -164,6 +245,7 @@ import { usePembayaranStore } from "~/stores/pembayaranStore";
 definePageMeta({
   layout: "admin",
 });
+const showFilter = ref(false);
 
 const pembayaranStore = usePembayaranStore();
 

@@ -1,62 +1,110 @@
 <template>
-  <v-container fluid class="pa-4">
+  <v-container fluid class="pa-3">
     <!-- HEADER -->
-    <v-row align="center" class="mb-2">
-      <v-col cols="12" md="6">
+    <v-row align="center">
+      <v-col cols="6">
         <div class="text-h5 font-weight-bold">Pembayaran</div>
-        <div class="text-caption text-grey">
-          Kelola dan proses pembayaran pasien
-        </div>
-      </v-col>
-
-      <!-- SEARCH -->
-      <v-col cols="12" md="6">
-        <a-text-field
-          v-model="search"
-          placeholder="Cari pasien / ID billing..."
-          prepend-inner-icon="mdi-magnify"
-          variant="outlined"
-          density="comfortable"
-          hide-details
-          clearable
-        />
       </v-col>
     </v-row>
 
-    <!-- FILTER -->
-    <v-row class="mb-2">
-      <v-col cols="12" md="3">
-        <v-select
-          v-model="filterStatus"
-          :items="['Semua', 'Belum Bayar', 'Lunas']"
-          label="Filter Status"
-          variant="outlined"
-          density="comfortable"
-        />
-      </v-col>
+    <!-- FILTER CARD -->
+    <v-card>
+      <v-card-text>
+        <!-- HEADER FILTER -->
+        <v-row align="center" justify="space-between" class="mb-2">
+          <v-col cols="auto">
+            <h3 class="text-body-1 font-weight-medium text-grey-darken-1">
+              Filter Pencarian
+            </h3>
+          </v-col>
 
-      <v-col cols="12" md="3">
-        <v-select
-          v-model="filterMetode"
-          :items="['Semua', 'Cash', 'Transfer', 'QRIS']"
-          label="Filter Metode"
-          variant="outlined"
-          density="comfortable"
-        />
-      </v-col>
-    </v-row>
+          <v-col cols="auto">
+            <v-btn
+              size="small"
+              color="primary"
+              variant="flat"
+              rounded="xl"
+              @click="showFilter = !showFilter"
+            >
+              <v-icon>
+                {{ showFilter ? "mdi-chevron-up" : "mdi-chevron-down" }}
+              </v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+
+        <v-divider />
+
+        <!-- CONTENT FILTER -->
+        <v-expand-transition>
+          <div v-show="showFilter">
+            <v-row class="mt-3" align="end">
+              <v-col cols="12" sm="3">
+                <v-select
+                  v-model="filterStatus"
+                  :items="['Semua', 'Belum Bayar', 'Lunas']"
+                  label="Status"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </v-col>
+
+              <v-col cols="12" sm="3">
+                <v-select
+                  v-model="filterMetode"
+                  :items="['Semua', 'Cash', 'Transfer', 'QRIS']"
+                  label="Metode"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </v-col>
+
+              <v-col cols="12" sm="3" class="d-flex justify-end">
+                <v-btn color="grey" variant="tonal" block @click="resetFilter">
+                  Reset Filter
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
+        </v-expand-transition>
+      </v-card-text>
+    </v-card>
 
     <!-- TABLE -->
-    <v-card>
+    <v-card class="border rounded-lg mt-5" flat>
+      <!-- SEARCH PINDAH KE SINI -->
+      <v-card-title class="pa-3">
+        <v-row align="center">
+          <v-col cols="12" sm="10">
+            <v-text-field
+              v-model="search"
+              placeholder="Cari pasien / billing..."
+              prepend-inner-icon="mdi-magnify"
+              variant="outlined"
+              density="comfortable"
+              hide-details
+              style="max-width: 300px"
+            />
+          </v-col>
+
+          <v-col cols="12" sm="2" class="text-caption text-grey-darken-1">
+            Total: {{ filteredData.length }} data
+          </v-col>
+        </v-row>
+      </v-card-title>
+
       <v-data-table
+        density="comfortable"
+        class="modern-table mt-2"
         :headers="headers"
         :items="filteredData"
         :search="search"
-        class="rounded-xl"
       >
         <!-- TANGGAL -->
         <template #item.created_at="{ item }">
-          {{ formatDate(item.created_at) }}
+          <div class="text-caption">
+            {{ formatDate(item.created_at) }}
+          </div>
         </template>
 
         <!-- TOTAL -->
@@ -80,85 +128,22 @@
           <v-btn
             size="small"
             color="success"
-            variant="flat"
             @click="openBayar(item)"
             :disabled="item.status === 'Lunas'"
           >
             Bayar
           </v-btn>
         </template>
+
+        <!-- EMPTY -->
+        <template #no-data>
+          <div class="text-center py-6 text-grey">
+            <v-icon size="40">mdi-database-off-outline</v-icon>
+            <div>Tidak ada data pembayaran</div>
+          </div>
+        </template>
       </v-data-table>
     </v-card>
-
-    <!-- DIALOG PEMBAYARAN -->
-    <v-dialog v-model="dialogBayar" max-width="500">
-      <v-card class="rounded-xl">
-        <v-card-title class="text-h6 font-weight-bold">
-          Pembayaran
-        </v-card-title>
-
-        <v-divider />
-
-        <v-card-text>
-          <!-- PASIEN -->
-          <div class="mb-3">
-            <div class="text-caption text-grey">Pasien</div>
-            <div class="font-weight-bold">
-              {{ selected.nama_pasien }}
-            </div>
-          </div>
-
-          <!-- TOTAL -->
-          <div class="mb-3">
-            <div class="text-caption text-grey">Total Tagihan</div>
-            <div class="text-h6 font-weight-bold text-primary">
-              Rp {{ rupiah(selected.total_tagihan) }}
-            </div>
-          </div>
-
-          <!-- METODE -->
-          <v-text-field
-            v-model="selected.metode"
-            label="Metode"
-            variant="outlined"
-            disabled
-          />
-
-          <!-- BAYAR -->
-          <v-text-field
-            v-model.number="selected.jumlah_bayar"
-            type="number"
-            label="Jumlah Bayar"
-            variant="outlined"
-            disabled
-          />
-
-          <!-- KEMBALIAN -->
-          <div
-            v-if="selected.jumlah_bayar >= selected.total_tagihan"
-            class="mt-2"
-          >
-            <div class="text-caption text-grey">Kembalian</div>
-            <div class="text-green-darken-2 font-weight-bold">
-              Rp {{ rupiah(selected.kembalian) }}
-            </div>
-          </div>
-
-          <div v-else class="mt-2 text-red text-caption">Uang kurang</div>
-        </v-card-text>
-
-        <v-divider />
-
-        <v-card-actions>
-          <v-spacer />
-          <v-btn variant="text" @click="dialogBayar = false"> Batal </v-btn>
-
-          <v-btn color="primary" :disabled="!isValidBayar" @click="prosesBayar">
-            Bayar
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-container>
 </template>
 
@@ -209,6 +194,14 @@ const filteredData = computed(() => {
     return matchStatus && matchMetode && matchSearch;
   });
 });
+
+const showFilter = ref(false);
+
+function resetFilter() {
+  filterStatus.value = "Semua";
+  filterMetode.value = "Semua";
+  search.value = "";
+}
 
 /* =========================
    TABLE
@@ -263,3 +256,15 @@ async function prosesBayar() {
   await pembayaranStore.tarikDataPembayaran();
 }
 </script>
+
+<style scoped>
+:deep() thead th {
+  font-weight: bold !important;
+  border: 1px solid #cbcbcb !important;
+  background-color: #dddddd !important;
+}
+
+:deep() tbody td {
+  border-right: 1px solid #e0e0e0 !important;
+}
+</style>
