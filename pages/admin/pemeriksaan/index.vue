@@ -121,7 +121,7 @@
           <v-row class="mt-3" align="end">
             <!-- STATUS -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.status"
                 :items="['Semua', 'Draft', 'Diperiksa', 'Resep']"
                 label="Status"
@@ -132,7 +132,7 @@
 
             <!-- POLI -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.poli"
                 :items="listPoli"
                 label="Poli"
@@ -144,7 +144,7 @@
 
             <!-- DOKTER -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.dokter"
                 :items="listDokter"
                 label="Dokter"
@@ -156,9 +156,8 @@
 
             <!-- TANGGAL -->
             <v-col cols="12" sm="3">
-              <v-text-field
+              <a-date-picker
                 v-model="filter.start"
-                type="date"
                 label="Tanggal Awal"
                 variant="outlined"
                 density="comfortable"
@@ -166,9 +165,8 @@
             </v-col>
 
             <v-col cols="12" sm="3">
-              <v-text-field
+              <a-date-picker
                 v-model="filter.end"
-                type="date"
                 label="Tanggal Akhir"
                 variant="outlined"
                 density="comfortable"

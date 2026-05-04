@@ -149,7 +149,7 @@
 
         <v-row dense>
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Jam Mulai"
               v-model="new_dokter.jadwal_praktik.jam_mulai"
               type="time"
@@ -159,7 +159,7 @@
           </v-col>
 
           <v-col cols="6">
-            <v-text-field
+            <a-text-field
               label="Jam Selesai"
               v-model="new_dokter.jadwal_praktik.jam_selesai"
               type="time"

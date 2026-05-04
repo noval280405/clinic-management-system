@@ -46,9 +46,8 @@
           <div v-show="showFilter">
             <v-row class="mt-3" align="end">
               <v-col cols="12" sm="3">
-                <v-text-field
+                <a-date-picker
                   v-model="filter.start"
-                  type="date"
                   label="Tanggal Awal"
                   variant="outlined"
                   density="comfortable"
@@ -56,9 +55,8 @@
               </v-col>
 
               <v-col cols="12" sm="3">
-                <v-text-field
+                <a-date-picker
                   v-model="filter.end"
-                  type="date"
                   label="Tanggal Akhir"
                   variant="outlined"
                   density="comfortable"
@@ -66,7 +64,7 @@
               </v-col>
 
               <v-col cols="12" sm="3">
-                <v-select
+                <a-select
                   v-model="filter.status"
                   :items="['Semua', 'Belum Bayar', 'Terbayar']"
                   label="Status"
@@ -76,13 +74,7 @@
               </v-col>
 
               <v-col cols="12" sm="3" class="d-flex justify-end">
-                <v-btn
-                  color="grey"
-                  class="mb-7"
-                  variant="tonal"
-                  block
-                  @click="resetFilter"
-                >
+                <v-btn color="grey" variant="tonal" block @click="resetFilter">
                   Reset Filter
                 </v-btn>
               </v-col>

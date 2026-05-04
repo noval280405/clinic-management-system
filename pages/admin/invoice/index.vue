@@ -40,7 +40,7 @@
           <div v-show="showFilter">
             <v-row class="mt-3" align="end">
               <v-col cols="12" sm="3">
-                <v-select
+                <a-select
                   v-model="filterMetode"
                   :items="['Cash', 'Transfer', 'QRIS']"
                   label="Metode"
@@ -51,9 +51,8 @@
               </v-col>
 
               <v-col cols="12" sm="3">
-                <v-text-field
+                <a-date-picker
                   v-model="dateStart"
-                  type="date"
                   label="Tanggal Awal"
                   variant="outlined"
                   density="comfortable"
@@ -61,9 +60,8 @@
               </v-col>
 
               <v-col cols="12" sm="3">
-                <v-text-field
+                <a-date-picker
                   v-model="dateEnd"
-                  type="date"
                   label="Tanggal Akhir"
                   variant="outlined"
                   density="comfortable"
@@ -87,7 +85,7 @@
       <v-card-title class="pa-3">
         <v-row align="center">
           <v-col cols="12" sm="10">
-            <v-text-field
+            <a-text-field
               v-model="search"
               placeholder="Cari pasien / invoice..."
               prepend-inner-icon="mdi-magnify"

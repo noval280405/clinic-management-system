@@ -150,7 +150,6 @@
             <a-date-picker
               v-model="new_obat.tanggal_kadaluarsa"
               label="Tanggal Kadaluarsa"
-              type="date"
             />
           </v-col>
 

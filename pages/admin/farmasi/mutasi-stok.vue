@@ -58,7 +58,7 @@
           <v-row class="mt-3" align="end">
             <!-- TIPE -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.tipe"
                 :items="['Semua', 'masuk', 'keluar']"
                 label="Tipe Mutasi"
@@ -69,7 +69,7 @@
 
             <!-- OBAT -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.obat"
                 :items="listObat"
                 label="Obat"
@@ -81,9 +81,8 @@
 
             <!-- TGL AWAL -->
             <v-col cols="12" sm="3">
-              <v-text-field
+              <a-date-picker
                 v-model="filter.start"
-                type="date"
                 label="Tanggal Awal"
                 variant="outlined"
                 density="comfortable"
@@ -92,9 +91,8 @@
 
             <!-- TGL AKHIR -->
             <v-col cols="12" sm="3">
-              <v-text-field
+              <a-date-picker
                 v-model="filter.end"
-                type="date"
                 label="Tanggal Akhir"
                 variant="outlined"
                 density="comfortable"

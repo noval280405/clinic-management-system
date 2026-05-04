@@ -40,7 +40,7 @@
           <div v-show="showFilter">
             <v-row class="mt-3" align="end">
               <v-col cols="12" sm="3">
-                <v-select
+                <a-select
                   v-model="filterStatus"
                   :items="['Semua', 'Belum Bayar', 'Lunas']"
                   label="Status"
@@ -50,7 +50,7 @@
               </v-col>
 
               <v-col cols="12" sm="3">
-                <v-select
+                <a-select
                   v-model="filterMetode"
                   :items="['Semua', 'Cash', 'Transfer', 'QRIS']"
                   label="Metode"
@@ -76,7 +76,7 @@
       <v-card-title class="pa-3">
         <v-row align="center">
           <v-col cols="12" sm="10">
-            <v-text-field
+            <a-text-field
               v-model="search"
               placeholder="Cari pasien / billing..."
               prepend-inner-icon="mdi-magnify"

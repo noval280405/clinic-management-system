@@ -287,7 +287,7 @@
           <v-row class="mt-3" align="end">
             <!-- STATUS -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.status"
                 :items="[
                   'Semua',
@@ -306,7 +306,7 @@
 
             <!-- POLI -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.poli"
                 :items="listPoli"
                 label="Poli"
@@ -318,7 +318,7 @@
 
             <!-- DOKTER -->
             <v-col cols="12" sm="3">
-              <v-select
+              <a-select
                 v-model="filter.dokter"
                 :items="listDokter"
                 label="Dokter"
