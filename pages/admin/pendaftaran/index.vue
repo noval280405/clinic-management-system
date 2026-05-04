@@ -652,6 +652,15 @@ watch(
   },
 );
 
+watch(
+  () => new_pendaftaran.value.jenis_pasien,
+  (val) => {
+    if (val !== "bpjs") {
+      new_pendaftaran.value.no_bpjs = "";
+    }
+  },
+);
+
 const selectedPasien = computed(() =>
   pasienStore.getDataPasien.find(
     (p) => p.id === new_pendaftaran.value.id_pasien,
@@ -738,6 +747,10 @@ async function addPendaftaran() {
 
   if (!new_pendaftaran.value.jenis_pasien) {
     return notificationStore.showError("Jenis pasien wajib dipilih");
+  }
+
+  if (new_pendaftaran.value.jenis_pasien !== "bpjs") {
+    new_pendaftaran.value.no_bpjs = "";
   }
 
   if (
