@@ -117,8 +117,8 @@
           Form Pemeriksaan Pasien
         </v-card-title>
 
-        <v-card-text>
-          <!-- INFO -->
+        <v-card-text class="pa-4">
+          <!-- ================= INFO PASIEN ================= -->
           <v-alert
             type="info"
             variant="tonal"
@@ -130,17 +130,18 @@
             {{ new_pemeriksaan.nama_poli }}
           </v-alert>
 
-          <!-- ANAMNESA -->
-          <div class="text-caption font-weight-bold mb-1">Anamnesa</div>
+          <!-- ================= ANAMNESA ================= -->
+          <div class="text-subtitle-2 font-weight-bold mb-2">Anamnesa</div>
+
           <a-textarea
             v-model="new_pemeriksaan.anamnesa"
             label="Keluhan Pasien"
             rows="2"
-            class="mb-3"
+            class="mb-4"
           />
 
-          <!-- PEMERIKSAAN -->
-          <div class="text-caption font-weight-bold mb-2">
+          <!-- ================= PEMERIKSAAN FISIK ================= -->
+          <div class="text-subtitle-2 font-weight-bold mb-2">
             Pemeriksaan Fisik
           </div>
 
@@ -176,16 +177,45 @@
             </v-col>
           </v-row>
 
-          <!-- DIAGNOSA -->
-          <div class="text-caption font-weight-bold mt-3 mb-1">Diagnosa</div>
-          <a-textarea v-model="new_pemeriksaan.diagnosa" rows="2" />
+          <!-- BMI -->
+          <v-alert v-if="bmi" type="info" density="compact" class="mt-2 mb-4">
+            BMI: <b>{{ bmi }}</b> ({{ kategoriBMI }})
+          </v-alert>
 
-          <!-- TINDAKAN -->
-          <div class="text-caption font-weight-bold mt-3 mb-1">Tindakan</div>
-          <a-textarea v-model="new_pemeriksaan.tindakan" rows="2" />
+          <!-- ================= DIAGNOSA ================= -->
+          <div class="text-subtitle-2 font-weight-bold mb-2">Diagnosa</div>
 
-          <!-- CATATAN -->
-          <div class="text-caption font-weight-bold mt-3 mb-1">Catatan</div>
+          <a-textarea
+            v-model="new_pemeriksaan.diagnosa"
+            rows="2"
+            class="mb-4"
+          />
+
+          <!-- ================= TINDAKAN ================= -->
+          <div class="text-subtitle-2 font-weight-bold mb-2">Tindakan</div>
+
+          <a-textarea
+            v-model="new_pemeriksaan.tindakan"
+            rows="2"
+            class="mb-4"
+          />
+
+          <!-- ================= STATUS ================= -->
+          <div class="text-subtitle-2 font-weight-bold mb-2">
+            Status Pemeriksaan
+          </div>
+
+          <a-select
+            v-model="new_pemeriksaan.status"
+            :items="['Diperiksa', 'Selesai', 'Rujuk']"
+            class="mb-4"
+          />
+
+          <!-- ================= CATATAN ================= -->
+          <div class="text-subtitle-2 font-weight-bold mb-2">
+            Catatan Tambahan
+          </div>
+
           <a-textarea v-model="new_pemeriksaan.catatan" rows="2" />
         </v-card-text>
 
@@ -242,6 +272,10 @@ const defaultPemeriksaan = (): pemeriksaanM => ({
   created_at: 0,
   created_by: "",
   tanggal_pemeriksaan: "",
+  tekanan_darah: "",
+  suhu_tubuh: 0,
+  berat_badan: 0,
+  tinggi_badan: 0,
 });
 
 const new_pemeriksaan = ref<pemeriksaanM>(defaultPemeriksaan());
@@ -268,6 +302,23 @@ const data = reactive({
     { title: "Status", value: "status" },
     { title: "Aksi", value: "aksi", align: "center", width: "100px" },
   ],
+});
+
+const bmi = computed(() => {
+  const bb = Number(new_pemeriksaan.value.berat_badan);
+  const tb = Number(new_pemeriksaan.value.tinggi_badan) / 100;
+
+  if (!bb || !tb) return null;
+
+  return (bb / (tb * tb)).toFixed(1);
+});
+
+const kategoriBMI = computed(() => {
+  if (!bmi.value) return "-";
+  if (bmi.value < 18.5) return "Kurus";
+  if (bmi.value < 25) return "Normal";
+  if (bmi.value < 30) return "Overweight";
+  return "Obesitas";
 });
 
 async function openDialogAdd() {
