@@ -74,125 +74,167 @@
         {{ titleaddedit }}
       </v-card-title>
 
-      <v-card-text>
-        <!-- PASIEN -->
-        <div class="text-caption font-weight-bold mb-2">Data Pasien</div>
+      <v-card-text class="pa-4">
+        <!-- ================= PASIEN ================= -->
+        <div class="mb-4">
+          <div class="text-subtitle-2 font-weight-bold mb-2">Data Pasien</div>
 
-        <v-row dense>
-          <v-col cols="12">
-            <a-autocomplete
-              label="Pilih Pasien"
-              v-model="new_pendaftaran.id_pasien"
-              :items="pasienStore.getDataPasien"
-              item-title="nama_pasien"
-              item-value="id"
-              clearable
-            />
-          </v-col>
+          <a-autocomplete
+            label="Pilih Pasien"
+            v-model="new_pendaftaran.id_pasien"
+            :items="pasienStore.getDataPasien"
+            item-title="nama_pasien"
+            item-value="id"
+            clearable
+          />
 
-          <!-- INFO PASIEN AUTO -->
-          <v-col cols="12" v-if="selectedPasien">
-            <v-alert type="info" variant="tonal" density="compact">
+          <v-expand-transition>
+            <v-alert
+              v-if="selectedPasien"
+              type="info"
+              variant="tonal"
+              density="compact"
+              class="mt-2"
+            >
               <div class="text-caption">
                 {{ selectedPasien.nama_pasien }} •
                 {{ selectedPasien.jenis_kelamin }} •
                 {{ selectedPasien.no_hp || "-" }}
               </div>
             </v-alert>
-          </v-col>
-        </v-row>
-
-        <!-- POLI & DOKTER -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Poli & Dokter</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Poli"
-              v-model="new_pendaftaran.id_poli"
-              :items="poliStore.getDataPoli"
-              item-title="nama_poli"
-              item-value="id"
-              clearable
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-select
-              label="Dokter"
-              v-model="new_pendaftaran.id_dokter"
-              :items="dokterStore.getDataDokter"
-              item-title="nama_dokter"
-              item-value="id"
-              clearable
-            />
-          </v-col>
-        </v-row>
-
-        <!-- INFO ANTRIAN -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">
-          Informasi Antrian
+          </v-expand-transition>
         </div>
 
-        <v-row dense>
-          <!-- <v-col cols="6">
-            <a-text-field
-              label="Nomor Antrian"
-              v-model="new_pendaftaran.nomor_antrian"
-              readonly
-            />
-          </v-col> -->
+        <!-- ================= POLI & DOKTER ================= -->
+        <div class="mb-4">
+          <div class="text-subtitle-2 font-weight-bold mb-2">Poli & Dokter</div>
 
-          <v-col cols="6">
-            <a-date-picker
-              label="Tanggal Kunjungan"
-              v-model="new_pendaftaran.tanggal_kunjungan"
-            />
-          </v-col>
-        </v-row>
+          <v-row dense>
+            <v-col cols="6">
+              <a-select
+                label="Poli"
+                v-model="new_pendaftaran.id_poli"
+                :items="poliStore.getDataPoli"
+                item-title="nama_poli"
+                item-value="id"
+                clearable
+              />
+            </v-col>
 
-        <!-- ADMINISTRASI -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Administrasi</div>
+            <v-col cols="6">
+              <a-select
+                label="Dokter"
+                v-model="new_pendaftaran.id_dokter"
+                :items="dokterAvailable"
+                item-title="nama_dokter"
+                item-value="id"
+                :disabled="!new_pendaftaran.id_poli"
+                clearable
+              />
+            </v-col>
+          </v-row>
 
-        <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Jenis Pasien"
-              v-model="new_pendaftaran.jenis_pasien"
-              :items="['umum', 'bpjs', 'asuransi']"
-            />
-          </v-col>
+          <!-- 🔥 INFO KUOTA -->
+          <v-expand-transition>
+            <div
+              v-if="
+                new_pendaftaran.id_poli && new_pendaftaran.tanggal_kunjungan
+              "
+              class="mt-2 pa-2 rounded bg-grey-lighten-4"
+            >
+              <div class="d-flex justify-space-between text-caption">
+                <span>
+                  Antrian:
+                  <b>
+                    {{
+                      getJumlahPoliHariIni(
+                        new_pendaftaran.id_poli,
+                        new_pendaftaran.tanggal_kunjungan,
+                      )
+                    }}
+                    /
+                    {{ getMaxPoli(new_pendaftaran.id_poli) }}
+                  </b>
+                </span>
 
-          <v-col cols="6" v-if="new_pendaftaran.jenis_pasien === 'bpjs'">
-            <a-text-field label="No BPJS" v-model="new_pendaftaran.no_bpjs" />
-          </v-col>
-        </v-row>
+                <span
+                  :class="
+                    getSisaKuotaPoli(
+                      new_pendaftaran.id_poli,
+                      new_pendaftaran.tanggal_kunjungan,
+                    ) <= 3
+                      ? 'text-red'
+                      : 'text-green-darken-2'
+                  "
+                >
+                  Sisa:
+                  {{
+                    getSisaKuotaPoli(
+                      new_pendaftaran.id_poli,
+                      new_pendaftaran.tanggal_kunjungan,
+                    )
+                  }}
+                </span>
+              </div>
 
-        <!-- KELUHAN -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Keluhan Awal</div>
+              <v-progress-linear
+                :model-value="
+                  (getJumlahPoliHariIni(
+                    new_pendaftaran.id_poli,
+                    new_pendaftaran.tanggal_kunjungan,
+                  ) /
+                    getMaxPoli(new_pendaftaran.id_poli)) *
+                  100
+                "
+                height="6"
+                rounded
+                class="mt-1"
+              />
+            </div>
+          </v-expand-transition>
+        </div>
 
-        <v-row dense>
-          <v-col cols="12">
-            <a-text-field
-              label="Keluhan Pasien"
-              v-model="new_pendaftaran.keluhan"
-              placeholder="Contoh: Demam, batuk, dll"
-            />
-          </v-col>
-        </v-row>
+        <!-- ================= TANGGAL ================= -->
+        <div class="mb-4">
+          <div class="text-subtitle-2 font-weight-bold mb-2">
+            Jadwal Kunjungan
+          </div>
 
-        <!-- STATUS -->
-        <!-- <div class="text-caption font-weight-bold mb-2 mt-4">Status</div> -->
+          <a-date-picker
+            label="Tanggal Kunjungan"
+            v-model="new_pendaftaran.tanggal_kunjungan"
+          />
+        </div>
 
-        <!-- <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Status"
-              v-model="new_pendaftaran.status"
-              :items="['Menunggu', 'diproses', 'selesai', 'batal']"
-            />
-          </v-col>
-        </v-row> -->
+        <!-- ================= ADMINISTRASI ================= -->
+        <div class="mb-4">
+          <div class="text-subtitle-2 font-weight-bold mb-2">Administrasi</div>
+
+          <v-row dense>
+            <v-col cols="6">
+              <a-select
+                label="Jenis Pasien"
+                v-model="new_pendaftaran.jenis_pasien"
+                :items="['umum', 'bpjs', 'asuransi']"
+              />
+            </v-col>
+
+            <v-col cols="6" v-if="new_pendaftaran.jenis_pasien === 'bpjs'">
+              <a-text-field label="No BPJS" v-model="new_pendaftaran.no_bpjs" />
+            </v-col>
+          </v-row>
+        </div>
+
+        <!-- ================= KELUHAN ================= -->
+        <div>
+          <div class="text-subtitle-2 font-weight-bold mb-2">Keluhan Awal</div>
+
+          <a-text-field
+            label="Keluhan Pasien"
+            v-model="new_pendaftaran.keluhan"
+            placeholder="Contoh: Demam, batuk, dll"
+          />
+        </div>
       </v-card-text>
 
       <v-card-actions class="pa-3 bg-grey-lighten-4">
@@ -212,6 +254,12 @@
           variant="flat"
           class="text-capitalize px-3"
           size="small"
+          :disabled="
+            getSisaKuotaPoli(
+              new_pendaftaran.id_poli,
+              new_pendaftaran.tanggal_kunjungan,
+            ) <= 0
+          "
         >
           {{ bottomAddEdit }}
         </v-btn>
@@ -661,11 +709,51 @@ watch(
   },
 );
 
+function getSisaKuotaPoli(idPoli: string, tanggal: string) {
+  const poli = poliStore.getDataPoli.find((p: any) => p.id === idPoli);
+
+  if (!poli) return 0;
+
+  const jumlah = pendaftaranStore.getDataPendaftaran.filter(
+    (p: any) =>
+      p.id_poli === idPoli &&
+      moment(p.tanggal_kunjungan).format("YYYY-MM-DD") ===
+        moment(tanggal).format("YYYY-MM-DD"),
+  ).length;
+
+  return (poli.max_antrian_per_hari || 0) - jumlah;
+}
+
+function getJumlahPoliHariIni(idPoli: string, tanggal: string) {
+  return pendaftaranStore.getDataPendaftaran.filter(
+    (p: any) =>
+      p.id_poli === idPoli &&
+      moment(p.tanggal_kunjungan).format("YYYY-MM-DD") ===
+        moment(tanggal).format("YYYY-MM-DD"),
+  ).length;
+}
+
+function getMaxPoli(idPoli: string) {
+  const poli = poliStore.getDataPoli.find((p: any) => p.id === idPoli);
+  return poli?.max_antrian_per_hari || 0;
+}
+
 const selectedPasien = computed(() =>
   pasienStore.getDataPasien.find(
     (p) => p.id === new_pendaftaran.value.id_pasien,
   ),
 );
+
+const dokterAvailable = computed(() => {
+  if (!new_pendaftaran.value.id_poli) return [];
+
+  return dokterStore.getDataDokter.filter((d: any) => {
+    return (
+      String(d.id_poli) === String(new_pendaftaran.value.id_poli) &&
+      d.status === "aktif"
+    );
+  });
+});
 
 const titleaddedit = computed(() => {
   if (data.addedit == "add") {
@@ -735,6 +823,15 @@ async function addPendaftaran() {
 
   if (!new_pendaftaran.value.id_poli) {
     return notificationStore.showError("Poli wajib dipilih");
+  }
+
+  const sisaPoli = getSisaKuotaPoli(
+    new_pendaftaran.value.id_poli,
+    new_pendaftaran.value.tanggal_kunjungan,
+  );
+
+  if (sisaPoli <= 0) {
+    return notificationStore.showError("Kuota poli sudah penuh");
   }
 
   if (!new_pendaftaran.value.id_dokter) {
