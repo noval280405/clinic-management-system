@@ -461,7 +461,7 @@
               Diperiksa: 'teal',
               Diproses: 'blue',
               Selesai: 'green',
-              Batal: 'red',
+              Dibatalkan: 'red',
               Resep: 'purple',
               Draft: 'grey',
             }[item.status] || 'grey'
@@ -477,7 +477,7 @@
                 Diperiksa: "mdi-stethoscope",
                 Diproses: "mdi-progress-clock",
                 Selesai: "mdi-check-circle",
-                Batal: "mdi-close-circle",
+                Dibatalkan: "mdi-close-circle",
                 Resep: "mdi-pill",
                 Draft: "mdi-file-document-edit-outline",
               }[item.status] || "mdi-help-circle"
