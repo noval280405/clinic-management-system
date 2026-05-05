@@ -64,6 +64,187 @@
   </v-dialog>
 
   <v-dialog
+    v-model="data.dialogPasien"
+    :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
+  >
+    <v-card class="rounded-lg">
+      <v-card-title
+        class="px-4 text-subtitle-1 font-weight-bold bg-primary pa-3"
+      >
+        Tambah Data Pasien
+      </v-card-title>
+
+      <v-card-text>
+        <!-- IDENTITAS -->
+        <div class="text-caption font-weight-bold mb-2">Identitas Pasien</div>
+
+        <v-row dense>
+          <!-- <v-col cols="12" md="6">
+            <a-text-field
+              label="No RM"
+              v-model="new_pasien.no_rm"
+              placeholder="RM-2026-0001"
+            />
+          </v-col> -->
+
+          <v-col cols="12" md="6">
+            <a-text-field label="NIK" v-model="new_pasien.nik" />
+          </v-col>
+
+          <v-col cols="12">
+            <a-text-field
+              label="Nama Pasien"
+              v-model="new_pasien.nama_pasien"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <a-select
+              label="Jenis Kelamin"
+              v-model="new_pasien.jenis_kelamin"
+              :items="['Laki-laki', 'Perempuan']"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <a-date-picker
+              label="Tanggal Lahir"
+              v-model="new_pasien.tanggal_lahir"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- KONTAK -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Kontak</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <a-text-field label="No HP" v-model="new_pasien.no_hp" />
+          </v-col>
+
+          <v-col cols="6">
+            <a-text-field label="Email" v-model="new_pasien.email" />
+          </v-col>
+
+          <v-col cols="12">
+            <a-text-field label="Alamat" v-model="new_pasien.alamat" />
+          </v-col>
+        </v-row>
+
+        <!-- ADMINISTRASI -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Administrasi</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <a-select
+              label="Jenis Pasien"
+              v-model="new_pasien.jenis_pasien"
+              :items="['umum', 'bpjs', 'asuransi']"
+            />
+          </v-col>
+
+          <v-col cols="6" v-if="new_pasien.jenis_pasien === 'bpjs'">
+            <a-text-field label="No BPJS" v-model="new_pasien.no_bpjs" />
+          </v-col>
+
+          <v-col cols="6" v-if="new_pasien.jenis_pasien === 'asuransi'">
+            <a-text-field
+              label="No Asuransi"
+              v-model="new_pasien.no_asuransi"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- MEDIS -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">
+          Informasi Medis
+        </div>
+
+        <v-row dense>
+          <v-col cols="4">
+            <a-select
+              label="Gol. Darah"
+              v-model="new_pasien.golongan_darah"
+              :items="['A', 'B', 'AB', 'O']"
+            />
+          </v-col>
+
+          <v-col cols="8">
+            <a-text-field label="Alergi" v-model="new_pasien.alergi" />
+          </v-col>
+
+          <v-col cols="12">
+            <a-text-field
+              label="Riwayat Penyakit"
+              v-model="new_pasien.riwayat_penyakit"
+            />
+          </v-col>
+        </v-row>
+
+        <!-- PENANGGUNG -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">
+          Penanggung Jawab
+        </div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <a-text-field
+              label="Nama"
+              v-model="new_pasien.nama_penanggung_jawab"
+            />
+          </v-col>
+
+          <v-col cols="6">
+            <a-text-field
+              label="Hubungan"
+              v-model="new_pasien.hubungan_penanggung"
+            />
+          </v-col>
+
+          <v-col cols="12">
+            <a-text-field label="No HP" v-model="new_pasien.no_hp_penanggung" />
+          </v-col>
+        </v-row>
+
+        <!-- STATUS -->
+        <div class="text-caption font-weight-bold mb-2 mt-4">Status</div>
+
+        <v-row dense>
+          <v-col cols="6">
+            <a-select
+              label="Status Pasien"
+              v-model="new_pasien.status"
+              :items="['aktif', 'nonaktif']"
+            />
+          </v-col>
+        </v-row>
+      </v-card-text>
+
+      <v-card-actions class="pa-3 bg-grey-lighten-4">
+        <v-btn
+          variant="flat"
+          color="grey-darken-2"
+          @click="data.dialogAdd = false"
+          class="text-capitalize px-3"
+          size="small"
+        >
+          Batal
+        </v-btn>
+
+        <v-btn
+          color="primary"
+          @click="addPasien"
+          variant="flat"
+          class="text-capitalize px-3"
+          size="small"
+        >
+          {{ bottomAddEdit }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
+  <v-dialog
     v-model="data.dialogAdd"
     :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
   >
@@ -79,14 +260,28 @@
         <div class="mb-4">
           <div class="text-subtitle-2 font-weight-bold mb-2">Data Pasien</div>
 
-          <a-autocomplete
-            label="Pilih Pasien"
-            v-model="new_pendaftaran.id_pasien"
-            :items="pasienStore.getDataPasien"
-            item-title="nama_pasien"
-            item-value="id"
-            clearable
-          />
+          <v-row>
+            <v-col>
+              <a-autocomplete
+                label="Pilih Pasien"
+                v-model="new_pendaftaran.id_pasien"
+                :items="pasienStore.getDataPasien"
+                item-title="nama_pasien"
+                item-value="id"
+                clearable
+              />
+            </v-col>
+            <v-col>
+              <v-btn
+                color="green"
+                size="small"
+                class="mt-5"
+                @click="data.dialogPasien = true"
+              >
+                <v-icon size="15">mdi-plus</v-icon> Pasien
+              </v-btn>
+            </v-col>
+          </v-row>
 
           <v-expand-transition>
             <v-alert
@@ -529,6 +724,7 @@ import _ from "lodash";
 import moment from "moment";
 import { reactive } from "vue";
 import { usePendaftaranStores } from "~/stores/pendaftaranStore";
+import type { pasienM } from "~/types/master/pasienModel";
 import type { pendaftaranM } from "~/types/pendaftaranModel";
 const pasienStore = usePasienStores();
 const poliStore = usePoliStores();
@@ -563,6 +759,30 @@ const defaultPendaftaran = (): pendaftaranM => ({
 
 const new_pendaftaran = ref<pendaftaranM>(defaultPendaftaran());
 
+const defaultPasien = (): pasienM => ({
+  nik: "",
+  nama_pasien: "",
+  jenis_kelamin: "L",
+  tanggal_lahir: "",
+  no_hp: "",
+  email: "",
+  alamat: "",
+  jenis_pasien: "umum",
+  no_bpjs: "",
+  no_asuransi: "",
+  golongan_darah: "O",
+  alergi: "",
+  riwayat_penyakit: "",
+  nama_penanggung_jawab: "",
+  hubungan_penanggung: "",
+  no_hp_penanggung: "",
+  status: "aktif",
+  created_at: 0,
+  created_by: "",
+});
+
+const new_pasien = ref<pasienM>(defaultPasien());
+
 const data = reactive({
   search: "",
   id_pendaftaran: "",
@@ -570,6 +790,7 @@ const data = reactive({
   dialoghapus: false,
   dialogAdd: false,
   dialogEdit: false,
+  dialogPasien: false,
   addedit: "",
   page: 1,
   itemsPerPage: 10,
@@ -886,6 +1107,152 @@ async function addPendaftaran() {
   data.dialogAdd = false;
   refreshData();
 }
+
+async function addPasien() {
+  if (!new_pasien.value.nik?.trim()) {
+    return notificationStore.showError("NIK wajib diisi");
+  }
+
+  if (!/^\d{16}$/.test(new_pasien.value.nik)) {
+    return notificationStore.showError("NIK harus 16 digit angka");
+  }
+
+  if (!new_pasien.value.nama_pasien?.trim()) {
+    return notificationStore.showError("Nama pasien wajib diisi");
+  }
+
+  if (!new_pasien.value.jenis_kelamin) {
+    return notificationStore.showError("Jenis kelamin wajib dipilih");
+  }
+
+  if (!new_pasien.value.tanggal_lahir) {
+    return notificationStore.showError("Tanggal lahir wajib diisi");
+  }
+
+  const today = new Date();
+  const tglLahir = new Date(new_pasien.value.tanggal_lahir);
+
+  if (tglLahir > today) {
+    return notificationStore.showError("Tanggal lahir tidak valid");
+  }
+
+  if (!new_pasien.value.no_hp?.trim()) {
+    return notificationStore.showError("Nomor HP wajib diisi");
+  }
+
+  if (!/^08\d{8,12}$/.test(new_pasien.value.no_hp)) {
+    return notificationStore.showError("Format nomor HP tidak valid");
+  }
+
+  if (new_pasien.value.email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(new_pasien.value.email)) {
+      return notificationStore.showError("Format email tidak valid");
+    }
+  }
+
+  if (!new_pasien.value.alamat?.trim()) {
+    return notificationStore.showError("Alamat wajib diisi");
+  }
+
+  if (!new_pasien.value.jenis_pasien) {
+    return notificationStore.showError("Jenis pasien wajib dipilih");
+  }
+
+  if (new_pasien.value.jenis_pasien === "bpjs") {
+    if (!new_pasien.value.no_bpjs?.trim()) {
+      return notificationStore.showError("Nomor BPJS wajib diisi");
+    }
+
+    if (!/^\d{13}$/.test(new_pasien.value.no_bpjs)) {
+      return notificationStore.showError("Nomor BPJS harus 13 digit");
+    }
+  }
+
+  if (new_pasien.value.jenis_pasien === "asuransi") {
+    if (!new_pasien.value.no_asuransi?.trim()) {
+      return notificationStore.showError("Nomor asuransi wajib diisi");
+    }
+  }
+
+  if (new_pasien.value.no_hp_penanggung) {
+    if (!/^08\d{8,12}$/.test(new_pasien.value.no_hp_penanggung)) {
+      return notificationStore.showError(
+        "Format nomor HP penanggung tidak valid",
+      );
+    }
+  }
+
+  if (!new_pasien.value.status) {
+    return notificationStore.showError("Status pasien wajib dipilih");
+  }
+
+  // 🔥 VALIDASI DUPLIKAT
+  const existingPasien = pasienStore.getDataPasien;
+
+  // cek NIK sama
+  const nikExist = existingPasien.find(
+    (p: any) => p.nik === new_pasien.value.nik,
+  );
+
+  if (nikExist) {
+    return notificationStore.showError(
+      `NIK sudah terdaftar atas nama ${nikExist.nama_pasien}`,
+    );
+  }
+
+  // cek nama + NIK sama
+  const sameData = existingPasien.find(
+    (p: any) =>
+      p.nik === new_pasien.value.nik &&
+      p.nama_pasien.toLowerCase() ===
+        new_pasien.value.nama_pasien.toLowerCase(),
+  );
+
+  if (sameData) {
+    return notificationStore.showError(
+      `Pasien ${new_pasien.value.nama_pasien} dengan NIK tersebut sudah ada`,
+    );
+  }
+
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Tambah",
+    "Anda yakin ingin menambahkan data ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("tambah data dibatalkan");
+  }
+
+  try {
+    new_pasien.value.nama_pasien = new_pasien.value.nama_pasien.trim();
+
+    new_pasien.value.alamat = new_pasien.value.alamat.trim();
+
+    new_pasien.value.created_at = moment().unix();
+    new_pasien.value.created_by = useUserStore().getEmail;
+
+    console.log("DATA PASIEN BARU", new_pasien.value);
+
+    const c = await setPasien(new_pasien.value);
+
+    if (c == "ok") {
+      notificationStore.showSuccess("Data pasien berhasil ditambahkan");
+    } else {
+      return notificationStore.showError("Gagal menambahkan data pasien");
+    }
+
+    await pasienStore.tarikDataPasien();
+
+    new_pasien.value = defaultPasien();
+    data.dialogPasien = false;
+    refreshData();
+  } catch (error) {
+    console.error(error);
+    notificationStore.showError("Terjadi kesalahan saat menyimpan data");
+  }
+}
+
 function opendialoghapus(id_pendaftaran: string) {
   data.dialoghapus = true;
   data.id_pendaftaran = id_pendaftaran;
