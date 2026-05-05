@@ -730,6 +730,34 @@ async function addPasien() {
     return notificationStore.showError("Status pasien wajib dipilih");
   }
 
+  // 🔥 VALIDASI DUPLIKAT
+  const existingPasien = pasienStore.getDataPasien;
+
+  // cek NIK sama
+  const nikExist = existingPasien.find(
+    (p: any) => p.nik === new_pasien.value.nik,
+  );
+
+  if (nikExist) {
+    return notificationStore.showError(
+      `NIK sudah terdaftar atas nama ${nikExist.nama_pasien}`,
+    );
+  }
+
+  // cek nama + NIK sama
+  const sameData = existingPasien.find(
+    (p: any) =>
+      p.nik === new_pasien.value.nik &&
+      p.nama_pasien.toLowerCase() ===
+        new_pasien.value.nama_pasien.toLowerCase(),
+  );
+
+  if (sameData) {
+    return notificationStore.showError(
+      `Pasien ${new_pasien.value.nama_pasien} dengan NIK tersebut sudah ada`,
+    );
+  }
+
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
