@@ -343,6 +343,7 @@ async function addPemeriksaan() {
     return notificationStore.showError("tambah data dibatalkan");
   }
   console.log("DATA PEMERIKSAAN BARU", new_pemeriksaan.value);
+  useloadingStore().setLoading(true);
   const c = await setPemeriksaan(new_pemeriksaan.value);
   if (c == "ok") {
     notificationStore.showSuccess("Data pemeriksaan berhasil ditambahkan");
@@ -350,6 +351,7 @@ async function addPemeriksaan() {
     notificationStore.showError("Gagal menambahkan data pemeriksaan");
     return;
   }
+  useloadingStore().setLoading(false);
   data.dialogAdd = false;
   refreshData();
 }
@@ -369,6 +371,7 @@ async function cancelPendaftaran() {
   if (!confirmed) {
     return notificationStore.showError("pembatalan pendaftaran dibatalkan");
   }
+  useloadingStore().setLoading(true);
   const c = await deletePendaftaran(detailPendaftaran.value.id!);
   if (c == "ok") {
     notificationStore.showSuccess("Pendaftaran berhasil dibatalkan");
@@ -377,6 +380,7 @@ async function cancelPendaftaran() {
     notificationStore.showError("Gagal membatalkan pendaftaran");
     return;
   }
+  useloadingStore().setLoading(false);
 }
 
 async function approvePendaftaran() {
@@ -393,6 +397,7 @@ async function approvePendaftaran() {
   detailPendaftaran.value.disetujui_by = useUserStore().getEmail;
   detailPendaftaran.value.updated_at = moment().unix();
   detailPendaftaran.value.updated_by = useUserStore().getEmail;
+  useloadingStore().setLoading(true);
   const c = await updatePendaftaran(detailPendaftaran.value);
   if (c == "ok") {
     notificationStore.showSuccess("Pendaftaran berhasil disetujui");
@@ -401,6 +406,7 @@ async function approvePendaftaran() {
     notificationStore.showError("Gagal menyetujui pendaftaran");
     return;
   }
+  useloadingStore().setLoading(false);
 }
 </script>
 

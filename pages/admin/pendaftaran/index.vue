@@ -1233,7 +1233,7 @@ async function addPasien() {
     new_pasien.value.created_by = useUserStore().getEmail;
 
     console.log("DATA PASIEN BARU", new_pasien.value);
-
+    useloadingStore().setLoading(true);
     const c = await setPasien(new_pasien.value);
 
     if (c == "ok") {
@@ -1242,8 +1242,8 @@ async function addPasien() {
       return notificationStore.showError("Gagal menambahkan data pasien");
     }
 
+    useloadingStore().setLoading(false);
     await pasienStore.tarikDataPasien();
-
     new_pasien.value = defaultPasien();
     data.dialogPasien = false;
     refreshData();
