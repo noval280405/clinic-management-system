@@ -1,6 +1,102 @@
 <template>
   <v-container fluid class="pa-3">
+    <ConfirmationDialog ref="confirmationDialog" />
+
     <!-- HEADER -->
+    <v-dialog v-model="dialogBayar" max-width="480">
+      <v-card class="rounded-xl elevation-3">
+        <!-- HEADER -->
+        <v-card-title class="d-flex justify-space-between align-center">
+          <span class="text-h6 font-weight-bold">Pelunasan</span>
+          <v-btn icon="mdi-close" variant="text" @click="dialogBayar = false" />
+        </v-card-title>
+
+        <v-divider />
+
+        <v-card-text class="pa-4">
+          <!-- PASIEN -->
+          <div class="mb-4">
+            <div class="text-caption text-grey">Pasien</div>
+            <div class="font-weight-bold text-body-1">
+              {{ selected.nama_pasien }}
+            </div>
+          </div>
+
+          <!-- TOTAL -->
+          <div class="mb-4 pa-3 rounded-lg bg-grey-lighten-4">
+            <div class="text-caption text-grey">Total Tagihan</div>
+            <div class="text-h5 font-weight-bold text-primary">
+              Rp {{ rupiah(selected.total_tagihan) }}
+            </div>
+          </div>
+
+          <!-- METODE -->
+          <a-text-field
+            disabled
+            v-model="selected.metode"
+            label="Metode Pembayaran"
+            variant="outlined"
+            density="comfortable"
+            prepend-inner-icon="mdi-credit-card-outline"
+            class="mb-3"
+          />
+
+          <!-- INPUT BAYAR -->
+          <a-text-field
+            disabled
+            v-model.number="selected.jumlah_bayar"
+            type="number"
+            label="Jumlah Bayar"
+            variant="outlined"
+            density="comfortable"
+            prefix="Rp"
+            class="mb-2"
+          />
+
+          <!-- STATUS -->
+          <v-alert
+            v-if="selected.bayar && selected.bayar < selected.total"
+            type="error"
+            variant="tonal"
+            density="compact"
+            class="mt-2"
+          >
+            Uang kurang
+          </v-alert>
+
+          <!-- KEMBALIAN -->
+          <div
+            v-if="selected.bayar >= selected.total"
+            class="mt-3 pa-3 rounded-lg bg-green-lighten-5"
+          >
+            <div class="text-caption text-grey">Kembalian</div>
+            <div class="text-h6 font-weight-bold text-green-darken-2">
+              Rp {{ rupiah(selected.kembalian) }}
+            </div>
+          </div>
+        </v-card-text>
+
+        <v-divider />
+
+        <!-- ACTION -->
+        <v-card-actions class="pa-3">
+          <v-btn variant="text" @click="dialogBayar = false"> Batal </v-btn>
+
+          <v-spacer />
+
+          <v-btn
+            color="primary"
+            size="large"
+            class="px-6"
+            :disabled="selected.bayar < selected.total"
+            @click="prosesBayar"
+          >
+            Bayar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-row align="center">
       <v-col cols="6">
         <div class="text-h5 font-weight-bold">Pembayaran</div>
@@ -131,7 +227,7 @@
             @click="openBayar(item)"
             :disabled="item.status === 'Lunas'"
           >
-            Bayar
+            Lunaskan
           </v-btn>
         </template>
 
@@ -152,16 +248,16 @@ import _ from "lodash";
 import moment from "moment";
 import { ref, computed, onMounted } from "vue";
 import { usePembayaranStore } from "~/stores/pembayaranStore";
-
+const notificationStore = useNotificationStore();
+const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
+  null,
+);
 definePageMeta({
   layout: "admin",
 });
 
 const pembayaranStore = usePembayaranStore();
 
-/* =========================
-   STATE
-========================= */
 const search = ref("");
 const filterStatus = ref("Semua");
 const filterMetode = ref("Semua");
@@ -169,16 +265,10 @@ const filterMetode = ref("Semua");
 const dialogBayar = ref(false);
 const selected = ref<any>({});
 
-/* =========================
-   LOAD DATA
-========================= */
 onMounted(async () => {
   await pembayaranStore.tarikDataPembayaran();
 });
 
-/* =========================
-   FILTER LOGIC
-========================= */
 const filteredData = computed(() => {
   return pembayaranStore.getDataPembayaran.filter((item: any) => {
     const matchStatus =
@@ -203,9 +293,6 @@ function resetFilter() {
   search.value = "";
 }
 
-/* =========================
-   TABLE
-========================= */
 const headers = [
   { title: "ID Billing", key: "id_billing" },
   { title: "Pasien", key: "nama_pasien" },
@@ -215,9 +302,6 @@ const headers = [
   { title: "Aksi", key: "aksi", sortable: false },
 ];
 
-/* =========================
-   FORMAT
-========================= */
 function rupiah(val: number) {
   return new Intl.NumberFormat("id-ID").format(val || 0);
 }
@@ -226,33 +310,31 @@ function formatDate(val: number) {
   return new Date(val * 1000).toLocaleString("id-ID");
 }
 
-/* =========================
-   ACTION
-========================= */
 function openBayar(item: any) {
   selected.value = _.cloneDeep(item);
   dialogBayar.value = true;
 }
 
-/* =========================
-   VALIDASI
-========================= */
-const isValidBayar = computed(() => {
-  return (
-    selected.value.metode &&
-    selected.value.jumlah_bayar >= selected.value.total_tagihan
-  );
-});
-
-/* =========================
-   PROSES BAYAR
-========================= */
 async function prosesBayar() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Lunas",
+    "Anda yakin ingin lunasin data pembayaran ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("pelunasan data dibatalkan");
+  }
   selected.value.status = "Lunas";
   selected.value.tanggal_bayar = moment().unix();
 
   dialogBayar.value = false;
 
+  const c = await updatePembayaran(selected.value);
+  if (c == "ok") {
+    notificationStore.showSuccess("Data berhasil di bayar");
+  } else {
+    notificationStore.showError("Data Error");
+  }
   await pembayaranStore.tarikDataPembayaran();
 }
 </script>
