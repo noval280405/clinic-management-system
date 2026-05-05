@@ -125,8 +125,9 @@
             class="mb-3"
           />
 
-          <!-- INPUT BAYAR -->
+          <!-- CASH -->
           <a-text-field
+            v-if="form.metode === 'cash'"
             v-model.number="form.bayar"
             type="number"
             label="Jumlah Bayar"
@@ -136,9 +137,13 @@
             class="mb-2"
           />
 
-          <!-- STATUS -->
+          <!-- ALERT UANG KURANG -->
           <v-alert
-            v-if="form.bayar && form.bayar < selected.total"
+            v-if="
+              form.metode === 'cash' &&
+              form.bayar &&
+              form.bayar < selected.total
+            "
             type="error"
             variant="tonal"
             density="compact"
@@ -149,7 +154,11 @@
 
           <!-- KEMBALIAN -->
           <div
-            v-if="form.bayar >= selected.total"
+            v-if="
+              form.metode === 'cash' &&
+              form.bayar &&
+              form.bayar >= selected.total
+            "
             class="mt-3 pa-3 rounded-lg bg-green-lighten-5"
           >
             <div class="text-caption text-grey">Kembalian</div>
@@ -157,6 +166,28 @@
               Rp {{ rupiah(kembalian) }}
             </div>
           </div>
+
+          <!-- QRIS -->
+          <v-alert
+            v-if="form.metode === 'qris'"
+            type="success"
+            variant="tonal"
+            density="compact"
+            class="mt-2"
+          >
+            Silakan scan QRIS untuk pembayaran
+          </v-alert>
+
+          <!-- TRANSFER -->
+          <v-alert
+            v-if="form.metode === 'transfer'"
+            type="info"
+            variant="tonal"
+            density="compact"
+            class="mt-2"
+          >
+            Silakan transfer sesuai total tagihan
+          </v-alert>
         </v-card-text>
 
         <v-divider />
@@ -171,10 +202,13 @@
             color="primary"
             size="large"
             class="px-6"
-            :disabled="form.bayar < selected.total"
+            :disabled="
+              !form.metode ||
+              (form.metode === 'cash' && form.bayar < selected.total)
+            "
             @click="prosesBayar"
           >
-            Bayar
+            Lunaskan
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -312,7 +346,7 @@ const filter = ref({
 });
 
 const form = ref({
-  metode: "cash",
+  metode: "Cash",
   bayar: 0,
 });
 

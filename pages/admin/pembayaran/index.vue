@@ -41,11 +41,10 @@
             class="mb-3"
           />
 
-          <!-- INPUT BAYAR -->
+          <!-- BAYAR -->
           <a-text-field
             disabled
             v-model.number="selected.jumlah_bayar"
-            type="number"
             label="Jumlah Bayar"
             variant="outlined"
             density="comfortable"
@@ -53,9 +52,9 @@
             class="mb-2"
           />
 
-          <!-- STATUS -->
+          <!-- ALERT -->
           <v-alert
-            v-if="selected.bayar && selected.bayar < selected.total"
+            v-if="selected.metode === 'cash' && selected.bayar < selected.total"
             type="error"
             variant="tonal"
             density="compact"
@@ -66,7 +65,9 @@
 
           <!-- KEMBALIAN -->
           <div
-            v-if="selected.bayar >= selected.total"
+            v-if="
+              selected.metode === 'cash' && selected.bayar >= selected.total
+            "
             class="mt-3 pa-3 rounded-lg bg-green-lighten-5"
           >
             <div class="text-caption text-grey">Kembalian</div>
@@ -74,6 +75,17 @@
               Rp {{ rupiah(selected.kembalian) }}
             </div>
           </div>
+
+          <!-- NON CASH -->
+          <v-alert
+            v-if="selected.metode !== 'cash'"
+            type="success"
+            variant="tonal"
+            density="compact"
+            class="mt-2"
+          >
+            Pembayaran non-cash akan langsung dilunaskan
+          </v-alert>
         </v-card-text>
 
         <v-divider />
@@ -88,10 +100,12 @@
             color="primary"
             size="large"
             class="px-6"
-            :disabled="selected.bayar < selected.total"
+            :disabled="
+              selected.metode === 'cash' && selected.bayar < selected.total
+            "
             @click="prosesBayar"
           >
-            Bayar
+            Lunaskan
           </v-btn>
         </v-card-actions>
       </v-card>
