@@ -328,13 +328,14 @@ async function prosesBayar() {
   selected.value.tanggal_bayar = moment().unix();
 
   dialogBayar.value = false;
-
+  useloadingStore().setLoading(true);
   const c = await updatePembayaran(selected.value);
   if (c == "ok") {
     notificationStore.showSuccess("Data berhasil di bayar");
   } else {
     notificationStore.showError("Data Error");
   }
+  useloadingStore().setLoading(false);
   await pembayaranStore.tarikDataPembayaran();
 }
 </script>
