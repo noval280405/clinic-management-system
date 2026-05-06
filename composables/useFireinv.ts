@@ -506,15 +506,48 @@ export const setPemeriksaan = async (data: pemeriksaanM) => {
             const pemeriksaanRef = doc(db, "pemeriksaan", id_pemeriksaan);
             const subRef = doc(db, "pendaftaran", data.id_pendaftaran, "pemeriksaan", id_pemeriksaan);
             const pendaftaranRef = doc(db, "pendaftaran", data.id_pendaftaran);
+            const polipendaftaranRef = doc(
+                db,
+                "m_poli",
+                data.id_poli,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const dokterpendaftaranRef = doc(
+                db,
+                "m_dokter",
+                data.id_dokter,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const polidokterpendaftaranRef = doc(db, "m_poli", data.id_poli, "m_dokter", data.id_dokter, "pendaftaran", data.id_pendaftaran!);
+
+            const pasienpendaftaranRef = doc(
+                db,
+                "m_pasien",
+                data.id_pasien,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const datasetpenawaran = {
+                status: "Diperiksa",
+                updated_at: moment().unix(),
+                updated_by: email,
+                diperiksa_at: moment().unix(),
+                diperiksa_by: email,
+            }
 
             transaction.set(pemeriksaanRef, payload);
             transaction.set(subRef, payload);
 
-            transaction.update(pendaftaranRef, {
-                status: "Diperiksa",
-                updated_at: moment().unix(),
-                updated_by: email,
-            });
+            transaction.update(pendaftaranRef, datasetpenawaran);
+            transaction.update(polipendaftaranRef, datasetpenawaran);
+            transaction.update(dokterpendaftaranRef, datasetpenawaran);
+            transaction.update(polidokterpendaftaranRef, datasetpenawaran);
+            transaction.update(pasienpendaftaranRef, datasetpenawaran);
 
             transaction.update(nomorRef, {
                 no_pemeriksaan: newNumber,
