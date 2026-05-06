@@ -24,7 +24,7 @@ export interface pemeriksaanM {
     layanan: layananM[];
     obat: obatM[];
     total_layanan: number;
-    total_obat: number;
+    total_harga_obat: number;
     grand_total: number;
     status: string;
     tanggal_pemeriksaan: string;

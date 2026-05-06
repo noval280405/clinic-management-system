@@ -413,7 +413,12 @@ async function hapusresep() {
     return notificationStore.showError("hapus data dibatalkan");
   }
   if (data.id_resep == data.nama_id) {
-    resepStore.deleteResepObat(data.id_resep);
+    const c = await deleteResepObat(data.id_resep);
+    if (c == "ok") {
+      notificationStore.showSuccess("Data berhasil dihapu");
+    } else {
+      notificationStore.showError("Data Error");
+    }
     data.dialoghapus = false;
   } else {
     notificationStore.showError("Gagal menghapus resep");

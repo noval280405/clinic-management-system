@@ -21,7 +21,7 @@ export interface pendaftaranM {
   layanan?: layananM[];
   obat?: obatM[];
   total_layanan?: number;
-  total_obat?: number;
+  total_harga_obat?: number;
   grand_total?: number;
   metode_pembayaran?: "cash" | "transfer" | "qris" | "bpjs";
   status_pembayaran?: "belum" | "lunas";

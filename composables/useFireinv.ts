@@ -612,31 +612,6 @@ export const saveResepObat = async (data: resepObatM) => {
                 };
             });
 
-
-            // // 5. KURANGI STOK OBAT
-            // const obatSnapshots: any[] = [];
-
-            // for (const item of itemsFinal) {
-            //     const obatRef = doc(db, "m_obat", item.id_obat!);
-            //     const snap = await transaction.get(obatRef);
-
-            //     if (snap.exists()) {
-            //         obatSnapshots.push({
-            //             ref: obatRef,
-            //             stok: snap.data().stok || 0,
-            //             item,
-            //         });
-            //     }
-            // }
-
-            // for (const o of obatSnapshots) {
-            //     transaction.update(o.ref, {
-            //         stok: o.stok - o.item.jumlah,
-            //         updated_at: moment().unix(),
-            //         updated_by: auth.currentUser?.email,
-            //     });
-            // }
-
             // REFS EXISTING (JANGAN DIUBAH)
 
             const resepRef = doc(db, "resep_obat", id_resep);
@@ -650,6 +625,31 @@ export const saveResepObat = async (data: resepObatM) => {
             );
 
             const pendaftaranRef = doc(db, "pendaftaran", data.id_pendaftaran);
+            const polipendaftaranRef = doc(
+                db,
+                "m_poli",
+                data.id_poli,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const dokterpendaftaranRef = doc(
+                db,
+                "m_dokter",
+                data.id_dokter,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const polidokterpendaftaranRef = doc(db, "m_poli", data.id_poli, "m_dokter", data.id_dokter, "pendaftaran", data.id_pendaftaran!);
+
+            const pasienpendaftaranRef = doc(
+                db,
+                "m_pasien",
+                data.id_pasien,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
             const penndaftaranPemeriksaanRef = doc(
                 db,
                 "pendaftaran",
@@ -689,27 +689,35 @@ export const saveResepObat = async (data: resepObatM) => {
 
             transaction.set(resepRef, payload);
             transaction.set(pemeriksaanResepRef, payload);
-            transaction.update(pemeriksaanRef, {
-                obat: itemsFinal,
-                total_obat: total_harga,
-                status: "Resep",
-                updated_at: moment().unix(),
-                updated_by: auth.currentUser?.email,
-            });
 
-            transaction.update(pendaftaranRef, {
+            // pendaftaranRef
+            const setpendaftaran = {
                 status: "Resep",
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
-            });
+                resep_at: moment().unix(),
+                resep_by: auth.currentUser?.email,
+            }
 
-            transaction.update(penndaftaranPemeriksaanRef, {
+            transaction.update(pendaftaranRef, setpendaftaran);
+            transaction.update(polipendaftaranRef, setpendaftaran);
+            transaction.update(dokterpendaftaranRef, setpendaftaran);
+            transaction.update(polidokterpendaftaranRef, setpendaftaran);
+            transaction.update(pasienpendaftaranRef, setpendaftaran);
+
+            // pemeriksaanRef
+            const setpemeriksaan = {
                 obat: itemsFinal,
-                total_obat: total_harga,
+                total_harga_obat: total_harga,
                 status: "Resep",
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
-            });
+                resep_at: moment().unix(),
+                resep_by: auth.currentUser?.email,
+            }
+
+            transaction.update(pemeriksaanRef, setpemeriksaan);
+            transaction.update(penndaftaranPemeriksaanRef, setpemeriksaan);
             transaction.set(pendaftaranPemeriksaanResepRef, payload);
 
             // 4. BILLING OTOMATIS
@@ -726,7 +734,7 @@ export const saveResepObat = async (data: resepObatM) => {
                 status: "Belum Bayar",
                 id_pendaftaran: data.id_pendaftaran,
                 id_pemeriksaan: data.id_pemeriksaan,
-                total_obat: total_harga,
+                total_harga_obat: total_harga,
                 total_layanan: 0,
                 created_at: moment().unix(),
                 created_by: auth.currentUser?.email,
@@ -792,6 +800,142 @@ export const saveResepObat = async (data: resepObatM) => {
 
     } catch (error: any) {
         console.error("ERROR RESEP:", error);
+        return error.message;
+    }
+};
+
+export const deleteResepObat = async (id_resep: string) => {
+    const db = useFirestore();
+    const auth = getAuth();
+
+    try {
+        await runTransaction(db, async (transaction) => {
+
+            // 1. GET DATA RESEP
+            const resepRef = doc(db, "resep_obat", id_resep);
+            const resepSnap = await transaction.get(resepRef);
+
+            if (!resepSnap.exists()) {
+                throw new Error("Resep tidak ditemukan");
+            }
+
+            const resepData = resepSnap.data();
+
+            // 2. VALIDASI STATUS
+            if (resepData.status !== "Draft") {
+                throw new Error("Resep tidak bisa dihapus (sudah diproses)");
+            }
+
+            const {
+                id_pendaftaran,
+                id_pemeriksaan,
+                id_poli,
+                id_dokter,
+                id_pasien,
+                id_billing
+            } = resepData;
+
+            const now = Math.floor(Date.now() / 1000);
+            const email = auth.currentUser?.email;
+
+            // 3. DELETE RESEP
+
+            transaction.delete(resepRef);
+
+            const pemeriksaanResepRef = doc(
+                db,
+                "pemeriksaan",
+                id_pemeriksaan,
+                "resep_obat",
+                id_resep
+            );
+
+            const pendaftaranPemeriksaanResepRef = doc(
+                db,
+                "pendaftaran",
+                id_pendaftaran,
+                "pemeriksaan",
+                id_pemeriksaan,
+                "resep_obat",
+                id_resep
+            );
+
+            transaction.delete(pemeriksaanResepRef);
+            transaction.delete(pendaftaranPemeriksaanResepRef);
+
+            // 4. ROLLBACK STATUS
+
+            const rollbackPendaftaran = {
+                status: "Diperiksa",
+                updated_at: now,
+                updated_by: email,
+            };
+
+            const rollbackPemeriksaan = {
+                status: "Diperiksa",
+                updated_at: now,
+                updated_by: email,
+                obat: [],
+                total_harga_obat: 0,
+            };
+
+            // MAIN
+            const pendaftaranRef = doc(db, "pendaftaran", id_pendaftaran);
+            const pemeriksaanRef = doc(db, "pemeriksaan", id_pemeriksaan);
+
+            transaction.update(pendaftaranRef, rollbackPendaftaran);
+            transaction.update(pemeriksaanRef, rollbackPemeriksaan);
+
+            // RELASI PENDAFTARAN
+            const refs = [
+                doc(db, "m_poli", id_poli, "pendaftaran", id_pendaftaran),
+                doc(db, "m_dokter", id_dokter, "pendaftaran", id_pendaftaran),
+                doc(db, "m_pasien", id_pasien, "pendaftaran", id_pendaftaran),
+                doc(db, "m_poli", id_poli, "m_dokter", id_dokter, "pendaftaran", id_pendaftaran),
+            ];
+
+            refs.forEach((ref) => {
+                transaction.update(ref, rollbackPendaftaran);
+            });
+
+            // SUB PEMERIKSAAN
+            const penndaftaranPemeriksaanRef = doc(
+                db,
+                "pendaftaran",
+                id_pendaftaran,
+                "pemeriksaan",
+                id_pemeriksaan
+            );
+
+            transaction.update(penndaftaranPemeriksaanRef, rollbackPemeriksaan);
+
+            // 5. DELETE BILLING (optional)
+            if (id_billing) {
+                const billingRef = doc(db, "billing", id_billing);
+                transaction.delete(billingRef);
+            }
+
+            // 6. AUDIT LOG
+            const logRef = doc(collection(db, "audit_log"));
+
+            transaction.set(logRef, {
+                aksi: "DELETE_RESEP",
+                module: "RESEP_OBAT",
+                id_resep,
+                id_pasien,
+                status_sebelumnya: "Draft",
+                status_baru: "Deleted",
+                user: email,
+                created_at: now,
+                deskripsi: `Menghapus resep ${id_resep}`,
+            });
+
+        });
+
+        return "ok";
+
+    } catch (error: any) {
+        console.error("ERROR DELETE RESEP:", error);
         return error.message;
     }
 };

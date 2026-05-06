@@ -266,7 +266,7 @@ const defaultPemeriksaan = (): pemeriksaanM => ({
   layanan: [],
   obat: [],
   total_layanan: 0,
-  total_obat: 0,
+  total_harga_obat: 0,
   grand_total: 0,
   status: "Draft",
   created_at: 0,

@@ -140,7 +140,7 @@
           <v-divider />
 
           <v-card-text>
-            <v-alert variant="tonal" type="info" class="mb-2">
+            <v-alert variant="tonal" type="warning" class="mb-2">
               {{ detailPemeriksaan.diagnosa || "-" }}
             </v-alert>
 
