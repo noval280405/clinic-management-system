@@ -224,7 +224,7 @@
         <v-btn
           variant="flat"
           color="grey-darken-2"
-          @click="data.dialogAdd = false"
+          @click="data.dialogPasien = false"
           class="text-capitalize px-3"
           size="small"
         >
