@@ -191,7 +191,7 @@ export const setPoli = async (data: poliM) => {
         });
 };
 
-export const setPendaftaran = async (data: any) => {
+export const setPendaftaran = async (data: pendaftaranM) => {
     const db = useFirestore();
     const auth = getAuth();
 
@@ -373,6 +373,8 @@ export const updatePendaftaran = async (
                 newData.id_pendaftaran!
             );
 
+            const polidokterpendaftaranRef = doc(db, "m_poli", newData.id_poli, "m_dokter", newData.id_dokter, "pendaftaran", newData.id_pendaftaran!);
+
             const pasienpendaftaranRef = doc(
                 db,
                 "m_pasien",
@@ -384,6 +386,7 @@ export const updatePendaftaran = async (
             transaction.update(polipendaftaranRef, payload);
             transaction.update(dokterpendaftaranRef, payload);
             transaction.update(pasienpendaftaranRef, payload);
+            transaction.update(polidokterpendaftaranRef, payload)
             // AUDIT LOG
 
             const logRef = doc(collection(db, "audit_log"));
