@@ -18,6 +18,12 @@ export interface resepObatM {
     created_by?: string;
     updated_at?: number;
     updated_by?: string;
+    antrian_at?: number;
+    antrian_by?: string;
+    proses_at?: number;
+    proses_by?: string;
+    selesai_at?: number;
+    selesai_by?: string;
 }
 
 export interface ResepObatItemM {

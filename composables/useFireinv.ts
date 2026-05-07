@@ -1057,18 +1057,15 @@ export const setStokObat = async (payload: {
 export const updateStatusResep = async (data: resepObatM) => {
     const db = useFirestore();
     const auth = getAuth();
-
     try {
         await runTransaction(db, async (transaction) => {
             const resepRef = doc(db, "resep_obat", data.id_resep!);
             const resepSnap = await transaction.get(resepRef);
-
             if (!resepSnap.exists()) {
                 throw new Error("Resep tidak ditemukan");
             }
 
             const resepData = resepSnap.data();
-
 
             //GET DATA DULU
 
@@ -1102,15 +1099,37 @@ export const updateStatusResep = async (data: resepObatM) => {
                 }
             }
 
-
             //UPDATE RESEP
 
-            transaction.update(resepRef, {
+            const setresep = {
+                ...data,
                 status: data.status,
                 updated_at: moment().unix(),
                 updated_by: auth.currentUser?.email,
-            });
+            }
 
+            const pemeriksaanResepRef = doc(
+                db,
+                "pemeriksaan",
+                data.id_pemeriksaan,
+                "resep_obat",
+                data.id_resep!
+            );
+
+
+            const pendaftaranPemeriksaanResepRef = doc(
+                db,
+                "pendaftaran",
+                data.id_pendaftaran,
+                "pemeriksaan",
+                data.id_pemeriksaan,
+                "resep_obat",
+                data.id_resep!
+            );
+
+            transaction.update(resepRef, setresep);
+            transaction.update(pemeriksaanResepRef, setresep);
+            transaction.update(pendaftaranPemeriksaanResepRef, setresep);
 
             //UPDATE BILLING
 
@@ -1123,7 +1142,6 @@ export const updateStatusResep = async (data: resepObatM) => {
                     updated_by: auth.currentUser?.email,
                 });
             }
-
 
             //MUTASI + STOK
 
@@ -1173,7 +1191,6 @@ export const updateStatusResep = async (data: resepObatM) => {
                 }
             }
 
-
             //HISTORY
 
             const historyRef = doc(collection(db, "history_pasien"));
@@ -1191,7 +1208,6 @@ export const updateStatusResep = async (data: resepObatM) => {
                 created_at: moment().unix(),
                 created_by: auth.currentUser?.email,
             });
-
 
             //AUDIT LOG
 

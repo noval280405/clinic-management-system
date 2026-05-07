@@ -215,6 +215,8 @@
 </template>
 
 <script setup lang="ts">
+import moment from "moment";
+
 definePageMeta({ layout: "admin" });
 
 const notificationStore = useNotificationStore();
@@ -245,7 +247,8 @@ async function masukkeantrian() {
     return notificationStore.showError("masuk antrian dibatalkan");
   }
   useloadingStore().setLoading(true);
-
+  detailResepObat.value.antrian_at = moment().unix();
+  detailResepObat.value.antrian_by = useUserStore().getEmail;
   const res = await updateStatusResep({
     ...detailResepObat.value,
     status: "Antrian",
@@ -272,7 +275,8 @@ async function prosesobat() {
     return notificationStore.showError("proses obat dibatalkan");
   }
   useloadingStore().setLoading(true);
-
+  detailResepObat.value.proses_at = moment().unix();
+  detailResepObat.value.proses_by = useUserStore().getEmail;
   const res = await updateStatusResep({
     ...detailResepObat.value,
     status: "Diproses",
@@ -299,7 +303,8 @@ async function selesai() {
     return notificationStore.showError("selesai dibatalkan");
   }
   useloadingStore().setLoading(true);
-
+  detailResepObat.value.selesai_at = moment().unix();
+  detailResepObat.value.selesai_by = useUserStore().getEmail;
   console.log(detailResepObat.value, "cek data");
   const res = await updateStatusResep({
     ...detailResepObat.value,
