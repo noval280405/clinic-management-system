@@ -1134,6 +1134,37 @@ export const updateStatusResep = async (data: resepObatM) => {
             //UPDATE BILLING
 
             const billingRef = doc(db, "billing", data.id_billing!);
+            const pendaftaranRef = doc(
+                db,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const polipendaftaranRef = doc(
+                db,
+                "m_poli",
+                data.id_poli,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const dokterpendaftaranRef = doc(
+                db,
+                "m_dokter",
+                data.id_dokter,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
+
+            const polidokterpendaftaranRef = doc(db, "m_poli", data.id_poli, "m_dokter", data.id_dokter, "pendaftaran", data.id_pendaftaran!);
+
+            const pasienpendaftaranRef = doc(
+                db,
+                "m_pasien",
+                data.id_pasien,
+                "pendaftaran",
+                data.id_pendaftaran!
+            );
 
             if (data.status === "Selesai") {
                 transaction.update(billingRef, {
@@ -1141,6 +1172,18 @@ export const updateStatusResep = async (data: resepObatM) => {
                     updated_at: moment().unix(),
                     updated_by: auth.currentUser?.email,
                 });
+
+                const setpendaftaran = {
+                    status: "Billing",
+                    updated_at: moment().unix(),
+                    updated_by: auth.currentUser?.email,
+                }
+                // UPDATE PENDAFTARAN
+                transaction.update(pendaftaranRef, setpendaftaran);
+                transaction.update(polipendaftaranRef, setpendaftaran);
+                transaction.update(dokterpendaftaranRef, setpendaftaran);
+                transaction.update(polidokterpendaftaranRef, setpendaftaran);
+                transaction.update(pasienpendaftaranRef, setpendaftaran);
             }
 
             //MUTASI + STOK
