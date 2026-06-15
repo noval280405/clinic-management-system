@@ -1,211 +1,513 @@
 <template>
-  <v-container fluid class="pa-2" v-if="detailResepObat">
+  <!-- Background Slate-Light agar kartu di atasnya terlihat pop-out -->
+  <v-container
+    fluid
+    class="pa-6 bg-slate-lighten-5"
+    style="background-color: #f8fafc"
+    v-if="detailResepObat"
+  >
     <ConfirmationDialog ref="confirmationDialog" />
-    <!-- HEADER -->
-    <v-card class="rounded-2xl elevation-3 mb-2 header-gradient">
+
+    <!-- ================= MODERN FLOATING HEADER ================= -->
+    <v-card
+      class="rounded-2xl border-none mb-6 text-white position-relative overflow-hidden"
+      style="
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.3);
+      "
+    >
+      <!-- Elemen Dekoratif Lingkaran Modern di Background Header -->
+      <div
+        class="position-absolute"
+        style="
+          right: -20px;
+          top: -20px;
+          width: 150px;
+          height: 150px;
+          background: rgba(255, 255, 255, 0.08);
+          rounded: 50%;
+        "
+      ></div>
+
       <v-card-text
-        class="d-flex justify-space-between align-center pa-4 flex-wrap ga-2"
+        class="pa-6 d-flex justify-space-between align-center flex-wrap ga-4 position-relative"
       >
-        <div class="d-flex align-center ga-3">
-          <div class="icon-wrap">
-            <v-icon color="white">mdi-pill</v-icon>
-          </div>
+        <div class="d-flex align-center ga-4">
+          <!-- Avatar dengan Efek Kaca Transparan Lembut -->
+          <v-avatar
+            size="60"
+            class="elevation-0"
+            style="
+              background: rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(4px);
+            "
+          >
+            <v-icon color="white" size="28">mdi-pill</v-icon>
+          </v-avatar>
 
           <div>
-            <div class="text-h6 font-weight-bold">Detail Resep Obat</div>
-            <div class="text-caption text-white-opacity">
+            <div
+              class="text-h5 font-weight-black tracking-wide"
+              style="letter-spacing: -0.5px !important"
+            >
+              Detail Resep Obat
+            </div>
+            <div
+              class="text-body-2 text-blue-100 mt-1 d-flex align-center font-weight-medium"
+            >
+              <v-icon size="16" class="mr-2" color="blue-200"
+                >mdi-calendar-clock</v-icon
+              >
               {{ rubahtanggalunix(detailResepObat.created_at) }}
             </div>
           </div>
         </div>
 
-        <v-chip class="chip-glow font-weight-bold" size="small">
-          {{ detailResepObat.id_resep }}
-        </v-chip>
+        <!-- ID Resep Bergaya Label Tag Modern -->
+        <div class="d-flex flex-column align-end">
+          <span
+            class="text-caption text-blue-200 font-weight-bold uppercase tracking-wider"
+            >NOMOR RESEP</span
+          >
+          <span
+            class="text-h6 font-weight-black px-4 py-1 rounded-xl mt-1 text-white"
+            style="background: rgba(0, 0, 0, 0.2)"
+          >
+            {{ detailResepObat.id_resep }}
+          </span>
+        </div>
       </v-card-text>
     </v-card>
 
-    <v-row dense>
-      <!-- LEFT -->
-      <v-col cols="12" md="8">
-        <!-- PATIENT INFO -->
-        <v-card class="rounded-2xl elevation-1 mb-2 card-glass">
-          <v-card-text class="py-4">
-            <v-row dense>
-              <v-col cols="12" sm="4">
-                <div class="label">Pasien</div>
-                <div class="value">{{ detailResepObat.nama_pasien }}</div>
-              </v-col>
-
-              <v-col cols="12" sm="4">
-                <div class="label">Dokter</div>
-                <div class="value">{{ detailResepObat.nama_dokter }}</div>
-              </v-col>
-
-              <v-col cols="12" sm="4">
-                <div class="label">Poli</div>
-                <v-chip size="x-small" class="chip-soft">
-                  {{ detailResepObat.nama_poli }}
-                </v-chip>
-              </v-col>
-
-              <v-col cols="12" class="mt-2">
-                <div class="label">Diagnosa</div>
-                <div class="value text-red-darken-2">
-                  {{ detailResepObat.diagnosa }}
+    <v-row class="ga-0">
+      <!-- ================= SISI KIRI (INFO & DROGS LIST) ================= -->
+      <v-col cols="12" md="8" class="pa-2">
+        <!-- CARD IDENTITAS PASIEN: MODERN CLEAN MINIMALIST -->
+        <v-card
+          class="rounded-2xl border-none mb-5 bg-white"
+          style="box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.03)"
+        >
+          <v-card-text class="pa-6">
+            <v-row class="ga-y-4">
+              <v-col cols="12" sm="4" class="d-flex align-center ga-3">
+                <v-avatar color="blue-lighten-5" class="rounded-xl" size="48">
+                  <v-icon color="blue-darken-2" size="22"
+                    >mdi-account-circle-outline</v-icon
+                  >
+                </v-avatar>
+                <div>
+                  <div
+                    class="text-caption text-grey-darken-1 font-weight-bold text-uppercase tracking-wider"
+                  >
+                    Pasien
+                  </div>
+                  <div class="text-h6 font-weight-black text-slate-900 mt-0.5">
+                    {{ detailResepObat.nama_pasien }}
+                  </div>
                 </div>
               </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
 
-        <!-- OBAT LIST -->
-        <v-card class="rounded-2xl elevation-2">
-          <v-card-title class="text-subtitle-2 font-weight-bold">
-            Daftar Obat
-          </v-card-title>
-
-          <v-divider />
-
-          <v-card-text class="pa-2">
-            <v-row dense>
-              <v-col
-                v-for="(item, i) in detailResepObat.items_obat"
-                :key="i"
-                cols="12"
-                sm="6"
-              >
-                <v-card class="drug-card rounded-xl pa-3" variant="flat">
-                  <!-- HEADER -->
-                  <div class="d-flex justify-space-between align-start">
-                    <div>
-                      <div class="drug-title">
-                        {{ item.nama_obat }}
-                      </div>
-                      <div class="drug-sub">
-                        {{ item.id_obat }}
-                      </div>
-                    </div>
-
-                    <v-chip size="x-small" class="qty-chip">
-                      x{{ item.jumlah }}
-                    </v-chip>
+              <v-col cols="12" sm="4" class="d-flex align-center ga-3">
+                <v-avatar color="purple-lighten-5" class="rounded-xl" size="48">
+                  <v-icon color="purple-darken-2" size="22">mdi-doctor</v-icon>
+                </v-avatar>
+                <div>
+                  <div
+                    class="text-caption text-grey-darken-1 font-weight-bold text-uppercase tracking-wider"
+                  >
+                    Dokter
                   </div>
+                  <div class="text-h6 font-weight-bold text-slate-800 mt-0.5">
+                    {{ detailResepObat.nama_dokter }}
+                  </div>
+                </div>
+              </v-col>
 
-                  <div class="divider-soft my-2"></div>
+              <v-col cols="12" sm="4" class="d-flex align-center ga-3">
+                <v-avatar color="indigo-lighten-5" class="rounded-xl" size="48">
+                  <v-icon color="indigo-darken-2" size="22"
+                    >mdi-office-building-marker-outline</v-icon
+                  >
+                </v-avatar>
+                <div>
+                  <div
+                    class="text-caption text-grey-darken-1 font-weight-bold text-uppercase tracking-wider"
+                  >
+                    Poliklinik
+                  </div>
+                  <div
+                    class="text-body-1 font-weight-black text-indigo-darken-3 mt-0.5"
+                  >
+                    {{ detailResepObat.nama_poli }}
+                  </div>
+                </div>
+              </v-col>
 
-                  <!-- DETAIL -->
-                  <div class="drug-grid">
-                    <div>
-                      <span>Dosis</span>
-                      <b>{{ item.dosis || "-" }}</b>
+              <!-- Diagnosa dengan Desain Border Kiri Melengkung Premium -->
+              <v-col cols="12" class="mt-2">
+                <v-card
+                  variant="flat"
+                  class="rounded-2xl pa-4 text-body-1 text-slate-800 font-weight-medium d-flex align-start ga-3"
+                  style="
+                    background-color: #fef2f2;
+                    border-left: 5px solid #ef4444 !important;
+                  "
+                >
+                  <v-icon color="red-darken-1" size="24" class="mt-0.5"
+                    >mdi-shield-alert-outline</v-icon
+                  >
+                  <div>
+                    <div
+                      class="text-caption text-red-darken-3 font-weight-black text-uppercase tracking-wide"
+                    >
+                      Diagnosa Medis
                     </div>
-
-                    <div>
-                      <span>Harga</span>
-                      <b>Rp {{ rupiah(item.harga || 0) }}</b>
-                    </div>
-
-                    <div>
-                      <span>Subtotal</span>
-                      <b class="text-green-darken-2">
-                        Rp {{ rupiah(item.subtotal || 0) }}
-                      </b>
+                    <div
+                      class="mt-1 font-weight-bold text-red-darken-4"
+                      style="line-height: 1.6"
+                    >
+                      {{
+                        detailResepObat.diagnosa ||
+                        "Tidak ada data diagnosa terlampir."
+                      }}
                     </div>
                   </div>
                 </v-card>
               </v-col>
             </v-row>
-
-            <div
-              v-if="!detailResepObat.items_obat?.length"
-              class="text-center text-grey py-6"
-            >
-              <v-icon size="40">mdi-pill-off</v-icon>
-              <div>Belum ada obat</div>
-            </div>
           </v-card-text>
-          <v-card-actions class="d-flex flex-wrap gap-2 pa-3">
+        </v-card>
+
+        <!-- LIST DAFTAR OBAT: ROW CARDS WITH MODERN COMPACT BADGES -->
+        <v-card
+          class="rounded-2xl border-none bg-white"
+          style="box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.03)"
+        >
+          <div
+            class="px-6 pt-5 pb-4 text-h6 font-weight-black text-slate-900 d-flex align-center"
+          >
+            <v-avatar color="teal-lighten-5" size="32" class="mr-3 rounded-lg">
+              <v-icon color="teal-darken-2" size="18">mdi-pill</v-icon>
+            </v-avatar>
+            Daftar Racikan Obat
+          </div>
+          <v-divider class="border-opacity-25" />
+
+          <v-card-text class="pa-4 bg-white">
+            <v-card
+              variant="flat"
+              class="rounded-xl overflow-hidden"
+              style="border: 1px solid #e2e8f0 !important"
+            >
+              <v-list
+                class="pa-0"
+                lines="one"
+                v-if="detailResepObat.items_obat?.length"
+              >
+                <v-list-item
+                  v-for="(item, i) in detailResepObat.items_obat"
+                  :key="i"
+                  class="pa-4 bg-white"
+                  style="border-bottom: 1px solid #f1f5f9 !important"
+                >
+                  <div
+                    class="d-flex align-center justify-space-between flex-wrap ga-3 w-100"
+                  >
+                    <div
+                      class="d-flex align-center ga-3"
+                      style="min-width: 200px"
+                    >
+                      <v-avatar
+                        color="blue-lighten-5"
+                        size="36"
+                        class="rounded-lg"
+                      >
+                        <v-icon color="blue-darken-2" size="18"
+                          >mdi-pill</v-icon
+                        >
+                      </v-avatar>
+                      <div>
+                        <div
+                          class="text-body-1 font-weight-black text-slate-900 leading-tight"
+                        >
+                          {{ item.nama_obat }}
+                        </div>
+                        <div
+                          class="text-caption text-grey-darken-1 font-weight-medium mt-0.5"
+                        >
+                          Kode:
+                          <span class="font-mono">{{ item.id_obat }}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="min-width: 140px">
+                      <div
+                        class="text-caption text-grey font-weight-bold text-uppercase tracking-wider"
+                        style="font-size: 10px !important"
+                      >
+                        Aturan & Dosis
+                      </div>
+                      <div
+                        class="text-body-2 font-weight-black text-purple-darken-3 d-flex align-center mt-0.5"
+                      >
+                        <v-icon size="14" class="mr-1" color="purple-darken-2"
+                          >mdi-clock-outline</v-icon
+                        >
+                        {{ item.dosis || "-" }}
+                      </div>
+                    </div>
+
+                    <div class="text-sm-center" style="min-width: 80px">
+                      <div
+                        class="text-caption text-grey font-weight-bold text-uppercase tracking-wider"
+                        style="font-size: 10px !important"
+                      >
+                        Jumlah
+                      </div>
+                      <v-chip
+                        size="x-small"
+                        color="slate-700"
+                        variant="flat"
+                        class="font-weight-black text-white px-2 mt-1"
+                      >
+                        {{ item.jumlah }} Pcs
+                      </v-chip>
+                    </div>
+
+                    <div class="text-sm-right" style="min-width: 100px">
+                      <div
+                        class="text-caption text-grey font-weight-bold text-uppercase tracking-wider"
+                        style="font-size: 10px !important"
+                      >
+                        Satuan
+                      </div>
+                      <div
+                        class="text-body-2 font-weight-medium text-slate-600 mt-0.5"
+                      >
+                        Rp{{ rupiah(item.harga || 0) }}
+                      </div>
+                    </div>
+
+                    <div class="text-sm-right" style="min-width: 120px">
+                      <div
+                        class="text-caption text-grey font-weight-bold text-uppercase tracking-wider"
+                        style="font-size: 10px !important"
+                      >
+                        Subtotal
+                      </div>
+                      <div
+                        class="text-body-1 font-weight-black text-slate-900 mt-0.5"
+                      >
+                        Rp{{ rupiah(item.subtotal || 0) }}
+                      </div>
+                    </div>
+                  </div>
+                </v-list-item>
+
+                <!-- ================= BARIS GRAND TOTAL CLEAN LIGHT STYLE ================= -->
+                <div
+                  class="d-flex justify-space-between align-center pa-4"
+                  style="
+                    background-color: #f1f5f9;
+                    border-top: 2px solid #e2e8f0;
+                  "
+                >
+                  <div class="d-flex align-center ga-3">
+                    <!-- Kotak Ikon Halus -->
+                    <v-avatar
+                      color="green-lighten-5"
+                      size="36"
+                      class="rounded-lg"
+                    >
+                      <v-icon color="green-darken-2"
+                        >mdi-receipt-text-outline</v-icon
+                      >
+                    </v-avatar>
+                    <div>
+                      <div
+                        class="text-caption text-grey-darken-1 font-weight-bold text-uppercase tracking-wider"
+                        style="font-size: 10px !important; line-height: 1"
+                      >
+                        Ringkasan Pembayaran
+                      </div>
+                      <div
+                        class="text-body-1 font-weight-black text-slate-900 mt-0.5"
+                      >
+                        Grand Total Resep
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Nominal Uang yang Bersih, Tegas, dan Nyala Proporsional -->
+                  <div class="text-right">
+                    <h3
+                      class="text-h4 black text-green-darken-2"
+                      style="
+                        font-family: monospace, sans-serif !important;
+                        letter-spacing: -1px;
+                      "
+                    >
+                      Rp {{ rupiah(detailResepObat.total_harga || 0) }}
+                    </h3>
+                  </div>
+                </div>
+              </v-list>
+
+              <div
+                v-else
+                class="text-center py-8 bg-white d-flex flex-column align-center justify-center"
+              >
+                <v-icon size="36" color="grey-lighten-1" class="mb-1"
+                  >mdi-tray-minus</v-icon
+                >
+                <div class="text-body-2 font-weight-bold text-slate-700">
+                  Resep Kosong
+                </div>
+                <div class="text-caption text-grey">
+                  Belum ada obat yang diinput ke resep ini.
+                </div>
+              </div>
+            </v-card>
+          </v-card-text>
+
+          <v-divider class="border-opacity-25" />
+
+          <v-card-actions
+            class="d-flex flex-wrap ga-1.5 pa-3 bg-white rounded-b-xl justify-end"
+          >
+            <!-- TOMBOL 1: KIRIM KE ANTRIAN -->
             <v-btn
-              color="orange"
               :disabled="detailResepObat.status !== 'Draft'"
               variant="flat"
-              size="small"
-              prepend-icon="mdi-clock-outline"
+              color="orange-darken-3"
+              style="
+                font-weight: 700;
+                border-radius: 6px;
+                height: 32px;
+                text-transform: none;
+                letter-spacing: 0.2px;
+              "
+              class="text-caption px-3 text-white"
               @click="masukkeantrian()"
             >
-              Masuk Antrian
+              <!-- Menggunakan icon universal mdi-arrow-right-bold-circle-outline -->
+              <v-icon size="16" class="mr-1.5"
+                >mdi-arrow-right-bold-circle-outline</v-icon
+              >
+              Kirim ke Antrian
             </v-btn>
 
+            <!-- TOMBOL 2: PROSES RACIK OBAT -->
             <v-btn
-              color="blue"
               :disabled="detailResepObat.status !== 'Antrian'"
               variant="flat"
-              size="small"
-              prepend-icon="mdi-progress-check"
+              color="blue-darken-3"
+              style="
+                font-weight: 700;
+                border-radius: 6px;
+                height: 32px;
+                text-transform: none;
+                letter-spacing: 0.2px;
+              "
+              class="text-caption px-3 text-white"
               @click="prosesobat()"
             >
-              Proses Obat
+              <!-- Menggunakan icon universal mdi-cached (proses/loop) atau mdi-play-circle-outline -->
+              <v-icon size="16" class="mr-1.5">mdi-cached</v-icon>
+              Proses Racik Obat
             </v-btn>
 
+            <!-- TOMBOL 3: SELESAI & SERAHKAN -->
             <v-btn
-              color="green"
               :disabled="detailResepObat.status !== 'Diproses'"
               variant="flat"
-              size="small"
-              prepend-icon="mdi-check-circle"
+              style="
+                background: #10b981 !important;
+                color: white !important;
+                font-weight: 700;
+                border-radius: 6px;
+                height: 32px;
+                text-transform: none;
+                letter-spacing: 0.2px;
+              "
+              class="text-caption px-3.5"
               @click="selesai()"
             >
-              Selesai
+              <v-icon size="16" class="mr-1.5">mdi-check-all</v-icon>
+              Selesai & Serahkan
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
 
-      <!-- RIGHT -->
-      <v-col cols="12" md="4">
-        <!-- TOTAL -->
-        <v-card class="rounded-2xl elevation-3 total-card mb-2">
-          <v-card-text class="text-center pa-5">
-            <div class="text-caption text-grey">TOTAL BIAYA</div>
+      <!-- ================= SISI KANAN (TOTALAN & AUDIT MANIFEST) ================= -->
+      <v-col cols="12" md="4" class="pa-2">
+        <!-- CARD TOTAL BIAYA: HIGH-END SAAS STYLE CARD -->
 
-            <div class="total-price">
-              Rp {{ rupiah(detailResepObat.total_harga || 0) }}
+        <!-- KOTAK AUDIT DATA METADATA SISTEM -->
+        <v-card
+          class="rounded-2xl border-none bg-white"
+          style="box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.03)"
+          variant="flat"
+        >
+          <div
+            class="px-5 pt-5 pb-3 text-subtitle-1 font-weight-black text-slate-900 d-flex align-center"
+          >
+            <v-icon class="mr-2" color="slate-600" size="20"
+              >mdi-fingerprint</v-icon
+            >
+            Metadata Sistem & Validasi
+          </div>
+          <v-divider class="border-opacity-25" />
+
+          <v-card-text class="pa-5 text-body-2 text-slate-600">
+            <div
+              class="d-flex justify-space-between align-center py-3 border-b border-slate-100"
+              style="border-bottom: 1px solid #f1f5f9 !important"
+            >
+              <span class="font-weight-medium text-grey-darken-1"
+                >ID Kode Pasien</span
+              >
+              <span
+                class="font-weight-black text-slate-900 font-mono bg-slate-100 px-2 py-0.5 rounded"
+                >{{ detailResepObat.id_pasien }}</span
+              >
             </div>
 
-            <v-chip class="mt-2 chip-success" size="small">
-              READY TO PRINT
-            </v-chip>
-          </v-card-text>
-        </v-card>
-
-        <!-- META -->
-        <v-card class="rounded-2xl elevation-1">
-          <v-card-title class="text-subtitle-2 font-weight-bold">
-            Informasi
-          </v-card-title>
-
-          <v-divider />
-
-          <v-card-text class="text-caption pa-3">
-            <div class="meta-item">
-              <span>ID Pasien</span>
-              <b>{{ detailResepObat.id_pasien }}</b>
+            <div
+              class="d-flex justify-space-between align-center py-3 border-b border-slate-100"
+              style="border-bottom: 1px solid #f1f5f9 !important"
+            >
+              <span class="font-weight-medium text-grey-darken-1"
+                >ID Penanggung Jawab</span
+              >
+              <span
+                class="font-weight-black text-slate-900 font-mono bg-slate-100 px-2 py-0.5 rounded"
+                >{{ detailResepObat.id_dokter }}</span
+              >
             </div>
 
-            <div class="meta-item">
-              <span>ID Dokter</span>
-              <b>{{ detailResepObat.id_dokter }}</b>
+            <div
+              class="d-flex justify-space-between align-center py-3 border-b border-slate-100"
+              style="border-bottom: 1px solid #f1f5f9 !important"
+            >
+              <span class="font-weight-medium text-grey-darken-1"
+                >Nomor Sesi Periksa</span
+              >
+              <span
+                class="font-weight-black text-slate-900 font-mono bg-slate-100 px-2 py-0.5 rounded"
+                >{{ detailResepObat.id_pemeriksaan }}</span
+              >
             </div>
 
-            <div class="meta-item">
-              <span>ID Pemeriksaan</span>
-              <b>{{ detailResepObat.id_pemeriksaan }}</b>
-            </div>
-
-            <div class="meta-item">
-              <span>Created By</span>
-              <b>{{ detailResepObat.created_by }}</b>
+            <div class="d-flex justify-space-between align-center pt-3">
+              <span class="font-weight-medium text-grey-darken-1"
+                >Petugas Operator</span
+              >
+              <span class="font-weight-black text-blue-600">{{
+                detailResepObat.created_by
+              }}</span>
             </div>
           </v-card-text>
         </v-card>
