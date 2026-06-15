@@ -237,114 +237,195 @@
           Form Pemeriksaan Pasien
         </v-card-title>
 
-        <v-card-text class="pa-4">
-          <!-- ================= INFO PASIEN ================= -->
-          <v-alert
-            type="info"
-            variant="tonal"
-            density="comfortable"
-            class="mb-4"
+        <v-card-text class="pa-4 bg-grey-lighten-5">
+          <v-card
+            variant="flat"
+            class="mb-4 rounded-xl border-sm bg-blue-lighten-5 text-blue-darken-4 pa-3"
+            style="border-color: #bbdefb !important"
           >
-            {{ new_pemeriksaan.nama_pasien }} • Antrian
-            {{ detailPendaftaran.no_antrian }} •
-            {{ new_pemeriksaan.nama_poli }}
-          </v-alert>
+            <div
+              class="d-flex align-center justify-space-between flex-wrap gap-2"
+            >
+              <div class="d-flex align-center">
+                <v-avatar
+                  color="blue-darken-1"
+                  size="32"
+                  class="mr-2 text-white font-weight-bold text-body-2"
+                >
+                  {{ detailPendaftaran.no_antrian }}
+                </v-avatar>
+                <div>
+                  <div class="text-subtitle-2 font-weight-black">
+                    {{ new_pemeriksaan.nama_pasien }}
+                  </div>
+                  <div class="text-caption text-grey-darken-2">
+                    {{ new_pemeriksaan.nama_poli }}
+                  </div>
+                </div>
+              </div>
+              <v-chip
+                size="small"
+                color="blue-darken-2"
+                variant="elevated"
+                class="font-weight-bold text-white"
+              >
+                Sedang Diperiksa
+              </v-chip>
+            </div>
+          </v-card>
 
-          <!-- ================= ANAMNESA ================= -->
-          <div class="text-subtitle-2 font-weight-bold mb-2">Anamnesa</div>
-
+          <div class="d-flex align-center mb-2 mt-4">
+            <v-avatar size="24" color="teal-lighten-5" class="mr-2">
+              <v-icon color="teal-darken-1" size="16"
+                >mdi-clipboard-text-outline</v-icon
+              >
+            </v-avatar>
+            <div class="text-subtitle-2 font-weight-bold text-grey-darken-3">
+              Anamnesa
+            </div>
+          </div>
           <a-textarea
             v-model="new_pemeriksaan.anamnesa"
-            label="Keluhan Pasien"
+            placeholder="Tuliskan keluhan utama pasien, riwayat penyakit, atau keluhan saat ini..."
             rows="2"
             class="mb-4"
+            variant="outlined"
           />
 
-          <!-- ================= PEMERIKSAAN FISIK ================= -->
-          <div class="text-subtitle-2 font-weight-bold mb-2">
-            Pemeriksaan Fisik
+          <div class="d-flex align-center mb-2 mt-4">
+            <v-avatar size="24" color="indigo-lighten-5" class="mr-2">
+              <v-icon color="indigo-darken-1" size="16">mdi-heart-pulse</v-icon>
+            </v-avatar>
+            <div class="text-subtitle-2 font-weight-bold text-grey-darken-3">
+              Pemeriksaan Fisik / Tanda Vital
+            </div>
           </div>
 
-          <v-row dense>
-            <v-col cols="6">
-              <a-text-field
-                label="Tekanan Darah"
-                v-model="new_pemeriksaan.tekanan_darah"
-                prepend-inner-icon="mdi-heart-pulse"
-              />
-            </v-col>
+          <v-card
+            class="pa-3 rounded-xl border-sm mb-2 bg-white"
+            variant="flat"
+            style="border-color: #e0e0e0 !important"
+          >
+            <v-row dense>
+              <v-col cols="6" sm="3">
+                <a-text-field
+                  label="Tekanan Darah"
+                  v-model="new_pemeriksaan.tekanan_darah"
+                  prepend-inner-icon="mdi-heart-pulse"
+                  placeholder="120/80"
+                  suffix="mmHg"
+                />
+              </v-col>
 
-            <v-col cols="6">
-              <a-text-field
-                label="Suhu (°C)"
-                v-model="new_pemeriksaan.suhu_tubuh"
-                prepend-inner-icon="mdi-thermometer"
-              />
-            </v-col>
+              <v-col cols="6" sm="3">
+                <a-text-field
+                  label="Suhu Tubuh"
+                  v-model="new_pemeriksaan.suhu_tubuh"
+                  prepend-inner-icon="mdi-thermometer"
+                  placeholder="36.5"
+                  suffix="°C"
+                />
+              </v-col>
 
-            <v-col cols="6">
-              <a-text-field
-                label="Berat (kg)"
-                v-model="new_pemeriksaan.berat_badan"
-              />
-            </v-col>
+              <v-col cols="6" sm="3">
+                <a-text-field
+                  label="Berat Badan"
+                  v-model="new_pemeriksaan.berat_badan"
+                  prepend-inner-icon="mdi-scale-bathroom"
+                  placeholder="60"
+                  suffix="kg"
+                />
+              </v-col>
 
-            <v-col cols="6">
-              <a-text-field
-                label="Tinggi (cm)"
-                v-model="new_pemeriksaan.tinggi_badan"
-              />
-            </v-col>
-          </v-row>
+              <v-col cols="6" sm="3">
+                <a-text-field
+                  label="Tinggi Badan"
+                  v-model="new_pemeriksaan.tinggi_badan"
+                  prepend-inner-icon="mdi-human-male-height"
+                  placeholder="165"
+                  suffix="cm"
+                />
+              </v-col>
+            </v-row>
+          </v-card>
 
-          <!-- BMI -->
-          <v-alert v-if="bmi" type="info" density="compact" class="mt-2 mb-4">
-            BMI: <b>{{ bmi }}</b> ({{ kategoriBMI }})
+          <v-alert
+            v-if="bmi"
+            :color="kategoriBMI === 'Normal' ? 'success' : 'warning'"
+            variant="tonal"
+            density="compact"
+            class="rounded-lg mb-4"
+            icon="mdi-calculator-variant-outline"
+          >
+            Status BMI Pasien: <b class="text-body-2">{{ bmi }}</b> ({{
+              kategoriBMI
+            }})
           </v-alert>
 
-          <!-- ================= DIAGNOSA ================= -->
-          <div class="text-subtitle-2 font-weight-bold mb-2">Diagnosa</div>
+          <v-divider class="my-4 border-opacity-25"></v-divider>
 
+          <div class="d-flex align-center mb-2">
+            <v-avatar size="24" color="red-lighten-5" class="mr-2">
+              <v-icon color="red-darken-1" size="16">mdi-stethoscope</v-icon>
+            </v-avatar>
+            <div class="text-subtitle-2 font-weight-bold text-grey-darken-3">
+              Diagnosa
+            </div>
+          </div>
           <a-textarea
             v-model="new_pemeriksaan.diagnosa"
+            placeholder="Masukkan hasil diagnosa medis atau kode ICD-10..."
             rows="2"
             class="mb-4"
+            variant="outlined"
           />
 
-          <!-- ================= TINDAKAN ================= -->
-          <div class="text-subtitle-2 font-weight-bold mb-2">Tindakan</div>
-
+          <div class="d-flex align-center mb-2">
+            <v-avatar size="24" color="orange-lighten-5" class="mr-2">
+              <v-icon color="orange-darken-2" size="16">mdi-pill</v-icon>
+            </v-avatar>
+            <div class="text-subtitle-2 font-weight-bold text-grey-darken-3">
+              Tindakan / Terapi / Resep
+            </div>
+          </div>
           <a-textarea
             v-model="new_pemeriksaan.tindakan"
+            placeholder="Tuliskan tindakan medis, resep obat, atau terapi yang diberikan..."
             rows="2"
             class="mb-4"
+            variant="outlined"
           />
 
-          <!-- ================= STATUS ================= -->
-          <div class="text-subtitle-2 font-weight-bold mb-2">
-            Status Pemeriksaan
+          <v-divider class="my-4 border-opacity-25"></v-divider>
+
+          <div class="d-flex align-center mb-2">
+            <v-avatar size="24" color="blue-grey-lighten-5" class="mr-2">
+              <v-icon color="blue-grey-darken-1" size="16"
+                >mdi-note-text-outline</v-icon
+              >
+            </v-avatar>
+            <div class="text-subtitle-2 font-weight-bold text-grey-darken-3">
+              Catatan Tambahan
+            </div>
           </div>
-
-          <!-- <a-select
-            v-model="new_pemeriksaan.status"
-            :items="['Diperiksa', 'Selesai', 'Rujuk']"
-            class="mb-4"
-          /> -->
-
-          <!-- ================= CATATAN ================= -->
-          <div class="text-subtitle-2 font-weight-bold mb-2">
-            Catatan Tambahan
-          </div>
-
-          <a-textarea v-model="new_pemeriksaan.catatan" rows="2" />
+          <a-textarea
+            v-model="new_pemeriksaan.catatan"
+            placeholder="Catatan internal dokter, instruksi kontrol kembali, dsb..."
+            rows="2"
+            variant="outlined"
+          />
         </v-card-text>
 
         <!-- ACTION -->
         <v-card-actions class="bg-grey-lighten-4">
           <v-spacer />
-          <v-btn @click="data.dialogAdd = false" variant="text"> Batal </v-btn>
+          <v-btn @click="data.dialogAdd = false" color="red" variant="flat">
+            Batal
+          </v-btn>
 
-          <v-btn color="primary" @click="addPemeriksaan"> Simpan </v-btn>
+          <v-btn color="primary" variant="flat" @click="addPemeriksaan">
+            Simpan
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
