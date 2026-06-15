@@ -65,179 +65,317 @@
 
   <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '1120px' : '95%'"
+    transition="dialog-bottom-transition"
   >
-    <v-card class="rounded-lg">
+    <v-card
+      class="rounded-2xl border-none overflow-hidden pa-0"
+      style="
+        background-color: #f8fafc;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      "
+    >
       <v-card-title
-        class="px-4 text-subtitle-1 font-weight-bold bg-primary pa-3"
+        class="d-flex justify-space-between align-start pt-5 px-6 pb-4 text-white"
+        style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
       >
-        {{ titleaddedit }}
+        <div class="d-flex align-center ga-3">
+          <div class="d-flex flex-column">
+            <span
+              class="text-body-1 font-weight-black text-white tracking-wide"
+              style="line-height: 1; font-size: 1.5rem !important"
+            >
+              {{ titleaddedit }}
+            </span>
+          </div>
+        </div>
+
+        <v-btn
+          variant="text"
+          size="32"
+          color="white"
+          class="rounded-lg"
+          style="
+            background: rgba(255, 255, 255, 0.12);
+            min-width: 32px;
+            height: 32px;
+            padding: 0;
+          "
+          @click="data.dialogAdd = false"
+        >
+          <v-icon size="18">mdi-close</v-icon>
+        </v-btn>
       </v-card-title>
 
-      <v-card-text>
-        <!-- IDENTITAS -->
-        <div class="text-caption font-weight-bold mb-2">Identitas Pasien</div>
+      <v-card-text class="pa-6">
+        <v-row>
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex align-center ga-2 mb-2">
+                <v-icon color="blue-darken-3" size="18"
+                  >mdi-card-account-details</v-icon
+                >
+                <span
+                  class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                >
+                  01. Identitas Utama
+                </span>
+              </div>
 
-        <v-row dense>
-          <!-- <v-col cols="12" md="6">
-            <a-text-field
-              label="No RM"
-              v-model="new_pasien.no_rm"
-              placeholder="RM-2026-0001"
-            />
-          </v-col> -->
-
-          <v-col cols="12" md="6">
-            <a-text-field label="NIK" v-model="new_pasien.nik" />
+              <a-text-field
+                label="Nomor NIK (KTP)"
+                v-model="new_pasien.nik"
+                prepend-inner-icon="mdi-fingerprint"
+                variant="outlined"
+                density="comfortable"
+              />
+              <a-text-field
+                label="Nama Lengkap Pasien"
+                v-model="new_pasien.nama_pasien"
+                prepend-inner-icon="mdi-account-box-outline"
+                variant="outlined"
+                density="comfortable"
+              />
+              <a-select
+                label="Jenis Kelamin"
+                v-model="new_pasien.jenis_kelamin"
+                :items="['Laki-laki', 'Perempuan']"
+                prepend-inner-icon="mdi-gender-male-female"
+                variant="outlined"
+                density="comfortable"
+              />
+              <a-date-picker
+                label="Tanggal Lahir"
+                v-model="new_pasien.tanggal_lahir"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-card>
           </v-col>
 
-          <v-col cols="12">
-            <a-text-field
-              label="Nama Pasien"
-              v-model="new_pasien.nama_pasien"
-            />
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-1">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-text-box-search-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    02. Kontak & Alamat
+                  </span>
+                </div>
+                <a-text-field
+                  label="Nomor HP Aktif"
+                  v-model="new_pasien.no_hp"
+                  prepend-inner-icon="mdi-phone-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+                <a-text-field
+                  label="Alamat Email"
+                  v-model="new_pasien.email"
+                  prepend-inner-icon="mdi-email-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+                <a-text-field
+                  label="Alamat Domisili Lengkap"
+                  v-model="new_pasien.alamat"
+                  prepend-inner-icon="mdi-map-marker-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+
+              <div class="d-flex flex-column ga-2 mt-3">
+                <div
+                  class="d-flex align-center ga-2 mb-1 pt-2"
+                  style="border-top: 1px dashed #e2e8f0"
+                >
+                  <v-icon color="blue-darken-3" size="17"
+                    >mdi-shield-check-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                    style="font-size: 11px"
+                  >
+                    03. Penjaminan
+                  </span>
+                </div>
+                <a-select
+                  label="Kategori Jenis Pasien"
+                  v-model="new_pasien.jenis_pasien"
+                  :items="['umum', 'bpjs', 'asuransi']"
+                  prepend-inner-icon="mdi-badge-account-horizontal-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+                <a-text-field
+                  v-if="new_pasien.jenis_pasien === 'bpjs'"
+                  label="Nomor Kartu BPJS Kesehatan"
+                  v-model="new_pasien.no_bpjs"
+                  prepend-inner-icon="mdi-credit-card-chip-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+                <a-text-field
+                  v-if="new_pasien.jenis_pasien === 'asuransi'"
+                  label="Nomor Polis Asuransi Swasta"
+                  v-model="new_pasien.no_asuransi"
+                  prepend-inner-icon="mdi-credit-card-chip-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+            </v-card>
           </v-col>
 
-          <v-col cols="6">
-            <a-select
-              label="Jenis Kelamin"
-              v-model="new_pasien.jenis_kelamin"
-              :items="['Laki-laki', 'Perempuan']"
-            />
-          </v-col>
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-1">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-heart-pulse</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    04. Informasi Medis
+                  </span>
+                </div>
+                <div class="d-flex ga-2">
+                  <a-select
+                    label="Gol. Darah"
+                    v-model="new_pasien.golongan_darah"
+                    :items="['A', 'B', 'AB', 'O']"
+                    prepend-inner-icon="mdi-water-outline"
+                    variant="outlined"
+                    density="comfortable"
+                    style="width: 105px; flex-grow: 0"
+                  />
+                  <a-text-field
+                    label="Alergi Obat/Makanan"
+                    v-model="new_pasien.alergi"
+                    placeholder="Tulis nihil jika tidak ada"
+                    prepend-inner-icon="mdi-alert-octagon-outline"
+                    variant="outlined"
+                    density="comfortable"
+                    style="flex-grow: 1"
+                  />
+                </div>
+                <a-text-field
+                  label="Catatan Penyakit Terdahulu"
+                  v-model="new_pasien.riwayat_penyakit"
+                  prepend-inner-icon="mdi-file-medical-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
 
-          <v-col cols="6">
-            <a-date-picker
-              label="Tanggal Lahir"
-              v-model="new_pasien.tanggal_lahir"
-            />
-          </v-col>
-        </v-row>
+              <div class="d-flex flex-column ga-2 mt-3">
+                <div
+                  class="d-flex align-center ga-2 mb-1 pt-2"
+                  style="border-top: 1px dashed #e2e8f0"
+                >
+                  <v-icon color="blue-darken-3" size="17"
+                    >mdi-account-supervisor-circle-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                    style="font-size: 11px"
+                  >
+                    05. Kontrol Darurat & Status
+                  </span>
+                </div>
+                <div class="d-flex ga-2">
+                  <a-text-field
+                    label="Nama Wali"
+                    v-model="new_pasien.nama_penanggung_jawab"
+                    prepend-inner-icon="mdi-account-outline"
+                    variant="outlined"
+                    density="comfortable"
+                  />
+                  <a-text-field
+                    label="Hubungan"
+                    v-model="new_pasien.hubungan_penanggung"
+                    prepend-inner-icon="mdi-account-heart-outline"
+                    variant="outlined"
+                    density="comfortable"
+                    style="width: 130px; flex-grow: 0"
+                  />
+                </div>
+                <a-text-field
+                  label="No HP Wali"
+                  v-model="new_pasien.no_hp_penanggung"
+                  prepend-inner-icon="mdi-phone-alert-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
 
-        <!-- KONTAK -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Kontak</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-text-field label="No HP" v-model="new_pasien.no_hp" />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field label="Email" v-model="new_pasien.email" />
-          </v-col>
-
-          <v-col cols="12">
-            <a-text-field label="Alamat" v-model="new_pasien.alamat" />
-          </v-col>
-        </v-row>
-
-        <!-- ADMINISTRASI -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Administrasi</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Jenis Pasien"
-              v-model="new_pasien.jenis_pasien"
-              :items="['umum', 'bpjs', 'asuransi']"
-            />
-          </v-col>
-
-          <v-col cols="6" v-if="new_pasien.jenis_pasien === 'bpjs'">
-            <a-text-field label="No BPJS" v-model="new_pasien.no_bpjs" />
-          </v-col>
-
-          <v-col cols="6" v-if="new_pasien.jenis_pasien === 'asuransi'">
-            <a-text-field
-              label="No Asuransi"
-              v-model="new_pasien.no_asuransi"
-            />
-          </v-col>
-        </v-row>
-
-        <!-- MEDIS -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">
-          Informasi Medis
-        </div>
-
-        <v-row dense>
-          <v-col cols="4">
-            <a-select
-              label="Gol. Darah"
-              v-model="new_pasien.golongan_darah"
-              :items="['A', 'B', 'AB', 'O']"
-            />
-          </v-col>
-
-          <v-col cols="8">
-            <a-text-field label="Alergi" v-model="new_pasien.alergi" />
-          </v-col>
-
-          <v-col cols="12">
-            <a-text-field
-              label="Riwayat Penyakit"
-              v-model="new_pasien.riwayat_penyakit"
-            />
-          </v-col>
-        </v-row>
-
-        <!-- PENANGGUNG -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">
-          Penanggung Jawab
-        </div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-text-field
-              label="Nama"
-              v-model="new_pasien.nama_penanggung_jawab"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
-              label="Hubungan"
-              v-model="new_pasien.hubungan_penanggung"
-            />
-          </v-col>
-
-          <v-col cols="12">
-            <a-text-field label="No HP" v-model="new_pasien.no_hp_penanggung" />
-          </v-col>
-        </v-row>
-
-        <!-- STATUS -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Status</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Status Pasien"
-              v-model="new_pasien.status"
-              :items="['aktif', 'nonaktif']"
-            />
+                <a-select
+                  label="Status Akun Sistem"
+                  v-model="new_pasien.status"
+                  :items="['aktif', 'nonaktif']"
+                  prepend-inner-icon="mdi-list-status"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
 
-      <v-card-actions class="pa-3 bg-grey-lighten-4">
+      <v-card-actions
+        class="px-6 pb-4 pt-2 d-flex justify-end ga-2"
+        style="background-color: #f1f5f9; border-top: 1px solid #e2e8f0"
+      >
         <v-btn
-          variant="flat"
-          color="grey-darken-2"
+          variant="text"
+          color="grey-darken-3"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0;
+          "
+          class="text-caption px-5"
           @click="data.dialogAdd = false"
-          class="text-capitalize px-3"
-          size="small"
         >
           Batal
         </v-btn>
 
         <v-btn
-          color="primary"
-          @click="validate"
+          color="blue-darken-3"
           variant="flat"
-          class="text-capitalize px-3"
-          size="small"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+          "
+          class="text-caption px-5 text-white"
+          @click="validate"
         >
+          <v-icon size="14" class="mr-1.5"
+            >mdi-content-save-check-outline</v-icon
+          >
           {{ bottomAddEdit }}
         </v-btn>
       </v-card-actions>
