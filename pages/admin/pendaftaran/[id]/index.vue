@@ -2,109 +2,229 @@
   <v-container class="pa-3" fluid v-if="detailPendaftaran">
     <ConfirmationDialog ref="confirmationDialog" />
 
-    <!-- HERO ANTRIAN -->
-    <v-card class="hero-card mb-3 rounded-xl">
-      <div class="text-center py-4">
-        <div class="text-caption text-white mb-1">Nomor Antrian</div>
+    <v-card
+      variant="outlined"
+      class="rounded-xl border-grey-lighten-2 bg-white elevation-1"
+    >
+      <v-card-title
+        class="mb-4 text-center py-6 d-block rounded-t-xl"
+        style="
+          background: linear-gradient(135deg, #0d47a1 0%, #1e88e5 100%);
+          overflow: hidden;
+          position: relative;
+          white-space: normal;
+        "
+      >
+        <div
+          style="
+            position: absolute;
+            top: -40px;
+            right: -20px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(
+              circle,
+              rgba(255, 255, 255, 0.15) 0%,
+              rgba(255, 255, 255, 0) 70%
+            );
+            border-radius: 50%;
+          "
+        ></div>
+        <div
+          style="
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+          "
+        ></div>
 
-        <div class="text-h1 font-weight-bold text-white">
+        <div
+          class="text-caption text-blue-lighten-4 font-weight-bold tracking-wider text-uppercase"
+        >
+          Nomor Antrian
+        </div>
+
+        <div class="text-h2 font-weight-black text-white my-1 tracking-tight">
           {{ detailPendaftaran.no_antrian }}
         </div>
 
-        <v-chip size="small" class="mt-2" color="white" text-color="primary">
+        <v-chip
+          size="small"
+          class="font-weight-bold text-white px-4 mt-1"
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+          "
+        >
+          <v-icon start size="10" class="mr-1" color="amber-lighten-3"
+            >mdi-circle</v-icon
+          >
           {{ detailPendaftaran.status }}
         </v-chip>
-      </div>
-    </v-card>
+      </v-card-title>
 
-    <!-- INFO GRID -->
-    <v-row dense class="mb-3">
-      <!-- PASIEN -->
-      <v-col cols="12" sm="6">
-        <v-card class="info-card">
-          <v-icon class="mb-1" color="primary">mdi-account</v-icon>
-          <div class="text-caption text-grey">Pasien</div>
-          <div class="font-weight-bold">
-            {{ detailPendaftaran.nama_pasien }}
+      <v-card-text class="pt-0 px-4">
+        <v-row dense class="mx-0 mb-3">
+          <v-col cols="12" sm="4" class="pa-1">
+            <v-card
+              class="rounded-xl pa-3 d-flex align-center bg-blue-lighten-5 h-100 border-sm"
+              variant="flat"
+              style="border-color: #e3f2fd !important"
+            >
+              <v-avatar color="primary" class="mr-3 elevation-1" size="36">
+                <v-icon color="white" size="18">mdi-account</v-icon>
+              </v-avatar>
+              <div style="min-width: 0">
+                <div
+                  class="text-caption text-primary font-weight-bold"
+                  style="line-height: 1"
+                >
+                  Pasien
+                </div>
+                <div
+                  class="text-body-2 font-weight-bold text-grey-darken-4 text-truncate mt-1"
+                >
+                  {{ detailPendaftaran.nama_pasien }}
+                </div>
+              </div>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="4" class="pa-1">
+            <v-card
+              class="rounded-xl pa-3 d-flex align-center bg-indigo-lighten-5 h-100 border-sm"
+              variant="flat"
+              style="border-color: #e8eaf6 !important"
+            >
+              <v-avatar color="indigo" class="mr-3 elevation-1" size="36">
+                <v-icon color="white" size="18">mdi-hospital-building</v-icon>
+              </v-avatar>
+              <div style="min-width: 0">
+                <div
+                  class="text-caption text-indigo font-weight-bold"
+                  style="line-height: 1"
+                >
+                  Poli
+                </div>
+                <div
+                  class="text-body-2 font-weight-bold text-grey-darken-4 text-truncate mt-1"
+                >
+                  {{ detailPendaftaran.nama_poli }}
+                </div>
+              </div>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="4" class="pa-1">
+            <v-card
+              class="rounded-xl pa-3 d-flex align-center bg-teal-lighten-5 h-100 border-sm"
+              variant="flat"
+              style="border-color: #e0f2f1 !important"
+            >
+              <v-avatar color="teal" class="mr-3 elevation-1" size="36">
+                <v-icon color="white" size="18">mdi-doctor</v-icon>
+              </v-avatar>
+              <div style="min-width: 0">
+                <div
+                  class="text-caption text-teal font-weight-bold"
+                  style="line-height: 1"
+                >
+                  Dokter
+                </div>
+                <div
+                  class="text-body-2 font-weight-bold text-grey-darken-4 text-truncate mt-1"
+                >
+                  {{ detailPendaftaran.nama_dokter }}
+                </div>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+
+        <v-card
+          class="rounded-xl pa-3 mb-2 bg-amber-lighten-5 border-sm"
+          variant="flat"
+          style="border-color: #fff8e1 !important"
+        >
+          <div class="d-flex align-center mb-1">
+            <v-icon color="amber-darken-4" size="18" class="mr-1.5"
+              >mdi-alert-circle</v-icon
+            >
+            <span class="text-caption font-weight-bold text-amber-darken-4"
+              >Keluhan</span
+            >
+          </div>
+          <div
+            class="text-body-2 text-grey-darken-3 pl-5 font-italic"
+            style="line-height: 1.4"
+          >
+            "{{ detailPendaftaran.keluhan || "Tidak ada keluhan tertulis." }}"
           </div>
         </v-card>
-      </v-col>
+      </v-card-text>
 
-      <!-- POLI -->
-      <v-col cols="6" sm="3">
-        <v-card class="info-card text-center">
-          <v-icon color="indigo">mdi-hospital-building</v-icon>
-          <div class="text-caption text-grey">Poli</div>
-          <div class="font-weight-medium">
-            {{ detailPendaftaran.nama_poli }}
-          </div>
-        </v-card>
-      </v-col>
-
-      <!-- DOKTER -->
-      <v-col cols="6" sm="3">
-        <v-card class="info-card text-center">
-          <v-icon color="teal">mdi-doctor</v-icon>
-          <div class="text-caption text-grey">Dokter</div>
-          <div class="font-weight-medium">
-            {{ detailPendaftaran.nama_dokter }}
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <!-- KELUHAN -->
-    <v-card class="keluhan-card mb-3">
-      <div class="d-flex align-center mb-2">
-        <v-icon color="orange" class="mr-2">mdi-alert</v-icon>
-        <div class="font-weight-bold">Keluhan</div>
-      </div>
-
-      <div class="text-body-2">
-        {{ detailPendaftaran.keluhan || "-" }}
-      </div>
-    </v-card>
-
-    <!-- ACTION -->
-    <v-row>
-      <v-col>
-        <v-btn
-          :disabled="detailPendaftaran.status !== 'Menunggu'"
+      <v-card-actions class="px-4 pb-4 pt-0">
+        <div
           v-if="detailPendaftaran.status === 'Menunggu'"
+          class="d-flex justify-end w-100"
+        >
+          <div
+            v-if="detailPendaftaran.status === 'Menunggu'"
+            class="d-flex justify-end w-100"
+          >
+            <v-btn
+              variant="tonal"
+              color="red-darken-1"
+              @click="cancelPendaftaran"
+              class="rounded-xl font-weight-bold text-capitalize mr-2 px-4 action-btn-hover"
+              prepend-icon="mdi-close-circle-outline"
+              style="
+                letter-spacing: 0.3px;
+                transition: all 0.2s ease-in-out;
+                border: 1px solid rgba(229, 57, 53, 0.2);
+              "
+            >
+              Tolak
+            </v-btn>
+
+            <v-btn
+              color="green-darken-1"
+              variant="elevated"
+              @click="approvePendaftaran"
+              class="rounded-xl font-weight-bold text-white text-capitalize px-4 action-btn-hover"
+              prepend-icon="mdi-check-circle"
+              style="
+                letter-spacing: 0.3px;
+                transition: all 0.2s ease-in-out;
+                box-shadow: 0 4px 10px rgba(67, 160, 71, 0.25) !important;
+              "
+            >
+              Setujui
+            </v-btn>
+          </div>
+        </div>
+
+        <v-btn
+          v-if="detailPendaftaran.status === 'Disetujui'"
           block
           size="large"
-          @click="cancelPendaftaran"
-          class="rounded-xl action-btn-cancel"
-          prepend-icon="mdi-close-circle"
+          color="primary"
+          variant="elevated"
+          elevation="2"
+          class="rounded-xl font-weight-bold text-capitalize"
+          prepend-icon="mdi-stethoscope"
+          @click="openDialogAdd"
         >
-          Cancel
+          Mulai Pemeriksaan
         </v-btn>
-      </v-col>
+      </v-card-actions>
+    </v-card>
 
-      <v-col>
-        <v-btn
-          :disabled="detailPendaftaran.status !== 'Menunggu'"
-          v-if="detailPendaftaran.status === 'Menunggu'"
-          block
-          size="large"
-          @click="approvePendaftaran"
-          class="rounded-xl action-btn-approve"
-          prepend-icon="mdi-check-circle"
-        >
-          Approve
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-btn
-      v-if="detailPendaftaran.status == 'Disetujui'"
-      block
-      size="large"
-      class="rounded-xl action-btn"
-      prepend-icon="mdi-stethoscope"
-      @click="openDialogAdd"
-    >
-      Mulai Pemeriksaan
-    </v-btn>
     <!-- DIALOG PEMERIKSAAN -->
     <v-dialog
       v-model="data.dialogAdd"
