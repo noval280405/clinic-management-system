@@ -205,11 +205,11 @@
             Status Pemeriksaan
           </div>
 
-          <a-select
+          <!-- <a-select
             v-model="new_pemeriksaan.status"
             :items="['Diperiksa', 'Selesai', 'Rujuk']"
             class="mb-4"
-          />
+          /> -->
 
           <!-- ================= CATATAN ================= -->
           <div class="text-subtitle-2 font-weight-bold mb-2">
@@ -268,7 +268,7 @@ const defaultPemeriksaan = (): pemeriksaanM => ({
   total_layanan: 0,
   total_harga_obat: 0,
   grand_total: 0,
-  status: "Draft",
+  status: "Diperiksa",
   created_at: 0,
   created_by: "",
   tanggal_pemeriksaan: "",
@@ -276,6 +276,8 @@ const defaultPemeriksaan = (): pemeriksaanM => ({
   suhu_tubuh: 0,
   berat_badan: 0,
   tinggi_badan: 0,
+  tindakan: "",
+  catatan: "",
 });
 
 const new_pemeriksaan = ref<pemeriksaanM>(defaultPemeriksaan());
@@ -334,6 +336,27 @@ async function openDialogAdd() {
 }
 
 async function addPemeriksaan() {
+  if (new_pemeriksaan.value.tekanan_darah == "") {
+    return notificationStore.showError("Tekanan darah wajib di isi");
+  }
+  if (new_pemeriksaan.value.suhu_tubuh == 0) {
+    return notificationStore.showError("suhu tubuh wajib di isi");
+  }
+  if (new_pemeriksaan.value.berat_badan == 0) {
+    return notificationStore.showError("berat badan wajib di isi");
+  }
+  if (new_pemeriksaan.value.tinggi_badan == 0) {
+    return notificationStore.showError("tinggi badan wajib di isi");
+  }
+  if (new_pemeriksaan.value.diagnosa == "") {
+    return notificationStore.showError("diagnosa wajib di isi");
+  }
+  if (new_pemeriksaan.value.tindakan == "") {
+    return notificationStore.showError("Tindakan wajib di isi");
+  }
+  if (new_pemeriksaan.value.catatan == "") {
+    return notificationStore.showError("catatan wajib di isi");
+  }
   const confirmed = await confirmationDialog.value?.show(
     "Konfirmasi Tambah",
     "Anda yakin ingin menambahkan data ini?",
