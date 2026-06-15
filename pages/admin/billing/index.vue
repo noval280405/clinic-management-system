@@ -87,57 +87,135 @@
     </v-card>
 
     <!-- DIALOG PEMBAYARAN -->
-    <v-dialog v-model="dialogBayar" max-width="480">
-      <v-card class="rounded-xl elevation-3">
-        <!-- HEADER -->
-        <v-card-title class="d-flex justify-space-between align-center">
-          <span class="text-h6 font-weight-bold">Pembayaran</span>
-          <v-btn icon="mdi-close" variant="text" @click="dialogBayar = false" />
-        </v-card-title>
+    <v-dialog
+      v-model="dialogBayar"
+      max-width="440"
+      transition="dialog-bottom-transition"
+    >
+      <v-card
+        class="rounded-2xl border-none overflow-hidden bg-white pa-2"
+        style="
+          box-shadow:
+            0 20px 25px -5px rgba(0, 0, 0, 0.1),
+            0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        "
+      >
+        <!-- ================= HEADER: CLEAN & DROPPED DIVIDER ================= -->
+        <v-card-title
+          class="d-flex justify-space-between align-start pt-4 px-5 pb-4 text-white"
+          style="background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)"
+        >
+          <div class="d-flex align-center ga-3">
+            <v-avatar
+              size="38"
+              class="rounded-xl elevation-0"
+              style="
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(4px);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+              "
+            >
+              <v-icon color="white" size="18">mdi-wallet-outline</v-icon>
+            </v-avatar>
 
-        <v-divider />
-
-        <v-card-text class="pa-4">
-          <!-- PASIEN -->
-          <div class="mb-4">
-            <div class="text-caption text-grey">Pasien</div>
-            <div class="font-weight-bold text-body-1">
-              {{ selected.nama_pasien }}
+            <div class="d-flex flex-column">
+              <span
+                class="text-body-1 font-weight-black text-white"
+                style="letter-spacing: -0.3px; line-height: 1.2"
+              >
+                Form Pembayaran
+              </span>
+              <span
+                class="text-caption text-blue-100 font-weight-medium mt-0.5"
+                style="font-size: 11px !important"
+              >
+                Selesaikan transaksi resep obat pasien
+              </span>
             </div>
           </div>
 
-          <!-- TOTAL -->
-          <div class="mb-4 pa-3 rounded-lg bg-grey-lighten-4">
-            <div class="text-caption text-grey">Total Tagihan</div>
-            <div class="text-h5 font-weight-bold text-primary">
+          <v-btn
+            variant="text"
+            size="30"
+            color="white"
+            class="rounded-lg"
+            style="
+              background: rgba(255, 255, 255, 0.15);
+              min-width: 30px;
+              height: 30px;
+              padding: 0;
+            "
+            @click="dialogBayar = false"
+          >
+            <v-icon size="16">mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+
+        <v-card-text class="pa-4 pt-4">
+          <!-- ================= INFO PASIEN MINIMALIS ================= -->
+          <div
+            class="d-flex justify-space-between align-center pb-3 mb-4 style-border"
+            style="border-bottom: 1px dashed #e2e8f0"
+          >
+            <span
+              class="text-caption text-grey-darken-1 font-weight-bold text-uppercase tracking-wider"
+              >Nama Pasien</span
+            >
+            <span class="text-body-2 font-weight-black text-slate-900">{{
+              selected.nama_pasien
+            }}</span>
+          </div>
+
+          <!-- ================= RINGKASAN TOTAL TAGIHAN (FINTECH CARD) ================= -->
+          <div
+            class="pa-4 rounded-xl text-center mb-4"
+            style="background: #f8fafc; border: 1px solid #f1f5f9"
+          >
+            <div
+              class="text-caption text-grey-darken-1 font-weight-bold text-uppercase tracking-wider"
+              style="font-size: 10px !important"
+            >
+              Total Nilai Tagihan
+            </div>
+            <div
+              class="text-h4 font-weight-black text-blue-darken-3 mt-1"
+              style="
+                font-family: monospace, sans-serif !important;
+                letter-spacing: -0.5px;
+              "
+            >
               Rp {{ rupiah(selected.total) }}
             </div>
           </div>
 
-          <!-- METODE -->
-          <a-select
-            v-model="form.metode"
-            :items="metodeList"
-            item-title="title"
-            item-value="value"
-            label="Metode Pembayaran"
-            variant="outlined"
-            density="comfortable"
-            prepend-inner-icon="mdi-credit-card-outline"
-            class="mb-3"
-          />
+          <!-- ================= INPUT FORMS METODE ================= -->
+          <div class="d-flex flex-column ga-1">
+            <a-select
+              v-model="form.metode"
+              :items="metodeList"
+              item-title="title"
+              item-value="value"
+              label="Metode Pembayaran"
+              variant="outlined"
+              density="comfortable"
+              prepend-inner-icon="mdi-credit-card-outline"
+              class="mb-1 rounded-xl"
+            />
 
-          <!-- CASH -->
-          <a-text-field
-            v-if="form.metode === 'cash'"
-            v-model.number="form.bayar"
-            type="number"
-            label="Jumlah Bayar"
-            variant="outlined"
-            density="comfortable"
-            prefix="Rp"
-            class="mb-2"
-          />
+            <!-- CASH INPUT -->
+            <a-text-field
+              v-if="form.metode === 'cash'"
+              v-model.number="form.bayar"
+              type="number"
+              label="Jumlah Uang Tunai"
+              variant="outlined"
+              density="comfortable"
+              prefix="Rp"
+              class="mb-1"
+            />
+          </div>
+
+          <!-- ================= DYNAMIC ALERTS & STATE INTERACTIVES ================= -->
 
           <!-- ALERT UANG KURANG -->
           <v-alert
@@ -147,70 +225,114 @@
               form.bayar < selected.total
             "
             type="error"
-            variant="tonal"
+            variant="flat"
             density="compact"
-            class="mt-2"
+            class="mt-2 rounded-lg text-caption font-weight-bold text-white bg-red-darken-1"
           >
-            Uang kurang
+            <v-icon size="14" class="mr-1">mdi-alert-circle-outline</v-icon>
+            Nominal uang tunai belum mencukupi tagihan.
           </v-alert>
 
-          <!-- KEMBALIAN -->
+          <!-- KEMBALIAN (CLEAN LUXURY BLOCK) -->
           <div
             v-if="
               form.metode === 'cash' &&
               form.bayar &&
               form.bayar >= selected.total
             "
-            class="mt-3 pa-3 rounded-lg bg-green-lighten-5"
+            class="mt-3 pa-3 rounded-xl d-flex justify-space-between align-center"
+            style="background-color: #f0fdf4; border: 1px solid #bbf7d0"
           >
-            <div class="text-caption text-grey">Kembalian</div>
-            <div class="text-h6 font-weight-bold text-green-darken-2">
+            <div class="d-flex align-center ga-2">
+              <v-icon color="green-darken-2" size="18">mdi-cash-refund</v-icon>
+              <span class="text-body-2 font-weight-bold text-green-darken-4"
+                >Uang Kembalian</span
+              >
+            </div>
+            <div
+              class="text-subtitle-1 font-weight-black text-green-darken-2"
+              style="font-family: monospace, sans-serif !important"
+            >
               Rp {{ rupiah(kembalian) }}
             </div>
           </div>
 
-          <!-- QRIS -->
+          <!-- QRIS STATE INFO -->
           <v-alert
             v-if="form.metode === 'qris'"
             type="success"
-            variant="tonal"
+            variant="flat"
             density="compact"
-            class="mt-2"
+            class="mt-2 rounded-xl text-caption font-weight-medium text-green-darken-4"
+            style="
+              background-color: #f0fdf4 !important;
+              border: 1px solid #bbf7d0;
+            "
           >
-            Silakan scan QRIS untuk pembayaran
+            <v-icon size="16" class="mr-1.5" color="green-darken-2"
+              >mdi-qrcode-scan</v-icon
+            >
+            Silakan arahkan pasien scan monitor QRIS statis / dinamis.
           </v-alert>
 
-          <!-- TRANSFER -->
+          <!-- TRANSFER STATE INFO -->
           <v-alert
             v-if="form.metode === 'transfer'"
             type="info"
-            variant="tonal"
+            variant="flat"
             density="compact"
-            class="mt-2"
+            class="mt-2 rounded-xl text-caption font-weight-medium text-blue-darken-4"
+            style="
+              background-color: #f0f9ff !important;
+              border: 1px solid #bae6fd;
+            "
           >
-            Silakan transfer sesuai total tagihan
+            <v-icon size="16" class="mr-1.5" color="blue-darken-2"
+              >mdi-bank-transfer</v-icon
+            >
+            Pastikan mutasi rekening sesuai angka tagihan di atas.
           </v-alert>
         </v-card-text>
 
-        <v-divider />
-
-        <!-- ACTION -->
-        <v-card-actions class="pa-3">
-          <v-btn variant="text" @click="dialogBayar = false"> Batal </v-btn>
-
-          <v-spacer />
-
+        <!-- ================= ACTIONS: ALIGNED & ULTRA SLEEK ================= -->
+        <v-card-actions class="px-4 pb-3 pt-0 d-flex justify-end ga-2">
+          <!-- BUTTON BATAL RAMPING -->
           <v-btn
-            color="primary"
-            size="large"
-            class="px-6"
+            variant="text"
+            color="grey-darken-2"
+            style="
+              font-weight: 700;
+              border-radius: 6px;
+              height: 34px;
+              text-transform: none;
+              letter-spacing: 0;
+            "
+            class="text-caption px-4"
+            @click="dialogBayar = false"
+          >
+            Batal
+          </v-btn>
+
+          <!-- BUTTON LUNASKAN (COMPACT & BOLD) -->
+          <v-btn
+            color="blue-darken-3"
+            variant="flat"
+            style="
+              font-weight: 700;
+              border-radius: 6px;
+              height: 34px;
+              text-transform: none;
+              letter-spacing: 0.2px;
+            "
+            class="text-caption px-4 text-white"
             :disabled="
               !form.metode ||
               (form.metode === 'cash' && form.bayar < selected.total)
             "
             @click="prosesBayar"
           >
-            Lunaskan
+            <v-icon size="14" class="mr-1.5">mdi-check-circle-outline</v-icon>
+            Lunaskan Pembayaran
           </v-btn>
         </v-card-actions>
       </v-card>
