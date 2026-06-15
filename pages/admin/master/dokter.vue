@@ -64,130 +64,251 @@
 
   <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '780px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '1120px' : '95%'"
+    transition="dialog-bottom-transition"
   >
-    <v-card class="rounded-lg">
+    <v-card
+      class="rounded-2xl border-none overflow-hidden pa-0"
+      style="
+        background-color: #f8fafc;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      "
+    >
       <v-card-title
-        class="px-4 text-subtitle-1 font-weight-bold bg-primary pa-3"
+        class="d-flex justify-space-between align-start pt-5 px-6 pb-4 text-white"
+        style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
       >
-        {{ titleaddedit }}
-      </v-card-title>
-
-      <v-card-text>
-        <!-- BASIC -->
-        <div class="text-caption font-weight-bold mb-2">Informasi Utama</div>
-
-        <a-text-field
-          label="Nama Dokter"
-          v-model="new_dokter.nama_dokter"
-          placeholder="Nama Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
-
-        <a-text-field
-          label="No Dokter"
-          v-model="new_dokter.no_dokter"
-          placeholder="No Dokter"
-          class="mb-3"
-          :disabled="data.addedit == 'edit'"
-        />
-
-        <a-select
-          label="Poli / Spesialis"
-          v-model="new_dokter.id_poli"
-          :items="poliStore.getDataPoli"
-          item-title="nama_poli"
-          item-value="id"
-          class="mb-4"
-        />
-
-        <!-- DETAIL -->
-        <div class="text-caption font-weight-bold mb-2 mt-2">
-          Informasi Tambahan
+        <div class="d-flex align-center ga-3">
+          <div class="d-flex flex-column">
+            <span
+              class="text-body-1 font-weight-black text-white tracking-wide"
+              style="line-height: 1; font-size: 1.5rem !important"
+            >
+              {{ titleaddedit }}
+            </span>
+          </div>
         </div>
 
-        <a-text-field
-          label="Nomor SIP"
-          v-model="new_dokter.sip_number"
-          placeholder="Nomor SIP"
-          class="mb-3"
-        />
+        <v-btn
+          variant="text"
+          size="32"
+          color="white"
+          class="rounded-lg"
+          style="
+            background: rgba(255, 255, 255, 0.12);
+            min-width: 32px;
+            height: 32px;
+            padding: 0;
+          "
+          @click="data.dialogAdd = false"
+        >
+          <v-icon size="18">mdi-close</v-icon>
+        </v-btn>
+      </v-card-title>
 
-        <a-text-field
-          label="No HP"
-          v-model="new_dokter.no_hp"
-          placeholder="Nomor HP"
-          class="mb-3"
-        />
+      <v-card-text class="pa-6">
+        <v-row>
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex align-center ga-2 mb-2">
+                <v-icon color="blue-darken-3" size="18"
+                  >mdi-account-id-card</v-icon
+                >
+                <span
+                  class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                >
+                  01. Informasi Utama
+                </span>
+              </div>
 
-        <a-text-field
-          label="Email"
-          v-model="new_dokter.email"
-          placeholder="Email Dokter"
-          class="mb-4"
-        />
+              <a-text-field
+                label="Nama Dokter"
+                v-model="new_dokter.nama_dokter"
+                placeholder="Masukkan nama lengkap beserta gelar"
+                prepend-inner-icon="mdi-account-tie-outline"
+                variant="outlined"
+                density="comfortable"
+                :disabled="data.addedit == 'edit'"
+              />
 
-        <a-select
-          label="Status Dokter"
-          v-model="new_dokter.status"
-          :items="['aktif', 'nonaktif']"
-          variant="outlined"
-          density="comfortable"
-          class="mb-4"
-        />
+              <a-text-field
+                label="No Kode Dokter"
+                v-model="new_dokter.no_dokter"
+                placeholder="Contoh: DKT-001"
+                prepend-inner-icon="mdi-identifier"
+                variant="outlined"
+                density="comfortable"
+                :disabled="data.addedit == 'edit'"
+              />
 
-        <!-- JADWAL -->
-        <div class="text-caption font-weight-bold mb-2">Jadwal Praktik</div>
-
-        <a-text-field
-          label="Hari Praktik"
-          v-model="hari_praktik_input"
-          placeholder="Contoh: Senin,Selasa,Rabu"
-          class="mb-3"
-        />
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-text-field
-              label="Jam Mulai"
-              v-model="new_dokter.jadwal_praktik.jam_mulai"
-              type="time"
-              density="comfortable"
-              variant="outlined"
-            />
+              <a-select
+                label="Poli / Spesialis"
+                v-model="new_dokter.id_poli"
+                :items="poliStore.getDataPoli"
+                item-title="nama_poli"
+                item-value="id"
+                prepend-inner-icon="mdi-hospital-building"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-card>
           </v-col>
 
-          <v-col cols="6">
-            <a-text-field
-              label="Jam Selesai"
-              v-model="new_dokter.jadwal_praktik.jam_selesai"
-              type="time"
-              density="comfortable"
-              variant="outlined"
-            />
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex align-center ga-2 mb-2">
+                <v-icon color="blue-darken-3" size="18"
+                  >mdi-card-text-outline</v-icon
+                >
+                <span
+                  class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                >
+                  02. Berkas & Kontak
+                </span>
+              </div>
+
+              <a-text-field
+                label="Nomor SIP (Surat Izin Praktik)"
+                v-model="new_dokter.sip_number"
+                placeholder="Contoh: SIP.Sertifikat/2026/xxxx"
+                prepend-inner-icon="mdi-file-certificate-outline"
+                variant="outlined"
+                density="comfortable"
+              />
+
+              <a-text-field
+                label="Nomor HP Aktif"
+                v-model="new_dokter.no_hp"
+                placeholder="Contoh: 0812xxxxxxxx"
+                prepend-inner-icon="mdi-phone-outline"
+                variant="outlined"
+                density="comfortable"
+              />
+
+              <a-text-field
+                label="Alamat Email Resmi"
+                v-model="new_dokter.email"
+                placeholder="Contoh: dokter@kliniksehat.com"
+                prepend-inner-icon="mdi-email-outline"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-2">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-calendar-clock</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    03. Alokasi Jadwal Kerja
+                  </span>
+                </div>
+
+                <a-text-field
+                  label="Hari Kerja Praktik"
+                  v-model="hari_praktik_input"
+                  placeholder="Contoh: Senin, Selasa, Rabu"
+                  prepend-inner-icon="mdi-calendar-range"
+                  variant="outlined"
+                  density="comfortable"
+                />
+
+                <v-row dense>
+                  <v-col cols="6">
+                    <a-text-field
+                      label="Jam Mulai"
+                      v-model="new_dokter.jadwal_praktik.jam_mulai"
+                      type="time"
+                      prepend-inner-icon="mdi-clock-start"
+                      density="comfortable"
+                      variant="outlined"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <a-text-field
+                      label="Jam Selesai"
+                      v-model="new_dokter.jadwal_praktik.jam_selesai"
+                      type="time"
+                      prepend-inner-icon="mdi-clock-end"
+                      density="comfortable"
+                      variant="outlined"
+                    />
+                  </v-col>
+                </v-row>
+              </div>
+
+              <div
+                class="d-flex flex-column ga-2 mt-2 pt-2"
+                style="border-top: 1px dashed #e2e8f0"
+              >
+                <a-select
+                  label="Status Aktif Dokter"
+                  v-model="new_dokter.status"
+                  :items="['aktif', 'nonaktif']"
+                  prepend-inner-icon="mdi-list-status"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
 
-      <v-card-actions class="pa-3 bg-grey-lighten-4">
-        <v-btnq
-          variant="flat"
-          color="grey-darken-2"
+      <v-card-actions
+        class="px-6 pb-4 pt-2 d-flex justify-end ga-2"
+        style="background-color: #f1f5f9; border-top: 1px solid #e2e8f0"
+      >
+        <v-btn
+          variant="text"
+          color="grey-darken-3"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0;
+          "
+          class="text-caption px-5"
           @click="data.dialogAdd = false"
-          class="text-capitalize px-3"
-          size="small"
         >
           Batal
-        </v-btnq>
+        </v-btn>
 
         <v-btn
-          color="primary"
-          @click="validate"
+          color="blue-darken-3"
           variant="flat"
-          class="text-capitalize px-3"
-          size="small"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+          "
+          class="text-caption px-5 text-white"
+          @click="validate"
         >
+          <v-icon size="14" class="mr-1.5"
+            >mdi-content-save-check-outline</v-icon
+          >
           {{ bottomAddEdit }}
         </v-btn>
       </v-card-actions>
