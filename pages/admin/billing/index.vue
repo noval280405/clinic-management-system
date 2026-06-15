@@ -1,5 +1,7 @@
 <template>
   <v-container fluid class="pa-3">
+    <ConfirmationDialog ref="confirmationDialog" />
+
     <!-- HEADER -->
     <v-row align="center">
       <v-col cols="6">
@@ -323,7 +325,10 @@
 import moment from "moment";
 import { ref, computed, onMounted } from "vue";
 import { useBillingStore } from "~/stores/billingStore";
-
+const notificationStore = useNotificationStore();
+const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
+  null,
+);
 definePageMeta({
   layout: "admin",
 });
@@ -441,6 +446,14 @@ function formatDate(val: number) {
    PROSES BAYAR
 ========================= */
 async function prosesBayar() {
+  const confirmed = await confirmationDialog.value?.show(
+    "Konfirmasi Bayar",
+    "Anda yakin ingin membayar data billing ini?",
+  );
+
+  if (!confirmed) {
+    return notificationStore.showError("edit data dibatalkan");
+  }
   try {
     useloadingStore().setLoading(true);
 
