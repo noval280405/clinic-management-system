@@ -65,131 +65,280 @@
 
   <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '920px' : '95%'"
+    transition="dialog-bottom-transition"
   >
-    <v-card class="rounded-lg">
+    <!-- Main Container Card dengan Background Soft Gray Premium -->
+    <v-card
+      class="rounded-2xl border-none overflow-hidden pa-0"
+      style="
+        background-color: #f8fafc;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      "
+    >
+      <!-- ================= HEADER: PREMIUM SOLID BLUE GRADIENT ================= -->
       <v-card-title
-        class="px-4 text-subtitle-1 font-weight-bold bg-primary pa-3"
+        class="d-flex justify-space-between align-start pt-5 px-6 pb-4 text-white"
+        style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
       >
-        {{ titleaddedit }}
+        <div class="d-flex align-center ga-3">
+          <div class="d-flex flex-column">
+            <span
+              class="text-body-1 font-weight-black text-white tracking-wide"
+              style="line-height: 1; font-size: 1.5rem !important"
+            >
+              {{ titleaddedit }}
+            </span>
+          </div>
+        </div>
+
+        <v-btn
+          variant="text"
+          size="32"
+          color="white"
+          class="rounded-lg"
+          style="
+            background: rgba(255, 255, 255, 0.12);
+            min-width: 32px;
+            height: 32px;
+            padding: 0;
+          "
+          @click="data.dialogAdd = false"
+        >
+          <v-icon size="18">mdi-close</v-icon>
+        </v-btn>
       </v-card-title>
 
-      <v-card-text>
-        <!-- IDENTITAS -->
-        <div class="text-caption font-weight-bold mb-2">Informasi Layanan</div>
+      <!-- ================= BODY: DUAL-COLUMN INDEPENDENT WHITE BOXES ================= -->
+      <v-card-text class="pa-6">
+        <v-row>
+          <!-- === KOLOM 1: IDENTITAS LAYANAN & STRUKTUR HARGA === -->
+          <v-col cols="12" md="6" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <!-- Sub-Blok Klasifikasi Layanan -->
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-2">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-medical-bag</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    01. Klasifikasi & Nama Layanan
+                  </span>
+                </div>
 
-        <v-row dense>
-          <v-col cols="6">
-            <a-text-field
-              label="Nama Layanan"
-              v-model="new_layanan.nama_layanan"
-            />
+                <v-row dense>
+                  <v-col cols="12" sm="6">
+                    <a-text-field
+                      label="Nama Layanan / Tindakan"
+                      v-model="new_layanan.nama_layanan"
+                      placeholder="Contoh: USG Abdomen"
+                      prepend-inner-icon="mdi-stethoscope"
+                      variant="outlined"
+                      density="comfortable"
+                    />
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <a-text-field
+                      label="Kategori Grup"
+                      v-model="new_layanan.kategori_layanan"
+                      placeholder="Contoh: Radiologi Umum"
+                      prepend-inner-icon="mdi-tag-outline"
+                      variant="outlined"
+                      density="comfortable"
+                    />
+                  </v-col>
+                  <v-col cols="12">
+                    <a-select
+                      label="Jenis Layanan Medis"
+                      v-model="new_layanan.jenis_layanan"
+                      :items="[
+                        'tindakan',
+                        'konsultasi',
+                        'lab',
+                        'radiologi',
+                        'lainnya',
+                      ]"
+                      prepend-inner-icon="mdi-shape-outline"
+                      variant="outlined"
+                      density="comfortable"
+                    />
+                  </v-col>
+                </v-row>
+              </div>
+
+              <!-- Sub-Blok Komponen Keuangan / Tarif -->
+              <div
+                class="d-flex flex-column ga-2 mt-3 pt-2"
+                style="border-top: 1px dashed #e2e8f0"
+              >
+                <div class="d-flex align-center ga-2 mb-1">
+                  <v-icon color="blue-darken-3" size="17"
+                    >mdi-cash-register</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                    style="font-size: 11px"
+                  >
+                    02. Tarif & Biaya Tindakan
+                  </span>
+                </div>
+                <a-text-field
+                  label="Nominal Harga Pasien (Rp)"
+                  type="number"
+                  v-model="new_layanan.harga"
+                  placeholder="Masukkan nominal angka saja"
+                  prepend-inner-icon="mdi-currency-idr"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+            </v-card>
           </v-col>
 
-          <v-col cols="12">
-            <a-text-field
-              label="Kategori Layanan"
-              v-model="new_layanan.kategori_layanan"
-            />
-          </v-col>
-        </v-row>
+          <!-- === KOLOM 2: REGULASI OPERASIONAL, SWITCH & STATUS === -->
+          <v-col cols="12" md="6" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <!-- Sub-Blok Durasi & Resource Allocations -->
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-2">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-cog-sync-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    03. Aturan & Alokasi Logistik
+                  </span>
+                </div>
 
-        <!-- JENIS -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Jenis Layanan</div>
+                <v-row dense>
+                  <v-col cols="12" sm="6">
+                    <a-text-field
+                      label="Estimasi Durasi (Menit)"
+                      type="number"
+                      v-model="new_layanan.durasi_menit"
+                      placeholder="Contoh: 30"
+                      prepend-inner-icon="mdi-clock-outline"
+                      density="comfortable"
+                      variant="outlined"
+                    />
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <a-select
+                      label="Status Publikasi Layanan"
+                      v-model="new_layanan.status"
+                      :items="['aktif', 'nonaktif']"
+                      prepend-inner-icon="mdi-list-status"
+                      variant="outlined"
+                      density="comfortable"
+                    />
+                  </v-col>
+                </v-row>
 
-        <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Jenis"
-              v-model="new_layanan.jenis_layanan"
-              :items="['tindakan', 'konsultasi', 'lab', 'radiologi', 'lainnya']"
-            />
-          </v-col>
+                <!-- Switch Pengaturan Khusus (Dibuat Inline Khas FinTech Premium) -->
+                <div
+                  class="d-flex flex-row align-center justify-space-around py-1 px-2 rounded-lg my-1"
+                  style="background-color: #f8fafc; border: 1px solid #f1f5f9"
+                >
+                  <v-switch
+                    label="Perlu Dokter"
+                    v-model="new_layanan.perlu_dokter"
+                    color="blue-darken-3"
+                    hide-details
+                    inset
+                    density="compact"
+                    class="font-weight-medium text-caption"
+                  />
+                  <v-divider vertical class="mx-3 my-2" />
+                  <v-switch
+                    label="Perlu Ruangan"
+                    v-model="new_layanan.perlu_ruangan"
+                    color="blue-darken-3"
+                    hide-details
+                    inset
+                    density="compact"
+                    class="font-weight-medium text-caption"
+                  />
+                </div>
+              </div>
 
-          <v-col cols="6">
-            <a-text-field
-              label="Durasi (Menit)"
-              type="number"
-              v-model="new_layanan.durasi_menit"
-            />
-          </v-col>
-        </v-row>
-
-        <!-- HARGA -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Harga</div>
-
-        <v-row dense>
-          <v-col cols="12">
-            <a-text-field
-              label="Harga"
-              type="number"
-              v-model="new_layanan.harga"
-            />
-          </v-col>
-        </v-row>
-
-        <!-- OPSIONAL -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Pengaturan</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <v-switch
-              label="Perlu Dokter"
-              v-model="new_layanan.perlu_dokter"
-              inset
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <v-switch
-              label="Perlu Ruangan"
-              v-model="new_layanan.perlu_ruangan"
-              inset
-            />
-          </v-col>
-        </v-row>
-
-        <!-- STATUS -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Status</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Status"
-              v-model="new_layanan.status"
-              :items="['aktif', 'nonaktif']"
-            />
-          </v-col>
-        </v-row>
-
-        <!-- DESKRIPSI -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Deskripsi</div>
-
-        <v-row dense>
-          <v-col cols="12">
-            <a-text-field label="Deskripsi" v-model="new_layanan.deskripsi" />
+              <!-- Sub-Blok Informasi Deskripsi Deskriptif -->
+              <div
+                class="d-flex flex-column ga-2 mt-2 pt-2"
+                style="border-top: 1px dashed #e2e8f0"
+              >
+                <div class="d-flex align-center ga-2 mb-1">
+                  <v-icon color="blue-darken-3" size="17"
+                    >mdi-text-box-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                    style="font-size: 11px"
+                  >
+                    04. Penjelasan Tindakan Medis
+                  </span>
+                </div>
+                <a-text-field
+                  label="Deskripsi Singkat Layanan"
+                  v-model="new_layanan.deskripsi"
+                  placeholder="Berikan catatan petunjuk persiapan pasien jika ada"
+                  prepend-inner-icon="mdi-information-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
 
-      <v-card-actions class="pa-3 bg-grey-lighten-4">
+      <!-- ================= ACTIONS: COMPACT FINTECH BUTTONS ================= -->
+      <v-card-actions
+        class="px-6 pb-4 pt-2 d-flex justify-end ga-2"
+        style="background-color: #f1f5f9; border-top: 1px solid #e2e8f0"
+      >
         <v-btn
-          variant="flat"
-          color="grey-darken-2"
+          variant="text"
+          color="grey-darken-3"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0;
+          "
+          class="text-caption px-5"
           @click="data.dialogAdd = false"
-          class="text-capitalize px-3"
-          size="small"
         >
           Batal
         </v-btn>
 
         <v-btn
-          color="primary"
-          @click="validate"
+          color="blue-darken-3"
           variant="flat"
-          class="text-capitalize px-3"
-          size="small"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+          "
+          class="text-caption px-5 text-white"
+          @click="validate"
         >
+          <v-icon size="14" class="mr-1.5"
+            >mdi-content-save-check-outline</v-icon
+          >
           {{ bottomAddEdit }}
         </v-btn>
       </v-card-actions>
