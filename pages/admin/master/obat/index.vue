@@ -65,137 +65,274 @@
 
   <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '1140px' : '95%'"
+    transition="dialog-bottom-transition"
   >
-    <v-card class="rounded-lg">
+    <!-- Main Container Card dengan Latar Belakang Dashboard FinTech -->
+    <v-card
+      class="rounded-2xl border-none overflow-hidden pa-0"
+      style="
+        background-color: #f8fafc;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      "
+    >
+      <!-- ================= HEADER: PREMIUM SOLID BLUE GRADIENT ================= -->
       <v-card-title
-        class="px-4 text-subtitle-1 font-weight-bold bg-primary pa-3"
+        class="d-flex justify-space-between align-start pt-5 px-6 pb-4 text-white"
+        style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
       >
-        {{ titleaddedit }}
+        <div class="d-flex align-center ga-3">
+          <div class="d-flex flex-column">
+            <span
+              class="text-body-1 font-weight-black text-white tracking-wide"
+              style="line-height: 1; font-size: 1.5rem !important"
+            >
+              {{ titleaddedit }}
+            </span>
+          </div>
+        </div>
+
+        <v-btn
+          variant="text"
+          size="32"
+          color="white"
+          class="rounded-lg"
+          style="
+            background: rgba(255, 255, 255, 0.12);
+            min-width: 32px;
+            height: 32px;
+            padding: 0;
+          "
+          @click="data.dialogAdd = false"
+        >
+          <v-icon size="18">mdi-close</v-icon>
+        </v-btn>
       </v-card-title>
 
-      <v-card-text>
-        <!-- IDENTITAS OBAT -->
-        <div class="text-caption font-weight-bold mb-2">Informasi Obat</div>
+      <!-- ================= BODY: 3-COLUMN INDEPENDENT CARD GRID ================= -->
+      <v-card-text class="pa-6">
+        <v-row>
+          <!-- === KOLOM 1: IDENTITAS & DETAIL FISIK OBAT === -->
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex align-center ga-2 mb-2">
+                <v-icon color="blue-darken-3" size="18">mdi-pill</v-icon>
+                <span
+                  class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                >
+                  01. Informasi & Detail Obat
+                </span>
+              </div>
 
-        <v-row dense>
-          <v-col cols="6">
-            <a-text-field label="Nama Obat" v-model="new_obat.nama_obat" />
+              <a-text-field
+                label="Nama Obat"
+                v-model="new_obat.nama_obat"
+                placeholder="Contoh: Amoxicillin 500mg"
+                prepend-inner-icon="mdi-alphabetical"
+                variant="outlined"
+                density="comfortable"
+              />
+
+              <a-select
+                :items="kategoriObatList"
+                label="Kategori Obat"
+                v-model="new_obat.kategori_obat"
+                prepend-inner-icon="mdi-shape-outline"
+                variant="outlined"
+                density="comfortable"
+              />
+
+              <a-select
+                label="Satuan"
+                v-model="new_obat.satuan"
+                :items="['tablet', 'kapsul', 'botol', 'tube', 'strip', 'ampul']"
+                prepend-inner-icon="mdi-scale"
+                variant="outlined"
+                density="comfortable"
+              />
+
+              <a-text-field
+                label="Bentuk Obat"
+                v-model="new_obat.bentuk_obat"
+                placeholder="Contoh: Tablet Salut Selaput"
+                prepend-inner-icon="mdi-flask-outline"
+                variant="outlined"
+                density="comfortable"
+              />
+            </v-card>
           </v-col>
 
-          <v-col cols="12">
-            <a-select
-              :items="kategoriObatList"
-              label="Kategori Obat"
-              v-model="new_obat.kategori_obat"
-            />
-          </v-col>
-        </v-row>
+          <!-- === KOLOM 2: STOK & FINANSIAL (HARGA) === -->
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex align-center ga-2 mb-2">
+                <v-icon color="blue-darken-3" size="18"
+                  >mdi-currency-usd</v-icon
+                >
+                <span
+                  class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                >
+                  02. Stok & Finansial
+                </span>
+              </div>
 
-        <!-- DETAIL OBAT -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Detail Obat</div>
+              <v-row dense>
+                <v-col cols="6">
+                  <a-text-field
+                    label="Stok"
+                    type="number"
+                    v-model="new_obat.stok"
+                    prepend-inner-icon="mdi-archive-outline"
+                    density="comfortable"
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="6">
+                  <a-text-field
+                    label="Stok Minimum"
+                    type="number"
+                    v-model="new_obat.stok_minimum"
+                    prepend-inner-icon="mdi-alert-box-outline"
+                    density="comfortable"
+                    variant="outlined"
+                  />
+                </v-col>
+              </v-row>
 
-        <v-row dense>
-          <v-col cols="6">
-            <a-select
-              label="Satuan"
-              v-model="new_obat.satuan"
-              :items="['tablet', 'kapsul', 'botol', 'tube', 'strip', 'ampul']"
-            />
-          </v-col>
+              <a-text-field
+                label="Harga Beli (Rp)"
+                type="number"
+                v-model="new_obat.harga_beli"
+                prepend-inner-icon="mdi-cash-minus"
+                density="comfortable"
+                variant="outlined"
+              />
 
-          <v-col cols="6">
-            <a-text-field label="Bentuk Obat" v-model="new_obat.bentuk_obat" />
-          </v-col>
-        </v-row>
-
-        <!-- STOK & HARGA -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Stok & Harga</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-text-field label="Stok" type="number" v-model="new_obat.stok" />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
-              label="Stok Minimum"
-              type="number"
-              v-model="new_obat.stok_minimum"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
-              label="Harga Beli"
-              type="number"
-              v-model="new_obat.harga_beli"
-            />
-          </v-col>
-
-          <v-col cols="6">
-            <a-text-field
-              label="Harga Jual"
-              type="number"
-              v-model="new_obat.harga_jual"
-            />
-          </v-col>
-        </v-row>
-
-        <!-- EXP & STATUS -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Status Obat</div>
-
-        <v-row dense>
-          <v-col cols="6">
-            <a-date-picker
-              v-model="new_obat.tanggal_kadaluarsa"
-              label="Tanggal Kadaluarsa"
-            />
+              <a-text-field
+                label="Harga Jual (Rp)"
+                type="number"
+                v-model="new_obat.harga_jual"
+                prepend-inner-icon="mdi-cash-plus"
+                density="comfortable"
+                variant="outlined"
+              />
+            </v-card>
           </v-col>
 
-          <v-col cols="6">
-            <a-select
-              label="Status"
-              v-model="new_obat.status"
-              :items="['aktif', 'nonaktif']"
-            />
-          </v-col>
-        </v-row>
+          <!-- === KOLOM 3: STATUS, KADALUARSA & SUPPLIER === -->
+          <v-col cols="12" md="4" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <!-- Sub-Blok Penjaminan Mutu -->
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-2">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-shield-alert-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    03. Status & Validasi
+                  </span>
+                </div>
 
-        <!-- SUPPLIER -->
-        <div class="text-caption font-weight-bold mb-2 mt-4">Supplier</div>
+                <a-date-picker
+                  v-model="new_obat.tanggal_kadaluarsa"
+                  label="Tanggal Kadaluarsa"
+                  density="comfortable"
+                  variant="outlined"
+                />
 
-        <v-row dense>
-          <v-col cols="12">
-            <a-select
-              label="Supplier"
-              v-model="new_obat.id_supplier"
-              :items="supplierStore.getDataSuplier"
-              item-title="nama_supplier"
-              item-value="id"
-            />
+                <a-select
+                  label="Status Distribusi"
+                  v-model="new_obat.status"
+                  :items="['aktif', 'nonaktif']"
+                  prepend-inner-icon="mdi-list-status"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+
+              <!-- Sub-Blok Supplier -->
+              <div
+                class="d-flex flex-column ga-2 mt-2 pt-2"
+                style="border-top: 1px dashed #e2e8f0"
+              >
+                <div class="d-flex align-center ga-2 mb-1">
+                  <v-icon color="blue-darken-3" size="17"
+                    >mdi-truck-delivery-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                    style="font-size: 11px"
+                  >
+                    04. Pemasok Asal
+                  </span>
+                </div>
+                <a-select
+                  label="Supplier Resmi"
+                  v-model="new_obat.id_supplier"
+                  :items="supplierStore.getDataSuplier"
+                  item-title="nama_supplier"
+                  item-value="id"
+                  prepend-inner-icon="mdi-storefront-outline"
+                  variant="outlined"
+                  density="comfortable"
+                />
+              </div>
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
 
-      <v-card-actions class="pa-3 bg-grey-lighten-4">
+      <!-- ================= ACTIONS: COMPACT FINTECH BUTTONS ================= -->
+      <v-card-actions
+        class="px-6 pb-4 pt-2 d-flex justify-end ga-2"
+        style="background-color: #f1f5f9; border-top: 1px solid #e2e8f0"
+      >
         <v-btn
-          variant="flat"
-          color="grey-darken-2"
+          variant="text"
+          color="grey-darken-3"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0;
+          "
+          class="text-caption px-5"
           @click="data.dialogAdd = false"
-          class="text-capitalize px-3"
-          size="small"
         >
           Batal
         </v-btn>
 
         <v-btn
-          color="primary"
-          @click="validate"
+          color="blue-darken-3"
           variant="flat"
-          class="text-capitalize px-3"
-          size="small"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+          "
+          class="text-caption px-5 text-white"
+          @click="validate"
         >
+          <v-icon size="14" class="mr-1.5"
+            >mdi-content-save-check-outline</v-icon
+          >
           {{ bottomAddEdit }}
         </v-btn>
       </v-card-actions>
