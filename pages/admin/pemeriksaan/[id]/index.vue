@@ -2,53 +2,50 @@
   <v-container fluid class="pa-4 bg-grey-lighten-4" v-if="detailPemeriksaan">
     <ConfirmationDialog ref="confirmationDialog" />
 
-    <!-- ================= HEADER SOLID & BOLD ================= -->
+    <!-- ================= HEADER: COMPACT & SLEEK GRADIENT ================= -->
     <v-card
-      class="rounded-xl mb-4 text-white elevation-3"
-      style="background: linear-gradient(135deg, #0d47a1 0%, #1e88e5 100%)"
+      class="rounded-xl mb-4 text-white border-none overflow-hidden"
+      style="
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.15);
+      "
     >
-      <v-card-text
-        class="pa-4 d-flex justify-space-between align-center flex-wrap gap-3"
-      >
+      <v-card-text class="py-3 px-5 d-flex justify-space-between align-center">
         <div class="d-flex align-center">
-          <v-avatar color="white" size="44" class="mr-3 elevation-2">
-            <v-icon color="blue-darken-3" size="22">mdi-stethoscope</v-icon>
-          </v-avatar>
+          <!-- Icon dibuat lebih ringkas tanpa background heboh -->
+          <v-icon color="blue-lighten-4" size="24" class="mr-3"
+            >mdi-stethoscope</v-icon
+          >
 
-          <div>
-            <div class="text-subtitle-1 font-weight-black">
-              Pemeriksaan Pasien
-            </div>
-            <div
-              class="text-caption text-blue-lighten-4 mt-0.5 d-flex align-center"
+          <div class="d-flex flex-column">
+            <span
+              class="text-body-2 font-weight-black tracking-wide"
+              style="line-height: 1.2"
             >
-              <v-icon size="14" class="mr-1">mdi-calendar-clock</v-icon>
+              Lembar Pemeriksaan Pasien
+            </span>
+            <span
+              class="text-caption text-blue-lighten-4 mt-0.5 d-flex align-center"
+              style="font-size: 11px !important; opacity: 0.8"
+            >
+              <v-icon size="12" class="mr-1">mdi-calendar-clock</v-icon>
               {{ detailPemeriksaan.tanggal_pemeriksaan }}
-            </div>
+            </span>
           </div>
         </div>
 
+        <!-- Badge nomor registrasi dibuat mini dan bersih -->
         <v-chip
-          color="amber-darken-2"
+          color="white"
           variant="flat"
-          class="font-weight-black text-white px-4 elevation-1"
+          density="comfortable"
+          class="font-weight-black text-blue-darken-4 px-3 rounded-lg text-caption"
+          style="font-size: 11px !important; letter-spacing: 0.5px"
         >
-          #{{ detailPemeriksaan.no_pemeriksaan }}
+          REG-{{ detailPemeriksaan.no_pemeriksaan }}
         </v-chip>
       </v-card-text>
     </v-card>
-
-    <!-- STATUS ALERT SOLID -->
-    <v-alert
-      v-if="detailPemeriksaan.status === 'Resep'"
-      type="success"
-      variant="flat"
-      density="comfortable"
-      class="rounded-xl mb-4 elevation-1 font-weight-medium"
-      icon="mdi-check-circle"
-    >
-      Resep obat sudah berhasil disimpan dan diteruskan ke apotek ✔️
-    </v-alert>
 
     <v-row dense>
       <!-- ================= SISI KIRI (DATA MEDIS SOLID) ================= -->
