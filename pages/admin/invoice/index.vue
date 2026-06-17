@@ -123,7 +123,22 @@
 
         <!-- METODE -->
         <template #item.metode="{ item }">
-          <v-chip size="small" color="primary" variant="tonal">
+          <v-chip
+            size="small"
+            variant="flat"
+            class="font-weight-black text-caption px-3 rounded-lg"
+            style="
+              height: 24px;
+              letter-spacing: 0.3px;
+              font-size: 10px !important;
+              text-transform: uppercase;
+            "
+            :style="getMetodeStyle(item.metode)"
+          >
+            <v-icon size="12" class="mr-1">
+              {{ getMetodeIcon(item.metode) }}
+            </v-icon>
+
             {{ item.metode }}
           </v-chip>
         </template>
@@ -252,6 +267,46 @@ const pembayaranStore = usePembayaranStore();
 onMounted(async () => {
   await pembayaranStore.tarikDataPembayaran();
 });
+
+// Fungsi untuk menentukan warna premium kustom (Latar Belakang, Teks, & Border)
+function getMetodeStyle(metode: string) {
+  const val = String(metode).toLowerCase();
+
+  if (val.includes("cash") || val.includes("tunai")) {
+    return "background-color: #f0fdf4 !important; color: #15803d !important; border: 1px solid #bbf7d0 !important;";
+  } else if (
+    val.includes("qris") ||
+    val.includes("shopeepay") ||
+    val.includes("gopay")
+  ) {
+    return "background-color: #faf5ff !important; color: #7e22ce !important; border: 1px solid #e9d5ff !important;";
+  } else if (
+    val.includes("transfer") ||
+    val.includes("debit") ||
+    val.includes("bank")
+  ) {
+    return "background-color: #eff6ff !important; color: #1d4ed8 !important; border: 1px solid #bfdbfe !important;";
+  } else if (val.includes("bpjs")) {
+    return "background-color: #f0fdfa !important; color: #0f766e !important; border: 1px solid #99f6e4 !important;";
+  } else {
+    // Default / Asuransi / Lainnya
+    return "background-color: #f8fafc !important; color: #475569 !important; border: 1px solid #e2e8f0 !important;";
+  }
+}
+
+// Fungsi untuk menentukan ikon mikro yang relevan
+function getMetodeIcon(metode: string) {
+  const val = String(metode).toLowerCase();
+
+  if (val.includes("cash") || val.includes("tunai")) return "mdi-cash";
+  if (val.includes("qris")) return "mdi-qrcode-scan";
+  if (val.includes("transfer") || val.includes("bank"))
+    return "mdi-bank-transfer";
+  if (val.includes("debit")) return "mdi-credit-card-outline";
+  if (val.includes("bpjs") || val.includes("asuransi"))
+    return "mdi-shield-check-outline";
+  return "mdi-wallet-outline";
+}
 
 /* STATE */
 const dialog = ref(false);
