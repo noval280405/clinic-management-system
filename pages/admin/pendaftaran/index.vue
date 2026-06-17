@@ -246,216 +246,389 @@
 
   <v-dialog
     v-model="data.dialogAdd"
-    :width="$vuetify.display.mdAndUp ? '580px' : '90%'"
+    :width="$vuetify.display.mdAndUp ? '1040px' : '95%'"
+    transition="dialog-bottom-transition"
   >
-    <v-card class="rounded-lg">
+    <v-card
+      class="rounded-2xl border-none overflow-hidden pa-0"
+      style="
+        background-color: #f8fafc;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      "
+    >
       <v-card-title
-        class="px-4 text-subtitle-1 font-weight-bold bg-primary pa-3"
+        class="d-flex justify-space-between align-start pt-5 px-6 pb-4 text-white"
+        style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
       >
-        {{ titleaddedit }}
+        <div class="d-flex align-center ga-3">
+          <div class="d-flex flex-column">
+            <span
+              class="text-body-1 font-weight-black text-white tracking-wide"
+              style="line-height: 1; font-size: 1.5rem !important"
+            >
+              {{ titleaddedit }}
+            </span>
+            <span
+              class="text-caption text-blue-100 font-weight-medium mt-0.5"
+              style="font-size: 11px !important; letter-spacing: 0.2px"
+            >
+              Registrasi Kunjungan Pasien, Penjaminan Administrasi, dan Alokasi
+              Slot Antrian Poliklinik
+            </span>
+          </div>
+        </div>
+
+        <v-btn
+          variant="text"
+          size="32"
+          color="white"
+          class="rounded-lg"
+          style="
+            background: rgba(255, 255, 255, 0.12);
+            min-width: 32px;
+            height: 32px;
+            padding: 0;
+          "
+          @click="data.dialogAdd = false"
+        >
+          <v-icon size="18">mdi-close</v-icon>
+        </v-btn>
       </v-card-title>
 
-      <v-card-text class="pa-4">
-        <!-- ================= PASIEN ================= -->
-        <div class="mb-4">
-          <div class="text-subtitle-2 font-weight-bold mb-2">Data Pasien</div>
+      <v-card-text class="pa-6">
+        <v-row>
+          <v-col cols="12" md="6" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
+            >
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-2">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-account-box-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    01. Berkas Data Pasien
+                  </span>
+                </div>
 
-          <v-row>
-            <v-col>
-              <a-autocomplete
-                label="Pilih Pasien"
-                v-model="new_pendaftaran.id_pasien"
-                :items="pasienStore.getDataPasien"
-                item-title="nama_pasien"
-                item-value="id"
-                clearable
-              />
-            </v-col>
-            <v-col>
-              <v-btn
-                color="green"
-                size="small"
-                class="mt-5"
-                @click="data.dialogPasien = true"
+                <v-row dense class="align-start">
+                  <v-col cols="9">
+                    <a-autocomplete
+                      label="Pilih Nama Pasien"
+                      v-model="new_pendaftaran.id_pasien"
+                      :items="pasienStore.getDataPasien"
+                      item-title="nama_pasien"
+                      item-value="id"
+                      prepend-inner-icon="mdi-account-search"
+                      variant="outlined"
+                      density="comfortable"
+                      clearable
+                    />
+                  </v-col>
+                  <v-col cols="3">
+                    <v-btn
+                      color="blue-lighten-5"
+                      variant="flat"
+                      style="
+                        height: 44px;
+                        text-transform: none;
+                        border: 1px solid #bfdbfe;
+                      "
+                      class="w-100 text-blue-darken-4 font-weight-bold text-caption rounded-lg"
+                      @click="data.dialogPasien = true"
+                    >
+                      <v-icon size="16" class="mr-1">mdi-plus-circle</v-icon>
+                      Baru
+                    </v-btn>
+                  </v-col>
+                </v-row>
+
+                <v-expand-transition>
+                  <v-alert
+                    v-if="selectedPasien"
+                    color="blue-darken-3"
+                    variant="tonal"
+                    density="comfortable"
+                    class="rounded-lg mt-1 border-none"
+                    icon="mdi-account-check-outline"
+                  >
+                    <div
+                      class="text-caption font-weight-bold text-slate-700"
+                      style="font-size: 11.5px !important"
+                    >
+                      {{ selectedPasien.nama_pasien }} •
+                      {{ selectedPasien.jenis_kelamin }} •
+                      {{ selectedPasien.no_hp || "-" }}
+                    </div>
+                  </v-alert>
+                </v-expand-transition>
+              </div>
+
+              <div
+                class="d-flex flex-column ga-2 mt-3 pt-2"
+                style="border-top: 1px dashed #e2e8f0"
               >
-                <v-icon size="15">mdi-plus</v-icon> Pasien
-              </v-btn>
-            </v-col>
-          </v-row>
+                <div class="d-flex align-center ga-2 mb-2">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-shield-check-outline</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    02. Metode Bayar & Keluhan
+                  </span>
+                </div>
 
-          <v-expand-transition>
-            <v-alert
-              v-if="selectedPasien"
-              type="info"
-              variant="tonal"
-              density="compact"
-              class="mt-2"
-            >
-              <div class="text-caption">
-                {{ selectedPasien.nama_pasien }} •
-                {{ selectedPasien.jenis_kelamin }} •
-                {{ selectedPasien.no_hp || "-" }}
+                <v-row dense>
+                  <v-col
+                    :cols="new_pendaftaran.jenis_pasien === 'bpjs' ? '6' : '12'"
+                  >
+                    <a-select
+                      label="Metode Pembayaran"
+                      v-model="new_pendaftaran.jenis_pasien"
+                      :items="['umum', 'bpjs', 'asuransi']"
+                      prepend-inner-icon="mdi-wallet-membership"
+                      variant="outlined"
+                      density="comfortable"
+                    />
+                  </v-col>
+
+                  <v-col
+                    cols="6"
+                    v-if="new_pendaftaran.jenis_pasien === 'bpjs'"
+                  >
+                    <a-text-field
+                      label="Nomor Kartu BPJS"
+                      v-model="new_pendaftaran.no_bpjs"
+                      placeholder="Masukkan 13 digit no kartu"
+                      prepend-inner-icon="mdi-card-account-details"
+                      variant="outlined"
+                      density="comfortable"
+                    />
+                  </v-col>
+
+                  <v-col cols="12">
+                    <a-text-field
+                      label="Keluhan Awal Pasien"
+                      v-model="new_pendaftaran.keluhan"
+                      placeholder="Contoh: Sakit kepala hebat, mual semenjak kemarin malam"
+                      prepend-inner-icon="mdi-emoticon-sick-outline"
+                      variant="outlined"
+                      density="comfortable"
+                    />
+                  </v-col>
+                </v-row>
               </div>
-            </v-alert>
-          </v-expand-transition>
-        </div>
+            </v-card>
+          </v-col>
 
-        <!-- ================= POLI & DOKTER ================= -->
-        <div class="mb-4">
-          <div class="text-subtitle-2 font-weight-bold mb-2">Poli & Dokter</div>
-
-          <v-row dense>
-            <v-col cols="6">
-              <a-select
-                label="Poli"
-                v-model="new_pendaftaran.id_poli"
-                :items="poliStore.getDataPoli"
-                item-title="nama_poli"
-                item-value="id"
-                clearable
-              />
-            </v-col>
-
-            <v-col cols="6">
-              <a-select
-                label="Dokter"
-                v-model="new_pendaftaran.id_dokter"
-                :items="dokterAvailable"
-                item-title="nama_dokter"
-                item-value="id"
-                :disabled="!new_pendaftaran.id_poli"
-                clearable
-              />
-            </v-col>
-          </v-row>
-
-          <!-- 🔥 INFO KUOTA -->
-          <v-expand-transition>
-            <div
-              v-if="
-                new_pendaftaran.id_poli && new_pendaftaran.tanggal_kunjungan
-              "
-              class="mt-2 pa-2 rounded bg-grey-lighten-4"
+          <v-col cols="12" md="6" class="d-flex">
+            <v-card
+              variant="flat"
+              class="pa-4 rounded-xl border flex-grow-1 bg-white d-flex flex-column justify-space-between ga-2"
+              style="border-color: #e2e8f0 !important"
             >
-              <div class="d-flex justify-space-between text-caption">
-                <span>
-                  Antrian:
-                  <b>
-                    {{
-                      getJumlahPoliHariIni(
-                        new_pendaftaran.id_poli,
-                        new_pendaftaran.tanggal_kunjungan,
-                      )
-                    }}
-                    /
-                    {{ getMaxPoli(new_pendaftaran.id_poli) }}
-                  </b>
-                </span>
+              <div class="d-flex flex-column ga-2">
+                <div class="d-flex align-center ga-2 mb-2">
+                  <v-icon color="blue-darken-3" size="18"
+                    >mdi-calendar-clock</v-icon
+                  >
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                  >
+                    03. Destinasi Unit & Jadwal
+                  </span>
+                </div>
 
-                <span
-                  :class="
-                    getSisaKuotaPoli(
-                      new_pendaftaran.id_poli,
-                      new_pendaftaran.tanggal_kunjungan,
-                    ) <= 3
-                      ? 'text-red'
-                      : 'text-green-darken-2'
-                  "
-                >
-                  Sisa:
-                  {{
-                    getSisaKuotaPoli(
-                      new_pendaftaran.id_poli,
-                      new_pendaftaran.tanggal_kunjungan,
-                    )
-                  }}
-                </span>
+                <a-date-picker
+                  label="Tanggal Rencana Kunjungan"
+                  v-model="new_pendaftaran.tanggal_kunjungan"
+                  density="comfortable"
+                  variant="outlined"
+                  class="mb-1"
+                />
+
+                <v-row dense>
+                  <v-col cols="6">
+                    <a-select
+                      label="Poliklinik Tujuan"
+                      v-model="new_pendaftaran.id_poli"
+                      :items="poliStore.getDataPoli"
+                      item-title="nama_poli"
+                      item-value="id"
+                      prepend-inner-icon="mdi-hospital-building"
+                      variant="outlined"
+                      density="comfortable"
+                      clearable
+                    />
+                  </v-col>
+
+                  <v-col cols="6">
+                    <a-select
+                      label="Dokter Pemeriksa"
+                      v-model="new_pendaftaran.id_dokter"
+                      :items="dokterAvailable"
+                      item-title="nama_dokter"
+                      item-value="id"
+                      prepend-inner-icon="mdi-doctor"
+                      :disabled="!new_pendaftaran.id_poli"
+                      variant="outlined"
+                      density="comfortable"
+                      clearable
+                    />
+                  </v-col>
+                </v-row>
               </div>
 
-              <v-progress-linear
-                :model-value="
-                  (getJumlahPoliHariIni(
-                    new_pendaftaran.id_poli,
-                    new_pendaftaran.tanggal_kunjungan,
-                  ) /
-                    getMaxPoli(new_pendaftaran.id_poli)) *
-                  100
-                "
-                height="6"
-                rounded
-                class="mt-1"
-              />
-            </div>
-          </v-expand-transition>
-        </div>
+              <div
+                class="d-flex flex-column ga-2 mt-3 pt-2"
+                style="border-top: 1px dashed #e2e8f0"
+              >
+                <div class="d-flex align-center ga-2 mb-1">
+                  <v-icon color="blue-darken-3" size="17">mdi-gauge</v-icon>
+                  <span
+                    class="text-caption text-uppercase font-weight-black text-slate-800 tracking-wider"
+                    style="font-size: 11px"
+                  >
+                    04. Live Tracker Kuota Layanan
+                  </span>
+                </div>
 
-        <!-- ================= TANGGAL ================= -->
-        <div class="mb-4">
-          <div class="text-subtitle-2 font-weight-bold mb-2">
-            Jadwal Kunjungan
-          </div>
+                <v-expand-transition>
+                  <div
+                    v-if="
+                      new_pendaftaran.id_poli &&
+                      new_pendaftaran.tanggal_kunjungan
+                    "
+                    class="pa-3 rounded-xl border d-flex flex-column ga-1"
+                    style="
+                      background-color: #f8fafc;
+                      border-color: #f1f5f9 !important;
+                    "
+                  >
+                    <div
+                      class="d-flex justify-space-between align-center text-caption font-weight-bold"
+                    >
+                      <span class="text-slate-600">
+                        Terisi:
+                        <b class="text-slate-900 text-body-2 font-weight-black">
+                          {{
+                            getJumlahPoliHariIni(
+                              new_pendaftaran.id_poli,
+                              new_pendaftaran.tanggal_kunjungan,
+                            )
+                          }}
+                        </b>
+                        / {{ getMaxPoli(new_pendaftaran.id_poli) }} Pasien
+                      </span>
 
-          <a-date-picker
-            label="Tanggal Kunjungan"
-            v-model="new_pendaftaran.tanggal_kunjungan"
-          />
-        </div>
+                      <v-chip
+                        size="x-small"
+                        :color="
+                          getSisaKuotaPoli(
+                            new_pendaftaran.id_poli,
+                            new_pendaftaran.tanggal_kunjungan,
+                          ) <= 3
+                            ? 'red'
+                            : 'green'
+                        "
+                        variant="flat"
+                        class="px-2 font-weight-black text-white text-uppercase"
+                      >
+                        Sisa Slot:
+                        {{
+                          getSisaKuotaPoli(
+                            new_pendaftaran.id_poli,
+                            new_pendaftaran.tanggal_kunjungan,
+                          )
+                        }}
+                      </v-chip>
+                    </div>
 
-        <!-- ================= ADMINISTRASI ================= -->
-        <div class="mb-4">
-          <div class="text-subtitle-2 font-weight-bold mb-2">Administrasi</div>
+                    <v-progress-linear
+                      :model-value="
+                        (getJumlahPoliHariIni(
+                          new_pendaftaran.id_poli,
+                          new_pendaftaran.tanggal_kunjungan,
+                        ) /
+                          getMaxPoli(new_pendaftaran.id_poli)) *
+                        100
+                      "
+                      height="8"
+                      rounded
+                      :color="
+                        getSisaKuotaPoli(
+                          new_pendaftaran.id_poli,
+                          new_pendaftaran.tanggal_kunjungan,
+                        ) <= 3
+                          ? 'red'
+                          : 'blue-darken-3'
+                      "
+                      class="mt-1"
+                    />
+                  </div>
 
-          <v-row dense>
-            <v-col cols="6">
-              <a-select
-                label="Jenis Pasien"
-                v-model="new_pendaftaran.jenis_pasien"
-                :items="['umum', 'bpjs', 'asuransi']"
-              />
-            </v-col>
-
-            <v-col cols="6" v-if="new_pendaftaran.jenis_pasien === 'bpjs'">
-              <a-text-field label="No BPJS" v-model="new_pendaftaran.no_bpjs" />
-            </v-col>
-          </v-row>
-        </div>
-
-        <!-- ================= KELUHAN ================= -->
-        <div>
-          <div class="text-subtitle-2 font-weight-bold mb-2">Keluhan Awal</div>
-
-          <a-text-field
-            label="Keluhan Pasien"
-            v-model="new_pendaftaran.keluhan"
-            placeholder="Contoh: Demam, batuk, dll"
-          />
-        </div>
+                  <div
+                    v-else
+                    class="pa-4 rounded-xl border text-center text-caption text-slate-400 font-weight-medium bg-slate-50 border-dashed style='border-color: #cbd5e1 !important;'"
+                  >
+                    <v-icon size="16" class="mr-1"
+                      >mdi-information-outline</v-icon
+                    >
+                    Pilih unit poliklinik & tanggal kunjungan untuk meninjau
+                    ketersediaan kuota antrian.
+                  </div>
+                </v-expand-transition>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-card-text>
 
-      <v-card-actions class="pa-3 bg-grey-lighten-4">
+      <v-card-actions
+        class="px-6 pb-4 pt-2 d-flex justify-end ga-2"
+        style="background-color: #f1f5f9; border-top: 1px solid #e2e8f0"
+      >
         <v-btn
-          variant="flat"
-          color="grey-darken-2"
+          variant="text"
+          color="grey-darken-3"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0;
+          "
+          class="text-caption px-5"
           @click="data.dialogAdd = false"
-          class="text-capitalize px-3"
-          size="small"
         >
           Batal
         </v-btn>
 
         <v-btn
-          color="primary"
-          @click="validate"
+          color="blue-darken-3"
           variant="flat"
-          class="text-capitalize px-3"
-          size="small"
+          style="
+            font-weight: 700;
+            border-radius: 6px;
+            height: 36px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+          "
+          class="text-caption px-5 text-white"
           :disabled="
             getSisaKuotaPoli(
               new_pendaftaran.id_poli,
               new_pendaftaran.tanggal_kunjungan,
             ) <= 0
           "
+          @click="validate"
         >
+          <v-icon size="14" class="mr-1.5">mdi-calendar-check</v-icon>
           {{ bottomAddEdit }}
         </v-btn>
       </v-card-actions>
