@@ -387,8 +387,12 @@
 
         <template #item.aksi="{ item }">
           <v-btn
+            color="yellow"
+            variant="elevated"
+            rounded="pill"
             size="small"
-            color="success"
+            prepend-icon="mdi-cash-check"
+            class="text-none font-weight-bold px-3"
             @click="openBayar(item)"
             :disabled="item.status === 'Terbayar'"
           >
