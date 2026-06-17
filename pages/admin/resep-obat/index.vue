@@ -244,7 +244,6 @@
       <template v-slot:item.status="{ item }">
         <v-chip
           size="small"
-          variant="flat"
           :color="
             {
               Antrian: 'grey',
