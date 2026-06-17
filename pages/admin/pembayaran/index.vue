@@ -355,8 +355,12 @@
         <!-- AKSI -->
         <template #item.aksi="{ item }">
           <v-btn
-            size="small"
             color="success"
+            variant="flat"
+            rounded="pill"
+            size="small"
+            prepend-icon="mdi-check-circle"
+            class="text-none font-weight-bold btn-lunas"
             @click="openBayar(item)"
             :disabled="item.status === 'Lunas'"
           >
