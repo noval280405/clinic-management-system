@@ -345,9 +345,29 @@
         <template #item.status="{ item }">
           <v-chip
             size="small"
-            :color="item.status === 'Lunas' ? 'green' : 'orange'"
             variant="flat"
+            class="font-weight-black text-caption px-3 rounded-lg"
+            style="
+              height: 24px;
+              letter-spacing: 0.3px;
+              text-transform: uppercase;
+              font-size: 10px !important;
+            "
+            :style="
+              item.status === 'Lunas' || item.status === 'Terbayar'
+                ? 'background-color: #f0fdf4 !important; color: #16a34a !important; border: 1px solid #bbf7d0 !important;'
+                : 'background-color: #fff7ed !important; color: #ea580c !important; border: 1px solid #ffedd5 !important;'
+            "
           >
+            <!-- Ikon indikator mini di dalam chip -->
+            <v-icon size="11" class="mr-1">
+              {{
+                item.status === "Lunas" || item.status === "Terbayar"
+                  ? "mdi-check-circle"
+                  : "mdi-clock-alert-outline"
+              }}
+            </v-icon>
+
             {{ item.status }}
           </v-chip>
         </template>
