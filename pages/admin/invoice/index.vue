@@ -131,13 +131,15 @@
         <!-- AKSI -->
         <template #item.aksi="{ item }">
           <v-btn
-            size="small"
             color="primary"
-            variant="flat"
-            rounded="lg"
+            variant="elevated"
+            rounded="pill"
+            size="small"
+            prepend-icon="mdi-file-document-outline"
+            class="text-none font-weight-bold px-4"
             @click="openInvoice(item)"
           >
-            Lihat
+            Invoice
           </v-btn>
         </template>
 
