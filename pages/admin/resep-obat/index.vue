@@ -246,10 +246,11 @@
           size="small"
           :color="
             {
+              Draft: 'blue-grey-darken-1' /* Warna untuk Draft */,
               Antrian: 'grey',
               Diproses: 'orange',
               Selesai: 'green',
-            }[item.status] || 'default'
+            }[item.status] || 'grey-lighten-1'
           "
           class="text-white font-weight-medium"
           label
@@ -257,6 +258,7 @@
           <v-icon start size="14">
             {{
               {
+                Draft: "mdi-file-document-edit-outline" /* Ikon untuk Draft */,
                 Antrian: "mdi-account-clock",
                 Diproses: "mdi-progress-clock",
                 Selesai: "mdi-check-circle",
