@@ -2,223 +2,158 @@
   <v-container class="pa-3" fluid v-if="detailPendaftaran">
     <ConfirmationDialog ref="confirmationDialog" />
 
-    <v-card
-      variant="outlined"
-      class="rounded-xl border-grey-lighten-2 bg-white elevation-1"
-    >
+    <v-card variant="flat" class="rounded-xl bg-white custom-detail-card">
+      <!-- HEADER SECTION (MENYAMPING / HORIZONTAL) -->
       <v-card-title
-        class="mb-4 text-center py-6 d-block rounded-t-xl"
-        style="
-          background: linear-gradient(135deg, #0d47a1 0%, #1e88e5 100%);
-          overflow: hidden;
-          position: relative;
-          white-space: normal;
-        "
+        class="px-5 py-4 d-flex justify-space-between align-center header-gradient text-white"
       >
-        <div
-          style="
-            position: absolute;
-            top: -40px;
-            right: -20px;
-            width: 140px;
-            height: 140px;
-            background: radial-gradient(
-              circle,
-              rgba(255, 255, 255, 0.15) 0%,
-              rgba(255, 255, 255, 0) 70%
-            );
-            border-radius: 50%;
-          "
-        ></div>
-        <div
-          style="
-            position: absolute;
-            bottom: -30px;
-            left: -30px;
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-          "
-        ></div>
+        <!-- Modern Abstract Background Shapes -->
+        <div class="glow-circle-1"></div>
 
-        <div
-          class="text-caption text-blue-lighten-4 font-weight-bold tracking-wider text-uppercase"
-        >
-          Nomor Antrian
+        <div class="d-flex align-center gap-3 z-index-1">
+          <div class="d-flex flex-column">
+            <span
+              class="text-overline font-weight-black text-blue-lighten-4 tracking-wider lh-1"
+            >
+              No. Antrian
+            </span>
+            <span class="text-h3 font-weight-black tracking-tight mt-1">
+              {{ detailPendaftaran.no_antrian }}
+            </span>
+          </div>
         </div>
 
-        <div class="text-h2 font-weight-black text-white my-1 tracking-tight">
-          {{ detailPendaftaran.no_antrian }}
-        </div>
-
+        <!-- Status Badge Menyamping di Kanan -->
         <v-chip
           size="small"
-          class="font-weight-bold text-white px-4 mt-1"
-          style="
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-          "
+          :color="getStatusColor(detailPendaftaran.status)"
+          variant="flat"
+          class="font-weight-bold px-4 status-chip z-index-1"
         >
-          <v-icon start size="10" class="mr-1" color="amber-lighten-3"
-            >mdi-circle</v-icon
-          >
+          <v-icon start size="10" class="mr-1">mdi-circle</v-icon>
           {{ detailPendaftaran.status }}
         </v-chip>
       </v-card-title>
 
-      <v-card-text class="pt-0 px-4">
-        <v-row dense class="mx-0 mb-3">
-          <v-col cols="12" sm="4" class="pa-1">
-            <v-card
-              class="rounded-xl pa-3 d-flex align-center bg-blue-lighten-5 h-100 border-sm"
-              variant="flat"
-              style="border-color: #e3f2fd !important"
-            >
-              <v-avatar color="primary" class="mr-3 elevation-1" size="36">
-                <v-icon color="white" size="18">mdi-account</v-icon>
+      <!-- BODY SECTION (DIOPTIMALKAN AGAR TIDAK KOSONG) -->
+      <v-card-text class="pa-4">
+        <!-- GRID UTAMA UNTUK INFORMASI -->
+        <v-row dense class="mb-2">
+          <!-- Kolom Kiri: Pasien -->
+          <v-col cols="12" sm="6" class="pb-2">
+            <div class="info-box h-100">
+              <v-avatar
+                color="blue-lighten-5"
+                class="rounded-lg mr-3"
+                size="40"
+              >
+                <v-icon color="blue-darken-2" size="18">mdi-account</v-icon>
               </v-avatar>
-              <div style="min-width: 0">
-                <div
-                  class="text-caption text-primary font-weight-bold"
-                  style="line-height: 1"
-                >
-                  Pasien
-                </div>
-                <div
-                  class="text-body-2 font-weight-bold text-grey-darken-4 text-truncate mt-1"
-                >
-                  {{ detailPendaftaran.nama_pasien }}
-                </div>
+              <div class="info-content">
+                <span class="info-label">Nama Pasien</span>
+                <span class="info-value">{{
+                  detailPendaftaran.nama_pasien
+                }}</span>
               </div>
-            </v-card>
+            </div>
           </v-col>
 
-          <v-col cols="12" sm="4" class="pa-1">
-            <v-card
-              class="rounded-xl pa-3 d-flex align-center bg-indigo-lighten-5 h-100 border-sm"
-              variant="flat"
-              style="border-color: #e8eaf6 !important"
-            >
-              <v-avatar color="indigo" class="mr-3 elevation-1" size="36">
-                <v-icon color="white" size="18">mdi-hospital-building</v-icon>
-              </v-avatar>
-              <div style="min-width: 0">
-                <div
-                  class="text-caption text-indigo font-weight-bold"
-                  style="line-height: 1"
+          <!-- Kolom Kanan: Detail Klinik (Poli & Dokter digabung vertikal agar padat) -->
+          <v-col cols="12" sm="6" class="pb-2">
+            <div class="d-flex flex-column gap-2 h-100">
+              <!-- Poli -->
+              <div class="info-box-sm">
+                <v-icon color="indigo-darken-1" size="16" class="mr-2"
+                  >mdi-hospital-building</v-icon
                 >
-                  Poli
-                </div>
-                <div
-                  class="text-body-2 font-weight-bold text-grey-darken-4 text-truncate mt-1"
-                >
-                  {{ detailPendaftaran.nama_poli }}
+                <div class="d-flex align-center justify-space-between w-100">
+                  <span class="sub-label">Poli:</span>
+                  <span class="sub-value">{{
+                    detailPendaftaran.nama_poli
+                  }}</span>
                 </div>
               </div>
-            </v-card>
-          </v-col>
-
-          <v-col cols="12" sm="4" class="pa-1">
-            <v-card
-              class="rounded-xl pa-3 d-flex align-center bg-teal-lighten-5 h-100 border-sm"
-              variant="flat"
-              style="border-color: #e0f2f1 !important"
-            >
-              <v-avatar color="teal" class="mr-3 elevation-1" size="36">
-                <v-icon color="white" size="18">mdi-doctor</v-icon>
-              </v-avatar>
-              <div style="min-width: 0">
-                <div
-                  class="text-caption text-teal font-weight-bold"
-                  style="line-height: 1"
+              <!-- Dokter -->
+              <div class="info-box-sm">
+                <v-icon color="teal-darken-1" size="16" class="mr-2"
+                  >mdi-doctor</v-icon
                 >
-                  Dokter
-                </div>
-                <div
-                  class="text-body-2 font-weight-bold text-grey-darken-4 text-truncate mt-1"
-                >
-                  {{ detailPendaftaran.nama_dokter }}
+                <div class="d-flex align-center justify-space-between w-100">
+                  <span class="sub-label">Dokter:</span>
+                  <span class="sub-value">{{
+                    detailPendaftaran.nama_dokter
+                  }}</span>
                 </div>
               </div>
-            </v-card>
+            </div>
           </v-col>
         </v-row>
 
+        <!-- COMPLAINT / KELUHAN BOX -->
         <v-card
-          class="rounded-xl pa-3 mb-2 bg-amber-lighten-5 border-sm"
+          class="rounded-xl pa-3 bg-slate-50 border-smooth"
           variant="flat"
-          style="border-color: #fff8e1 !important"
         >
           <div class="d-flex align-center mb-1">
-            <v-icon color="amber-darken-4" size="18" class="mr-1.5"
-              >mdi-alert-circle</v-icon
+            <v-icon color="amber-darken-3" size="16" class="mr-2"
+              >mdi-comment-text-alert-outline</v-icon
             >
-            <span class="text-caption font-weight-bold text-amber-darken-4"
+            <span
+              class="text-caption font-weight-bold text-grey-darken-2 text-uppercase tracking-wide"
               >Keluhan</span
             >
           </div>
           <div
-            class="text-body-2 text-grey-darken-3 pl-5 font-italic"
-            style="line-height: 1.4"
+            class="text-body-2 text-grey-darken-3 font-italic pl-6 style-quote"
           >
             "{{ detailPendaftaran.keluhan || "Tidak ada keluhan tertulis." }}"
           </div>
         </v-card>
       </v-card-text>
 
-      <v-card-actions class="px-4 pb-4 pt-0">
+      <!-- ACTIONS SECTION -->
+      <v-card-actions class="px-5 pb-4 pt-1 d-flex justify-end">
+        <!-- Status: Menunggu (Tombol ringkas berjejer di kanan) -->
         <div
           v-if="detailPendaftaran.status === 'Menunggu'"
-          class="d-flex justify-end w-100"
+          class="d-flex align-center gap-2"
         >
-          <div
-            v-if="detailPendaftaran.status === 'Menunggu'"
-            class="d-flex justify-end w-100"
+          <v-btn
+            variant="elevated"
+            color="red-darken-1"
+            density="comfortable"
+            @click="cancelPendaftaran"
+            class="rounded-lg font-weight-bold text-capitalize px-4"
+            prepend-icon="mdi-close-circle-outline"
+            style="font-size: 13px; height: 36px"
           >
-            <v-btn
-              variant="tonal"
-              color="red-darken-1"
-              @click="cancelPendaftaran"
-              class="rounded-xl font-weight-bold text-capitalize mr-2 px-4 action-btn-hover"
-              prepend-icon="mdi-close-circle-outline"
-              style="
-                letter-spacing: 0.3px;
-                transition: all 0.2s ease-in-out;
-                border: 1px solid rgba(229, 57, 53, 0.2);
-              "
-            >
-              Tolak
-            </v-btn>
+            Tolak
+          </v-btn>
 
-            <v-btn
-              color="green-darken-1"
-              variant="elevated"
-              @click="approvePendaftaran"
-              class="rounded-xl font-weight-bold text-white text-capitalize px-4 action-btn-hover"
-              prepend-icon="mdi-check-circle"
-              style="
-                letter-spacing: 0.3px;
-                transition: all 0.2s ease-in-out;
-                box-shadow: 0 4px 10px rgba(67, 160, 71, 0.25) !important;
-              "
-            >
-              Setujui
-            </v-btn>
-          </div>
+          <v-btn
+            color="green-darken-1"
+            variant="elevated"
+            density="comfortable"
+            @click="approvePendaftaran"
+            class="rounded-lg font-weight-bold text-white text-capitalize px-4 btn-shadow-green"
+            prepend-icon="mdi-check-circle"
+            style="font-size: 13px; height: 36px"
+          >
+            Setujui
+          </v-btn>
         </div>
 
+        <!-- Status: Disetujui (Tombol ramping tidak memblokir penuh lebar card) -->
         <v-btn
+          v-slot:default
           v-if="detailPendaftaran.status === 'Disetujui'"
-          block
-          size="large"
-          color="primary"
+          size="default"
+          color="indigo-darken-2"
           variant="elevated"
-          elevation="2"
-          class="rounded-xl font-weight-bold text-capitalize"
-          prepend-icon="mdi-stethoscope"
           @click="openDialogAdd"
+          class="rounded-lg font-weight-bold text-capitalize px-5 btn-shadow-primary"
+          prepend-icon="mdi-stethoscope"
+          style="font-size: 13px; height: 36px"
         >
           Mulai Pemeriksaan
         </v-btn>
@@ -507,6 +442,17 @@ const data = reactive({
   ],
 });
 
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "Menunggu":
+      return "amber-lighten-4 text-amber-darken-4";
+    case "Disetujui":
+      return "green-lighten-4 text-green-darken-4";
+    default:
+      return "grey-lighten-3 text-grey-darken-3";
+  }
+};
+
 const bmi = computed(() => {
   const bb = Number(new_pemeriksaan.value.berat_badan);
   const tb = Number(new_pemeriksaan.value.tinggi_badan) / 100;
@@ -635,39 +581,147 @@ async function approvePendaftaran() {
 </script>
 
 <style scoped>
-.hero-card {
-  background: linear-gradient(135deg, #1976d2, #42a5f5);
-  box-shadow: 0 10px 25px rgba(25, 118, 210, 0.3);
+/* Main Card Setup */
+.custom-detail-card {
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  overflow: hidden;
 }
 
-.info-card {
-  padding: 12px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+/* Header Compact & Horizontal */
+.header-gradient {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.keluhan-card {
+.glow-circle-1 {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  border-radius: 50%;
+}
+
+.status-chip {
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 28px !important;
+}
+
+/* Info Box Layouts (Mengurangi Space Kosong) */
+.info-box {
+  display: flex;
+  align-items: center;
   padding: 12px;
-  border-radius: 16px;
-  background: #fff8e1;
-  border-left: 4px solid orange;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.info-box-sm {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #f1f5f9;
+  flex-grow: 1;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.info-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sub-label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sub-value {
+  font-size: 12px;
+  color: #1e293b;
+  font-weight: 700;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+}
+
+/* Utilities */
+.bg-slate-50 {
+  background-color: #f8fafc !important;
+}
+
+.border-smooth {
+  border: 1px solid #e2e8f0 !important;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.gap-2 {
+  gap: 8px;
+}
+
+.gap-3 {
+  gap: 12px;
 }
 
 .action-btn {
-  background: linear-gradient(135deg, #0d52af, #1976d2);
-  color: white;
-  font-weight: bold;
+  height: 40px !important;
+  font-size: 13px !important;
 }
 
-.action-btn-cancel {
-  background: linear-gradient(135deg, #890a0a, #ff0000);
-  color: white;
-  font-weight: bold;
+.btn-shadow-green {
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2) !important;
 }
 
-.action-btn-approve {
-  background: linear-gradient(135deg, #0f7614, #23f565);
-  color: white;
-  font-weight: bold;
+.btn-shadow-primary {
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
+}
+/* Gabungkan dengan style Anda sebelumnya */
+.gap-2 {
+  gap: 8px;
+}
+
+.btn-shadow-green {
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.15) !important;
+}
+
+.btn-shadow-primary {
+  box-shadow: 0 4px 10px rgba(49, 46, 129, 0.15) !important;
 }
 </style>
