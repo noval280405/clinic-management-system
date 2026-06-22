@@ -1,0 +1,5274 @@
+[
+  {
+    "id": 1,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Muara Bungo",
+    "kabupatenKota": "Kabupaten  Bungo",
+    "alamat": "Manggis,  Kec.  Batin  III, Kabupaten  Bungo",
+    "titikKoordinat": "1°41'5 I.6\"S 101°49' 14.7\"E/\n- 1.697656,  101.820756"
+  },
+  {
+    "id": 2,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kuningan",
+    "kabupatenKota": "Kabupaten  Kuningan",
+    "alamat": "Jl.  RE. Martadinata  Kuningan",
+    "titikKoordinat": "6‘56'55.5”S  108°27'58.3\"E/-6.948747,  108.466182"
+  },
+  {
+    "id": 3,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Indihiang",
+    "kabupatenKota": "Kota Tasikmalaya",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.  Brigjen  Wastakusuma  \"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Kec.  \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Indíhiang Kota Tasikmalaya\"}]}",
+    "titikKoordinat": "7°17'29.5\"S  108º ll'31.1\"E/-7.291517,  108.191979"
+  },
+  {
+    "id": 4,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kuningan",
+    "kabupatenKota": "Kabupaten  Kuningan",
+    "alamat": "Jl.  RE. Martadinata  Kuningan",
+    "titikKoordinat": "6‘56'55.5”S  108°27'58.3\"E/-6.948747,  108.466182"
+  },
+  {
+    "id": 5,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Subang",
+    "kabupatenKota": "Kabupaten  Subang",
+    "alamat": "Jl Darmodiharjo  01, Kel. Sukamelar  Kab Subang",
+    "titikKoordinat": "6°33'00. 1\"S 107°46'09.4”E/\n-6.550035,  107.769278"
+  },
+  {
+    "id": 6,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Banjar",
+    "kabupatenKota": "Kota Banjar",
+    "alamat": "Jl. Mayjen  Didi Kartasamita  Kota Banjar",
+    "titikKoordinat": "7°2  I'49.8\"S 108°30'27.8\"E/\n-7.363834,  108.507734"
+  },
+  {
+    "id": 7,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Cikampek",
+    "kabupatenKota": "Kabupaten  Karawang",
+    "alamat": "Jl. Raya Terminal  No. 44,  Cikampek Kota, Cikampek,  Kabupaten  Karawang",
+    "titikKoordinat": "6°24'33.4\"S  107°27'40.7”E/-6.409274,  107.46131"
+  },
+  {
+    "id": 8,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Baranangsiang",
+    "kabupatenKota": "Kota Bogor",
+    "alamat": "Jl. Raya Pajajaran  No.9,  Bogor Timur, Kota Bogor",
+    "titikKoordinat": "6°36'13.3”S 106°48'21.9\"E/-6.603702,  106.806075"
+  },
+  {
+    "id": 9,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Induk Bekasi",
+    "kabupatenKota": "Kota Bekasi",
+    "alamat": "Jl. Duren Jaya, Bekasi Timur,  Kota Bekasi",
+    "titikKoordinat": "6º 14'57.7\"S  107°00'48.4\"E/\n-6.249363,  107.013439"
+  },
+  {
+    "id": 10,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kalijaya Cikarang",
+    "kabupatenKota": "Kabupaten  Bekasi",
+    "alamat": "Jl. R. Fatahillah,  Cikarang Barat, Kabupaten  Bekasi",
+    "titikKoordinat": "6º 15'42.3\"S  107’08' 14.0\"E/-6.261735, 107.137211"
+  },
+  {
+    "id": 11,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Jatijajar",
+    "kabupatenKota": "Kota Depok",
+    "alamat": "Jl. Raya Bogor No.37, Jatijajar, Tapos, Kota Depok",
+    "titikKoordinat": "6°25'34. 2\"S 106°5 l'3 1.2\"E/\n-6.426160, 106.858668"
+  },
+  {
+    "id": 12,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Cicaheum",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl. Jendral A Yani Cicaheum Kiaracondong  Bandung",
+    "titikKoordinat": "6’54' 10.4\"S  107°39'16.7”E/-6.902895,  107.654633"
+  },
+  {
+    "id": 13,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Langsa",
+    "kabupatenKota": "Kota Langsa",
+    "alamat": "Jl. Prof. A. Majid Ibrahim,  Langsa Barat, Kota Langsa",
+    "titikKoordinat": "4°29'51.5\"N 97°58'04.3”E  / 4.497648,  97.967850"
+  },
+  {
+    "id": 14,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Lhokseumawe",
+    "kabupatenKota": "Kota Lhokseumawe",
+    "alamat": "Desa Meunasah  Mee Kandang, Kecamatan  Muara Dua  , Kota Lhokseumawe",
+    "titikKoordinat": "5°9'34.3\"N  97°08' 12.3”E  /\n5. 1595277,  97.13675"
+  },
+  {
+    "id": 15,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Meulaboh",
+    "kabupatenKota": "Kabupaten  Aceh  Barat",
+    "alamat": "RGM  Komplek Terminal Tipe A Meulaboh",
+    "titikKoordinat": "4°08'50.7\"N  96°07'37. 7”E  /\n4.147429,96.127124"
+  },
+  {
+    "id": 16,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Batoh",
+    "kabupatenKota": "Kota Banda Aceh",
+    "alamat": "Jl.  Doktor  Ir. T. Mohd.  Hasan,  Kota Banda  Aceh",
+    "titikKoordinat": "5°31'47.2\"N  95º 19'45.O”E  /\n5.529789,  95.329159"
+  },
+  {
+    "id": 17,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Paya Ilang",
+    "kabupatenKota": "Kabupaten  Aceh Tengah",
+    "alamat": "Blang Kolak II, Bebesen, Takengon, Kabupaten  Aceh Tengah",
+    "titikKoordinat": "4°37’31.64\"N  96°50‘7.25\"E/\n4,6254565,  96.8353488"
+  },
+  {
+    "id": 18,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Tanjung Pinggir",
+    "kabupatenKota": "Kota Pemantang Siantar",
+    "alamat": "J1. AMD  No.3  Pematang Siantar",
+    "titikKoordinat": "3°00'04.3\"N  99°04'4 I.2\"E  / 3.001183, 99.078122"
+  },
+  {
+    "id": 19,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Madya Tarutung",
+    "kabupatenKota": "Kabupaten Tapanuli Utara",
+    "alamat": "Jl.  Mayjend.  D.I. Panjaitan, Tarutung, Tapanuli  Utara",
+    "titikKoordinat": "2°0 I'31.7\"N  98°58'26.6”E  / 2.025469, 98.974046"
+  },
+  {
+    "id": 20,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Sibolga",
+    "kabupatenKota": "Kota Sibolga",
+    "alamat": "J1. Sisingamangaraja No.8,  Pancuran Gerobak, Sibolga  Kota,  Kota Sibolga",
+    "titikKoordinat": "1°44'20.2\"N 98°47'02.4\"E  /\n1.738947, 98.783995"
+  },
+  {
+    "id": 21,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Padang Bulan",
+    "kabupatenKota": "Kabupaten  Labuhan Batu",
+    "alamat": "JI.  H. Adam Malik, Padang Bulan,  Rantau Utara,  Kabupaten  Labuhan  Batu",
+    "titikKoordinat": "2°04'42.0\"N  99°50'26.5”E  /\n2.078321, 99.840706"
+  },
+  {
+    "id": 22,
+    "provinsi": "Aceh (BPTD Wil.I)",
+    "namaTerminal": "Terminal Langsa",
+    "kabupatenKota": "Kota Langsa",
+    "alamat": "Jl. Prof. A. Majid Ibrahim, Langsa Barat, Kota Langsa",
+    "titikKoordinat": "LGS"
+  },
+  {
+    "id": 23,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Langsa",
+    "kabupatenKota": "Kota Langsa",
+    "alamat": "Jl. Prof. A. Majid Ibrahim,  Langsa Barat, Kota Langsa",
+    "titikKoordinat": "4°29'51.5\"N 97°58'04.3”E  / 4.497648,  97.967850"
+  },
+  {
+    "id": 24,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bawen",
+    "kabupatenKota": "Kabupaten  Semarang",
+    "alamat": "Jl.  Palagan  No.  l  Baw'en,  Kec. Bawen Kab. Semarang",
+    "titikKoordinat": "7°14'44.9”S 110°26'00. 7\"E/\n-7.245799,  110.433526"
+  },
+  {
+    "id": 25,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Amplas",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "Jl.  Panglima  Denai, Timbang  Deli, Medan Amplas,  Kota Medan",
+    "titikKoordinat": "3°32'21.2”N  98°43'05.5\"E  /\n3.539207, 98.718201"
+  },
+  {
+    "id": 26,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Pinang Baris",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "J1. Tahi Bonar Simatupang,  Lalang, Medan Sunggal,  Kota Medan",
+    "titikKoordinat": "3°35'20.2”N  98°36'36.5\"E  /\n3.588932, 98.610151"
+  },
+  {
+    "id": 27,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Anak Air",
+    "kabupatenKota": "Kota Padang",
+    "alamat": "Jl.  Adinegoro  No.20,  Lubuk Buaya,  Koto Tangah,  Kota Padang",
+    "titikKoordinat": "0°49'32.2\"S  100º 19'49.4”E/\n-0.8256 1 1,  100.330397"
+  },
+  {
+    "id": 28,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Kiliran  Jao",
+    "kabupatenKota": "Kabupaten  Sijunjung",
+    "alamat": "Jl.  Nagari  Muaro Takung Kabupaten Sijunjung,  Jl.  l,intas Sumatera KM 195 Kiliranjao",
+    "titikKoordinat": "0°53'20.4\"S  101‘21'34.1”E/\n-0.888988,  101.359466"
+  },
+  {
+    "id": 29,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Bareh Solok",
+    "kabupatenKota": "Kota Solok",
+    "alamat": "Ji. Tj. Paku, Simpang Rumbio,  Lubuk Sikarah, Kota Solok",
+    "titikKoordinat": "0°47'50.6\"S  100°40'01.1”E/\n-0.797388,  100.666973"
+  },
+  {
+    "id": 30,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Simpang Aur",
+    "kabupatenKota": "Kota Bukit Tinggi",
+    "alamat": "Jl. Diponegoro  Terminal Tipe A Simpang Aur, Tigobale, Tarodipok,  Bukit Tinggi",
+    "titikKoordinat": "0º18'49.4\"S  l00°23' 11.2”E/\n-0.313727,  100.386431"
+  },
+  {
+    "id": 31,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Jati Pariaman",
+    "kabupatenKota": "Kota Pariaman",
+    "alamat": "Jl.  Wolter  Mongo Sidi, Ds. Jatimudik, Pariaman Tengah",
+    "titikKoordinat": "0°37'05.8\"S  100°08'31.0\"E/\n-0.618277,  100. 141540"
+  },
+  {
+    "id": 32,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bangkinang",
+    "kabupatenKota": "Kabupaten  Kampar",
+    "alamat": "Jl. Prof.  M. Yamin  SH,  Bangkinang, Kampar",
+    "titikKoordinat": "0°20'43. 2”N  10 1°01'29.1\"E/\n0.345320,  101.024753"
+  },
+  {
+    "id": 33,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bandar  Raya Payung Sekaki",
+    "kabupatenKota": "Kota Pekanbaru",
+    "alamat": "Jl.  Air Hitam, Ke1.  Labuh  Barat,  Kec. Payung Sekaki,  Pekanbaru",
+    "titikKoordinat": "0°30'08.2”N  101°23'17.0”E/\n0.502280,  101.388059"
+  },
+  {
+    "id": 34,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Dumai",
+    "kabupatenKota": "Kota Dumai",
+    "alamat": "Il.  Ratu Sima Klakap 7,  Kec. Simpang Tetap, Kel.  Dumai Barat,  Du mai",
+    "titikKoordinat": "1°40'34.7“N  101°25'04.2\"E/\n1.676313, 101.41783"
+  },
+  {
+    "id": 35,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Gerbangsari",
+    "kabupatenKota": "Kabupaten  Indragiri Hulu",
+    "alamat": "Jl.  Lintas Timur Sumatra,  Pematang Reba,  Rengat Barat, Kabupaten  Indragiri Hulu",
+    "titikKoordinat": "0°24'02. 1”S  l02°26'52.4”E/\n—0.400594,  102.447898"
+  },
+  {
+    "id": 36,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal Alam Barajo",
+    "kabupatenKota": "Kota Jambi",
+    "alamat": "Lingkar  Barat  1, Kota Jambi",
+    "titikKoordinat": "1°37'43.7\"S  103°33'05.8\"E/\n-1.628811,  103.55160"
+  },
+  {
+    "id": 37,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Muara Bungo",
+    "kabupatenKota": "Kabupaten  Bungo",
+    "alamat": "Manggis,  Kec.  Batin  III, Kabupaten  Bungo",
+    "titikKoordinat": "1°41'5 I.6\"S 101°49' 14.7\"E/\n- 1.697656,  101.820756"
+  },
+  {
+    "id": 38,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Bangko",
+    "kabupatenKota": "Kabupaten   Marangin",
+    "alamat": "Jl.  Bangko  Kab.  Merangin",
+    "titikKoordinat": "2°03'19.3\"S  102°20'09.0”E/\n-2.055368,  102.335828"
+  },
+  {
+    "id": 39,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Sribulan",
+    "kabupatenKota": "Kabupateri Sorolangun",
+    "alamat": "Jl.   Lintas Sumatera Bangko — Sarolangun",
+    "titikKoordinat": "2º 18'21.0\"S 102°40'45.4\"E/\n-2.305829,  102.679286"
+  },
+  {
+    "id": 40,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "{\"richText\":[{\"text\":\"Terminal Alang-alang\"},{\"font\":{\"vertAlign\":\"superscript\",\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\" \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Lebar\"}]}",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. By Pass Alang-alang  Lebar KM 12  Kota Palembang",
+    "titikKoordinat": "2°54'59.8\"S  l04°40'52.5\"E/\n-2.916598,  104.681245"
+  },
+  {
+    "id": 41,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Batu  Kuning",
+    "kabupatenKota": "Kabupaten  OKU",
+    "alamat": "Lintas Sumatera No. 61 Batu  Raja Kab. Ogan  Komering  Ulu",
+    "titikKoordinat": "4°05'59.7”S  104°09'23. 7”E/\n-4.099927,  104.156571"
+  },
+  {
+    "id": 42,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Betung",
+    "kabupatenKota": "Kabupaten  Banyuasin",
+    "alamat": "Jl. Bypass   Lintas Timur  , Kabupaten Banyuasin",
+    "titikKoordinat": "2‘5 l'05.7\"S 104° l4'42.5\"E/\n-2.851578,  104.245144"
+  },
+  {
+    "id": 43,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Karya Jaya",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. Sri   ijaya Raya KM 12  Kel.  Karyajatya, Kertapati,  Palembang",
+    "titikKoordinat": "3‘03'49.3\"S  l04°44'20.3”E/\n-3.063682,  104.738982"
+  },
+  {
+    "id": 44,
+    "provinsi": "Aceh (BPTD Wil.I)",
+    "namaTerminal": "Terminal Lhokseumawe",
+    "kabupatenKota": "Kota Lhokseumawe",
+    "alamat": "Jl. Medan-Banda Aceh, Desa Meunasah Mee, Kec. Muara Dua Kota Lhokseumawe 24355",
+    "titikKoordinat": "LSW"
+  },
+  {
+    "id": 45,
+    "provinsi": "Aceh (BPTD Wil.I)",
+    "namaTerminal": "Terminal Meulaboh",
+    "kabupatenKota": "Kabupaten Aceh Barat",
+    "alamat": "RGM Komplek Terminal Tipe A Meulaboh",
+    "titikKoordinat": "MLB"
+  },
+  {
+    "id": 46,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Meulaboh",
+    "kabupatenKota": "Kabupaten  Aceh  Barat",
+    "alamat": "RGM  Komplek Terminal Tipe A Meulaboh",
+    "titikKoordinat": "4°08'50.7\"N  96°07'37. 7”E  /\n4.147429,96.127124"
+  },
+  {
+    "id": 47,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Ciakar",
+    "kabupatenKota": "Kabupaten  Sumedang",
+    "alamat": "Jl.  Rabu  Gajah Agung,  Kec. Sumedang Utara.",
+    "titikKoordinat": "6°49’32.6”S  107°55'17. 1“E/\n-6.825718, 107.921427"
+  },
+  {
+    "id": 48,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Banyuangga",
+    "kabupatenKota": "Kota   Probolinggo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 49,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Indihiang",
+    "kabupatenKota": "Kota Tasikmalaya",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.  Brigjen  Wastakusuma  \"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Kec.  \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Indíhiang Kota Tasikmalaya\"}]}",
+    "titikKoordinat": "7°17'29.5\"S  108º ll'31.1\"E/-7.291517,  108.191979"
+  },
+  {
+    "id": 50,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "{\"richText\":[{\"text\":\"Terminal Bangga\"},{\"font\":{\"vertAlign\":\"subscript\",\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\" \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Bangun  Desa\"}]}",
+    "kabupatenKota": "Kabupaten  Cilacap",
+    "alamat": "Jl. Jend. Gatot Subroto  No. 268  Ds Gunung Simping Kec. Cilacap Tengah Kota Cilacap",
+    "titikKoordinat": "7°42'08.5\"S  109°01'29.6\"E/\n-7.70236 1, 109.024881"
+  },
+  {
+    "id": 51,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Simpang Priuk",
+    "kabupatenKota": "Kota Lubuk  Linggau",
+    "alamat": "Simpang  Periuk,  Lubuk  Linggau  Sel. II, Kota Lubuklinggau",
+    "titikKoordinat": "3º 1G'08. 1\"S 102°56'21.0\"EJ\n-3.268915, 102.939177"
+  },
+  {
+    "id": 52,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Regional  Lahat",
+    "kabupatenKota": "Kabupaten  Lahat",
+    "alamat": "Pagar Agung,  Kec.  Lahat,  Kabupaten Lahat",
+    "titikKoordinat": "3°45'42.6\"S  l03°29'51.3\"E/\n-3.761827,  103.497592"
+  },
+  {
+    "id": 53,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal  Simpang Nangka",
+    "kabupatenKota": "Kabupaten  Rejang\nLebong",
+    "alamat": "Jl. Terminal  Simpang  Nangka,Kec. Selupu  Rejang,  Rejang Lebong",
+    "titikKoordinat": "3‘27'18.5\"S 102‘34'52.5\"E/\n-3.455144,  102.581251"
+  },
+  {
+    "id": 54,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal Air Sebakul",
+    "kabupatenKota": "Kota Bengkulu",
+    "alamat": "Jl. Raden  Fatah,  Kec. Selebar,  Kota Bengkulu",
+    "titikKoordinat": "3‘50'0.6”S 102°20'55\"E  /\n-3.833500,  102.34861"
+  },
+  {
+    "id": 55,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Rajabasa",
+    "kabupatenKota": "Kota Bandar  Lampung",
+    "alamat": "Jl ZA  Pagar Alam  Rajabasa Bandar Lampung",
+    "titikKoordinat": "5°22'03.4\"S  105º 14'16.2”E/\n-5.3676 17, 105.237829"
+  },
+  {
+    "id": 56,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Betan  Subing",
+    "kabupatenKota": "Kabupaten  Lampung Tengah",
+    "alamat": "Jl.  Lintas Sumatera,  Kec. Terbanggi Besar,  Lampung Tengah",
+    "titikKoordinat": "4°52'40.3”S  105º 13'43.6”E/\n-4.877862,  105.228783"
+  },
+  {
+    "id": 57,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pakupatan",
+    "kabupatenKota": "Kota  Serang",
+    "alamat": "Jl. Raya Jakarta km 4 Serang",
+    "titikKoordinat": "6°07' 18.0”S  106º 11'47.0”E  / -\n6. l2 1668,  106.19637"
+  },
+  {
+    "id": 58,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Labuan",
+    "kabupatenKota": "Kabupaten  Pandeglang",
+    "alamat": "Jl. Raya Labuan  km 4 Tarogong,  Kab. Pandeglang",
+    "titikKoordinat": "6°23'38. 2\"S 105°50'34.4\"E/ -6.393953,  105.842894"
+  },
+  {
+    "id": 59,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal Rangkas Bitung",
+    "kabupatenKota": "Kabupaten  Lebak",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 60,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Mandala Lebak",
+    "kabupatenKota": "Kabupaten  Lebak",
+    "alamat": "Jl. By Pass Soekarno  Hatta, Rangkasbitung, Lebak",
+    "titikKoordinat": "6º 18'21.7”S  106º 12'50.3\"E/\n-6.306021,  106.213970"
+  },
+  {
+    "id": 61,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Merak",
+    "kabupatenKota": "Kota Cilegon",
+    "alamat": "Jl. RE. Marthadinata  Kel. Tamansari, Kec.  Pulau  Merak,  Kota Cilegon",
+    "titikKoordinat": "5°56'05.3\"S  l06°00'03.3\"E/\n-5.934809,  106.000919"
+  },
+  {
+    "id": 62,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Poris Plawad",
+    "kabupatenKota": "Kota Tangerang",
+    "alamat": "Jl. Benteng Betawi,  Poris Plawad,  Kec. Tangerang,  Kota Tangerang",
+    "titikKoordinat": "6º 10'22.8”S  106°39'52.7”E/\n-6.172997, 106.664644"
+  },
+  {
+    "id": 63,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pondok  Cabe",
+    "kabupatenKota": "Kota Tangerang Selatan",
+    "alamat": "J1. Terminal  Pondok  Cabe  (KH. Salem), Pondolc Cabe  Udik,  Pamulang,  Kota Tangerang Selatan",
+    "titikKoordinat": "6°21'32.0\"S  106°45' 11.9\"E/\n-6.358888,  106.753310"
+  },
+  {
+    "id": 64,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal Balaraja",
+    "kabupatenKota": "Kabupaten Tangerang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 65,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  KH. Ahmad Sanusi",
+    "kabupatenKota": "Kota Sukabumi",
+    "alamat": "J1. Lingkar Selatan  No.7,  Kota Sukabumi",
+    "titikKoordinat": "6°55' 13.7”S  106°55'04.5\"E/-6.920473,  106.917919"
+  },
+  {
+    "id": 66,
+    "provinsi": "Aceh (BPTD Wil.I)",
+    "namaTerminal": "Terminal Batoh",
+    "kabupatenKota": "Kota Banda Aceh",
+    "alamat": "Jl. Dr. Ir. T. Moehammad Hasan, Desa Peunyerat, Kec. Banda Raya Kota Banda Aceh 23238",
+    "titikKoordinat": "BTH"
+  },
+  {
+    "id": 67,
+    "provinsi": "Aceh (BPTD Wil.I)",
+    "namaTerminal": "Terminal Paya Ilang",
+    "kabupatenKota": "Kabupaten Aceh Tengah",
+    "alamat": "Blang Kolak II, Bebesen, Takengon, Kabupaten Aceh Tengah",
+    "titikKoordinat": "PYI"
+  },
+  {
+    "id": 68,
+    "provinsi": "Sumatera Utara (BPTD Wil.II)",
+    "namaTerminal": "Terminal Tanjung Pinggir",
+    "kabupatenKota": "Kota Pemantang Siantar",
+    "alamat": "Jl. Letda Usmanjah Saragih No.03, Kota Pemantang Siantar 21137",
+    "titikKoordinat": "TPG"
+  },
+  {
+    "id": 69,
+    "provinsi": "Sumatera Utara (BPTD Wil.II)",
+    "namaTerminal": "Terminal Madya Tarutung",
+    "kabupatenKota": "Kabupaten Tapanuli Utara",
+    "alamat": "Jl. Mayjend. D.I. Panjaitan,Hutatoruan X Tarutung,Kab. Tapanuli Utara  22411",
+    "titikKoordinat": "MTR"
+  },
+  {
+    "id": 70,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Paya Ilang",
+    "kabupatenKota": "Kabupaten  Aceh Tengah",
+    "alamat": "Blang Kolak II, Bebesen, Takengon, Kabupaten  Aceh Tengah",
+    "titikKoordinat": "4°37’31.64\"N  96°50‘7.25\"E/\n4,6254565,  96.8353488"
+  },
+  {
+    "id": 71,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tirtonadi",
+    "kabupatenKota": "Kota  Surakarta",
+    "alamat": "Kel. A. Yani No. 262  Surakarta",
+    "titikKoordinat": "7°33'06.3”S  110°49'10.6\"E/\n—7.551735,  110.819599"
+  },
+  {
+    "id": 72,
+    "provinsi": "Sumatera Utara (BPTD Wil.II)",
+    "namaTerminal": "Terminal Sibolga",
+    "kabupatenKota": "Kota Sibolga",
+    "alamat": "Jl. Sisingamangaraja No.56, Pancuran Gerobak, Sibolga Kota, Kota Sibolga 22513",
+    "titikKoordinat": "SBG"
+  },
+  {
+    "id": 73,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Guntur  Melati",
+    "kabupatenKota": "Kabupaten  Garut",
+    "alamat": "Jl. Guntur Sari  No. 2,  Ds.  Haur Panggung Kec. Tarogong Kidul Kab. Garut",
+    "titikKoordinat": "7°12'01.5\"S  107°54'21.0\"E/-7.200411, 107.905821"
+  },
+  {
+    "id": 74,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Induk Pemalang",
+    "kabupatenKota": "Kabupaten  Pemalang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 75,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Pekalongan",
+    "kabupatenKota": "Kota Pekalongan",
+    "alamat": "Jl. Dr.  Sutomo, Ds. Gamer  Kec. Pekalongan  Timur,  Kota Pekalongan",
+    "titikKoordinat": "6°54' 10.7\"S  l09°42'02.7\"E/\n-6.902978,  109.700755"
+  },
+  {
+    "id": 76,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Induk Pemalang",
+    "kabupatenKota": "Kabupaten  Pemalang",
+    "alamat": "Jl.  Slamet Riyadi,  Pelutan,  Kec. Pemalang,  Kab. Pemalang",
+    "titikKoordinat": "6°52'54.4”S  109°23'37.1\"E/\n-6.881775,  109.393646"
+  },
+  {
+    "id": 77,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purwokerto",
+    "kabupatenKota": "Kabupaten  Banyumas",
+    "alamat": "Jl.  Suwatio  No.48 Kel. Teluk,  Kec. Purwokerto  Selatan,  Kab.  Bnayumas",
+    "titikKoordinat": "7°26'37.6”S  109°15'20.0\"E/\n-7.443780,  109.255545"
+  },
+  {
+    "id": 78,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Sumer  Payung",
+    "kabupatenKota": "Kabupaten  Sumbawa",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 79,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Betung",
+    "kabupatenKota": "Kabupaten  Banyuasin",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 80,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mendolo",
+    "kabupatenKota": "Kabupaten  Wonosobo",
+    "alamat": "Jl. Bambang  Sugeng KM 3  Ds, Mendolo, Kec. Wonosobo  Kab. Wonosobo",
+    "titikKoordinat": "7°22'02.4\"S  109°55'29.0\"E  / -\n7.367340,  109.924725"
+  },
+  {
+    "id": 81,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bawen",
+    "kabupatenKota": "Kabupaten  Semarang",
+    "alamat": "Jl.  Palagan  No.  l  Baw'en,  Kec. Bawen Kab. Semarang",
+    "titikKoordinat": "7°14'44.9”S 110°26'00. 7\"E/\n-7.245799,  110.433526"
+  },
+  {
+    "id": 82,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tidar",
+    "kabupatenKota": "Kota Magelang",
+    "alamat": "Jl.  Soekarno-Hatta Kel. Tidar  Utara  Kec. Magelang  Selatan  Kota Magelang",
+    "titikKoordinat": "7°29'27.9”S  110‘I4'05.5\"E/\n-7.491074,  110.234846"
+  },
+  {
+    "id": 83,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tingkir",
+    "kabupatenKota": "Kota Salatiga",
+    "alamat": "Jl. Soekarno-Hatta Tingkir Tengah,  Kota Salatiga",
+    "titikKoordinat": "7°21'43.7\"S  110‘30‘50.6\"E/\n-7.362140,  110.514067"
+  },
+  {
+    "id": 84,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Karya Jaya",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 85,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Regional  Lahat",
+    "kabupatenKota": "Kabupaten  Lahat",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 86,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal  Simpang Nangka",
+    "kabupatenKota": "Kabupaten  Rejang\nLebong",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 87,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal Air Sebakul",
+    "kabupatenKota": "Kota Bengkulu",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 88,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Betan  Subing",
+    "kabupatenKota": "Kabupaten  Lampung Tengah",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 89,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pakupatan",
+    "kabupatenKota": "Kota  Serang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 90,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Labuan",
+    "kabupatenKota": "Kabupaten  Pandeglang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 91,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Mandala Lebak",
+    "kabupatenKota": "Kabupaten  Lebak",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 92,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Merak",
+    "kabupatenKota": "Kota Cilegon",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 93,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pondok  Cabe",
+    "kabupatenKota": "Kota Tangerang Selatan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 94,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  KH. Ahmad Sanusi",
+    "kabupatenKota": "Kota Sukabumi",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 95,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 96,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Guntur  Melati",
+    "kabupatenKota": "Kabupaten  Garut",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 97,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Batoh",
+    "kabupatenKota": "Kota Banda Aceh",
+    "alamat": "Jl.  Doktor  Ir. T. Mohd.  Hasan,  Kota Banda  Aceh",
+    "titikKoordinat": "5°31'47.2\"N  95º 19'45.O”E  /\n5.529789,  95.329159"
+  },
+  {
+    "id": 98,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Batu  Kuning",
+    "kabupatenKota": "Kabupaten  OKU",
+    "alamat": "Lintas Sumatera No. 61 Batu  Raja Kab. Ogan  Komering  Ulu",
+    "titikKoordinat": "4°05'59.7”S  104°09'23. 7”E/\n-4.099927,  104.156571"
+  },
+  {
+    "id": 99,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Harjamukti",
+    "kabupatenKota": "Kota Cirebon",
+    "alamat": "Jl.  By Pass Jend. Ahmad  Yani Kota Cirebon",
+    "titikKoordinat": "6°44'22.8\"S  108°33'10.5\"E/\n-6.739672,  108.552924"
+  },
+  {
+    "id": 100,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purwokerto",
+    "kabupatenKota": "Kabupaten  Banyumas",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 101,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Arya Wiraraja",
+    "kabupatenKota": "Kabupaten  Sumenep",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 102,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kambang Putih",
+    "kabupatenKota": "Kabupaten Tuban",
+    "alamat": "JI. Nasional Tuban  Semarang,  KM06,  Ds. Sugihwaras,  Kec. Jemu, Kab. Tub an",
+    "titikKoordinat": "6°51'32.2\"S  112°0 l'4 1.3\"E/\n-6.858933,  112.028145"
+  },
+  {
+    "id": 103,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 104,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Indihiang",
+    "kabupatenKota": "Kota Tasikmalaya",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 105,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 106,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 107,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 108,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purworejo",
+    "kabupatenKota": "Kabupaten  Purworejo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 109,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Cepu",
+    "kabupatenKota": "Kabupaten  Blora",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 110,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 111,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Giri Adipura",
+    "kabupatenKota": "Kabupaten  Wonogiri",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 112,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Ir. Soekarno",
+    "kabupatenKota": "Kabupaten  Klaten",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 113,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Kebumen",
+    "kabupatenKota": "Kabupaten  Kebumen",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 114,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Pekalongan",
+    "kabupatenKota": "Kota Pekalongan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 115,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Jati",
+    "kabupatenKota": "Kabupaten  Kudus",
+    "alamat": "Jl. AKBP Agi1 Ku sumadya, Jati Wetan, Jati, Kndus",
+    "titikKoordinat": "6°50'27.9\"S  110°49'08.0\"E/\n-6.84 1080,  110.818886"
+  },
+  {
+    "id": 116,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bobot Sari",
+    "kabupatenKota": "Kabupaten  Purbalingga",
+    "alamat": "Jl. PP Imam TP Bobotsari,  Kec. Purbalingga,  Kabupaten  Purbalingga",
+    "titikKoordinat": "7°18'22.4\"S  109°22'00.9\"E/\n-7.306225,  109.366902"
+  },
+  {
+    "id": 117,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Demak",
+    "kabupatenKota": "Kabupaten  Demak",
+    "alamat": "Jl.  Sultan  Fatah  Kab. Demak",
+    "titikKoordinat": "6°53'55.5\"S  110°38'06.9\"E/\n-6.898753,  l 10.635260"
+  },
+  {
+    "id": 118,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tidar",
+    "kabupatenKota": "Kota Magelang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 119,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tingkir",
+    "kabupatenKota": "Kota Salatiga",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 120,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Jati",
+    "kabupatenKota": "Kabupaten  Kudus",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 121,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bobot Sari",
+    "kabupatenKota": "Kabupaten  Purbalingga",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 122,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tegal",
+    "kabupatenKota": "Kota Tegal",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 123,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal Giwangan",
+    "kabupatenKota": "Kota Yogyakarta",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 124,
+    "provinsi": "Sumatera Utara (BPTD Wil.II)",
+    "namaTerminal": "Terminal Padang Bulan",
+    "kabupatenKota": "Kabupaten Labuhan Batu",
+    "alamat": "Jl. Kota H. Adam Malik, Padang Bulan, Rantau Utara, Kabupaten Labuhan Batu",
+    "titikKoordinat": "PDB"
+  },
+  {
+    "id": 125,
+    "provinsi": "Sumatera Utara (BPTD Wil.II)",
+    "namaTerminal": "Terminal Amplas",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "Jl.KH.Rifai A Manaf Lubis Kel. Timbang Deli, Amplas,Kota Medan 20148",
+    "titikKoordinat": "APS"
+  },
+  {
+    "id": 126,
+    "provinsi": "Sumatera Utara (BPTD Wil.II)",
+    "namaTerminal": "Terminal Pinang Baris",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "Jl. Tahi Bonar Simatupang, Lalang, Kec. Medan Sunggal, Kota Medan 20127",
+    "titikKoordinat": "PNB"
+  },
+  {
+    "id": 127,
+    "provinsi": "Sumatera Barat (BPTD Wil.III)",
+    "namaTerminal": "Terminal Anak Air",
+    "kabupatenKota": "Kota Padang",
+    "alamat": "Jl. Anak Air No.20, Lubuk Buaya, Koto Tangah, Kota Padang",
+    "titikKoordinat": "AAI"
+  },
+  {
+    "id": 128,
+    "provinsi": "Sumatera Barat (BPTD Wil.III)",
+    "namaTerminal": "Terminal Kiliran Jao",
+    "kabupatenKota": "Kabupaten Sijunjung",
+    "alamat": "Jln. Lintas Sumatera KM 165 Kiliran Jao, Kab. Sijunjung, Kiliran Jao",
+    "titikKoordinat": "KJO"
+  },
+  {
+    "id": 129,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bawen",
+    "kabupatenKota": "Kabupaten  Semarang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 130,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Sibolga",
+    "kabupatenKota": "Kota Sibolga",
+    "alamat": "J1. Sisingamangaraja No.8,  Pancuran Gerobak, Sibolga  Kota,  Kota Sibolga",
+    "titikKoordinat": "1°44'20.2\"N 98°47'02.4\"E  /\n1.738947, 98.783995"
+  },
+  {
+    "id": 131,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pasuruan",
+    "kabupatenKota": "Kabupaten  Pasuruan",
+    "alamat": "Jl. Raya Petung Asri  No. 08  Kel.  Petung Asri, Pandaan,  Pasuruan",
+    "titikKoordinat": "7°39'47.6\"S  112°SS'36.5\"E/\n-7.663208,  112.926806"
+  },
+  {
+    "id": 132,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal  Dhaksinarga",
+    "kabupatenKota": "Kabupaten  Gunung Kidul",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 133,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kertonegoro",
+    "kabupatenKota": "Kabupaten  Ngawi",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 134,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pacitan",
+    "kabupatenKota": "Kabupaten  Pacitan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 135,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Patria",
+    "kabupatenKota": "Kota Blitar",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 136,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Selo Aji",
+    "kabupatenKota": "Kabupaten  Ponorogo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 137,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tamanan",
+    "kabupatenKota": "Kota Kediri",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 138,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 139,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Surodakan",
+    "kabupatenKota": "Kabupaten  Trenggalek",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 140,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Lhokseumawe",
+    "kabupatenKota": "Kota Lhokseumawe",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 141,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Tanjung Pinggir",
+    "kabupatenKota": "Kota Pemantang Siantar",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 142,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Sibolga",
+    "kabupatenKota": "Kota Sibolga",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 143,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Pinang Baris",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 144,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Simpang Aur",
+    "kabupatenKota": "Kota Bukit Tinggi",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 145,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Dumai",
+    "kabupatenKota": "Kota Dumai",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 146,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Muara Bungo",
+    "kabupatenKota": "Kabupaten  Bungo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 147,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kambang Putih",
+    "kabupatenKota": "Kabupaten Tuban",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 148,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Sri Tanjung",
+    "kabupatenKota": "Kabupaten  Banyuwangi",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 149,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Osowilangun",
+    "kabupatenKota": "Kota Surabaya",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 150,
+    "provinsi": "Bali",
+    "namaTerminal": "Terminal  Mengwi",
+    "kabupatenKota": "Kabupaten  Badung",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 151,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Mandalika",
+    "kabupatenKota": "Kota Mataram",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 152,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Dara",
+    "kabupatenKota": "Kota Bima",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 153,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Kefamenanu",
+    "kabupatenKota": "Kabupaten Timor Tengah  Utara",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 154,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Bimoku",
+    "kabupatenKota": "Kota Kupang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 155,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Singkawang",
+    "kabupatenKota": "Kota Singkawang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 156,
+    "provinsi": "Kalimantan  Tengah",
+    "namaTerminal": "Terminal  W.A.  Gara",
+    "kabupatenKota": "Kota Palangkaraya",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 157,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal Samarinda Seberang",
+    "kabupatenKota": "Kota Samarinda",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 158,
+    "provinsi": "Sumatera Barat (BPTD Wil.III)",
+    "namaTerminal": "Terminal Bareh Solok",
+    "kabupatenKota": "Kota Solok",
+    "alamat": "Jl. Natsir St. Pamuncak No. 68, Simpang Rumbio Kec.Lubuk Sikarah, Kota Solok, 27316",
+    "titikKoordinat": "BSL"
+  },
+  {
+    "id": 159,
+    "provinsi": "Sumatera Barat (BPTD Wil.III)",
+    "namaTerminal": "Terminal Simpang Aur",
+    "kabupatenKota": "Kota Bukit Tinggi",
+    "alamat": "Jl. Diponegoro No.01 Kel. Tarok Dipo Kec. Guguk Panjang Kota Bukit Tinggi",
+    "titikKoordinat": "SPA"
+  },
+  {
+    "id": 160,
+    "provinsi": "Sumatera Barat (BPTD Wil.III)",
+    "namaTerminal": "Terminal Jati Pariaman",
+    "kabupatenKota": "Kota Pariaman",
+    "alamat": "Jl. Woltermonginsidi, Ds. Jatimudik, Pariaman Tengah",
+    "titikKoordinat": "JTP"
+  },
+  {
+    "id": 161,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Lhokseumawe",
+    "kabupatenKota": "Kota Lhokseumawe",
+    "alamat": "Desa Meunasah  Mee Kandang, Kecamatan  Muara Dua  , Kota Lhokseumawe",
+    "titikKoordinat": "5°9'34.3\"N  97°08' 12.3”E  /\n5. 1595277,  97.13675"
+  },
+  {
+    "id": 162,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 163,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Induk Lumpue",
+    "kabupatenKota": "Kota Pare-Pare",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 164,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Latenri Sessu Pekkae",
+    "kabupatenKota": "Kabupaten  Barru",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 165,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 166,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Daya",
+    "kabupatenKota": "Kota Makassar",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 167,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Simbuang",
+    "kabupatenKota": "Kabupaten  Mamuju",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 168,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 169,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Kasintuwu",
+    "kabupatenKota": "Kabupaten  Poso",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 170,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Mamboro",
+    "kabupatenKota": "Kota Palu",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 171,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 172,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Liwas",
+    "kabupatenKota": "Kota Manado",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 173,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 174,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Isimu",
+    "kabupatenKota": "Kabupaten  Gorontalo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 175,
+    "provinsi": "Papua",
+    "namaTerminal": "Terminal Entrop",
+    "kabupatenKota": "Kota Jayapura",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 176,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kampung Rambutan",
+    "kabupatenKota": "Kota Jakarta Timur",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 177,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kalideres",
+    "kabupatenKota": "Kota Jakarta Barat",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 178,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Kayuagung",
+    "kabupatenKota": "Kabupaten  OKI",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 179,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Simpang Priuk",
+    "kabupatenKota": "Kota Lubuk  Linggau",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 180,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Poris Plawad",
+    "kabupatenKota": "Kota Tangerang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 181,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Ciakar",
+    "kabupatenKota": "Kabupaten  Sumedang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 182,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Harjamukti",
+    "kabupatenKota": "Kota Cirebon",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 183,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kuningan",
+    "kabupatenKota": "Kabupaten  Kuningan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 184,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Subang",
+    "kabupatenKota": "Kabupaten  Subang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 185,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Baranangsiang",
+    "kabupatenKota": "Kota Bogor",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 186,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kalijaya Cikarang",
+    "kabupatenKota": "Kabupaten  Bekasi",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 187,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Leuwipanjang",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 188,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Bangga Bangun  Desa",
+    "kabupatenKota": "Kabupaten  Cilacap",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 189,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mangkang",
+    "kabupatenKota": "Kota Semarang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 190,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mendolo",
+    "kabupatenKota": "Kabupaten  Wonosobo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 191,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tirtonadi",
+    "kabupatenKota": "Kota  Surakarta",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 192,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Demak",
+    "kabupatenKota": "Kabupaten  Demak",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 193,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Arjosari",
+    "kabupatenKota": "Kota Malang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 194,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tawangaiun",
+    "kabupatenKota": "Kabupaten   Jember",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 195,
+    "provinsi": "Riau (BPTD Wil.IV)",
+    "namaTerminal": "Terminal Bangkinang",
+    "kabupatenKota": "Kabupaten Kampar",
+    "alamat": "Jl. Prof. Moh. Yamin SH No 281, Kel.Bangkinang, Kec. Bangkinang Kota, Kab.Kampar, 28411",
+    "titikKoordinat": "BGK"
+  },
+  {
+    "id": 196,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Tanjung Pinggir",
+    "kabupatenKota": "Kota Pemantang Siantar",
+    "alamat": "J1. AMD  No.3  Pematang Siantar",
+    "titikKoordinat": "3°00'04.3\"N  99°04'4 I.2\"E  / 3.001183, 99.078122"
+  },
+  {
+    "id": 197,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Sribulan",
+    "kabupatenKota": "Kabupateri Sorolangun",
+    "alamat": "Jl.   Lintas Sumatera Bangko — Sarolangun",
+    "titikKoordinat": "2º 18'21.0\"S 102°40'45.4\"E/\n-2.305829,  102.679286"
+  },
+  {
+    "id": 198,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Ciakar",
+    "kabupatenKota": "Kabupaten  Sumedang",
+    "alamat": "Jl.  Rabu  Gajah Agung,  Kec. Sumedang Utara.",
+    "titikKoordinat": "6°49’32.6”S  107°55'17. 1“E/\n-6.825718, 107.921427"
+  },
+  {
+    "id": 199,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal  Dhaksinarga",
+    "kabupatenKota": "Kabupaten  Gunung Kidul",
+    "alamat": "Jl. Ir. Darmakun  Darmokusumo, Wonosari,  Selang, Guningkidul, Kabupaten  Gunung Kidul",
+    "titikKoordinat": "7°5S'00.5”S  l l0°37'07.2”E/\n-7.966804,  110.O 18659"
+  },
+  {
+    "id": 200,
+    "provinsi": "Bali",
+    "namaTerminal": "Terminal  Mengwi",
+    "kabupatenKota": "Kabupaten  Badung",
+    "alamat": "Jl.  Mengwi -Mengwi Tani, Badung",
+    "titikKoordinat": "8°33'83. 9\"S 115°10'05. 7\"E/\n-8.559410,  115.168253"
+  },
+  {
+    "id": 201,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Meulaboh",
+    "kabupatenKota": "Kabupaten  Aceh  Barat",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 202,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal  Batu  Ampar",
+    "kabupatenKota": "Kota Balikpapan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 203,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Petta Pongawai",
+    "kabupatenKota": "Kabupaten  Bone",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 204,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Tipalayo",
+    "kabupatenKota": "Kabupaten PoliwaJimandar",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 205,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Boroko",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow  Utara",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 206,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal Tangkoko",
+    "kabupatenKota": "Kota Bitung",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 207,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Dungingi",
+    "kabupatenKota": "Kota Gorontalo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 208,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Langsa",
+    "kabupatenKota": "Kota Langsa",
+    "alamat": "Jl. Prof. A. Majid Ibrahim,  Langsa Barat, Kota Langsa",
+    "titikKoordinat": "4°29'51.5\"N 97°58'04.3”E  / 4.497648,  97.967850"
+  },
+  {
+    "id": 209,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Sei Ambawang",
+    "kabupatenKota": "Kabupaten  Kubu  Raya",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 210,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 211,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 212,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Induk Bekasi",
+    "kabupatenKota": "Kota Bekasi",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 213,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 214,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Jatijajar",
+    "kabupatenKota": "Kota Depok",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 215,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Cicaheum",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 216,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Rajabasa",
+    "kabupatenKota": "Kota Bandar  Lampung",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 217,
+    "provinsi": "Banten",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 218,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Rajekwesi",
+    "kabupatenKota": "Kabupaten  Bojonegoro",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 219,
+    "provinsi": "Riau (BPTD Wil.IV)",
+    "namaTerminal": "Terminal Bandar Raya Payung Sekaki",
+    "kabupatenKota": "Kota Pekanbaru",
+    "alamat": "Jl. Air Hitam, Kel. Labuh Barat, Kec. Payung Sekaki, Pekanbaru",
+    "titikKoordinat": "PYK"
+  },
+  {
+    "id": 220,
+    "provinsi": "Riau (BPTD Wil.IV)",
+    "namaTerminal": "Terminal Dumai",
+    "kabupatenKota": "Kota Dumai",
+    "alamat": "Jl. Ratu Sima Klakap 7, Kec. Simpang Tetap, Kel. Dumai Barat, Dumai",
+    "titikKoordinat": "DMI"
+  },
+  {
+    "id": 221,
+    "provinsi": "Riau (BPTD Wil.IV)",
+    "namaTerminal": "Terminal Gerbangsari",
+    "kabupatenKota": "Kabupaten Indragiri Hulu",
+    "alamat": "Jl. Lintas Timur Sumatra, Pematang Reba, Rengat Barat, Kabupaten Indragiri Hulu",
+    "titikKoordinat": "GBS"
+  },
+  {
+    "id": 222,
+    "provinsi": "Jambi (BPTD Wil.V)",
+    "namaTerminal": "Terminal Alam Barajo",
+    "kabupatenKota": "Kota Jambi",
+    "alamat": "Jl. Lingkar Barat III Simpang Rimbo Kota jambi 36124",
+    "titikKoordinat": "AJO"
+  },
+  {
+    "id": 223,
+    "provinsi": "Jambi (BPTD Wil.V)",
+    "namaTerminal": "Terminal Muara Bungo",
+    "kabupatenKota": "Kabupaten Bungo",
+    "alamat": "Jl. Lintas Sumatera KM.04 Arah Padang Kelurahan Manggis Kec. Bathin III Muara Bungo, Kab, Bungo 37215",
+    "titikKoordinat": "MBU"
+  },
+  {
+    "id": 224,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Madya Tarutung",
+    "kabupatenKota": "Kabupaten Tapanuli Utara",
+    "alamat": "Jl.  Mayjend.  D.I. Panjaitan, Tarutung, Tapanuli  Utara",
+    "titikKoordinat": "2°0 I'31.7\"N  98°58'26.6”E  / 2.025469, 98.974046"
+  },
+  {
+    "id": 225,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Bangko",
+    "kabupatenKota": "Kabupaten   Marangin",
+    "alamat": "Jl.  Bangko  Kab.  Merangin",
+    "titikKoordinat": "2°03'19.3\"S  102°20'09.0”E/\n-2.055368,  102.335828"
+  },
+  {
+    "id": 226,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tidar",
+    "kabupatenKota": "Kota Magelang",
+    "alamat": "Jl.  Soekarno-Hatta Kel. Tidar  Utara  Kec. Magelang  Selatan  Kota Magelang",
+    "titikKoordinat": "7°29'27.9”S  110‘I4'05.5\"E/\n-7.491074,  110.234846"
+  },
+  {
+    "id": 227,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tawangaiun",
+    "kabupatenKota": "Kabupaten   Jember",
+    "alamat": "Jl.  Dharmawangsa  No. 01 Rambi  Puji Jember",
+    "titikKoordinat": "{\"richText\":[{\"text\":\"8°11‘54.2\\\"S  1 I3°37'50.8\\\"E/\\n\"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"-8. \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"198090,  113.630785\"}]}"
+  },
+  {
+    "id": 228,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purabaya",
+    "kabupatenKota": "Kabupaten  Sidoarjo",
+    "alamat": "Jl. Bungurasih  Timur,  Bungurasih, Waru, Kabupaten  Sidoarjo",
+    "titikKoordinat": "7°21'01.7\"S  l 12°43'29.7\"E/\n-7.350474,  112.724913"
+  },
+  {
+    "id": 229,
+    "provinsi": "Kalimantan  Selatan",
+    "namaTerminal": "Terminal  Gambut Barakat",
+    "kabupatenKota": "Kabupaten  Banjar",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 230,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purboyo",
+    "kabupatenKota": "Kota Madiun",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 231,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purabaya",
+    "kabupatenKota": "Kabupaten  Sidoarjo",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 232,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Gayatri",
+    "kabupatenKota": "Kabupaten Tulungagung",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 233,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tegal",
+    "kabupatenKota": "Kota Tegal",
+    "alamat": "Jl.  Dr. Cipto Mangunkusumo, Sumurpanggang, Tegal Bar, Kota Tegal",
+    "titikKoordinat": "6°52'21.8\"S  109‘06'27.8”E/\n-6.872709,  109.107732"
+  },
+  {
+    "id": 234,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal Giwangan",
+    "kabupatenKota": "Kota Yogyakarta",
+    "alamat": "Jl.  Imogiri  No.  l  Yogyakarta",
+    "titikKoordinat": "7°50'04. 2\"S  I10‘23'32.4\"E/\n-7.834500,  110.392327"
+  },
+  {
+    "id": 235,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal  Dhaksinarga",
+    "kabupatenKota": "Kabupaten  Gunung Kidul",
+    "alamat": "Jl. Ir. Darmakun  Darmokusumo, Wonosari,  Selang, Guningkidul, Kabupaten  Gunung Kidul",
+    "titikKoordinat": "7°5S'00.5”S  l l0°37'07.2”E/\n-7.966804,  110.O 18659"
+  },
+  {
+    "id": 236,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Arjosari",
+    "kabupatenKota": "Kota Malang",
+    "alamat": "Jl.  Raden lntan  No.  1  Malang",
+    "titikKoordinat": "7°55'59.6\"S  1 I2°39'29.0”E/\n-7.933225,  112.658066"
+  },
+  {
+    "id": 237,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Arya Wiraraja",
+    "kabupatenKota": "Kabupaten  Sumenep",
+    "alamat": "Jl.  Arya Wiraraja  NO.  10,   Sumenep",
+    "titikKoordinat": "7°01'45.9\"S 113°51'34.6\"E/\n-'/.029402,  113.859618"
+  },
+  {
+    "id": 238,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Bangkalan",
+    "kabupatenKota": "Kabupaten  Bangkalan",
+    "alamat": "Jl. Suramadu,  Ds. Massaran,  Kec. Tragah,  Kab. Bangkalan",
+    "titikKoordinat": "7°03'09.3\"S  I12°43'57.8\"E/\n-7.052580,  112.732723"
+  },
+  {
+    "id": 239,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Banyuangga",
+    "kabupatenKota": "Kota   Probolinggo",
+    "alamat": "Jl.Raya Bromo,  Kel. Triwung Lor, Kec. Pademangan,  Problinggo",
+    "titikKoordinat": "7°45'58.2\"S  113º 10'27.8“E/\n-7.766168, 113.174383"
+  },
+  {
+    "id": 240,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Gayatri",
+    "kabupatenKota": "Kabupaten Tulungagung",
+    "alamat": "Jl. Yos Sudarso  No. 117, Tulungagung",
+    "titikKoordinat": "8°04'23.5\"S  111°53'50. 2\"E/\n-8.073195, 111.897263"
+  },
+  {
+    "id": 241,
+    "provinsi": "Jambi (BPTD Wil.V)",
+    "namaTerminal": "Terminal Pulau Tujuh Bangko",
+    "kabupatenKota": "Kabupaten  Merangin",
+    "alamat": "Jl. Lintas Sumatera KM 07 Desa Langling Kec. Bangko Kab. Merangin  37314",
+    "titikKoordinat": "BKO"
+  },
+  {
+    "id": 242,
+    "provinsi": "Jambi (BPTD Wil.V)",
+    "namaTerminal": "Terminal Sribulan",
+    "kabupatenKota": "Kabupaten Sorolangun",
+    "alamat": "Jalan Lintas Sumatera KM.05 Desa Bernai Dalam Kec. Sarolangun Kab. Sarolangun 37481",
+    "titikKoordinat": "SBL"
+  },
+  {
+    "id": 243,
+    "provinsi": "Sumatera Selatan dan Bangka Belitung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Alang-Alang Lebar",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. By Pass Alang-alang Lebar KM.12 Kota Palembang 30154",
+    "titikKoordinat": "AAL"
+  },
+  {
+    "id": 244,
+    "provinsi": "Sumatera Selatan dan Bangka Belitung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Kayuagung",
+    "kabupatenKota": "Kabupaten OKI",
+    "alamat": "Jl. Kapten H. Sulaiman Raden Anom (Lintas Sumatera) Kab. Ogan Komering Ilir",
+    "titikKoordinat": "KAG"
+  },
+  {
+    "id": 245,
+    "provinsi": "Sumatera Selatan dan Bangka Belitung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Batu Kuning",
+    "kabupatenKota": "Kabupaten OKU",
+    "alamat": "Jl. Lintas Sumatera No. 61 Kec. Batu Raja Barat Kab. Ogan Komering Ulu 32121",
+    "titikKoordinat": "BKN"
+  },
+  {
+    "id": 246,
+    "provinsi": "Sumatera Selatan dan Bangka Belitung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Betung",
+    "kabupatenKota": "Kabupaten Banyuasin",
+    "alamat": "Jl. Lintas Palembang-Jambi Kec. Betung, Kabupaten Banyuasin 30958",
+    "titikKoordinat": "BTG"
+  },
+  {
+    "id": 247,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Padang Bulan",
+    "kabupatenKota": "Kabupaten  Labuhan Batu",
+    "alamat": "JI.  H. Adam Malik, Padang Bulan,  Rantau Utara,  Kabupaten  Labuhan  Batu",
+    "titikKoordinat": "2°04'42.0\"N  99°50'26.5”E  /\n2.078321, 99.840706"
+  },
+  {
+    "id": 248,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "{\"richText\":[{\"text\":\"Terminal Alang-alang\"},{\"font\":{\"vertAlign\":\"superscript\",\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\" \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Lebar\"}]}",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. By Pass Alang-alang  Lebar KM 12  Kota Palembang",
+    "titikKoordinat": "2°54'59.8\"S  l04°40'52.5\"E/\n-2.916598,  104.681245"
+  },
+  {
+    "id": 249,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tirtonadi",
+    "kabupatenKota": "Kota  Surakarta",
+    "alamat": "Kel. A. Yani No. 262  Surakarta",
+    "titikKoordinat": "7°33'06.3”S  110°49'10.6\"E/\n—7.551735,  110.819599"
+  },
+  {
+    "id": 250,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Rajekwesi",
+    "kabupatenKota": "Kabupaten  Bojonegoro",
+    "alamat": "Jl.  Veteran,  Sukorejo,  Kec. Bojonegoro, Kabupaten  Bojonegoro",
+    "titikKoordinat": "7°09'59.4”S  111°53'42.4”E/\n-7.166504,  l 11.895116"
+  },
+  {
+    "id": 251,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Harjamukti",
+    "kabupatenKota": "Kota Cirebon",
+    "alamat": "Jl.  By Pass Jend. Ahmad  Yani Kota Cirebon",
+    "titikKoordinat": "6°44'22.8\"S  108°33'10.5\"E/\n-6.739672,  108.552924"
+  },
+  {
+    "id": 252,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Banjar",
+    "kabupatenKota": "Kota Banjar",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 253,
+    "provinsi": "Sumatera Selatan dan Bangka Belitung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Karya Jaya",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. Sriwijaya Raya KM12 Kel. Karyajaya, Kertapati, Palembang",
+    "titikKoordinat": "KJY"
+  },
+  {
+    "id": 254,
+    "provinsi": "Sumatera Selatan dan Bangka Belitung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Simpang Periuk",
+    "kabupatenKota": "Kota Lubuk Linggau",
+    "alamat": "Jl. Sultan Mahmud Badarudin II Kel. Simpang Periuk Kec. Lubuk Linggau Selatan II, Kota Lubuk Linggau 31626",
+    "titikKoordinat": "SPP"
+  },
+  {
+    "id": 255,
+    "provinsi": "Sumatera Selatan dan Bangka Belitung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Batay",
+    "kabupatenKota": "Kabupaten Lahat",
+    "alamat": "Jl. Lintas Sumatera KM 14 Batay Kab. Lahat",
+    "titikKoordinat": "LHT"
+  },
+  {
+    "id": 256,
+    "provinsi": "Bengkulu dan Lampung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Simpang Nangka",
+    "kabupatenKota": "Kabupaten Rejang Lebong",
+    "alamat": "Jl. Raya Simpang Nangka,Kec. Selupu Rejang, Rejang Lebong",
+    "titikKoordinat": "SPN"
+  },
+  {
+    "id": 257,
+    "provinsi": "Bengkulu dan Lampung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Air Sebakul",
+    "kabupatenKota": "Kota Bengkulu",
+    "alamat": "Jl. Air Sebakul, Pekan Sabtu, Kec. Selebar, Kota Bengkulu",
+    "titikKoordinat": "ASB"
+  },
+  {
+    "id": 258,
+    "provinsi": "Bengkulu dan Lampung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Rajabasa",
+    "kabupatenKota": "Kota Bandar Lampung",
+    "alamat": "Jl ZA Pagar Alam Rajabasa Bandar Lampung",
+    "titikKoordinat": "RJB"
+  },
+  {
+    "id": 259,
+    "provinsi": "Bengkulu dan Lampung (BPTD Wil.VII)",
+    "namaTerminal": "Terminal Betan Subing",
+    "kabupatenKota": "Kabupaten Lampung Tengah",
+    "alamat": "Jl. Akses Terminal Betan Subing, Kec. Terbanggi Besar, Lampung Tengah",
+    "titikKoordinat": "BTS"
+  },
+  {
+    "id": 260,
+    "provinsi": "Banten (BPTD Wil.VIII)",
+    "namaTerminal": "Terminal Pakupatan",
+    "kabupatenKota": "Kota Serang",
+    "alamat": "Jl. Raya Jakarta KM. 4 Kel. Banjar Agung Kec. Cipocok Jaya Kota Serang Prov Banten 42124",
+    "titikKoordinat": "PKT"
+  },
+  {
+    "id": 261,
+    "provinsi": "Banten (BPTD Wil.VIII)",
+    "namaTerminal": "Terminal Labuan",
+    "kabupatenKota": "Kabupaten Pandeglang",
+    "alamat": "Jl. Raya Labuan KM 4 Tarogong, Kab. Pandeglang",
+    "titikKoordinat": "LBN"
+  },
+  {
+    "id": 262,
+    "provinsi": "Banten (BPTD Wil.VIII)",
+    "namaTerminal": "Terminal Mandala Lebak",
+    "kabupatenKota": "Kabupaten Lebak",
+    "alamat": "Jl. By Pass Soekarno Hatta, Rangkasbitung, Lebak, Banten 42317",
+    "titikKoordinat": "MLK"
+  },
+  {
+    "id": 263,
+    "provinsi": "Banten (BPTD Wil.VIII)",
+    "namaTerminal": "Terminal Merak",
+    "kabupatenKota": "Kota Cilegon",
+    "alamat": "Jl. RE. Marthadinata Kel. Tamansari, Kec. Pulau Merak, Kota Cilegon",
+    "titikKoordinat": "MRK"
+  },
+  {
+    "id": 264,
+    "provinsi": "Banten (BPTD Wil.VIII)",
+    "namaTerminal": "Terminal Poris Plawad",
+    "kabupatenKota": "Kota Tangerang",
+    "alamat": "Jl. Benteng Betawi, Kel. Poris Plawad, Kec. Cipondoh, Kota Tangerang, Banten 15141",
+    "titikKoordinat": "PRP"
+  },
+  {
+    "id": 265,
+    "provinsi": "Banten (BPTD Wil.VIII)",
+    "namaTerminal": "Terminal Pondok Cabe",
+    "kabupatenKota": "Kota Tangerang Selatan",
+    "alamat": "Jl. Terminal Pondok Cabe (KH. Salem), Pondok Cabe Udik, Pamulang, Kota Tangerang Selatan",
+    "titikKoordinat": "PCB"
+  },
+  {
+    "id": 266,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal KH. Ahmad Sanusi",
+    "kabupatenKota": "Kota Sukabumi",
+    "alamat": "Jl. Lingkar Selatan No.07, Kel. Sudajaya Hilir, Kec. Baros, Kota Sukabumi 43161",
+    "titikKoordinat": "KAS"
+  },
+  {
+    "id": 267,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Ciakar",
+    "kabupatenKota": "Kabupaten Sumedang",
+    "alamat": "Jl. Prabu Gajah Agung No.10 Desa Jatihurip Kec. Sumedang Utara Kab. Sumedang 45321",
+    "titikKoordinat": "CKR"
+  },
+  {
+    "id": 268,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kertonegoro",
+    "kabupatenKota": "Kabupaten  Ngawi",
+    "alamat": "Ds. Grudo  Kec.  Ngawi,  Kab.  Ngawí",
+    "titikKoordinat": "7°24'14.3\"S 111°25'00.2”E/\n-7.403982,  111.416725"
+  },
+  {
+    "id": 269,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pacitan",
+    "kabupatenKota": "Kabupaten  Pacitan",
+    "alamat": "Jl.  Jend. Gatot Subroto Balehaijo, Pacitan",
+    "titikKoordinat": "8º I2'03.8\"S 111°06'10.4\"E/\n-8.201067, 111.102874"
+  },
+  {
+    "id": 270,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Patria",
+    "kabupatenKota": "Kota Blitar",
+    "alamat": "Jl.  Kenari  No.  110  Kota Blitar",
+    "titikKoordinat": "8‘07'23. 1”S 112°09'29.8\"E/\n-8.123076,  112.158281"
+  },
+  {
+    "id": 271,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purboyo",
+    "kabupatenKota": "Kota Madiun",
+    "alamat": "Jl.Basuki  Rahmat  No.01 Sukasari Mangunharjo  Madiun",
+    "titikKoordinat": "7°36'17.5\"S 111°32'05.0”E/-7.604946,  111.534711"
+  },
+  {
+    "id": 272,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Selo Aji",
+    "kabupatenKota": "Kabupaten  Ponorogo",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.Arief Hahman  Hakim  \"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"No.\"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"08  Ponorogo\"}]}",
+    "titikKoordinat": "7°50'1 l .8”S 111°29'11.7\"E/\n-7.836613, 111.486578"
+  },
+  {
+    "id": 273,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Ir. Soekarno",
+    "kabupatenKota": "Kabupaten  Klaten",
+    "alamat": "Jl.  Jombor Indah,  Kabupaten  Klaten",
+    "titikKoordinat": "7°42'48. 2”S 11O°36' 13.4\"E/\n-7.713394,  110.603725"
+  },
+  {
+    "id": 274,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tamanan",
+    "kabupatenKota": "Kota Kediri",
+    "alamat": "Jl.  Semeru  no. 55,  Kel. Tamanan  Kec. Mojoroto  Kota Kediri",
+    "titikKoordinat": "7°49'44.7”S  111°59'03.2”E/\n-7.829086,  111.984224"
+  },
+  {
+    "id": 275,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tawangaiun",
+    "kabupatenKota": "Kabupaten   Jember",
+    "alamat": "Jl.  Dharmawangsa  No. 01 Rambi  Puji Jember",
+    "titikKoordinat": "{\"richText\":[{\"text\":\"8°11‘54.2\\\"S  1 I3°37'50.8\\\"E/\\n\"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"-8. \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"198090,  113.630785\"}]}"
+  },
+  {
+    "id": 276,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Surodakan",
+    "kabupatenKota": "Kabupaten  Trenggalek",
+    "alamat": "JI.  Ki Mangun  Sarkoro, Surodakan,  Kab. Trenggalek",
+    "titikKoordinat": "8°02'54.5“S  111°43'02.7\"E/\n-8.048459,  111.717419"
+  },
+  {
+    "id": 277,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Rajekwesi",
+    "kabupatenKota": "Kabupaten  Bojonegoro",
+    "alamat": "Jl.  Veteran,  Sukorejo,  Kec. Bojonegoro, Kabupaten  Bojonegoro",
+    "titikKoordinat": "7°09'59.4”S  111°53'42.4”E/\n-7.166504,  l 11.895116"
+  },
+  {
+    "id": 278,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pasuruan",
+    "kabupatenKota": "Kabupaten  Pasuruan",
+    "alamat": "Jl. Raya Petung Asri  No. 08  Kel.  Petung Asri, Pandaan,  Pasuruan",
+    "titikKoordinat": "7°39'47.6\"S  112°SS'36.5\"E/\n-7.663208,  112.926806"
+  },
+  {
+    "id": 279,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kambang Putih",
+    "kabupatenKota": "Kabupaten Tuban",
+    "alamat": "JI. Nasional Tuban  Semarang,  KM06,  Ds. Sugihwaras,  Kec. Jemu, Kab. Tub an",
+    "titikKoordinat": "6°51'32.2\"S  112°0 l'4 1.3\"E/\n-6.858933,  112.028145"
+  },
+  {
+    "id": 280,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Sri Tanjung",
+    "kabupatenKota": "Kabupaten  Banyuwangi",
+    "alamat": "Jl.  Raya Situbondo,  Kecamatan Situbondo,  Bulusan,  Kalipuro,  Kab. Banyuwangi",
+    "titikKoordinat": "8°07'05.9\"S  I14°23'54.0\"E/\n-8.118311,  114.398344"
+  },
+  {
+    "id": 281,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "{\"richText\":[{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Termin\"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"al Osowilangun\"}]}",
+    "kabupatenKota": "Kota Surabaya",
+    "alamat": "Jl. Tambak  Osowilangun, Tambak Osowilangun,  Benowo,  Kota Surabaya",
+    "titikKoordinat": "7°12'33.2\"S 112°39'06.7\"E/\n-7.209207,  112.651850"
+  },
+  {
+    "id": 282,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purabaya",
+    "kabupatenKota": "Kabupaten  Sidoarjo",
+    "alamat": "Jl. Bungurasih  Timur,  Bungurasih, Waru, Kabupaten  Sidoarjo",
+    "titikKoordinat": "7°21'01.7\"S  l 12°43'29.7\"E/\n-7.350474,  112.724913"
+  },
+  {
+    "id": 283,
+    "provinsi": "Bali",
+    "namaTerminal": "Terminal  Mengwi",
+    "kabupatenKota": "Kabupaten  Badung",
+    "alamat": "Jl.  Mengwi -Mengwi Tani, Badung",
+    "titikKoordinat": "8°33'83. 9\"S 115°10'05. 7\"E/\n-8.559410,  115.168253"
+  },
+  {
+    "id": 284,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Mandalika",
+    "kabupatenKota": "Kota Mataram",
+    "alamat": "Jl.  Sandubaya  No. 1 Bertais Sandubaya, Kec.  Mataram,  Kota Mataram",
+    "titikKoordinat": "8°35'38.6”S  116°09'28.7”E/\n-8.594060,  116.157963"
+  },
+  {
+    "id": 285,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Sumer  Payung",
+    "kabupatenKota": "Kabupaten  Sumbawa",
+    "alamat": "J1. Garuda km 6,  Labuhan  Badas Sumbawa Besar,  Kab. Sumbawa",
+    "titikKoordinat": "8‘28'38.7”S  l17°24' 15.8”E/\n-8.477409,  117.404392"
+  },
+  {
+    "id": 286,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Dara",
+    "kabupatenKota": "Kota Bima",
+    "alamat": "Jl.  Pahlawan  Dara   Kota Bima",
+    "titikKoordinat": "8°27'31.6\"S  1 I8°43'26.2\"E/\n-8.458789,  l 18.723948"
+  },
+  {
+    "id": 287,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Kefamenanu",
+    "kabupatenKota": "Kabupaten Timor Tengah  Utara",
+    "alamat": "JL Mayjen  El Tari Kefamenanu, Kefamenanu  Sel, Kota Kefamenanu, Kabupaten Timor Tengah  Utara",
+    "titikKoordinat": "9°28'03.7”S  124°28’55.5”E  /-\n9.467681,  124.482074"
+  },
+  {
+    "id": 288,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Bimoku",
+    "kabupatenKota": "Kota Kupang",
+    "alamat": "Jl.  Herman Yohanes Bimoku  Kota Kupang",
+    "titikKoordinat": "10°8'25.0\"S  I23°40'34.6\"E  / -\n10. 1402777,  123.676277"
+  },
+  {
+    "id": 289,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Sei Ambawang",
+    "kabupatenKota": "Kabupaten  Kubu  Raya",
+    "alamat": "Jl. Trans Kalimantan,  Sul Ambawang, Kuala,  Sungai Ambawang,  Kab.  Kubu Raya",
+    "titikKoordinat": "0°02'28.3\"S 109°24'13.7\"E/\n-0.041187,  109.403515"
+  },
+  {
+    "id": 290,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Singkawang",
+    "kabupatenKota": "Kota Singkawang",
+    "alamat": "Jl.  Sei Wie Singkawang Tengah  Kota Singkawang",
+    "titikKoordinat": "0°55'15.5\"N  108°58'47.0\"E/\n0.920963,  108.979716"
+  },
+  {
+    "id": 291,
+    "provinsi": "Kalimantan  Tengah",
+    "namaTerminal": "Terminal  W.A.  Gara",
+    "kabupatenKota": "Kota Palangkaraya",
+    "alamat": "Jl.  Mahir  Mahar  No  1,  Lingkar  Luar  Kota Palangkaraya",
+    "titikKoordinat": "2º 16' 18.8”S  l13‘54'22.6\"E/\n-2.271890,  113.906289"
+  },
+  {
+    "id": 292,
+    "provinsi": "Kalimantan  Selatan",
+    "namaTerminal": "Terminal  Gambut Barakat",
+    "kabupatenKota": "Kabupaten  Banjar",
+    "alamat": "Jl.Ahmad  Yani,  km  17,   Gambut  Kab. Banjar",
+    "titikKoordinat": "3°25'50. 1\"S 1 l4°40'50.2\"E/\n-3.430577,  114.680609"
+  },
+  {
+    "id": 293,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal  Batu  Ampar",
+    "kabupatenKota": "Kota Balikpapan",
+    "alamat": "Jl.  Kapten  Pattimura  Batu Ampar Balikpapan  Utara,  Kota Balikpapan",
+    "titikKoordinat": "1°13'11.1”S 116°51'24.8”E/\n-1.219744,  116.856878"
+  },
+  {
+    "id": 294,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal Samarinda Seberang",
+    "kabupatenKota": "Kota Samarinda",
+    "alamat": "Jl.  Gajah  Mada PS Pagi Kota Samarinda",
+    "titikKoordinat": "0°30'29.5\"S  117°08'29.6\"E/\n-0.508186, 117.141541"
+  },
+  {
+    "id": 295,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal Tanah Grogot Kuaro",
+    "kabupatenKota": "Kabupaten Paser",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 296,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Induk Lumpue",
+    "kabupatenKota": "Kota Pare-Pare",
+    "alamat": "Jl. Mirdin  Kasim  — Lumpue,  Kota Pare- Pare",
+    "titikKoordinat": "4°03'19.7”S  l19°37'56.0”E/\n-4.055482,  119.632215"
+  },
+  {
+    "id": 297,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Latenri Sessu Pekkae",
+    "kabupatenKota": "Kabupaten  Barru",
+    "alamat": "Kelurahan  Lalolang,  Kec. Tanete  Rilau, Kab. Barru",
+    "titikKoordinat": "4°29'09.9”S  119°36'30.8”E/\n-4.486088,  119.608568"
+  },
+  {
+    "id": 298,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Petta Pongawai",
+    "kabupatenKota": "Kabupaten  Bone",
+    "alamat": "Jl.  MT. Haryono,  Watampone,  Kab. Bone",
+    "titikKoordinat": "4°32'24.4\"S  120º 17'42.0\"E/-4.540113,  120.295005"
+  },
+  {
+    "id": 299,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Daya",
+    "kabupatenKota": "Kota Makassar",
+    "alamat": "Jl. Kapasa Raya,  Daya,  Biring Kanaya, Kota Makassar",
+    "titikKoordinat": "5°06'37.0”S  119°30'29.2\"E/\n-5.110280, 119.508113"
+  },
+  {
+    "id": 300,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Simbuang",
+    "kabupatenKota": "Kabupaten  Mamuju",
+    "alamat": "Jl. Simboro  Kecamatan  Mamuju  Simboro Dec. Simboro Kab. Mamuju",
+    "titikKoordinat": "2°41'23.4\"S  1 I8°51'56.9”E/\n-2.689834,  118.865806"
+  },
+  {
+    "id": 301,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Tipalayo",
+    "kabupatenKota": "Kabupaten PoliwaJimandar",
+    "alamat": "Jl. Trans Sulawesi,  Kab. Poliwalimandar",
+    "titikKoordinat": "3°26'50.3\"S  1 l9°22'34.5”E/-3.447297,  119.376238"
+  },
+  {
+    "id": 302,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Kasintuwu/Poso",
+    "kabupatenKota": "Kabupaten  Poso",
+    "alamat": "Mapane,  Poso Pesisir,  Kabupaten  Poso",
+    "titikKoordinat": "l°24'50.3”S  120°39'48. 2\"E/\n-1.413964,  120.663378"
+  },
+  {
+    "id": 303,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Batoh",
+    "kabupatenKota": "Kota Banda Aceh",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 304,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Paya Ilang",
+    "kabupatenKota": "Kabupaten  Aceh Tengah",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 305,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 306,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Madya Tarutung",
+    "kabupatenKota": "Kabupaten Tapanuli Utara",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 307,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 308,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Padang Bulan",
+    "kabupatenKota": "Kabupaten  Labuhan Batu",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 309,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Amplas",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 310,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Anak Air",
+    "kabupatenKota": "Kota Padang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 311,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Kiliran  Jao",
+    "kabupatenKota": "Kabupaten  Sijunjung",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 312,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Bareh Solok",
+    "kabupatenKota": "Kota Solok",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 313,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Jati Pariaman",
+    "kabupatenKota": "Kota Pariaman",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 314,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bangkinang",
+    "kabupatenKota": "Kabupaten  Kampar",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 315,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bandar  Raya Payung Sekaki",
+    "kabupatenKota": "Kota Pekanbaru",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 316,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Gerbangsari",
+    "kabupatenKota": "Kabupaten  Indragiri Hulu",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 317,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal Alam Barajo",
+    "kabupatenKota": "Kota Jambi",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 318,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Bangko",
+    "kabupatenKota": "Kabupaten   Marangin",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 319,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Sribulan",
+    "kabupatenKota": "Kabupateri Sorolangun",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 320,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal Alang-alang Lebar",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 321,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Mamboro",
+    "kabupatenKota": "Kota Palu",
+    "alamat": "Jl.  Trans Sulawesi,  Mamboro,  Palu  Utara, Kota Palu",
+    "titikKoordinat": "0°48'22.4\"S 119°53'01.1\"E/-0.8062 l2,  119.883642"
+  },
+  {
+    "id": 322,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Boroko",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow  Utara",
+    "alamat": "Jl. Trans Sulawesi,  Desa Kuala,  Kab. Bolaang  Mongondow  Utara",
+    "titikKoordinat": "0°54'41.0”N  123º 16'56.3\"E/\n0.911639,  123.282306"
+  },
+  {
+    "id": 323,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Liwas",
+    "kabupatenKota": "Kota Manado",
+    "alamat": "Kecamatan  Paal Dua, Kota Manado",
+    "titikKoordinat": "1°39'06.8”N  124°5 I'40.8\"E/1.485211,  124.861321"
+  },
+  {
+    "id": 324,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal Tangkoko",
+    "kabupatenKota": "Kota Bitung",
+    "alamat": "Jl. SH Sarundajang,  Kel.  Manembo-nembo, Kec.  Matuari,  Kota Bitung",
+    "titikKoordinat": "1°25‘48.8\"N  I25°06'44.1\"E/1.430227,  125.112261"
+  },
+  {
+    "id": 325,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Bolaang Mongondow",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow",
+    "alamat": "Jl. Trans Dulangon  km 2 Kab.  Bolaang Mongondow",
+    "titikKoordinat": "00°51' 11.74”N\n125‘59'54.89. 1\"E"
+  },
+  {
+    "id": 326,
+    "provinsi": "Sulawesi Tenggara",
+    "namaTerminal": "Terminal  Puuwatu",
+    "kabupatenKota": "Kota Kendari",
+    "alamat": "Jl. Moh. Yamin,  Puuwatu,  Kota Kendari",
+    "titikKoordinat": "3‘58'01.98\"S 122°27'29.85”E\n-3.96672 16, 122.458291"
+  },
+  {
+    "id": 327,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Isimu",
+    "kabupatenKota": "Kabupaten  Gorontalo",
+    "alamat": "Jl. Amala  Mantu,  Desa Tolotio,  Kec. Tibawa,  Kab.  Gorontalo",
+    "titikKoordinat": "0°39'12.0\"N  122°51'15.3”E/\n0.653339,  122.854250"
+  },
+  {
+    "id": 328,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Dungingi",
+    "kabupatenKota": "Kota Gorontalo",
+    "alamat": "Jl. Beringin,  Hu angobotu,  Dungingi,  Kota Gorontalo",
+    "titikKoordinat": "0°33'52. 1”N  123°01'S7. 1\"E/\n0.564475,  123.032515"
+  },
+  {
+    "id": 329,
+    "provinsi": "Papua",
+    "namaTerminal": "Terminal Entrop",
+    "kabupatenKota": "Kota Jayapura",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.   Yos Sudarso,  Entrop \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF0E0E0E\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\", \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF000000\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Jayapura\"}]}",
+    "titikKoordinat": "2°33‘59. 9\"S  l40°4 l'39.6”E/-2.566642,  140.694342"
+  },
+  {
+    "id": 330,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kampung Rambutan",
+    "kabupatenKota": "Kota Jakarta Timur",
+    "alamat": "Jl.  Term.  Simatupang,  Kel.  Rambutan, Kec.  Ciracas,  Kota Jakarta Timur",
+    "titikKoordinat": "6º 18'34.3\"S  106°52'56. 2”E/-6.309526,  106.582281"
+  },
+  {
+    "id": 331,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kalideres",
+    "kabupatenKota": "Kota Jakarta Barat",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.   \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF000000\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Daan  Mogot  No.  15,  Kota Jakarta Barat\"}]}",
+    "titikKoordinat": "6°09' 15.9\"S 106°42'2 l.0\"E/-6. 154418,  106.705839"
+  },
+  {
+    "id": 332,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Langsa",
+    "kabupatenKota": "Kota Langsa",
+    "alamat": "Jl. Prof. A. Majid Ibrahim,  Langsa Barat, Kota Langsa",
+    "titikKoordinat": "4°29'51.5\"N 97°58'04.3”E  / 4.497648,  97.967850"
+  },
+  {
+    "id": 333,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Lhokseumawe",
+    "kabupatenKota": "Kota Lhokseumawe",
+    "alamat": "Desa Meunasah  Mee Kandang, Kecamatan  Muara Dua  , Kota Lhokseumawe",
+    "titikKoordinat": "5°9'34.3\"N  97°08' 12.3”E  /\n5. 1595277,  97.13675"
+  },
+  {
+    "id": 334,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Meulaboh",
+    "kabupatenKota": "Kabupaten  Aceh  Barat",
+    "alamat": "RGM  Komplek Terminal Tipe A Meulaboh",
+    "titikKoordinat": "4°08'50.7\"N  96°07'37. 7”E  /\n4.147429,96.127124"
+  },
+  {
+    "id": 335,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Batoh",
+    "kabupatenKota": "Kota Banda Aceh",
+    "alamat": "Jl.  Doktor  Ir. T. Mohd.  Hasan,  Kota Banda  Aceh",
+    "titikKoordinat": "5°31'47.2\"N  95º 19'45.O”E  /\n5.529789,  95.329159"
+  },
+  {
+    "id": 336,
+    "provinsi": "Aceh",
+    "namaTerminal": "Terminal  Paya Ilang",
+    "kabupatenKota": "Kabupaten  Aceh Tengah",
+    "alamat": "Blang Kolak II, Bebesen, Takengon, Kabupaten  Aceh Tengah",
+    "titikKoordinat": "4°37’31.64\"N  96°50‘7.25\"E/\n4,6254565,  96.8353488"
+  },
+  {
+    "id": 337,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Tanjung Pinggir",
+    "kabupatenKota": "Kota Pemantang Siantar",
+    "alamat": "J1. AMD  No.3  Pematang Siantar",
+    "titikKoordinat": "3°00'04.3\"N  99°04'4 I.2\"E  / 3.001183, 99.078122"
+  },
+  {
+    "id": 338,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Madya Tarutung",
+    "kabupatenKota": "Kabupaten Tapanuli Utara",
+    "alamat": "Jl.  Mayjend.  D.I. Panjaitan, Tarutung, Tapanuli  Utara",
+    "titikKoordinat": "2°0 I'31.7\"N  98°58'26.6”E  / 2.025469, 98.974046"
+  },
+  {
+    "id": 339,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Sibolga",
+    "kabupatenKota": "Kota Sibolga",
+    "alamat": "J1. Sisingamangaraja No.8,  Pancuran Gerobak, Sibolga  Kota,  Kota Sibolga",
+    "titikKoordinat": "1°44'20.2\"N 98°47'02.4\"E  /\n1.738947, 98.783995"
+  },
+  {
+    "id": 340,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Padang Bulan",
+    "kabupatenKota": "Kabupaten  Labuhan Batu",
+    "alamat": "JI.  H. Adam Malik, Padang Bulan,  Rantau Utara,  Kabupaten  Labuhan  Batu",
+    "titikKoordinat": "2°04'42.0\"N  99°50'26.5”E  /\n2.078321, 99.840706"
+  },
+  {
+    "id": 341,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Amplas",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "Jl.  Panglima  Denai, Timbang  Deli, Medan Amplas,  Kota Medan",
+    "titikKoordinat": "3°32'21.2”N  98°43'05.5\"E  /\n3.539207, 98.718201"
+  },
+  {
+    "id": 342,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Pinang Baris",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "J1. Tahi Bonar Simatupang,  Lalang, Medan Sunggal,  Kota Medan",
+    "titikKoordinat": "3°35'20.2”N  98°36'36.5\"E  /\n3.588932, 98.610151"
+  },
+  {
+    "id": 343,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Anak Air",
+    "kabupatenKota": "Kota Padang",
+    "alamat": "Jl.  Adinegoro  No.20,  Lubuk Buaya,  Koto Tangah,  Kota Padang",
+    "titikKoordinat": "0°49'32.2\"S  100º 19'49.4”E/\n-0.8256 1 1,  100.330397"
+  },
+  {
+    "id": 344,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Kiliran  Jao",
+    "kabupatenKota": "Kabupaten  Sijunjung",
+    "alamat": "Jl.  Nagari  Muaro Takung Kabupaten Sijunjung,  Jl.  l,intas Sumatera KM 195 Kiliranjao",
+    "titikKoordinat": "0°53'20.4\"S  101‘21'34.1”E/\n-0.888988,  101.359466"
+  },
+  {
+    "id": 345,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Bareh Solok",
+    "kabupatenKota": "Kota Solok",
+    "alamat": "Ji. Tj. Paku, Simpang Rumbio,  Lubuk Sikarah, Kota Solok",
+    "titikKoordinat": "0°47'50.6\"S  100°40'01.1”E/\n-0.797388,  100.666973"
+  },
+  {
+    "id": 346,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Simpang Aur",
+    "kabupatenKota": "Kota Bukit Tinggi",
+    "alamat": "Jl. Diponegoro  Terminal Tipe A Simpang Aur, Tigobale, Tarodipok,  Bukit Tinggi",
+    "titikKoordinat": "0º18'49.4\"S  l00°23' 11.2”E/\n-0.313727,  100.386431"
+  },
+  {
+    "id": 347,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Jati Pariaman",
+    "kabupatenKota": "Kota Pariaman",
+    "alamat": "Jl.  Wolter  Mongo Sidi, Ds. Jatimudik, Pariaman Tengah",
+    "titikKoordinat": "0°37'05.8\"S  100°08'31.0\"E/\n-0.618277,  100. 141540"
+  },
+  {
+    "id": 348,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bangkinang",
+    "kabupatenKota": "Kabupaten  Kampar",
+    "alamat": "Jl. Prof.  M. Yamin  SH,  Bangkinang, Kampar",
+    "titikKoordinat": "0°20'43. 2”N  10 1°01'29.1\"E/\n0.345320,  101.024753"
+  },
+  {
+    "id": 349,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bandar  Raya Payung Sekaki",
+    "kabupatenKota": "Kota Pekanbaru",
+    "alamat": "Jl.  Air Hitam, Ke1.  Labuh  Barat,  Kec. Payung Sekaki,  Pekanbaru",
+    "titikKoordinat": "0°30'08.2”N  101°23'17.0”E/\n0.502280,  101.388059"
+  },
+  {
+    "id": 350,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Dumai",
+    "kabupatenKota": "Kota Dumai",
+    "alamat": "Il.  Ratu Sima Klakap 7,  Kec. Simpang Tetap, Kel.  Dumai Barat,  Du mai",
+    "titikKoordinat": "1°40'34.7“N  101°25'04.2\"E/\n1.676313, 101.41783"
+  },
+  {
+    "id": 351,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Gerbangsari",
+    "kabupatenKota": "Kabupaten  Indragiri Hulu",
+    "alamat": "Jl.  Lintas Timur Sumatra,  Pematang Reba,  Rengat Barat, Kabupaten  Indragiri Hulu",
+    "titikKoordinat": "0°24'02. 1”S  l02°26'52.4”E/\n—0.400594,  102.447898"
+  },
+  {
+    "id": 352,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal Alam Barajo",
+    "kabupatenKota": "Kota Jambi",
+    "alamat": "Lingkar  Barat  1, Kota Jambi",
+    "titikKoordinat": "1°37'43.7\"S  103°33'05.8\"E/\n-1.628811,  103.55160"
+  },
+  {
+    "id": 353,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Muara Bungo",
+    "kabupatenKota": "Kabupaten  Bungo",
+    "alamat": "Manggis,  Kec.  Batin  III, Kabupaten  Bungo",
+    "titikKoordinat": "1°41'5 I.6\"S 101°49' 14.7\"E/\n- 1.697656,  101.820756"
+  },
+  {
+    "id": 354,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Bangko",
+    "kabupatenKota": "Kabupaten   Marangin",
+    "alamat": "Jl.  Bangko  Kab.  Merangin",
+    "titikKoordinat": "2°03'19.3\"S  102°20'09.0”E/\n-2.055368,  102.335828"
+  },
+  {
+    "id": 355,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal  Sribulan",
+    "kabupatenKota": "Kabupateri Sorolangun",
+    "alamat": "Jl.   Lintas Sumatera Bangko — Sarolangun",
+    "titikKoordinat": "2º 18'21.0\"S 102°40'45.4\"E/\n-2.305829,  102.679286"
+  },
+  {
+    "id": 356,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "{\"richText\":[{\"text\":\"Terminal Alang-alang\"},{\"font\":{\"vertAlign\":\"superscript\",\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\" \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Lebar\"}]}",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. By Pass Alang-alang  Lebar KM 12  Kota Palembang",
+    "titikKoordinat": "2°54'59.8\"S  l04°40'52.5\"E/\n-2.916598,  104.681245"
+  },
+  {
+    "id": 357,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Kayuagung",
+    "kabupatenKota": "Kabupaten  OKI",
+    "alamat": "Jl.  Kapten H. Sulaiman  Raden  Anom (Lintas Sumatera)  Kab. Ogan  Komering Ilir",
+    "titikKoordinat": "3°23'20.0\"S  I04°49'27.4\"E/\n—3.38890 1,  104.824263"
+  },
+  {
+    "id": 358,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Batu  Kuning",
+    "kabupatenKota": "Kabupaten  OKU",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 359,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "-",
+    "kabupatenKota": "-",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 360,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Batu  Kuning",
+    "kabupatenKota": "Kabupaten  OKU",
+    "alamat": "Lintas Sumatera No. 61 Batu  Raja Kab. Ogan  Komering  Ulu",
+    "titikKoordinat": "4°05'59.7”S  104°09'23. 7”E/\n-4.099927,  104.156571"
+  },
+  {
+    "id": 361,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Betung",
+    "kabupatenKota": "Kabupaten  Banyuasin",
+    "alamat": "Jl. Bypass   Lintas Timur  , Kabupaten Banyuasin",
+    "titikKoordinat": "2‘5 l'05.7\"S 104° l4'42.5\"E/\n-2.851578,  104.245144"
+  },
+  {
+    "id": 362,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Karya Jaya",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. Sri   ijaya Raya KM 12  Kel.  Karyajatya, Kertapati,  Palembang",
+    "titikKoordinat": "3‘03'49.3\"S  l04°44'20.3”E/\n-3.063682,  104.738982"
+  },
+  {
+    "id": 363,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Simpang Priuk",
+    "kabupatenKota": "Kota Lubuk  Linggau",
+    "alamat": "Simpang  Periuk,  Lubuk  Linggau  Sel. II, Kota Lubuklinggau",
+    "titikKoordinat": "3º 1G'08. 1\"S 102°56'21.0\"EJ\n-3.268915, 102.939177"
+  },
+  {
+    "id": 364,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Regional  Lahat",
+    "kabupatenKota": "Kabupaten  Lahat",
+    "alamat": "Pagar Agung,  Kec.  Lahat,  Kabupaten Lahat",
+    "titikKoordinat": "3°45'42.6\"S  l03°29'51.3\"E/\n-3.761827,  103.497592"
+  },
+  {
+    "id": 365,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal  Simpang Nangka",
+    "kabupatenKota": "Kabupaten  Rejang\nLebong",
+    "alamat": "Jl. Terminal  Simpang  Nangka,Kec. Selupu  Rejang,  Rejang Lebong",
+    "titikKoordinat": "3‘27'18.5\"S 102‘34'52.5\"E/\n-3.455144,  102.581251"
+  },
+  {
+    "id": 366,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal Air Sebakul",
+    "kabupatenKota": "Kota Bengkulu",
+    "alamat": "Jl. Raden  Fatah,  Kec. Selebar,  Kota Bengkulu",
+    "titikKoordinat": "3‘50'0.6”S 102°20'55\"E  /\n-3.833500,  102.34861"
+  },
+  {
+    "id": 367,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Rajabasa",
+    "kabupatenKota": "Kota Bandar  Lampung",
+    "alamat": "Jl ZA  Pagar Alam  Rajabasa Bandar Lampung",
+    "titikKoordinat": "5°22'03.4\"S  105º 14'16.2”E/\n-5.3676 17, 105.237829"
+  },
+  {
+    "id": 368,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Betan  Subing",
+    "kabupatenKota": "Kabupaten  Lampung Tengah",
+    "alamat": "Jl.  Lintas Sumatera,  Kec. Terbanggi Besar,  Lampung Tengah",
+    "titikKoordinat": "4°52'40.3”S  105º 13'43.6”E/\n-4.877862,  105.228783"
+  },
+  {
+    "id": 369,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pakupatan",
+    "kabupatenKota": "Kota  Serang",
+    "alamat": "Jl. Raya Jakarta km 4 Serang",
+    "titikKoordinat": "6°07' 18.0”S  106º 11'47.0”E  / -\n6. l2 1668,  106.19637"
+  },
+  {
+    "id": 370,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Labuan",
+    "kabupatenKota": "Kabupaten  Pandeglang",
+    "alamat": "Jl. Raya Labuan  km 4 Tarogong,  Kab. Pandeglang",
+    "titikKoordinat": "6°23'38. 2\"S 105°50'34.4\"E/ -6.393953,  105.842894"
+  },
+  {
+    "id": 371,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal Rangkas Bitung",
+    "kabupatenKota": "Kabupaten  Lebak",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 372,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Mandala Lebak",
+    "kabupatenKota": "Kabupaten  Lebak",
+    "alamat": "Jl. By Pass Soekarno  Hatta, Rangkasbitung, Lebak",
+    "titikKoordinat": "6º 18'21.7”S  106º 12'50.3\"E/\n-6.306021,  106.213970"
+  },
+  {
+    "id": 373,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Merak",
+    "kabupatenKota": "Kota Cilegon",
+    "alamat": "Jl. RE. Marthadinata  Kel. Tamansari, Kec.  Pulau  Merak,  Kota Cilegon",
+    "titikKoordinat": "5°56'05.3\"S  l06°00'03.3\"E/\n-5.934809,  106.000919"
+  },
+  {
+    "id": 374,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Poris Plawad",
+    "kabupatenKota": "Kota Tangerang",
+    "alamat": "Jl. Benteng Betawi,  Poris Plawad,  Kec. Tangerang,  Kota Tangerang",
+    "titikKoordinat": "6º 10'22.8”S  106°39'52.7”E/\n-6.172997, 106.664644"
+  },
+  {
+    "id": 375,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pondok  Cabe",
+    "kabupatenKota": "Kota Tangerang Selatan",
+    "alamat": "J1. Terminal  Pondok  Cabe  (KH. Salem), Pondolc Cabe  Udik,  Pamulang,  Kota Tangerang Selatan",
+    "titikKoordinat": "6°21'32.0\"S  106°45' 11.9\"E/\n-6.358888,  106.753310"
+  },
+  {
+    "id": 376,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  KH. Ahmad Sanusi",
+    "kabupatenKota": "Kota Sukabumi",
+    "alamat": "J1. Lingkar Selatan  No.7,  Kota Sukabumi",
+    "titikKoordinat": "6°55' 13.7”S  106°55'04.5\"E/-6.920473,  106.917919"
+  },
+  {
+    "id": 377,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Ciakar",
+    "kabupatenKota": "Kabupaten  Sumedang",
+    "alamat": "Jl.  Rabu  Gajah Agung,  Kec. Sumedang Utara.",
+    "titikKoordinat": "6°49’32.6”S  107°55'17. 1“E/\n-6.825718, 107.921427"
+  },
+  {
+    "id": 378,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Guntur  Melati",
+    "kabupatenKota": "Kabupaten  Garut",
+    "alamat": "Jl. Guntur Sari  No. 2,  Ds.  Haur Panggung Kec. Tarogong Kidul Kab. Garut",
+    "titikKoordinat": "7°12'01.5\"S  107°54'21.0\"E/-7.200411, 107.905821"
+  },
+  {
+    "id": 379,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Harjamukti",
+    "kabupatenKota": "Kota Cirebon",
+    "alamat": "Jl.  By Pass Jend. Ahmad  Yani Kota Cirebon",
+    "titikKoordinat": "6°44'22.8\"S  108°33'10.5\"E/\n-6.739672,  108.552924"
+  },
+  {
+    "id": 380,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Indihiang",
+    "kabupatenKota": "Kota Tasikmalaya",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.  Brigjen  Wastakusuma  \"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Kec.  \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Indíhiang Kota Tasikmalaya\"}]}",
+    "titikKoordinat": "7°17'29.5\"S  108º ll'31.1\"E/-7.291517,  108.191979"
+  },
+  {
+    "id": 381,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kuningan",
+    "kabupatenKota": "Kabupaten  Kuningan",
+    "alamat": "Jl.  RE. Martadinata  Kuningan",
+    "titikKoordinat": "6‘56'55.5”S  108°27'58.3\"E/-6.948747,  108.466182"
+  },
+  {
+    "id": 382,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Subang",
+    "kabupatenKota": "Kabupaten  Subang",
+    "alamat": "Jl Darmodiharjo  01, Kel. Sukamelar  Kab Subang",
+    "titikKoordinat": "6°33'00. 1\"S 107°46'09.4”E/\n-6.550035,  107.769278"
+  },
+  {
+    "id": 383,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Banjar",
+    "kabupatenKota": "Kota Banjar",
+    "alamat": "Jl. Mayjen  Didi Kartasamita  Kota Banjar",
+    "titikKoordinat": "7°2  I'49.8\"S 108°30'27.8\"E/\n-7.363834,  108.507734"
+  },
+  {
+    "id": 384,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Cikampek",
+    "kabupatenKota": "Kabupaten  Karawang",
+    "alamat": "Jl. Raya Terminal  No. 44,  Cikampek Kota, Cikampek,  Kabupaten  Karawang",
+    "titikKoordinat": "6°24'33.4\"S  107°27'40.7”E/-6.409274,  107.46131"
+  },
+  {
+    "id": 385,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Baranangsiang",
+    "kabupatenKota": "Kota Bogor",
+    "alamat": "Jl. Raya Pajajaran  No.9,  Bogor Timur, Kota Bogor",
+    "titikKoordinat": "6°36'13.3”S 106°48'21.9\"E/-6.603702,  106.806075"
+  },
+  {
+    "id": 386,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Induk Bekasi",
+    "kabupatenKota": "Kota Bekasi",
+    "alamat": "Jl. Duren Jaya, Bekasi Timur,  Kota Bekasi",
+    "titikKoordinat": "6º 14'57.7\"S  107°00'48.4\"E/\n-6.249363,  107.013439"
+  },
+  {
+    "id": 387,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kalijaya Cikarang",
+    "kabupatenKota": "Kabupaten  Bekasi",
+    "alamat": "Jl. R. Fatahillah,  Cikarang Barat, Kabupaten  Bekasi",
+    "titikKoordinat": "6º 15'42.3\"S  107’08' 14.0\"E/-6.261735, 107.137211"
+  },
+  {
+    "id": 388,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Jatijajar",
+    "kabupatenKota": "Kota Depok",
+    "alamat": "Jl. Raya Bogor No.37, Jatijajar, Tapos, Kota Depok",
+    "titikKoordinat": "6°25'34. 2\"S 106°5 l'3 1.2\"E/\n-6.426160, 106.858668"
+  },
+  {
+    "id": 389,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Cicaheum",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl. Jendral A Yani Cicaheum Kiaracondong  Bandung",
+    "titikKoordinat": "6’54' 10.4\"S  107°39'16.7”E/-6.902895,  107.654633"
+  },
+  {
+    "id": 390,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Leuwipanjang",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl.  Soekarno  Hatta  No. 205  Situsaeur Bojongloa  Kidul,  Bandung",
+    "titikKoordinat": "6°56'46.0\"S  107‘35'34.4\"E/-6.946102, 107.592892"
+  },
+  {
+    "id": 391,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purworejo",
+    "kabupatenKota": "Kabupaten  Purworejo",
+    "alamat": "Jl. Gajah Mada km  4,5  Ds. Candisari Kec. Banyurip Kab. Purwotejo",
+    "titikKoordinat": "7°43'44.2\"S  109°58'06.0\"E/-7.728953,  109.968320"
+  },
+  {
+    "id": 392,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Cepu",
+    "kabupatenKota": "Kabupaten  Blora",
+    "alamat": "Jl. Pramuka  By Pass Cepu",
+    "titikKoordinat": "7°09'08.3\"S  111°34'51.8\"E/-7.152295,  111.581057"
+  },
+  {
+    "id": 393,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Leuwipanjang",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl.  Soekarno  Hatta  No. 205  Situsaeur Bojongloa  Kidul,  Bandung",
+    "titikKoordinat": "6°56'46.0\"S  107‘35'34.4\"E/-6.946102, 107.592892"
+  },
+  {
+    "id": 394,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purworejo",
+    "kabupatenKota": "Kabupaten  Purworejo",
+    "alamat": "Jl. Gajah Mada km  4,5  Ds. Candisari Kec. Banyurip Kab. Purwotejo",
+    "titikKoordinat": "7°43'44.2\"S  109°58'06.0\"E/-7.728953,  109.968320"
+  },
+  {
+    "id": 395,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Cepu",
+    "kabupatenKota": "Kabupaten  Blora",
+    "alamat": "Jl. Pramuka  By Pass Cepu",
+    "titikKoordinat": "7°09'08.3\"S  111°34'51.8\"E/-7.152295,  111.581057"
+  },
+  {
+    "id": 396,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "{\"richText\":[{\"text\":\"Terminal Bangga\"},{\"font\":{\"vertAlign\":\"subscript\",\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\" \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Bangun  Desa\"}]}",
+    "kabupatenKota": "Kabupaten  Cilacap",
+    "alamat": "Jl. Jend. Gatot Subroto  No. 268  Ds Gunung Simping Kec. Cilacap Tengah Kota Cilacap",
+    "titikKoordinat": "7°42'08.5\"S  109°01'29.6\"E/\n-7.70236 1, 109.024881"
+  },
+  {
+    "id": 397,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Giri Adipura",
+    "kabupatenKota": "Kabupaten  Wonogiri",
+    "alamat": "Jl.  Brigjen Katamso,  Kel.  Kaliancas,  Kec. Selogiri-Wonogiri",
+    "titikKoordinat": "7°47'33.0\"S  110°53'50.6”E/\n-7. 792512, 110.897399"
+  },
+  {
+    "id": 398,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Kebumen",
+    "kabupatenKota": "Kabupaten  Kebumen",
+    "alamat": "Jl.  Lingkar Selatan  Kec.  Kebumen  Kab. Kebumen",
+    "titikKoordinat": "7°41'48.8\"S 109°40'44.3\"E/\n-7.696888,  109.678974"
+  },
+  {
+    "id": 399,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mangkang",
+    "kabupatenKota": "Kota Semarang",
+    "alamat": "Jl.  Gang Mekar Sari Atas, Mangkang Kulon, Semarang",
+    "titikKoordinat": "6°58'08. 1”S 110° l7'2 I.8\"EJ\n-6.9G8914,  110.289379"
+  },
+  {
+    "id": 400,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "{\"richText\":[{\"text\":\"Terminal Bangga\"},{\"font\":{\"vertAlign\":\"subscript\",\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\" \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Bangun  Desa\"}]}",
+    "kabupatenKota": "Kabupaten  Cilacap",
+    "alamat": "Jl. Jend. Gatot Subroto  No. 268  Ds Gunung Simping Kec. Cilacap Tengah Kota Cilacap",
+    "titikKoordinat": "7°42'08.5\"S  109°01'29.6\"E/\n-7.70236 1, 109.024881"
+  },
+  {
+    "id": 401,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Giri Adipura",
+    "kabupatenKota": "Kabupaten  Wonogiri",
+    "alamat": "Jl.  Brigjen Katamso,  Kel.  Kaliancas,  Kec. Selogiri-Wonogiri",
+    "titikKoordinat": "7°47'33.0\"S  110°53'50.6”E/\n-7. 792512, 110.897399"
+  },
+  {
+    "id": 402,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Ir. Soekarno",
+    "kabupatenKota": "Kabupaten  Klaten",
+    "alamat": "Jl.  Jombor Indah,  Kabupaten  Klaten",
+    "titikKoordinat": "7°42'48. 2”S 11O°36' 13.4\"E/\n-7.713394,  110.603725"
+  },
+  {
+    "id": 403,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Kebumen",
+    "kabupatenKota": "Kabupaten  Kebumen",
+    "alamat": "Jl.  Lingkar Selatan  Kec.  Kebumen  Kab. Kebumen",
+    "titikKoordinat": "7°41'48.8\"S 109°40'44.3\"E/\n-7.696888,  109.678974"
+  },
+  {
+    "id": 404,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mangkang",
+    "kabupatenKota": "Kota Semarang",
+    "alamat": "Jl.  Gang Mekar Sari Atas, Mangkang Kulon, Semarang",
+    "titikKoordinat": "6°58'08. 1”S 110° l7'2 I.8\"EJ\n-6.9G8914,  110.289379"
+  },
+  {
+    "id": 405,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Pekalongan",
+    "kabupatenKota": "Kota Pekalongan",
+    "alamat": "Jl. Dr.  Sutomo, Ds. Gamer  Kec. Pekalongan  Timur,  Kota Pekalongan",
+    "titikKoordinat": "6°54' 10.7\"S  l09°42'02.7\"E/\n-6.902978,  109.700755"
+  },
+  {
+    "id": 406,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Guntur Melati Garut",
+    "kabupatenKota": "Kabupaten Garut",
+    "alamat": "Jl. Guntur Sari No.02, Desa Haurpanggung Kec. Tarogong Kidul Kab. Garut 44151",
+    "titikKoordinat": "GMT"
+  },
+  {
+    "id": 407,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Harjamukti",
+    "kabupatenKota": "Kota Cirebon",
+    "alamat": "Jl. By Pass Jend. Ahmad Yani Kota Cirebon",
+    "titikKoordinat": "HJM"
+  },
+  {
+    "id": 408,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Indihiang",
+    "kabupatenKota": "Kota Tasikmalaya",
+    "alamat": "Jl. Brigjen Wasita Kusumah Kel. Sukamaju Kidul Kec. Indihiang Kota Tasikmalaya 46151",
+    "titikKoordinat": "IDH"
+  },
+  {
+    "id": 409,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Kertawangunan Kuningan",
+    "kabupatenKota": "Kabupaten Kuningan",
+    "alamat": "Jl. RE. Martadinata Desa Kertawangunan,Kec. Sindangagung Kab.Kuningan 45573",
+    "titikKoordinat": "KTW"
+  },
+  {
+    "id": 410,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Subang",
+    "kabupatenKota": "Kabupaten Subang",
+    "alamat": "Jl Darmodiharjo 01, Kel. Sukamelang Kec. Subang,Kab Subang 41211",
+    "titikKoordinat": "SUB"
+  },
+  {
+    "id": 411,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Banjar",
+    "kabupatenKota": "Kota Banjar",
+    "alamat": "Jl. Mayjen Didi Kartasamita Kel.Banjar Kec. Banjar,Kota Banjar 46311",
+    "titikKoordinat": "BJR"
+  },
+  {
+    "id": 412,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Cikampek",
+    "kabupatenKota": "Kabupaten Karawang",
+    "alamat": "Jl. Lingkar Tanjungpura, Palumbonsari, Kab. Karawang",
+    "titikKoordinat": "CKP"
+  },
+  {
+    "id": 413,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Baranangsiang",
+    "kabupatenKota": "Kota Bogor",
+    "alamat": "Jl. Raya Pajajaran No.9, Bogor Timur, Kota Bogor",
+    "titikKoordinat": "BSG"
+  },
+  {
+    "id": 414,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Induk Bekasi",
+    "kabupatenKota": "Kota Bekasi",
+    "alamat": "Jl. Duren Jaya, Bekasi Timur, Kota Bekasi",
+    "titikKoordinat": "BKS"
+  },
+  {
+    "id": 415,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Kalijaya Cikarang",
+    "kabupatenKota": "Kabupaten Bekasi",
+    "alamat": "Jl. R. Fatahillah, Cikarang Barat, Kabupaten Bekasi",
+    "titikKoordinat": "CKG"
+  },
+  {
+    "id": 416,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Jatijajar",
+    "kabupatenKota": "Kota Depok",
+    "alamat": "Jl. Raya Bogor No.37, Jatijajar, Tapos, Kota Depok",
+    "titikKoordinat": "JJR"
+  },
+  {
+    "id": 417,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Cicaheum",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl. Jendral A Yani Cicaheum Kiaracondong Bandung",
+    "titikKoordinat": "CHM"
+  },
+  {
+    "id": 418,
+    "provinsi": "Jawa Barat (BPTD Wil.IX)",
+    "namaTerminal": "Terminal Leuwipanjang",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl. Soekarno Hatta No. 205 Situsaeur Bojongloa Kidul, Bandung",
+    "titikKoordinat": "LWP"
+  },
+  {
+    "id": 419,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Purworejo",
+    "kabupatenKota": "Kabupaten Purworejo",
+    "alamat": "Jl. Gajah Mada Desa Candisari Kec. Banyuurip Kab. Purworejo 54171",
+    "titikKoordinat": "PWJ"
+  },
+  {
+    "id": 420,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Cepu",
+    "kabupatenKota": "Kabupaten Blora",
+    "alamat": "Jl. Pramuka By Pass Cepu",
+    "titikKoordinat": "CPU"
+  },
+  {
+    "id": 421,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Bangga Mbangun Desa",
+    "kabupatenKota": "Kabupaten Cilacap",
+    "alamat": "Jl. Jend. Gatot Subroto No. 268 Ds Gunung Simping Kec. Cilacap Tengah Kota Cilacap",
+    "titikKoordinat": "BBD"
+  },
+  {
+    "id": 422,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Giri Adipura",
+    "kabupatenKota": "Kabupaten Wonogiri",
+    "alamat": "Jl. Raya Wonogori-Solo KM.04 Krisak, Selogiri, Kab. Wonogiri 57652",
+    "titikKoordinat": "GRA"
+  },
+  {
+    "id": 423,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Ir. Soekarno",
+    "kabupatenKota": "Kabupaten Klaten",
+    "alamat": "Jl. Jombor Indah Tengahan, Buntalan,Kec. Klaten Tengah Kabupaten Klaten 57419",
+    "titikKoordinat": "SKN"
+  },
+  {
+    "id": 424,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Kebumen",
+    "kabupatenKota": "Kabupaten Kebumen",
+    "alamat": "Jl. Lingkar Selatan KM.01 Kec. Kebumen Kab. Kebumen",
+    "titikKoordinat": "KBM"
+  },
+  {
+    "id": 425,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Mangkang",
+    "kabupatenKota": "Kota Semarang",
+    "alamat": "Jl. Urip Sumoharjo KM 17 Kel. Mangkang Kulon, Kec Tugu Kota Semarang 50155",
+    "titikKoordinat": "MKG"
+  },
+  {
+    "id": 426,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Pekalongan",
+    "kabupatenKota": "Kota Pekalongan",
+    "alamat": "Jl. Dr. Sutomo, Desa Gamer Kec. Pekalongan Timur, Kota Pekalongan",
+    "titikKoordinat": "PKL"
+  },
+  {
+    "id": 427,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Induk Pemalang",
+    "kabupatenKota": "Kabupaten Pemalang",
+    "alamat": "Jl. Slamet Riyadi, Pelutan, Kec. Pemalang, Kab. Pemalang",
+    "titikKoordinat": "IPM"
+  },
+  {
+    "id": 428,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Bulupitu Purwokerto",
+    "kabupatenKota": "Kabupaten Banyumas",
+    "alamat": "Jl. Suwatio No.48 Kel. Teluk, Kec. Purwokerto Selatan, Kab. Banyumas",
+    "titikKoordinat": "PWK"
+  },
+  {
+    "id": 429,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Mendolo",
+    "kabupatenKota": "Kabupaten Wonosobo",
+    "alamat": "Jl. Bambang Sugeng KM 3 Ds, Mendolo, Kec. Wonosobo Kab. Wonosobo 56311",
+    "titikKoordinat": "MDL"
+  },
+  {
+    "id": 430,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Bawen",
+    "kabupatenKota": "Kabupaten Semarang",
+    "alamat": "Jl. Palagan No. 1 Bawen, Kec. Bawen Kab. Semarang",
+    "titikKoordinat": "BWN"
+  },
+  {
+    "id": 431,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Tidar",
+    "kabupatenKota": "Kota Magelang",
+    "alamat": "Jl. Soekarno-Hatta Kel. Tidar Utara Kec. Magelang Selatan Kota Magelang",
+    "titikKoordinat": "TDR"
+  },
+  {
+    "id": 432,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Tingkir",
+    "kabupatenKota": "Kota Salatiga",
+    "alamat": "Jl. Soekarno-Hatta Kel. Tingkir Tengah, Kec. Tingkir, Kota Salatiga",
+    "titikKoordinat": "TGK"
+  },
+  {
+    "id": 433,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Tirtonadi",
+    "kabupatenKota": "Kota  Surakarta",
+    "alamat": "Jl. Ahmad Yani No 262 Kel. Gilingan Kec. Banjarsari Kota Surakarta 57134",
+    "titikKoordinat": "TTN"
+  },
+  {
+    "id": 434,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Jati",
+    "kabupatenKota": "Kabupaten Kudus",
+    "alamat": "Jl. AKBP Agil Kusumadya, Jati Wetan, Jati, Kudus",
+    "titikKoordinat": "JTI"
+  },
+  {
+    "id": 435,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Bobot Sari",
+    "kabupatenKota": "Kabupaten Purbalingga",
+    "alamat": "Jl. PP Imam TP Bobotsari, Kec. Purbalingga, Kabupaten Purbalingga",
+    "titikKoordinat": "BBS"
+  },
+  {
+    "id": 436,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Demak",
+    "kabupatenKota": "Kabupaten Demak",
+    "alamat": "Jalan Lingkar Demak, Area Sawah, Jogoloyo, Wonosalam, Kabupaten Demak",
+    "titikKoordinat": "DMK"
+  },
+  {
+    "id": 437,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Kayuagung",
+    "kabupatenKota": "Kabupaten  OKI",
+    "alamat": "Jl.  Kapten H. Sulaiman  Raden  Anom (Lintas Sumatera)  Kab. Ogan  Komering Ilir",
+    "titikKoordinat": "3°23'20.0\"S  I04°49'27.4\"E/\n—3.38890 1,  104.824263"
+  },
+  {
+    "id": 438,
+    "provinsi": "Jawa Tengah (BPTD Wil.X)",
+    "namaTerminal": "Terminal Tegal",
+    "kabupatenKota": "Kota Tegal",
+    "alamat": "Jl. Dr. Cipto Mangunkusumo, Sumurpanggang, Tegal Bar, Kota Tegal",
+    "titikKoordinat": "TGL"
+  },
+  {
+    "id": 439,
+    "provinsi": "D.I. Yogyakarta (BPTD Wil.X)",
+    "namaTerminal": "Terminal Giwangan",
+    "kabupatenKota": "Kota Yogyakarta",
+    "alamat": "Jl. Imogiri Timur No. 1 Kel. Giwangan Kec. Umbulharjo Kota Yogyakarta 55163",
+    "titikKoordinat": "GWN"
+  },
+  {
+    "id": 440,
+    "provinsi": "D.I. Yogyakarta (BPTD Wil.X)",
+    "namaTerminal": "Terminal Dhaksinarga",
+    "kabupatenKota": "Kabupaten Gunung Kidul",
+    "alamat": "Jl. Ir. Darmakun Darmokusumo, Wonosari, Selang, Guningkidul, Kabupaten Gunung Kidul",
+    "titikKoordinat": "DSG"
+  },
+  {
+    "id": 441,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Arjosari",
+    "kabupatenKota": "Kota Malang",
+    "alamat": "Jl. Terusan Raden Intan No.01 Desa Arjosari Kel Arjosari Kec.Blimbing Kota Malang 65126",
+    "titikKoordinat": "AJS"
+  },
+  {
+    "id": 442,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Arya Wiraraja",
+    "kabupatenKota": "Kabupaten Sumenep",
+    "alamat": "Jl. Arya Wiraraja N0. 10, Kabupaten Sumenep",
+    "titikKoordinat": "AWJ"
+  },
+  {
+    "id": 443,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Bangkalan",
+    "kabupatenKota": "Kabupaten Bangkalan",
+    "alamat": "Jl. Raya Suramadu, Bimas, Burneh, Kabupaten Bangkalan",
+    "titikKoordinat": "BKL"
+  },
+  {
+    "id": 444,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Bayuangga",
+    "kabupatenKota": "Kota  Probolinggo",
+    "alamat": "Jl. Raya Bromo, Kel. Triwung Lor, Kec. Pademangan, Probolinggo 67233",
+    "titikKoordinat": "BYA"
+  },
+  {
+    "id": 445,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Gayatri",
+    "kabupatenKota": "Kabupaten Tulungagung",
+    "alamat": "Jl. Yos Sudarso No.117, Kel Karangwaru, Kec. Tulungagung 66217",
+    "titikKoordinat": "GYT"
+  },
+  {
+    "id": 446,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Kertonegoro",
+    "kabupatenKota": "Kabupaten Ngawi",
+    "alamat": "Jl. Suryo No. 38, Kel. Grudo Kec. Ngawi Kab. Ngawi 63214",
+    "titikKoordinat": "KNG"
+  },
+  {
+    "id": 447,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Pacitan",
+    "kabupatenKota": "Kabupaten Pacitan",
+    "alamat": "Jl. Gatot Subroto Kel. Baleharjo Kec. Pacitan Kab. Pacitan 63511",
+    "titikKoordinat": "PCT"
+  },
+  {
+    "id": 448,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Patria",
+    "kabupatenKota": "Kota Blitar",
+    "alamat": "Jl. Kenari No. 110 Kel. Rembang Kec. Sananwetan Kota Blitar 66135",
+    "titikKoordinat": "PTR"
+  },
+  {
+    "id": 449,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Purboyo",
+    "kabupatenKota": "Kota Madiun",
+    "alamat": "Jl.Basuki Rahmat No.01 Kel. Patihan Kec. Manguharjo Kota Madiun 63123",
+    "titikKoordinat": "PBY"
+  },
+  {
+    "id": 450,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Selo Aji",
+    "kabupatenKota": "Kabupaten Ponorogo",
+    "alamat": "Jl.Arief Rahman Hakim No.08 Ponorogo",
+    "titikKoordinat": "SAJ"
+  },
+  {
+    "id": 451,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Tamanan",
+    "kabupatenKota": "Kota Kediri",
+    "alamat": "Jl. Semeru No. 55, Kel. Tamanan Kec. Mojoroto Kota Kediri 64116",
+    "titikKoordinat": "TMN"
+  },
+  {
+    "id": 452,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Tawangalun",
+    "kabupatenKota": "Kabupaten  Jember",
+    "alamat": "Jl. Dharmawangsa No. 01 Rambi Puji Jember",
+    "titikKoordinat": "TWA"
+  },
+  {
+    "id": 453,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Surodakan",
+    "kabupatenKota": "Kabupaten Trenggalek",
+    "alamat": "Jl. Kimangun Sarkoro, Surodakan, Kab. Trenggalek, Jawa Timur",
+    "titikKoordinat": "SDK"
+  },
+  {
+    "id": 454,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Rajekwesi",
+    "kabupatenKota": "Kabupaten Bojonegoro",
+    "alamat": "Jl. Veteran, Sukorejo, Kec. Bojonegoro, Kabupaten Bojonegoro",
+    "titikKoordinat": "RJW"
+  },
+  {
+    "id": 455,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Pandaan Pasuruan",
+    "kabupatenKota": "Kabupaten Pasuruan",
+    "alamat": "Jl. Raya Petungasri No. 08 Kel. Petung Asri, Kec.Pandaan, Kab.Pasuruan Prov. Jawa Timur",
+    "titikKoordinat": "PSR"
+  },
+  {
+    "id": 456,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Kambang Putih",
+    "kabupatenKota": "Kabupaten Tuban",
+    "alamat": "Jl. Nasional Tuban Semarang, KM.06, Desa Sugihwaras, Kec. Jenu, Kab. Tuban 62352",
+    "titikKoordinat": "KPT"
+  },
+  {
+    "id": 457,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Sri Tanjung",
+    "kabupatenKota": "Kabupaten Banyuwangi",
+    "alamat": "Jl. Raya Situbondo, Kecamatan Situbondo, Bulusan, Kalipuro, Kab. Banyuwangi",
+    "titikKoordinat": "STJ"
+  },
+  {
+    "id": 458,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Osowilangun",
+    "kabupatenKota": "Kota Surabaya",
+    "alamat": "Jl. Tambak Osowilangun No. 103, Tambak Osowilangun, Benowo, Kota Surabaya",
+    "titikKoordinat": "OSW"
+  },
+  {
+    "id": 459,
+    "provinsi": "Jawa Timur (BPTD Wil.XI)",
+    "namaTerminal": "Terminal Purabaya",
+    "kabupatenKota": "Kabupaten Sidoarjo",
+    "alamat": "Jl. Bungurasih Timur, Bungurasih, Waru, Kabupaten Sidoarjo",
+    "titikKoordinat": "PRB"
+  },
+  {
+    "id": 460,
+    "provinsi": "Bali dan Nusa Tenggara Barat (BPTD Wil.XII)",
+    "namaTerminal": "Terminal Mengwi",
+    "kabupatenKota": "Kabupaten Badung",
+    "alamat": "Jl. Mengwitani, Badung",
+    "titikKoordinat": "MGW"
+  },
+  {
+    "id": 461,
+    "provinsi": "Bali dan Nusa Tenggara Barat (BPTD Wil.XII)",
+    "namaTerminal": "Terminal Mandalika",
+    "kabupatenKota": "Kota Mataram",
+    "alamat": "Jl. Sandubaya No.1 Bertais, Kel. Bertais Kec. Sandubaya, Kota Mataram",
+    "titikKoordinat": "MDK"
+  },
+  {
+    "id": 462,
+    "provinsi": "Bali dan Nusa Tenggara Barat (BPTD Wil.XII)",
+    "namaTerminal": "Terminal Sumer Payung",
+    "kabupatenKota": "Kabupaten Sumbawa",
+    "alamat": "Jl. Garuda KM 06 Desa Karang Dima Kec. Labuhan Badas Kab. Sumbawa Besar Prov. NTB",
+    "titikKoordinat": "SPY"
+  },
+  {
+    "id": 463,
+    "provinsi": "Bali dan Nusa Tenggara Barat (BPTD Wil.XII)",
+    "namaTerminal": "Terminal Dara",
+    "kabupatenKota": "Kota Bima",
+    "alamat": "Jl. Pahlawan Dara Kota Bima",
+    "titikKoordinat": "DRA"
+  },
+  {
+    "id": 464,
+    "provinsi": "Nusa Tenggara Timur (BPTD Wil.XIII)",
+    "namaTerminal": "Terminal Kefamenanu",
+    "kabupatenKota": "Kabupaten Timor Tengah Utara",
+    "alamat": "JL Mayjen El Tari Kefamenanu, Kefamenanu Sel, Kota Kefamenanu, Kabupaten Timor Tengah Utara",
+    "titikKoordinat": "KEF"
+  },
+  {
+    "id": 465,
+    "provinsi": "Nusa Tenggara Timur (BPTD Wil.XIII)",
+    "namaTerminal": "Terminal Bimoku",
+    "kabupatenKota": "Kota Kupang",
+    "alamat": "Jl. Herman Yohanes Bimoku, Kota Kupang",
+    "titikKoordinat": "BMK"
+  },
+  {
+    "id": 466,
+    "provinsi": "Kalimantan Barat (BPTD Wil.XIV)",
+    "namaTerminal": "Terminal Sei Ambawang",
+    "kabupatenKota": "Kabupaten Kubu Raya",
+    "alamat": "Jl. Trans Kalimantan, Sul Ambawang, Kuala, Sungai Ambawang, Kab. Kubu Raya",
+    "titikKoordinat": "SAB"
+  },
+  {
+    "id": 467,
+    "provinsi": "Kalimantan Barat (BPTD Wil.XIV)",
+    "namaTerminal": "Terminal Singkawang",
+    "kabupatenKota": "Kota Singkawang",
+    "alamat": "Jl. Terminal Induk, Kelurahan Sei Wie Kecamatan Singkawang Tengah, Kota Singkawang",
+    "titikKoordinat": "SKW"
+  },
+  {
+    "id": 468,
+    "provinsi": "Kalimantan Tengah (BPTD Wil.XV)",
+    "namaTerminal": "Terminal W.A. Gara",
+    "kabupatenKota": "Kota Palangkaraya",
+    "alamat": "Jl. Mahir Mahar KM.1, Lingkar Luar  Kel Menteng Kec. Jekan Raya, Kota Palangka Raya, Kalimantan Tengah 74874",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 469,
+    "provinsi": "Kalimantan Selatan (BPTD Wil.XVI)",
+    "namaTerminal": "Terminal Gambut Barakat",
+    "kabupatenKota": "Kabupaten Banjar",
+    "alamat": "Jl. Akses Terminal Gambut Barakat, Kabupaten Banjar",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 470,
+    "provinsi": "Kalimantan Timur (BPTD Wil.XVII)",
+    "namaTerminal": "Terminal Batu Ampar",
+    "kabupatenKota": "Kota Balikpapan",
+    "alamat": "Jl. Pattimura Batu Ampar Balikpapan Utara, Kota Balikpapan",
+    "titikKoordinat": "BAP"
+  },
+  {
+    "id": 471,
+    "provinsi": "Sulawesi Selatan dan Sulawesi Barat (BPTD Wil.XIX)",
+    "namaTerminal": "Terminal Simbuang",
+    "kabupatenKota": "Kabupaten Mamuju",
+    "alamat": "Jl. Simboro Kecamatan Mamuju Simboro Kec. Simboro Kab. Mamuju",
+    "titikKoordinat": "SIM"
+  },
+  {
+    "id": 472,
+    "provinsi": "Sulawesi Selatan dan Sulawesi Barat (BPTD Wil.XIX)",
+    "namaTerminal": "Terminal Tipalayo",
+    "kabupatenKota": "Kabupaten Polewali Mandar",
+    "alamat": "Jl. Teuku Umar Rea Timur Desa Rea Kec. Binuang Kab. Polewali Mandar 91311",
+    "titikKoordinat": "TPL"
+  },
+  {
+    "id": 473,
+    "provinsi": "Sulawesi Tengah (BPTD Wil.XX)",
+    "namaTerminal": "Terminal Kasintuwu",
+    "kabupatenKota": "Kabupaten Poso",
+    "alamat": "Jl. P. Diponegoro, Poso Kota Selatan, Kabupaten Poso 94619",
+    "titikKoordinat": "KSW"
+  },
+  {
+    "id": 474,
+    "provinsi": "Sulawesi Tengah (BPTD Wil.XX)",
+    "namaTerminal": "Terminal Mamboro",
+    "kabupatenKota": "Kota Palu",
+    "alamat": "Jl. L. Lanjera, Mamboro, Palu Utara, Kota Palu",
+    "titikKoordinat": "MBR"
+  },
+  {
+    "id": 475,
+    "provinsi": "Sulawesi Utara (BPTD Wil.XXII)",
+    "namaTerminal": "Terminal Boroko",
+    "kabupatenKota": "Kabupaten Bolaang Mongondow Utara",
+    "alamat": "Jl. Datoebinangkal Korompot Desa Kuala Kec. Kaidipang Kab. Bolaang Mongondow Utara 95765",
+    "titikKoordinat": "BRK"
+  },
+  {
+    "id": 476,
+    "provinsi": "Sulawesi Utara (BPTD Wil.XXII)",
+    "namaTerminal": "Terminal Liwas",
+    "kabupatenKota": "Kota Manado",
+    "alamat": "Kecamatan Paal Dua, Kota Manado",
+    "titikKoordinat": "LWS"
+  },
+  {
+    "id": 477,
+    "provinsi": "Sulawesi Utara (BPTD Wil.XXII)",
+    "namaTerminal": "Terminal Tangkoko",
+    "kabupatenKota": "Kota Bitung",
+    "alamat": "Jl. H. Tumundo, Kel. Manembo-Nembo Atas Kec. Matuari Kota Bitung 95545",
+    "titikKoordinat": "TKK"
+  },
+  {
+    "id": 478,
+    "provinsi": "Sulawesi Utara (BPTD Wil.XXII)",
+    "namaTerminal": "Terminal Bolaang Mongondow",
+    "kabupatenKota": "Kabupaten Bolaang Mongondow",
+    "alamat": "Jl. Trans Dulangon km 2 Kab. Bolaang Mongondow",
+    "titikKoordinat": "MOD"
+  },
+  {
+    "id": 479,
+    "provinsi": "Sulawesi Tenggara (BPTD Wil.XVIII)",
+    "namaTerminal": "Terminal Puuwatu",
+    "kabupatenKota": "Kota Kendari",
+    "alamat": "Jl. Moh. Yamin, Puuwatu, Kota Kendari",
+    "titikKoordinat": "PUW"
+  },
+  {
+    "id": 480,
+    "provinsi": "Gorontalo (BPTD Wil.XXI)",
+    "namaTerminal": "Terminal Isimu",
+    "kabupatenKota": "Kabupaten Gorontalo",
+    "alamat": "Jl. Amala Mantu Desa Datahu Kec. Tibawa Kab. Gorontalo 96251",
+    "titikKoordinat": "ISM"
+  },
+  {
+    "id": 481,
+    "provinsi": "Gorontalo (BPTD Wil.XXI)",
+    "namaTerminal": "Terminal Dungingi",
+    "kabupatenKota": "Kota Gorontalo",
+    "alamat": "Jl. Beringin, Huangobotu, Dungingi, Kota Gorontalo",
+    "titikKoordinat": "DII"
+  },
+  {
+    "id": 482,
+    "provinsi": "Papua (BPTD Wil.XXV)",
+    "namaTerminal": "Terminal Entrop (ALBN)",
+    "kabupatenKota": "Kota Jayapura",
+    "alamat": "Jl. Kelapa Dua, Entrop, Kota Jayapura",
+    "titikKoordinat": "ETR"
+  },
+  {
+    "id": 483,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kampung Rambutan",
+    "kabupatenKota": "Kota Jakarta Timur",
+    "alamat": "Jl. TB Simatupang No.01, Kel. Rambutan, Kec. Ciracas, Kota Jakarta Timur 13830",
+    "titikKoordinat": "KPR"
+  },
+  {
+    "id": 484,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kalideres",
+    "kabupatenKota": "Kota Jakarta Barat",
+    "alamat": "Jl. Daan Mogot No. 15, Kota Jakarta Barat",
+    "titikKoordinat": "KLD"
+  },
+  {
+    "id": 485,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal  Pulo Gebang",
+    "kabupatenKota": "Kota Jakarta Timur",
+    "alamat": "Jl. Pulo Gebang, Cakung, Kota Jakarta Timur, DKI Jakarta",
+    "titikKoordinat": "PGB"
+  },
+  {
+    "id": 486,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Cikampek",
+    "kabupatenKota": "Kabupaten  Karawang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 487,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal Balaraja",
+    "kabupatenKota": "Kabupaten Tangerang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 488,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Demak",
+    "kabupatenKota": "Kabupaten  Demak",
+    "alamat": "Jl.  Sultan  Fatah  Kab. Demak",
+    "titikKoordinat": "6°53'55.5\"S  110°38'06.9\"E/\n-6.898753,  l 10.635260"
+  },
+  {
+    "id": 489,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Bangkalan",
+    "kabupatenKota": "Kabupaten  Bangkalan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 490,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Singkawang",
+    "kabupatenKota": "Kota Singkawang",
+    "alamat": "Jl.  Sei Wie Singkawang Tengah  Kota Singkawang",
+    "titikKoordinat": "0°55'15.5\"N  108°58'47.0\"E/\n0.920963,  108.979716"
+  },
+  {
+    "id": 491,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kalideres",
+    "kabupatenKota": "Kota Jakarta Barat",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.   \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF000000\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Daan  Mogot  No.  15,  Kota Jakarta Barat\"}]}",
+    "titikKoordinat": "6°09' 15.9\"S 106°42'2 l.0\"E/-6. 154418,  106.705839"
+  },
+  {
+    "id": 492,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Bolaang Mongondow",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 493,
+    "provinsi": "Sulawesi Tenggara",
+    "namaTerminal": "Terminal  Puuwatu",
+    "kabupatenKota": "Kota Kendari",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 494,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal Amplas",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "Jl.  Panglima  Denai, Timbang  Deli, Medan Amplas,  Kota Medan",
+    "titikKoordinat": "3°32'21.2”N  98°43'05.5\"E  /\n3.539207, 98.718201"
+  },
+  {
+    "id": 495,
+    "provinsi": "Sumatera  Utara",
+    "namaTerminal": "Terminal  Pinang Baris",
+    "kabupatenKota": "Kota Medan",
+    "alamat": "J1. Tahi Bonar Simatupang,  Lalang, Medan Sunggal,  Kota Medan",
+    "titikKoordinat": "3°35'20.2”N  98°36'36.5\"E  /\n3.588932, 98.610151"
+  },
+  {
+    "id": 496,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Anak Air",
+    "kabupatenKota": "Kota Padang",
+    "alamat": "Jl.  Adinegoro  No.20,  Lubuk Buaya,  Koto Tangah,  Kota Padang",
+    "titikKoordinat": "0°49'32.2\"S  100º 19'49.4”E/\n-0.8256 1 1,  100.330397"
+  },
+  {
+    "id": 497,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Kayuagung",
+    "kabupatenKota": "Kabupaten  OKI",
+    "alamat": "Jl.  Kapten H. Sulaiman  Raden  Anom (Lintas Sumatera)  Kab. Ogan  Komering Ilir",
+    "titikKoordinat": "3°23'20.0\"S  I04°49'27.4\"E/\n—3.38890 1,  104.824263"
+  },
+  {
+    "id": 498,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Betung",
+    "kabupatenKota": "Kabupaten  Banyuasin",
+    "alamat": "Jl. Bypass   Lintas Timur  , Kabupaten Banyuasin",
+    "titikKoordinat": "2‘5 l'05.7\"S 104° l4'42.5\"E/\n-2.851578,  104.245144"
+  },
+  {
+    "id": 499,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Karya Jaya",
+    "kabupatenKota": "Kota Palembang",
+    "alamat": "JL. Sri   ijaya Raya KM 12  Kel.  Karyajatya, Kertapati,  Palembang",
+    "titikKoordinat": "3‘03'49.3\"S  l04°44'20.3”E/\n-3.063682,  104.738982"
+  },
+  {
+    "id": 500,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Regional  Lahat",
+    "kabupatenKota": "Kabupaten  Lahat",
+    "alamat": "Pagar Agung,  Kec.  Lahat,  Kabupaten Lahat",
+    "titikKoordinat": "3°45'42.6\"S  l03°29'51.3\"E/\n-3.761827,  103.497592"
+  },
+  {
+    "id": 501,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Subang",
+    "kabupatenKota": "Kabupaten  Subang",
+    "alamat": "Jl Darmodiharjo  01, Kel. Sukamelar  Kab Subang",
+    "titikKoordinat": "6°33'00. 1\"S 107°46'09.4”E/\n-6.550035,  107.769278"
+  },
+  {
+    "id": 502,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Banjar",
+    "kabupatenKota": "Kota Banjar",
+    "alamat": "Jl. Mayjen  Didi Kartasamita  Kota Banjar",
+    "titikKoordinat": "7°2  I'49.8\"S 108°30'27.8\"E/\n-7.363834,  108.507734"
+  },
+  {
+    "id": 503,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Cikampek",
+    "kabupatenKota": "Kabupaten  Karawang",
+    "alamat": "Jl. Raya Terminal  No. 44,  Cikampek Kota, Cikampek,  Kabupaten  Karawang",
+    "titikKoordinat": "6°24'33.4\"S  107°27'40.7”E/-6.409274,  107.46131"
+  },
+  {
+    "id": 504,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal Baranangsiang",
+    "kabupatenKota": "Kota Bogor",
+    "alamat": "Jl. Raya Pajajaran  No.9,  Bogor Timur, Kota Bogor",
+    "titikKoordinat": "6°36'13.3”S 106°48'21.9\"E/-6.603702,  106.806075"
+  },
+  {
+    "id": 505,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tingkir",
+    "kabupatenKota": "Kota Salatiga",
+    "alamat": "Jl. Soekarno-Hatta Tingkir Tengah,  Kota Salatiga",
+    "titikKoordinat": "7°21'43.7\"S  110‘30‘50.6\"E/\n-7.362140,  110.514067"
+  },
+  {
+    "id": 506,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Jati",
+    "kabupatenKota": "Kabupaten  Kudus",
+    "alamat": "Jl. AKBP Agi1 Ku sumadya, Jati Wetan, Jati, Kndus",
+    "titikKoordinat": "6°50'27.9\"S  110°49'08.0\"E/\n-6.84 1080,  110.818886"
+  },
+  {
+    "id": 507,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bobot Sari",
+    "kabupatenKota": "Kabupaten  Purbalingga",
+    "alamat": "Jl. PP Imam TP Bobotsari,  Kec. Purbalingga,  Kabupaten  Purbalingga",
+    "titikKoordinat": "7°18'22.4\"S  109°22'00.9\"E/\n-7.306225,  109.366902"
+  },
+  {
+    "id": 508,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Demak",
+    "kabupatenKota": "Kabupaten  Demak",
+    "alamat": "Jl.  Sultan  Fatah  Kab. Demak",
+    "titikKoordinat": "6°53'55.5\"S  110°38'06.9\"E/\n-6.898753,  l 10.635260"
+  },
+  {
+    "id": 509,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal Giwangan",
+    "kabupatenKota": "Kota Yogyakarta",
+    "alamat": "Jl.  Imogiri  No.  l  Yogyakarta",
+    "titikKoordinat": "7°50'04. 2\"S  I10‘23'32.4\"E/\n-7.834500,  110.392327"
+  },
+  {
+    "id": 510,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Sri Tanjung",
+    "kabupatenKota": "Kabupaten  Banyuwangi",
+    "alamat": "Jl.  Raya Situbondo,  Kecamatan Situbondo,  Bulusan,  Kalipuro,  Kab. Banyuwangi",
+    "titikKoordinat": "8°07'05.9\"S  I14°23'54.0\"E/\n-8.118311,  114.398344"
+  },
+  {
+    "id": 511,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal Samarinda Seberang",
+    "kabupatenKota": "Kota Samarinda",
+    "alamat": "Jl.  Gajah  Mada PS Pagi Kota Samarinda",
+    "titikKoordinat": "0°30'29.5\"S  117°08'29.6\"E/\n-0.508186, 117.141541"
+  },
+  {
+    "id": 512,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "{\"richText\":[{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Termin\"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"al Osowilangun\"}]}",
+    "kabupatenKota": "Kota Surabaya",
+    "alamat": "Jl. Tambak  Osowilangun, Tambak Osowilangun,  Benowo,  Kota Surabaya",
+    "titikKoordinat": "7°12'33.2\"S 112°39'06.7\"E/\n-7.209207,  112.651850"
+  },
+  {
+    "id": 513,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Mandalika",
+    "kabupatenKota": "Kota Mataram",
+    "alamat": "Jl.  Sandubaya  No. 1 Bertais Sandubaya, Kec.  Mataram,  Kota Mataram",
+    "titikKoordinat": "8°35'38.6”S  116°09'28.7”E/\n-8.594060,  116.157963"
+  },
+  {
+    "id": 514,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Induk Pemalang",
+    "kabupatenKota": "Kabupaten  Pemalang",
+    "alamat": "Jl.  Slamet Riyadi,  Pelutan,  Kec. Pemalang,  Kab. Pemalang",
+    "titikKoordinat": "6°52'54.4”S  109°23'37.1\"E/\n-6.881775,  109.393646"
+  },
+  {
+    "id": 515,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purwokerto",
+    "kabupatenKota": "Kabupaten  Banyumas",
+    "alamat": "Jl.  Suwatio  No.48 Kel. Teluk,  Kec. Purwokerto  Selatan,  Kab.  Bnayumas",
+    "titikKoordinat": "7°26'37.6”S  109°15'20.0\"E/\n-7.443780,  109.255545"
+  },
+  {
+    "id": 516,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mendolo",
+    "kabupatenKota": "Kabupaten  Wonosobo",
+    "alamat": "Jl. Bambang  Sugeng KM 3  Ds, Mendolo, Kec. Wonosobo  Kab. Wonosobo",
+    "titikKoordinat": "7°22'02.4\"S  109°55'29.0\"E  / -\n7.367340,  109.924725"
+  },
+  {
+    "id": 517,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bawen",
+    "kabupatenKota": "Kabupaten  Semarang",
+    "alamat": "Jl.  Palagan  No.  l  Baw'en,  Kec. Bawen Kab. Semarang",
+    "titikKoordinat": "7°14'44.9”S 110°26'00. 7\"E/\n-7.245799,  110.433526"
+  },
+  {
+    "id": 518,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tidar",
+    "kabupatenKota": "Kota Magelang",
+    "alamat": "Jl.  Soekarno-Hatta Kel. Tidar  Utara  Kec. Magelang  Selatan  Kota Magelang",
+    "titikKoordinat": "7°29'27.9”S  110‘I4'05.5\"E/\n-7.491074,  110.234846"
+  },
+  {
+    "id": 519,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tingkir",
+    "kabupatenKota": "Kota Salatiga",
+    "alamat": "Jl. Soekarno-Hatta Tingkir Tengah,  Kota Salatiga",
+    "titikKoordinat": "7°21'43.7\"S  110‘30‘50.6\"E/\n-7.362140,  110.514067"
+  },
+  {
+    "id": 520,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tirtonadi",
+    "kabupatenKota": "Kota  Surakarta",
+    "alamat": "Kel. A. Yani No. 262  Surakarta",
+    "titikKoordinat": "7°33'06.3”S  110°49'10.6\"E/\n—7.551735,  110.819599"
+  },
+  {
+    "id": 521,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Jati",
+    "kabupatenKota": "Kabupaten  Kudus",
+    "alamat": "Jl. AKBP Agi1 Ku sumadya, Jati Wetan, Jati, Kndus",
+    "titikKoordinat": "6°50'27.9\"S  110°49'08.0\"E/\n-6.84 1080,  110.818886"
+  },
+  {
+    "id": 522,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Bobot Sari",
+    "kabupatenKota": "Kabupaten  Purbalingga",
+    "alamat": "Jl. PP Imam TP Bobotsari,  Kec. Purbalingga,  Kabupaten  Purbalingga",
+    "titikKoordinat": "7°18'22.4\"S  109°22'00.9\"E/\n-7.306225,  109.366902"
+  },
+  {
+    "id": 523,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tegal",
+    "kabupatenKota": "Kota Tegal",
+    "alamat": "Jl.  Dr. Cipto Mangunkusumo, Sumurpanggang, Tegal Bar, Kota Tegal",
+    "titikKoordinat": "6°52'21.8\"S  109‘06'27.8”E/\n-6.872709,  109.107732"
+  },
+  {
+    "id": 524,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal Giwangan",
+    "kabupatenKota": "Kota Yogyakarta",
+    "alamat": "Jl.  Imogiri  No.  l  Yogyakarta",
+    "titikKoordinat": "7°50'04. 2\"S  I10‘23'32.4\"E/\n-7.834500,  110.392327"
+  },
+  {
+    "id": 525,
+    "provinsi": "DIY",
+    "namaTerminal": "Terminal  Dhaksinarga",
+    "kabupatenKota": "Kabupaten  Gunung Kidul",
+    "alamat": "Jl. Ir. Darmakun  Darmokusumo, Wonosari,  Selang, Guningkidul, Kabupaten  Gunung Kidul",
+    "titikKoordinat": "7°5S'00.5”S  l l0°37'07.2”E/\n-7.966804,  110.O 18659"
+  },
+  {
+    "id": 526,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Arjosari",
+    "kabupatenKota": "Kota Malang",
+    "alamat": "Jl.  Raden lntan  No.  1  Malang",
+    "titikKoordinat": "7°55'59.6\"S  1 I2°39'29.0”E/\n-7.933225,  112.658066"
+  },
+  {
+    "id": 527,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Arya Wiraraja",
+    "kabupatenKota": "Kabupaten  Sumenep",
+    "alamat": "Jl.  Arya Wiraraja  NO.  10,   Sumenep",
+    "titikKoordinat": "7°01'45.9\"S 113°51'34.6\"E/\n-'/.029402,  113.859618"
+  },
+  {
+    "id": 528,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Bangkalan",
+    "kabupatenKota": "Kabupaten  Bangkalan",
+    "alamat": "Jl. Suramadu,  Ds. Massaran,  Kec. Tragah,  Kab. Bangkalan",
+    "titikKoordinat": "7°03'09.3\"S  I12°43'57.8\"E/\n-7.052580,  112.732723"
+  },
+  {
+    "id": 529,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Banyuangga",
+    "kabupatenKota": "Kota   Probolinggo",
+    "alamat": "Jl.Raya Bromo,  Kel. Triwung Lor, Kec. Pademangan,  Problinggo",
+    "titikKoordinat": "7°45'58.2\"S  113º 10'27.8“E/\n-7.766168, 113.174383"
+  },
+  {
+    "id": 530,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Gayatri",
+    "kabupatenKota": "Kabupaten Tulungagung",
+    "alamat": "Jl. Yos Sudarso  No. 117, Tulungagung",
+    "titikKoordinat": "8°04'23.5\"S  111°53'50. 2\"E/\n-8.073195, 111.897263"
+  },
+  {
+    "id": 531,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kertonegoro",
+    "kabupatenKota": "Kabupaten  Ngawi",
+    "alamat": "Ds. Grudo  Kec.  Ngawi,  Kab.  Ngawí",
+    "titikKoordinat": "7°24'14.3\"S 111°25'00.2”E/\n-7.403982,  111.416725"
+  },
+  {
+    "id": 532,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pacitan",
+    "kabupatenKota": "Kabupaten  Pacitan",
+    "alamat": "Jl.  Jend. Gatot Subroto Balehaijo, Pacitan",
+    "titikKoordinat": "8º I2'03.8\"S 111°06'10.4\"E/\n-8.201067, 111.102874"
+  },
+  {
+    "id": 533,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Patria",
+    "kabupatenKota": "Kota Blitar",
+    "alamat": "Jl.  Kenari  No.  110  Kota Blitar",
+    "titikKoordinat": "8‘07'23. 1”S 112°09'29.8\"E/\n-8.123076,  112.158281"
+  },
+  {
+    "id": 534,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purboyo",
+    "kabupatenKota": "Kota Madiun",
+    "alamat": "Jl.Basuki  Rahmat  No.01 Sukasari Mangunharjo  Madiun",
+    "titikKoordinat": "7°36'17.5\"S 111°32'05.0”E/-7.604946,  111.534711"
+  },
+  {
+    "id": 535,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal Tanah Grogot Kuaro",
+    "kabupatenKota": "Kabupaten Paser",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 536,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Selo Aji",
+    "kabupatenKota": "Kabupaten  Ponorogo",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.Arief Hahman  Hakim  \"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"No.\"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"08  Ponorogo\"}]}",
+    "titikKoordinat": "7°50'1 l .8”S 111°29'11.7\"E/\n-7.836613, 111.486578"
+  },
+  {
+    "id": 537,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tamanan",
+    "kabupatenKota": "Kota Kediri",
+    "alamat": "Jl.  Semeru  no. 55,  Kel. Tamanan  Kec. Mojoroto  Kota Kediri",
+    "titikKoordinat": "7°49'44.7”S  111°59'03.2”E/\n-7.829086,  111.984224"
+  },
+  {
+    "id": 538,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tawangaiun",
+    "kabupatenKota": "Kabupaten   Jember",
+    "alamat": "Jl.  Dharmawangsa  No. 01 Rambi  Puji Jember",
+    "titikKoordinat": "{\"richText\":[{\"text\":\"8°11‘54.2\\\"S  1 I3°37'50.8\\\"E/\\n\"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"-8. \"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"198090,  113.630785\"}]}"
+  },
+  {
+    "id": 539,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Surodakan",
+    "kabupatenKota": "Kabupaten  Trenggalek",
+    "alamat": "JI.  Ki Mangun  Sarkoro, Surodakan,  Kab. Trenggalek",
+    "titikKoordinat": "8°02'54.5“S  111°43'02.7\"E/\n-8.048459,  111.717419"
+  },
+  {
+    "id": 540,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Rajekwesi",
+    "kabupatenKota": "Kabupaten  Bojonegoro",
+    "alamat": "Jl.  Veteran,  Sukorejo,  Kec. Bojonegoro, Kabupaten  Bojonegoro",
+    "titikKoordinat": "7°09'59.4”S  111°53'42.4”E/\n-7.166504,  l 11.895116"
+  },
+  {
+    "id": 541,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pasuruan",
+    "kabupatenKota": "Kabupaten  Pasuruan",
+    "alamat": "Jl. Raya Petung Asri  No. 08  Kel.  Petung Asri, Pandaan,  Pasuruan",
+    "titikKoordinat": "7°39'47.6\"S  112°SS'36.5\"E/\n-7.663208,  112.926806"
+  },
+  {
+    "id": 542,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kambang Putih",
+    "kabupatenKota": "Kabupaten Tuban",
+    "alamat": "JI. Nasional Tuban  Semarang,  KM06,  Ds. Sugihwaras,  Kec. Jemu, Kab. Tub an",
+    "titikKoordinat": "6°51'32.2\"S  112°0 l'4 1.3\"E/\n-6.858933,  112.028145"
+  },
+  {
+    "id": 543,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pasuruan",
+    "kabupatenKota": "Kabupaten  Pasuruan",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 544,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Sri Tanjung",
+    "kabupatenKota": "Kabupaten  Banyuwangi",
+    "alamat": "Jl.  Raya Situbondo,  Kecamatan Situbondo,  Bulusan,  Kalipuro,  Kab. Banyuwangi",
+    "titikKoordinat": "8°07'05.9\"S  I14°23'54.0\"E/\n-8.118311,  114.398344"
+  },
+  {
+    "id": 545,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Liwas",
+    "kabupatenKota": "Kota Manado",
+    "alamat": "Kecamatan  Paal Dua, Kota Manado",
+    "titikKoordinat": "1°39'06.8”N  124°5 I'40.8\"E/1.485211,  124.861321"
+  },
+  {
+    "id": 546,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "{\"richText\":[{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Termin\"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"al Osowilangun\"}]}",
+    "kabupatenKota": "Kota Surabaya",
+    "alamat": "Jl. Tambak  Osowilangun, Tambak Osowilangun,  Benowo,  Kota Surabaya",
+    "titikKoordinat": "7°12'33.2\"S 112°39'06.7\"E/\n-7.209207,  112.651850"
+  },
+  {
+    "id": 547,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purabaya",
+    "kabupatenKota": "Kabupaten  Sidoarjo",
+    "alamat": "Jl. Bungurasih  Timur,  Bungurasih, Waru, Kabupaten  Sidoarjo",
+    "titikKoordinat": "7°21'01.7\"S  l 12°43'29.7\"E/\n-7.350474,  112.724913"
+  },
+  {
+    "id": 548,
+    "provinsi": "Bali",
+    "namaTerminal": "Terminal  Mengwi",
+    "kabupatenKota": "Kabupaten  Badung",
+    "alamat": "Jl.  Mengwi -Mengwi Tani, Badung",
+    "titikKoordinat": "8°33'83. 9\"S 115°10'05. 7\"E/\n-8.559410,  115.168253"
+  },
+  {
+    "id": 549,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Mandalika",
+    "kabupatenKota": "Kota Mataram",
+    "alamat": "Jl.  Sandubaya  No. 1 Bertais Sandubaya, Kec.  Mataram,  Kota Mataram",
+    "titikKoordinat": "8°35'38.6”S  116°09'28.7”E/\n-8.594060,  116.157963"
+  },
+  {
+    "id": 550,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Sumer  Payung",
+    "kabupatenKota": "Kabupaten  Sumbawa",
+    "alamat": "J1. Garuda km 6,  Labuhan  Badas Sumbawa Besar,  Kab. Sumbawa",
+    "titikKoordinat": "8‘28'38.7”S  l17°24' 15.8”E/\n-8.477409,  117.404392"
+  },
+  {
+    "id": 551,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Dara",
+    "kabupatenKota": "Kota Bima",
+    "alamat": "Jl.  Pahlawan  Dara   Kota Bima",
+    "titikKoordinat": "8°27'31.6\"S  1 I8°43'26.2\"E/\n-8.458789,  l 18.723948"
+  },
+  {
+    "id": 552,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Kefamenanu",
+    "kabupatenKota": "Kabupaten Timor Tengah  Utara",
+    "alamat": "JL Mayjen  El Tari Kefamenanu, Kefamenanu  Sel, Kota Kefamenanu, Kabupaten Timor Tengah  Utara",
+    "titikKoordinat": "9°28'03.7”S  124°28’55.5”E  /-\n9.467681,  124.482074"
+  },
+  {
+    "id": 553,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Bimoku",
+    "kabupatenKota": "Kota Kupang",
+    "alamat": "Jl.  Herman Yohanes Bimoku  Kota Kupang",
+    "titikKoordinat": "10°8'25.0\"S  I23°40'34.6\"E  / -\n10. 1402777,  123.676277"
+  },
+  {
+    "id": 554,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Sei Ambawang",
+    "kabupatenKota": "Kabupaten  Kubu  Raya",
+    "alamat": "Jl. Trans Kalimantan,  Sul Ambawang, Kuala,  Sungai Ambawang,  Kab.  Kubu Raya",
+    "titikKoordinat": "0°02'28.3\"S 109°24'13.7\"E/\n-0.041187,  109.403515"
+  },
+  {
+    "id": 555,
+    "provinsi": "Kalimantan  Tengah",
+    "namaTerminal": "Terminal  W.A.  Gara",
+    "kabupatenKota": "Kota Palangkaraya",
+    "alamat": "Jl.  Mahir  Mahar  No  1,  Lingkar  Luar  Kota Palangkaraya",
+    "titikKoordinat": "2º 16' 18.8”S  l13‘54'22.6\"E/\n-2.271890,  113.906289"
+  },
+  {
+    "id": 556,
+    "provinsi": "Kalimantan  Selatan",
+    "namaTerminal": "Terminal  Gambut Barakat",
+    "kabupatenKota": "Kabupaten  Banjar",
+    "alamat": "Jl.Ahmad  Yani,  km  17,   Gambut  Kab. Banjar",
+    "titikKoordinat": "3°25'50. 1\"S 1 l4°40'50.2\"E/\n-3.430577,  114.680609"
+  },
+  {
+    "id": 557,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal  Batu  Ampar",
+    "kabupatenKota": "Kota Balikpapan",
+    "alamat": "Jl.  Kapten  Pattimura  Batu Ampar Balikpapan  Utara,  Kota Balikpapan",
+    "titikKoordinat": "1°13'11.1”S 116°51'24.8”E/\n-1.219744,  116.856878"
+  },
+  {
+    "id": 558,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Induk Lumpue",
+    "kabupatenKota": "Kota Pare-Pare",
+    "alamat": "Jl. Mirdin  Kasim  — Lumpue,  Kota Pare- Pare",
+    "titikKoordinat": "4°03'19.7”S  l19°37'56.0”E/\n-4.055482,  119.632215"
+  },
+  {
+    "id": 559,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Latenri Sessu Pekkae",
+    "kabupatenKota": "Kabupaten  Barru",
+    "alamat": "Kelurahan  Lalolang,  Kec. Tanete  Rilau, Kab. Barru",
+    "titikKoordinat": "4°29'09.9”S  119°36'30.8”E/\n-4.486088,  119.608568"
+  },
+  {
+    "id": 560,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Petta Pongawai",
+    "kabupatenKota": "Kabupaten  Bone",
+    "alamat": "Jl.  MT. Haryono,  Watampone,  Kab. Bone",
+    "titikKoordinat": "4°32'24.4\"S  120º 17'42.0\"E/-4.540113,  120.295005"
+  },
+  {
+    "id": 561,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Daya",
+    "kabupatenKota": "Kota Makassar",
+    "alamat": "Jl. Kapasa Raya,  Daya,  Biring Kanaya, Kota Makassar",
+    "titikKoordinat": "5°06'37.0”S  119°30'29.2\"E/\n-5.110280, 119.508113"
+  },
+  {
+    "id": 562,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Simbuang",
+    "kabupatenKota": "Kabupaten  Mamuju",
+    "alamat": "Jl. Simboro  Kecamatan  Mamuju  Simboro Dec. Simboro Kab. Mamuju",
+    "titikKoordinat": "2°41'23.4\"S  1 I8°51'56.9”E/\n-2.689834,  118.865806"
+  },
+  {
+    "id": 563,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Tipalayo",
+    "kabupatenKota": "Kabupaten PoliwaJimandar",
+    "alamat": "Jl. Trans Sulawesi,  Kab. Poliwalimandar",
+    "titikKoordinat": "3°26'50.3\"S  1 l9°22'34.5”E/-3.447297,  119.376238"
+  },
+  {
+    "id": 564,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Kasintuwu/Poso",
+    "kabupatenKota": "Kabupaten  Poso",
+    "alamat": "Mapane,  Poso Pesisir,  Kabupaten  Poso",
+    "titikKoordinat": "l°24'50.3”S  120°39'48. 2\"E/\n-1.413964,  120.663378"
+  },
+  {
+    "id": 565,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Mamboro",
+    "kabupatenKota": "Kota Palu",
+    "alamat": "Jl.  Trans Sulawesi,  Mamboro,  Palu  Utara, Kota Palu",
+    "titikKoordinat": "0°48'22.4\"S 119°53'01.1\"E/-0.8062 l2,  119.883642"
+  },
+  {
+    "id": 566,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Boroko",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow  Utara",
+    "alamat": "Jl. Trans Sulawesi,  Desa Kuala,  Kab. Bolaang  Mongondow  Utara",
+    "titikKoordinat": "0°54'41.0”N  123º 16'56.3\"E/\n0.911639,  123.282306"
+  },
+  {
+    "id": 567,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal Tangkoko",
+    "kabupatenKota": "Kota Bitung",
+    "alamat": "Jl. SH Sarundajang,  Kel.  Manembo-nembo, Kec.  Matuari,  Kota Bitung",
+    "titikKoordinat": "1°25‘48.8\"N  I25°06'44.1\"E/1.430227,  125.112261"
+  },
+  {
+    "id": 568,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Bolaang Mongondow",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow",
+    "alamat": "Jl. Trans Dulangon  km 2 Kab.  Bolaang Mongondow",
+    "titikKoordinat": "00°51' 11.74”N\n125‘59'54.89. 1\"E"
+  },
+  {
+    "id": 569,
+    "provinsi": "Sulawesi Tenggara",
+    "namaTerminal": "Terminal  Puuwatu",
+    "kabupatenKota": "Kota Kendari",
+    "alamat": "Jl. Moh. Yamin,  Puuwatu,  Kota Kendari",
+    "titikKoordinat": "3‘58'01.98\"S 122°27'29.85”E\n-3.96672 16, 122.458291"
+  },
+  {
+    "id": 570,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Isimu",
+    "kabupatenKota": "Kabupaten  Gorontalo",
+    "alamat": "Jl. Amala  Mantu,  Desa Tolotio,  Kec. Tibawa,  Kab.  Gorontalo",
+    "titikKoordinat": "0°39'12.0\"N  122°51'15.3”E/\n0.653339,  122.854250"
+  },
+  {
+    "id": 571,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Dungingi",
+    "kabupatenKota": "Kota Gorontalo",
+    "alamat": "Jl. Beringin,  Hu angobotu,  Dungingi,  Kota Gorontalo",
+    "titikKoordinat": "0°33'52. 1”N  123°01'S7. 1\"E/\n0.564475,  123.032515"
+  },
+  {
+    "id": 572,
+    "provinsi": "Papua",
+    "namaTerminal": "Terminal Entrop",
+    "kabupatenKota": "Kota Jayapura",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.   Yos Sudarso,  Entrop \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF0E0E0E\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\", \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF000000\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Jayapura\"}]}",
+    "titikKoordinat": "2°33‘59. 9\"S  l40°4 l'39.6”E/-2.566642,  140.694342"
+  },
+  {
+    "id": 573,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kampung Rambutan",
+    "kabupatenKota": "Kota Jakarta Timur",
+    "alamat": "Jl.  Term.  Simatupang,  Kel.  Rambutan, Kec.  Ciracas,  Kota Jakarta Timur",
+    "titikKoordinat": "6º 18'34.3\"S  106°52'56. 2”E/-6.309526,  106.582281"
+  },
+  {
+    "id": 574,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Kiliran  Jao",
+    "kabupatenKota": "Kabupaten  Sijunjung",
+    "alamat": "Jl.  Nagari  Muaro Takung Kabupaten Sijunjung,  Jl.  l,intas Sumatera KM 195 Kiliranjao",
+    "titikKoordinat": "0°53'20.4\"S  101‘21'34.1”E/\n-0.888988,  101.359466"
+  },
+  {
+    "id": 575,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Bareh Solok",
+    "kabupatenKota": "Kota Solok",
+    "alamat": "Ji. Tj. Paku, Simpang Rumbio,  Lubuk Sikarah, Kota Solok",
+    "titikKoordinat": "0°47'50.6\"S  100°40'01.1”E/\n-0.797388,  100.666973"
+  },
+  {
+    "id": 576,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal Simpang Aur",
+    "kabupatenKota": "Kota Bukit Tinggi",
+    "alamat": "Jl. Diponegoro  Terminal Tipe A Simpang Aur, Tigobale, Tarodipok,  Bukit Tinggi",
+    "titikKoordinat": "0º18'49.4\"S  l00°23' 11.2”E/\n-0.313727,  100.386431"
+  },
+  {
+    "id": 577,
+    "provinsi": "Sumatera Barat",
+    "namaTerminal": "Terminal  Jati Pariaman",
+    "kabupatenKota": "Kota Pariaman",
+    "alamat": "Jl.  Wolter  Mongo Sidi, Ds. Jatimudik, Pariaman Tengah",
+    "titikKoordinat": "0°37'05.8\"S  100°08'31.0\"E/\n-0.618277,  100. 141540"
+  },
+  {
+    "id": 578,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bangkinang",
+    "kabupatenKota": "Kabupaten  Kampar",
+    "alamat": "Jl. Prof.  M. Yamin  SH,  Bangkinang, Kampar",
+    "titikKoordinat": "0°20'43. 2”N  10 1°01'29.1\"E/\n0.345320,  101.024753"
+  },
+  {
+    "id": 579,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Bandar  Raya Payung Sekaki",
+    "kabupatenKota": "Kota Pekanbaru",
+    "alamat": "Jl.  Air Hitam, Ke1.  Labuh  Barat,  Kec. Payung Sekaki,  Pekanbaru",
+    "titikKoordinat": "0°30'08.2”N  101°23'17.0”E/\n0.502280,  101.388059"
+  },
+  {
+    "id": 580,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Dumai",
+    "kabupatenKota": "Kota Dumai",
+    "alamat": "Il.  Ratu Sima Klakap 7,  Kec. Simpang Tetap, Kel.  Dumai Barat,  Du mai",
+    "titikKoordinat": "1°40'34.7“N  101°25'04.2\"E/\n1.676313, 101.41783"
+  },
+  {
+    "id": 581,
+    "provinsi": "Riau",
+    "namaTerminal": "Terminal  Gerbangsari",
+    "kabupatenKota": "Kabupaten  Indragiri Hulu",
+    "alamat": "Jl.  Lintas Timur Sumatra,  Pematang Reba,  Rengat Barat, Kabupaten  Indragiri Hulu",
+    "titikKoordinat": "0°24'02. 1”S  l02°26'52.4”E/\n—0.400594,  102.447898"
+  },
+  {
+    "id": 582,
+    "provinsi": "Jambi",
+    "namaTerminal": "Terminal Alam Barajo",
+    "kabupatenKota": "Kota Jambi",
+    "alamat": "Lingkar  Barat  1, Kota Jambi",
+    "titikKoordinat": "1°37'43.7\"S  103°33'05.8\"E/\n-1.628811,  103.55160"
+  },
+  {
+    "id": 583,
+    "provinsi": "Sumatera  Selatan",
+    "namaTerminal": "Terminal  Simpang Priuk",
+    "kabupatenKota": "Kota Lubuk  Linggau",
+    "alamat": "Simpang  Periuk,  Lubuk  Linggau  Sel. II, Kota Lubuklinggau",
+    "titikKoordinat": "3º 1G'08. 1\"S 102°56'21.0\"EJ\n-3.268915, 102.939177"
+  },
+  {
+    "id": 584,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal  Simpang Nangka",
+    "kabupatenKota": "Kabupaten  Rejang\nLebong",
+    "alamat": "Jl. Terminal  Simpang  Nangka,Kec. Selupu  Rejang,  Rejang Lebong",
+    "titikKoordinat": "3‘27'18.5\"S 102‘34'52.5\"E/\n-3.455144,  102.581251"
+  },
+  {
+    "id": 585,
+    "provinsi": "Bengkulu",
+    "namaTerminal": "Terminal Air Sebakul",
+    "kabupatenKota": "Kota Bengkulu",
+    "alamat": "Jl. Raden  Fatah,  Kec. Selebar,  Kota Bengkulu",
+    "titikKoordinat": "3‘50'0.6”S 102°20'55\"E  /\n-3.833500,  102.34861"
+  },
+  {
+    "id": 586,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Rajabasa",
+    "kabupatenKota": "Kota Bandar  Lampung",
+    "alamat": "Jl ZA  Pagar Alam  Rajabasa Bandar Lampung",
+    "titikKoordinat": "5°22'03.4\"S  105º 14'16.2”E/\n-5.3676 17, 105.237829"
+  },
+  {
+    "id": 587,
+    "provinsi": "Lampung",
+    "namaTerminal": "Terminal  Betan  Subing",
+    "kabupatenKota": "Kabupaten  Lampung Tengah",
+    "alamat": "Jl.  Lintas Sumatera,  Kec. Terbanggi Besar,  Lampung Tengah",
+    "titikKoordinat": "4°52'40.3”S  105º 13'43.6”E/\n-4.877862,  105.228783"
+  },
+  {
+    "id": 588,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pakupatan",
+    "kabupatenKota": "Kota  Serang",
+    "alamat": "Jl. Raya Jakarta km 4 Serang",
+    "titikKoordinat": "6°07' 18.0”S  106º 11'47.0”E  / -\n6. l2 1668,  106.19637"
+  },
+  {
+    "id": 589,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Labuan",
+    "kabupatenKota": "Kabupaten  Pandeglang",
+    "alamat": "Jl. Raya Labuan  km 4 Tarogong,  Kab. Pandeglang",
+    "titikKoordinat": "6°23'38. 2\"S 105°50'34.4\"E/ -6.393953,  105.842894"
+  },
+  {
+    "id": 590,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal Rangkas Bitung",
+    "kabupatenKota": "Kabupaten  Lebak",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 591,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Mandala Lebak",
+    "kabupatenKota": "Kabupaten  Lebak",
+    "alamat": "Jl. By Pass Soekarno  Hatta, Rangkasbitung, Lebak",
+    "titikKoordinat": "6º 18'21.7”S  106º 12'50.3\"E/\n-6.306021,  106.213970"
+  },
+  {
+    "id": 592,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Merak",
+    "kabupatenKota": "Kota Cilegon",
+    "alamat": "Jl. RE. Marthadinata  Kel. Tamansari, Kec.  Pulau  Merak,  Kota Cilegon",
+    "titikKoordinat": "5°56'05.3\"S  l06°00'03.3\"E/\n-5.934809,  106.000919"
+  },
+  {
+    "id": 593,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Poris Plawad",
+    "kabupatenKota": "Kota Tangerang",
+    "alamat": "Jl. Benteng Betawi,  Poris Plawad,  Kec. Tangerang,  Kota Tangerang",
+    "titikKoordinat": "6º 10'22.8”S  106°39'52.7”E/\n-6.172997, 106.664644"
+  },
+  {
+    "id": 594,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal  Pondok  Cabe",
+    "kabupatenKota": "Kota Tangerang Selatan",
+    "alamat": "J1. Terminal  Pondok  Cabe  (KH. Salem), Pondolc Cabe  Udik,  Pamulang,  Kota Tangerang Selatan",
+    "titikKoordinat": "6°21'32.0\"S  106°45' 11.9\"E/\n-6.358888,  106.753310"
+  },
+  {
+    "id": 595,
+    "provinsi": "Banten",
+    "namaTerminal": "Terminal Balaraja",
+    "kabupatenKota": "Kabupaten Tangerang",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 596,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  KH. Ahmad Sanusi",
+    "kabupatenKota": "Kota Sukabumi",
+    "alamat": "J1. Lingkar Selatan  No.7,  Kota Sukabumi",
+    "titikKoordinat": "6°55' 13.7”S  106°55'04.5\"E/-6.920473,  106.917919"
+  },
+  {
+    "id": 597,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Guntur  Melati",
+    "kabupatenKota": "Kabupaten  Garut",
+    "alamat": "Jl. Guntur Sari  No. 2,  Ds.  Haur Panggung Kec. Tarogong Kidul Kab. Garut",
+    "titikKoordinat": "7°12'01.5\"S  107°54'21.0\"E/-7.200411, 107.905821"
+  },
+  {
+    "id": 598,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Induk Bekasi",
+    "kabupatenKota": "Kota Bekasi",
+    "alamat": "Jl. Duren Jaya, Bekasi Timur,  Kota Bekasi",
+    "titikKoordinat": "6º 14'57.7\"S  107°00'48.4\"E/\n-6.249363,  107.013439"
+  },
+  {
+    "id": 599,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Kalijaya Cikarang",
+    "kabupatenKota": "Kabupaten  Bekasi",
+    "alamat": "Jl. R. Fatahillah,  Cikarang Barat, Kabupaten  Bekasi",
+    "titikKoordinat": "6º 15'42.3\"S  107’08' 14.0\"E/-6.261735, 107.137211"
+  },
+  {
+    "id": 600,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Jatijajar",
+    "kabupatenKota": "Kota Depok",
+    "alamat": "Jl. Raya Bogor No.37, Jatijajar, Tapos, Kota Depok",
+    "titikKoordinat": "6°25'34. 2\"S 106°5 l'3 1.2\"E/\n-6.426160, 106.858668"
+  },
+  {
+    "id": 601,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Cicaheum",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl. Jendral A Yani Cicaheum Kiaracondong  Bandung",
+    "titikKoordinat": "6’54' 10.4\"S  107°39'16.7”E/-6.902895,  107.654633"
+  },
+  {
+    "id": 602,
+    "provinsi": "Jawa Barat",
+    "namaTerminal": "Terminal  Leuwipanjang",
+    "kabupatenKota": "Kota Bandung",
+    "alamat": "Jl.  Soekarno  Hatta  No. 205  Situsaeur Bojongloa  Kidul,  Bandung",
+    "titikKoordinat": "6°56'46.0\"S  107‘35'34.4\"E/-6.946102, 107.592892"
+  },
+  {
+    "id": 603,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purworejo",
+    "kabupatenKota": "Kabupaten  Purworejo",
+    "alamat": "Jl. Gajah Mada km  4,5  Ds. Candisari Kec. Banyurip Kab. Purwotejo",
+    "titikKoordinat": "7°43'44.2\"S  109°58'06.0\"E/-7.728953,  109.968320"
+  },
+  {
+    "id": 604,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Cepu",
+    "kabupatenKota": "Kabupaten  Blora",
+    "alamat": "Jl. Pramuka  By Pass Cepu",
+    "titikKoordinat": "7°09'08.3\"S  111°34'51.8\"E/-7.152295,  111.581057"
+  },
+  {
+    "id": 605,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Giri Adipura",
+    "kabupatenKota": "Kabupaten  Wonogiri",
+    "alamat": "Jl.  Brigjen Katamso,  Kel.  Kaliancas,  Kec. Selogiri-Wonogiri",
+    "titikKoordinat": "7°47'33.0\"S  110°53'50.6”E/\n-7. 792512, 110.897399"
+  },
+  {
+    "id": 606,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Ir. Soekarno",
+    "kabupatenKota": "Kabupaten  Klaten",
+    "alamat": "Jl.  Jombor Indah,  Kabupaten  Klaten",
+    "titikKoordinat": "7°42'48. 2”S 11O°36' 13.4\"E/\n-7.713394,  110.603725"
+  },
+  {
+    "id": 607,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Kebumen",
+    "kabupatenKota": "Kabupaten  Kebumen",
+    "alamat": "Jl.  Lingkar Selatan  Kec.  Kebumen  Kab. Kebumen",
+    "titikKoordinat": "7°41'48.8\"S 109°40'44.3\"E/\n-7.696888,  109.678974"
+  },
+  {
+    "id": 608,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mangkang",
+    "kabupatenKota": "Kota Semarang",
+    "alamat": "Jl.  Gang Mekar Sari Atas, Mangkang Kulon, Semarang",
+    "titikKoordinat": "6°58'08. 1”S 110° l7'2 I.8\"EJ\n-6.9G8914,  110.289379"
+  },
+  {
+    "id": 609,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Pekalongan",
+    "kabupatenKota": "Kota Pekalongan",
+    "alamat": "Jl. Dr.  Sutomo, Ds. Gamer  Kec. Pekalongan  Timur,  Kota Pekalongan",
+    "titikKoordinat": "6°54' 10.7\"S  l09°42'02.7\"E/\n-6.902978,  109.700755"
+  },
+  {
+    "id": 610,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Induk Pemalang",
+    "kabupatenKota": "Kabupaten  Pemalang",
+    "alamat": "Jl.  Slamet Riyadi,  Pelutan,  Kec. Pemalang,  Kab. Pemalang",
+    "titikKoordinat": "6°52'54.4”S  109°23'37.1\"E/\n-6.881775,  109.393646"
+  },
+  {
+    "id": 611,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Purwokerto",
+    "kabupatenKota": "Kabupaten  Banyumas",
+    "alamat": "Jl.  Suwatio  No.48 Kel. Teluk,  Kec. Purwokerto  Selatan,  Kab.  Bnayumas",
+    "titikKoordinat": "7°26'37.6”S  109°15'20.0\"E/\n-7.443780,  109.255545"
+  },
+  {
+    "id": 612,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal  Mendolo",
+    "kabupatenKota": "Kabupaten  Wonosobo",
+    "alamat": "Jl. Bambang  Sugeng KM 3  Ds, Mendolo, Kec. Wonosobo  Kab. Wonosobo",
+    "titikKoordinat": "7°22'02.4\"S  109°55'29.0\"E  / -\n7.367340,  109.924725"
+  },
+  {
+    "id": 613,
+    "provinsi": "Jawa Tengah",
+    "namaTerminal": "Terminal Tegal",
+    "kabupatenKota": "Kota Tegal",
+    "alamat": "Jl.  Dr. Cipto Mangunkusumo, Sumurpanggang, Tegal Bar, Kota Tegal",
+    "titikKoordinat": "6°52'21.8\"S  109‘06'27.8”E/\n-6.872709,  109.107732"
+  },
+  {
+    "id": 614,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Arjosari",
+    "kabupatenKota": "Kota Malang",
+    "alamat": "Jl.  Raden lntan  No.  1  Malang",
+    "titikKoordinat": "7°55'59.6\"S  1 I2°39'29.0”E/\n-7.933225,  112.658066"
+  },
+  {
+    "id": 615,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Arya Wiraraja",
+    "kabupatenKota": "Kabupaten  Sumenep",
+    "alamat": "Jl.  Arya Wiraraja  NO.  10,   Sumenep",
+    "titikKoordinat": "7°01'45.9\"S 113°51'34.6\"E/\n-'/.029402,  113.859618"
+  },
+  {
+    "id": 616,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Bangkalan",
+    "kabupatenKota": "Kabupaten  Bangkalan",
+    "alamat": "Jl. Suramadu,  Ds. Massaran,  Kec. Tragah,  Kab. Bangkalan",
+    "titikKoordinat": "7°03'09.3\"S  I12°43'57.8\"E/\n-7.052580,  112.732723"
+  },
+  {
+    "id": 617,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Banyuangga",
+    "kabupatenKota": "Kota   Probolinggo",
+    "alamat": "Jl.Raya Bromo,  Kel. Triwung Lor, Kec. Pademangan,  Problinggo",
+    "titikKoordinat": "7°45'58.2\"S  113º 10'27.8“E/\n-7.766168, 113.174383"
+  },
+  {
+    "id": 618,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Gayatri",
+    "kabupatenKota": "Kabupaten Tulungagung",
+    "alamat": "Jl. Yos Sudarso  No. 117, Tulungagung",
+    "titikKoordinat": "8°04'23.5\"S  111°53'50. 2\"E/\n-8.073195, 111.897263"
+  },
+  {
+    "id": 619,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Kertonegoro",
+    "kabupatenKota": "Kabupaten  Ngawi",
+    "alamat": "Ds. Grudo  Kec.  Ngawi,  Kab.  Ngawí",
+    "titikKoordinat": "7°24'14.3\"S 111°25'00.2”E/\n-7.403982,  111.416725"
+  },
+  {
+    "id": 620,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Pacitan",
+    "kabupatenKota": "Kabupaten  Pacitan",
+    "alamat": "Jl.  Jend. Gatot Subroto Balehaijo, Pacitan",
+    "titikKoordinat": "8º I2'03.8\"S 111°06'10.4\"E/\n-8.201067, 111.102874"
+  },
+  {
+    "id": 621,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Patria",
+    "kabupatenKota": "Kota Blitar",
+    "alamat": "Jl.  Kenari  No.  110  Kota Blitar",
+    "titikKoordinat": "8‘07'23. 1”S 112°09'29.8\"E/\n-8.123076,  112.158281"
+  },
+  {
+    "id": 622,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal  Purboyo",
+    "kabupatenKota": "Kota Madiun",
+    "alamat": "Jl.Basuki  Rahmat  No.01 Sukasari Mangunharjo  Madiun",
+    "titikKoordinat": "7°36'17.5\"S 111°32'05.0”E/-7.604946,  111.534711"
+  },
+  {
+    "id": 623,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Selo Aji",
+    "kabupatenKota": "Kabupaten  Ponorogo",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.Arief Hahman  Hakim  \"},{\"font\":{\"italic\":true,\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"No.\"},{\"font\":{\"size\":11,\"color\":{\"theme\":1},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"08  Ponorogo\"}]}",
+    "titikKoordinat": "7°50'1 l .8”S 111°29'11.7\"E/\n-7.836613, 111.486578"
+  },
+  {
+    "id": 624,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Tamanan",
+    "kabupatenKota": "Kota Kediri",
+    "alamat": "Jl.  Semeru  no. 55,  Kel. Tamanan  Kec. Mojoroto  Kota Kediri",
+    "titikKoordinat": "7°49'44.7”S  111°59'03.2”E/\n-7.829086,  111.984224"
+  },
+  {
+    "id": 625,
+    "provinsi": "Jawa Timur",
+    "namaTerminal": "Terminal Surodakan",
+    "kabupatenKota": "Kabupaten  Trenggalek",
+    "alamat": "JI.  Ki Mangun  Sarkoro, Surodakan,  Kab. Trenggalek",
+    "titikKoordinat": "8°02'54.5“S  111°43'02.7\"E/\n-8.048459,  111.717419"
+  },
+  {
+    "id": 626,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Sumer  Payung",
+    "kabupatenKota": "Kabupaten  Sumbawa",
+    "alamat": "J1. Garuda km 6,  Labuhan  Badas Sumbawa Besar,  Kab. Sumbawa",
+    "titikKoordinat": "8‘28'38.7”S  l17°24' 15.8”E/\n-8.477409,  117.404392"
+  },
+  {
+    "id": 627,
+    "provinsi": "Nusa Tenggara Barat  (NTB)",
+    "namaTerminal": "Terminal  Dara",
+    "kabupatenKota": "Kota Bima",
+    "alamat": "Jl.  Pahlawan  Dara   Kota Bima",
+    "titikKoordinat": "8°27'31.6\"S  1 I8°43'26.2\"E/\n-8.458789,  l 18.723948"
+  },
+  {
+    "id": 628,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Kefamenanu",
+    "kabupatenKota": "Kabupaten Timor Tengah  Utara",
+    "alamat": "JL Mayjen  El Tari Kefamenanu, Kefamenanu  Sel, Kota Kefamenanu, Kabupaten Timor Tengah  Utara",
+    "titikKoordinat": "9°28'03.7”S  124°28’55.5”E  /-\n9.467681,  124.482074"
+  },
+  {
+    "id": 629,
+    "provinsi": "Nusa Tenggara Timur  (NTT)",
+    "namaTerminal": "Terminal  Bimoku",
+    "kabupatenKota": "Kota Kupang",
+    "alamat": "Jl.  Herman Yohanes Bimoku  Kota Kupang",
+    "titikKoordinat": "10°8'25.0\"S  I23°40'34.6\"E  / -\n10. 1402777,  123.676277"
+  },
+  {
+    "id": 630,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Sei Ambawang",
+    "kabupatenKota": "Kabupaten  Kubu  Raya",
+    "alamat": "Jl. Trans Kalimantan,  Sul Ambawang, Kuala,  Sungai Ambawang,  Kab.  Kubu Raya",
+    "titikKoordinat": "0°02'28.3\"S 109°24'13.7\"E/\n-0.041187,  109.403515"
+  },
+  {
+    "id": 631,
+    "provinsi": "Kalimantan  Barat",
+    "namaTerminal": "Terminal  Singkawang",
+    "kabupatenKota": "Kota Singkawang",
+    "alamat": "Jl.  Sei Wie Singkawang Tengah  Kota Singkawang",
+    "titikKoordinat": "0°55'15.5\"N  108°58'47.0\"E/\n0.920963,  108.979716"
+  },
+  {
+    "id": 632,
+    "provinsi": "Kalimantan  Tengah",
+    "namaTerminal": "Terminal  W.A.  Gara",
+    "kabupatenKota": "Kota Palangkaraya",
+    "alamat": "Jl.  Mahir  Mahar  No  1,  Lingkar  Luar  Kota Palangkaraya",
+    "titikKoordinat": "2º 16' 18.8”S  l13‘54'22.6\"E/\n-2.271890,  113.906289"
+  },
+  {
+    "id": 633,
+    "provinsi": "Kalimantan  Selatan",
+    "namaTerminal": "Terminal  Gambut Barakat",
+    "kabupatenKota": "Kabupaten  Banjar",
+    "alamat": "Jl.Ahmad  Yani,  km  17,   Gambut  Kab. Banjar",
+    "titikKoordinat": "3°25'50. 1\"S 1 l4°40'50.2\"E/\n-3.430577,  114.680609"
+  },
+  {
+    "id": 634,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal  Batu  Ampar",
+    "kabupatenKota": "Kota Balikpapan",
+    "alamat": "Jl.  Kapten  Pattimura  Batu Ampar Balikpapan  Utara,  Kota Balikpapan",
+    "titikKoordinat": "1°13'11.1”S 116°51'24.8”E/\n-1.219744,  116.856878"
+  },
+  {
+    "id": 635,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal Samarinda Seberang",
+    "kabupatenKota": "Kota Samarinda",
+    "alamat": "Jl.  Gajah  Mada PS Pagi Kota Samarinda",
+    "titikKoordinat": "0°30'29.5\"S  117°08'29.6\"E/\n-0.508186, 117.141541"
+  },
+  {
+    "id": 636,
+    "provinsi": "Kalimantan  Timur",
+    "namaTerminal": "Terminal Tanah Grogot Kuaro",
+    "kabupatenKota": "Kabupaten Paser",
+    "alamat": "-",
+    "titikKoordinat": "-"
+  },
+  {
+    "id": 637,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Induk Lumpue",
+    "kabupatenKota": "Kota Pare-Pare",
+    "alamat": "Jl. Mirdin  Kasim  — Lumpue,  Kota Pare- Pare",
+    "titikKoordinat": "4°03'19.7”S  l19°37'56.0”E/\n-4.055482,  119.632215"
+  },
+  {
+    "id": 638,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Latenri Sessu Pekkae",
+    "kabupatenKota": "Kabupaten  Barru",
+    "alamat": "Kelurahan  Lalolang,  Kec. Tanete  Rilau, Kab. Barru",
+    "titikKoordinat": "4°29'09.9”S  119°36'30.8”E/\n-4.486088,  119.608568"
+  },
+  {
+    "id": 639,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Petta Pongawai",
+    "kabupatenKota": "Kabupaten  Bone",
+    "alamat": "Jl.  MT. Haryono,  Watampone,  Kab. Bone",
+    "titikKoordinat": "4°32'24.4\"S  120º 17'42.0\"E/-4.540113,  120.295005"
+  },
+  {
+    "id": 640,
+    "provinsi": "Sulawesi Selatan",
+    "namaTerminal": "Terminal  Daya",
+    "kabupatenKota": "Kota Makassar",
+    "alamat": "Jl. Kapasa Raya,  Daya,  Biring Kanaya, Kota Makassar",
+    "titikKoordinat": "5°06'37.0”S  119°30'29.2\"E/\n-5.110280, 119.508113"
+  },
+  {
+    "id": 641,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Simbuang",
+    "kabupatenKota": "Kabupaten  Mamuju",
+    "alamat": "Jl. Simboro  Kecamatan  Mamuju  Simboro Dec. Simboro Kab. Mamuju",
+    "titikKoordinat": "2°41'23.4\"S  1 I8°51'56.9”E/\n-2.689834,  118.865806"
+  },
+  {
+    "id": 642,
+    "provinsi": "Sulawesi Barat",
+    "namaTerminal": "Terminal Tipalayo",
+    "kabupatenKota": "Kabupaten PoliwaJimandar",
+    "alamat": "Jl. Trans Sulawesi,  Kab. Poliwalimandar",
+    "titikKoordinat": "3°26'50.3\"S  1 l9°22'34.5”E/-3.447297,  119.376238"
+  },
+  {
+    "id": 643,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Kasintuwu/Poso",
+    "kabupatenKota": "Kabupaten  Poso",
+    "alamat": "Mapane,  Poso Pesisir,  Kabupaten  Poso",
+    "titikKoordinat": "l°24'50.3”S  120°39'48. 2\"E/\n-1.413964,  120.663378"
+  },
+  {
+    "id": 644,
+    "provinsi": "Sulawesi Tengah",
+    "namaTerminal": "Terminal  Mamboro",
+    "kabupatenKota": "Kota Palu",
+    "alamat": "Jl.  Trans Sulawesi,  Mamboro,  Palu  Utara, Kota Palu",
+    "titikKoordinat": "0°48'22.4\"S 119°53'01.1\"E/-0.8062 l2,  119.883642"
+  },
+  {
+    "id": 645,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Boroko",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow  Utara",
+    "alamat": "Jl. Trans Sulawesi,  Desa Kuala,  Kab. Bolaang  Mongondow  Utara",
+    "titikKoordinat": "0°54'41.0”N  123º 16'56.3\"E/\n0.911639,  123.282306"
+  },
+  {
+    "id": 646,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Liwas",
+    "kabupatenKota": "Kota Manado",
+    "alamat": "Kecamatan  Paal Dua, Kota Manado",
+    "titikKoordinat": "1°39'06.8”N  124°5 I'40.8\"E/1.485211,  124.861321"
+  },
+  {
+    "id": 647,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal Tangkoko",
+    "kabupatenKota": "Kota Bitung",
+    "alamat": "Jl. SH Sarundajang,  Kel.  Manembo-nembo, Kec.  Matuari,  Kota Bitung",
+    "titikKoordinat": "1°25‘48.8\"N  I25°06'44.1\"E/1.430227,  125.112261"
+  },
+  {
+    "id": 648,
+    "provinsi": "Sulawesi  Utara",
+    "namaTerminal": "Terminal  Bolaang Mongondow",
+    "kabupatenKota": "Kabupaten  Bolaang Mongondow",
+    "alamat": "Jl. Trans Dulangon  km 2 Kab.  Bolaang Mongondow",
+    "titikKoordinat": "00°51' 11.74”N\n125‘59'54.89. 1\"E"
+  },
+  {
+    "id": 649,
+    "provinsi": "Sulawesi Tenggara",
+    "namaTerminal": "Terminal  Puuwatu",
+    "kabupatenKota": "Kota Kendari",
+    "alamat": "Jl. Moh. Yamin,  Puuwatu,  Kota Kendari",
+    "titikKoordinat": "3‘58'01.98\"S 122°27'29.85”E\n-3.96672 16, 122.458291"
+  },
+  {
+    "id": 650,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Isimu",
+    "kabupatenKota": "Kabupaten  Gorontalo",
+    "alamat": "Jl. Amala  Mantu,  Desa Tolotio,  Kec. Tibawa,  Kab.  Gorontalo",
+    "titikKoordinat": "0°39'12.0\"N  122°51'15.3”E/\n0.653339,  122.854250"
+  },
+  {
+    "id": 651,
+    "provinsi": "Gorontalo",
+    "namaTerminal": "Terminal  Dungingi",
+    "kabupatenKota": "Kota Gorontalo",
+    "alamat": "Jl. Beringin,  Hu angobotu,  Dungingi,  Kota Gorontalo",
+    "titikKoordinat": "0°33'52. 1”N  123°01'S7. 1\"E/\n0.564475,  123.032515"
+  },
+  {
+    "id": 652,
+    "provinsi": "Papua",
+    "namaTerminal": "Terminal Entrop",
+    "kabupatenKota": "Kota Jayapura",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.   Yos Sudarso,  Entrop \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF0E0E0E\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\", \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF000000\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Jayapura\"}]}",
+    "titikKoordinat": "2°33‘59. 9\"S  l40°4 l'39.6”E/-2.566642,  140.694342"
+  },
+  {
+    "id": 653,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kampung Rambutan",
+    "kabupatenKota": "Kota Jakarta Timur",
+    "alamat": "Jl.  Term.  Simatupang,  Kel.  Rambutan, Kec.  Ciracas,  Kota Jakarta Timur",
+    "titikKoordinat": "6º 18'34.3\"S  106°52'56. 2”E/-6.309526,  106.582281"
+  },
+  {
+    "id": 654,
+    "provinsi": "DKI Jakarta",
+    "namaTerminal": "Terminal Kalideres",
+    "kabupatenKota": "Kota Jakarta Barat",
+    "alamat": "{\"richText\":[{\"text\":\"Jl.   \"},{\"font\":{\"size\":11,\"color\":{\"argb\":\"FF000000\"},\"name\":\"Calibri\",\"family\":2,\"scheme\":\"minor\"},\"text\":\"Daan  Mogot  No.  15,  Kota Jakarta Barat\"}]}",
+    "titikKoordinat": "6°09' 15.9\"S 106°42'2 l.0\"E/-6. 154418,  106.705839"
+  },
+  {
+    "id": 655,
+    "provinsi": "Kalimantan Timur (BPTD Wil.XVII)",
+    "namaTerminal": "Terminal Samarinda Seberang",
+    "kabupatenKota": "Kota Samarinda",
+    "alamat": "Jl. Bung Tomo RT.10 Kel. Baqa Kec. Samarinda Seberang, Kota Samarinda",
+    "titikKoordinat": "SSB"
+  },
+  {
+    "id": 656,
+    "provinsi": "Sulawesi Selatan dan Sulawesi Barat (BPTD Wil.XIX)",
+    "namaTerminal": "Terminal Induk Lumpue",
+    "kabupatenKota": "Kota Pare-Pare",
+    "alamat": "Jl. H. Mirdin Kasim Kel. Lumpue Kec. Bacukiki Barat Kota Pare-Pare 91123",
+    "titikKoordinat": "ILP"
+  },
+  {
+    "id": 657,
+    "provinsi": "Sulawesi Selatan dan Sulawesi Barat (BPTD Wil.XIX)",
+    "namaTerminal": "Terminal Latenri Sessu Pekkae",
+    "kabupatenKota": "Kabupaten Barru",
+    "alamat": "Jl. Andi Hajerah No. 1 Kel. Lalolang, Kec. Tanete Rilau, Kab. Barru, Sulawesi Selatan 90761",
+    "titikKoordinat": "LSP"
+  },
+  {
+    "id": 658,
+    "provinsi": "Sulawesi Selatan dan Sulawesi Barat (BPTD Wil.XIX)",
+    "namaTerminal": "Terminal Petta Pongawai",
+    "kabupatenKota": "Kabupaten Bone",
+    "alamat": "Jl. MT. Haryono, Watampone, Kab. Bone",
+    "titikKoordinat": "PPW"
+  },
+  {
+    "id": 659,
+    "provinsi": "Sulawesi Selatan dan Sulawesi Barat (BPTD Wil.XIX)",
+    "namaTerminal": "Terminal Daya",
+    "kabupatenKota": "Kota Makasar",
+    "alamat": "Jl. Kapasa Raya, Daya, Biring Kanaya, Kota Makassar",
+    "titikKoordinat": "DYA"
+  }
+]
