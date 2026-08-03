@@ -622,6 +622,7 @@ const bottomAddEdit = computed(() => {
 });
 
 async function openDialogAdd() {
+  new_obat.value = defaultobat();
   await supplierStore.tarikDataSuplier();
   data.addedit = "add";
   data.dialogAdd = true;

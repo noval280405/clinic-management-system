@@ -651,9 +651,9 @@ const bottomAddEdit = computed(() => {
 });
 
 async function openDialogAdd() {
+  new_dokter.value = defaultDokter();
   await poliStore.tarikDataPoli();
   data.addedit = "add";
-  new_dokter.value = defaultDokter();
   data.dialogAdd = true;
 }
 

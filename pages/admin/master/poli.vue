@@ -576,9 +576,8 @@ const bottomAddEdit = computed(() => {
 });
 
 function openDialogAdd() {
-  data.addedit = "add";
   new_poli.value = defaultPoli();
-
+  data.addedit = "add";
   data.dialogAdd = true;
 }
 

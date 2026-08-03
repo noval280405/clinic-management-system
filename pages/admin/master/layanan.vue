@@ -599,6 +599,7 @@ const bottomAddEdit = computed(() => {
 });
 
 function openDialogAdd() {
+  new_layanan.value = defaultLayanan();
   data.addedit = "add";
   data.dialogAdd = true;
 }

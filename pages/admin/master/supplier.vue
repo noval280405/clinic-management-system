@@ -578,9 +578,8 @@ const bottomAddEdit = computed(() => {
 });
 
 function openDialogAdd() {
-  data.addedit = "add";
   new_Suplier.value = defaultSuplier();
-
+  data.addedit = "add";
   data.dialogAdd = true;
 }
 
