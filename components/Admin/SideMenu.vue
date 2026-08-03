@@ -32,8 +32,8 @@
       </div>
     </v-list-group>
 
-    <!-- OPERASIONAL -->
-    <div class="nav-section-label">Operasional</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <!-- OPERASIONAL MEDIS -->
+    <div class="nav-section-label">Operasional Medis</div>
 
     <v-list-item
       to="/admin/pendaftaran"
@@ -42,22 +42,16 @@
       title="Pendaftaran"
     />
 
+    <!-- Resep & Tindakan idealnya diinput di dalam proses Pemeriksaan ini -->
     <v-list-item
       to="/admin/pemeriksaan"
       class="nav-item mb-1"
       prepend-icon="mdi-file-document-edit-outline"
-      title="Pemeriksaan"
+      title="Pemeriksaan & RM"
     />
 
-    <v-list-item
-      to="/admin/resep-obat"
-      class="nav-item mb-1"
-      prepend-icon="mdi-pill"
-      title="Resep Obat"
-    />
-
-    <!-- FARMASI -->
-    <div class="nav-section-label">Farmasi</div>
+    <!-- FARMASI & LOGISTIK -->
+    <div class="nav-section-label">Farmasi & Logistik</div>
 
     <v-list-item
       to="/admin/farmasi/antrian-resep"
@@ -74,90 +68,36 @@
     />
 
     <v-list-item
+      to="/admin/farmasi/pembelian-stok"
+      class="nav-item mb-1"
+      prepend-icon="mdi-plus-box-multiple-outline"
+      title="Stok Masuk (Supplier)"
+    />
+
+    <v-list-item
       to="/admin/farmasi/mutasi-stok"
       class="nav-item mb-1"
       prepend-icon="mdi-swap-horizontal"
-      title="Mutasi Stok"
+      title="Mutasi & Penyesuaian"
     />
 
-    <!-- KEUANGAN -->
+    <!-- KEUANGAN & KASIR -->
     <div class="nav-section-label">Keuangan</div>
 
+    <!-- Menggabungkan konsep Billing dan Pembayaran ke dalam satu menu Kasir utama -->
     <v-list-item
-      to="/admin/billing"
+      to="/admin/kasir"
       class="nav-item mb-1"
-      prepend-icon="mdi-cash-multiple"
-      title="Billing"
-    />
-
-    <v-list-item
-      to="/admin/pembayaran"
-      class="nav-item mb-1"
-      prepend-icon="mdi-credit-card-outline"
-      title="Pembayaran"
+      prepend-icon="mdi-cash-register"
+      title="Kasir / Pembayaran"
     />
 
     <v-list-item
       to="/admin/invoice"
       class="nav-item mb-1"
-      prepend-icon="mdi-file"
-      title="Invoice"
+      prepend-icon="mdi-file-text-outline"
+      title="Riwayat Invoice"
     />
-
-    <!-- LAPORAN
-    <div class="nav-section-label">Laporan</div>
-
-    <v-list-item
-      to="/admin/laporan/harian"
-      class="nav-item mb-1"
-      prepend-icon="mdi-calendar-today"
-      title="Harian"
-    />
-
-    <v-list-item
-      to="/admin/laporan/bulanan"
-      class="nav-item mb-1"
-      prepend-icon="mdi-calendar-month"
-      title="Bulanan"
-    />
-
-    <v-list-item
-      to="/admin/laporan/farmasi"
-      class="nav-item mb-1"
-      prepend-icon="mdi-pill-multiple"
-      title="Laporan Farmasi"
-    />
-
-    <v-list-item
-      to="/admin/laporan/keuangan"
-      class="nav-item mb-1"
-      prepend-icon="mdi-finance"
-      title="Laporan Keuangan"
-    />
-
-    SYSTEM
-    <div class="nav-section-label">System</div>
-
-    <v-list-item
-      to="/admin/audit-log"
-      class="nav-item mb-1"
-      prepend-icon="mdi-history"
-      title="Audit Log"
-    />
-
-    <v-list-item
-      to="/admin/activity-log"
-      class="nav-item mb-1"
-      prepend-icon="mdi-clipboard-text-clock"
-      title="Activity Log"
-    />
-
-    <v-list-item
-      to="/admin/error-log"
-      class="nav-item mb-1"
-      prepend-icon="mdi-alert-circle-outline"
-      title="Error Log"
-    /> -->
   </v-list>
 </template>
 
@@ -194,6 +134,8 @@
   background: var(--nav-active-bg) !important;
   color: #fff !important;
   font-weight: 600;
+  border-left: 3px solid var(--primary-accent) !important;
+  border-radius: 0 10px 10px 0 !important;
 }
 
 .nav-submenu {
@@ -206,9 +148,13 @@
   font-size: 12.5px;
   min-height: 34px;
   color: rgba(255, 255, 255, 0.5);
+  border-radius: 6px !important;
+  margin-bottom: 2px;
 }
 
 .nav-submenu :deep(.v-list-item--active) {
-  color: #fff;
+  background: transparent !important;
+  color: #fff !important;
+  font-weight: 600;
 }
 </style>
