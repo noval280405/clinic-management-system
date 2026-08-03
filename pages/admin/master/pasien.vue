@@ -755,6 +755,7 @@ const bottomAddEdit = computed(() => {
 });
 
 function openDialogAdd() {
+  new_pasien.value = defaultPasien();
   data.addedit = "add";
   data.dialogAdd = true;
 }
